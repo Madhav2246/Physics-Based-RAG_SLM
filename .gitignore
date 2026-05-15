@@ -1,0 +1,54 @@
+# Virtual environment
+venv/
+env/
+.venv/
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyo
+
+# HuggingFace cache (large model files)
+hf_cache/
+
+# Model weights (large binary files)
+models/slm/
+models/finetuned_slm/
+models/lora/
+
+# Data files (PDFs, embeddings, processed data)
+data/raw_pdfs/
+data/raw/
+data/extracted_text/
+data/processed/
+data/embeddings/
+data/corpus/
+
+# Logs
+logs/
+
+# IDE / Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS files
+Thumbs.db
+.DS_Store
+desktop.ini
+
+# Distribution / Packaging
+dist/
+build/
+*.egg-info/
+*.egg
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Environment variables
+.env
+.env.local

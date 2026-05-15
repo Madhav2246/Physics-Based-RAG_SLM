@@ -1,0 +1,15 @@
+torch
+transformers
+accelerate
+bitsandbytes
+sentence-transformers
+faiss-cpu
+rank-bm25
+sympy
+numpy
+scipy
+tqdm
+pymupdf
+peft
+trl
+datasets
