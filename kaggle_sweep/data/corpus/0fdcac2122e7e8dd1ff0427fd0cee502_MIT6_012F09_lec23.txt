@@ -1,0 +1,1879 @@
+  
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+    
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+    
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+6.012 - Microelectronic Devices and Circuits 
+Lecture 23 - Circuits at High Frequencies - Outline  
+• Announcements 
+Design Problem - Due tomorrow, Dec. 4, by 5 p.m. 
+Postings on Stellar - Cascode; µA-741 
+• Bounding mid-band - finding ωHI, ωLO 
+Method of open circuit time constants: finding ωHI 
+(How high can we fly?) 
+Method of short circuit time constants: finding ωLO 
+(How low can we go?) 
+The lesson of the OCTC and SCTC methods: which capacitors matter 
+• The Miller effect: why Cµ and Cgd are so important 
+The concept: the consequences of having a capacitor shunting a gain stage 
+Examples:  common-emitter/-source stages  
+common-base/gate stages; emitter-/source-followers  
+the µA 741 - stabilizing a high gain circuit  
+• The Marvelous cascode: impact on ωHI 
+Concept and ωHI: getting larger bandwidth from CE + CB 
+The costs 
+Clif Fonstad, 12/3/09  
+Lecture 23 - Slide 1 
+
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+The impact of Q13' and Q13 on the voltage gains  
+We added transistor Q13 
+to the left side of the DP 
+second gain stage (the 
+Current Mirror), and said 
+it has no effect on the Avd 
+or Avc of this stage. In 
+fact it does have some 
+impact on the common-
+mode voltage gain. The 
+following few sides look 
+at this impact. 
+We find that now: 
+Q16
++ 1.5 V
+- 1.5 V
+A
+Q17
+Q14
+Q15
+Q11
+Q12
+Q13
+Q13'
+Avc " 1+ gm11
+gm13'
+# 
+$ % 
+& 
+' ( = 1+
+2Vthermal
+VGS11 ) VT11
+# 
+$ 
+% 
+& 
+' 
+( 
+"1.5
+Remember that it is possible to make the bias currents in the two legs of the mirror (Q11/Q14 and  
+Q12/Q15) different by making the transistors widths different.  
+Clif Fonstad, 12/3/09 
+Lecture 23 - Slide 2 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+The impact of Q13' and Q13 on the voltage gains, cont.  
+In the design problem we 
+have a current mirror stage 
+each leg. The bias currents 
+of the two legs can also be 
+V+
+Q2
+vIC + vID/2
++
+-
++
+-
+Q3
+Q4
+Q1
+vOUT
++
+-
+V-
+vINNER
++
+-
+vIC - vID/2
+D1' 
+D1 
+with a level shift diode in 
+different. 
+We can do an 
+LEC analysis of 
+this circuit in the 
+same way we did 
+without the two 
+diodes. We start 
+with the LEC for 
+the left side and 
+find vinner: 
+gm3vgs3
+go3
+go1
++
+-
+vic+vid/2 = v gs3
++
+-
+vinner
+gm1
+gd1’
+LEC for the left side 
+Clif Fonstad, 12/3/09 
+Lecture 23 - Slide 3 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+The left side LEC gives: 
+vinner " # 1#$
+(
+) vic + vid
+2
+% 
+& ' 
+( 
+) *      with     $ + rd1' + 2rm3
+ro3
+= 2go3
+gm3
+1+ gm3
+2gd1'
+% 
+& ' 
+( 
+) * 
+Next we analyze the right side LEC: 
+LEC for the right side 
+gm4vgs4
+go4
+go2
++
+-
+vic-vid/2 = v gs4
+gm2vinner
+gd1
++
+-
+vout
+gel
+The impact of Q13' and Q13 on the voltage gains, cont. 
+To see the impact of gd1 on this side, apply one source at a time and 
+superimpose the results: 
+gm4vgs4 alone: 
+gm4vgs4
+go4
+go2
++
+-
+vic-vid/2 = v gs4
+gd1
++
+-
+vout1
+gel
+gm2vinner alone: 
+go4
+go2
++
+-
+vic-vid/2 = v gs4
+gm2vinner
+gd1
++
+-
+vout2
+gel
+Clif Fonstad, 12/3/09 
+Lecture 23 - Slide 4 
+
+  
+ 
+  
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+The impact of Q13' and Q13 on the voltage gains, cont. 
+Writing ro4||rel as ro4*, and doing this we find: 
+vout = vout1 + vout 2 =
+ro2 + rd
+(
+)ro4
+"
+ro4
+" + ro2 + rd
+(
+)
+gm4vgs4 #
+ro2 ro4
+"
+ro4
+" + ro2 + rd
+(
+)
+1#$
+(
+)gm2vgs2
+=
+ro2 + rd
+(
+)ro4
+"
+ro4
+" + ro2 + rd
+(
+)
+gm4 vic # vid
+2
+% 
+& ' 
+( 
+) * #
+ro2 ro4
+"
+ro4
+" + ro2 + rd
+(
+)
+1#$
+(
+)gm2 vic + vid
+2
+% 
+& ' 
+( 
+) * 
+Note: Analysis 
+sets gm1 = gm3, 
+gm2 = gm4, go1 = 
+go3, go2 = go4. 
+Next look at the terms involving vid and vic terms separately: 
+vout "
+2gm4
+2go4 + gel
+(
+)
+vin1 # vin2
+(
+)
+2
+# 1+ gm1
+gd1'
+$ 
+% & 
+' 
+( ) 
+vin1 + vin2
+(
+)
+2
+Ultimately we find: 
+vid: 
+vic: 
+"
+ro2 + rd
+(
+)ro4
+#
+ro4
+# + ro2 + rel
+(
+)
+gm4 +
+ro2 ro4
+#
+ro4
+# + ro2 + rd
+(
+)
+1"$
+(
+)gm2
+% 
+& 
+' 
+' 
+( 
+) 
+* 
+* 
+vid
+2 + ro2 ro4
+# 2 "$
+(
+)
+ro4
+# + ro2 + rd
+(
+)
+gm4
+vid
+2
+"
+ro2 + rd
+(
+)ro4
+#
+ro4
+# + ro2 + rd
+(
+)
+gm4 "
+ro2 ro4
+#
+ro4
+# + ro2 + rd
+(
+)
+1"$
+(
+)gm2
+% 
+& 
+' 
+' 
+( 
+) 
+* 
+* 
+vic =
+rd + $ ro2
+(
+)ro4
+#
+ro4
+# + ro2 + rd
+(
+)
+gm4 vic
+≈ unchanged by adding diodes 
+≈ 1.5, increased from ≈1 by adding diodes 
+Clif Fonstad, 12/3/09 
+Lecture 23 - Slide 5 
+
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Mid-band, cont: The mid-band range of frequencies  
+In this range of frequencies the gain is a constant, and the
+phase shift between the input and output is also constant
+(either 0˚ or 180˚). 
+log !
+log |A vd|
+!b
+!c
+!d
+!a
+!LO
+!LO*
+!4
+!5 !2!1
+!3
+!HI*
+!HI
+Mid-band Range
+All of the parasitic and intrinsic device capacitances
+are effectively open circuits 
+All of the biasing and coupling capacitors are 
+effectively short circuits 
+Clif Fonstad, 12/3/09 
+Lecture 23 - Slide 6 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+   
+ 
+  
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+    
+gl
++
+-
+vin = v gs
++
+-
+vout
+vt
++
+-
+rt
+gmvgs
+go
+d
+s,b
+s,b
+g
+Bounding mid-band: frequency range of constant gain and phase 
+Common 
+Biasing capacitors: 
+typically in mF range 
+(CO, CS, etc.) 
+effectively shorts above ωLO 
+Device capacitors: 
+typically in pF range 
+(Cgs, Cgd, etc.) 
+effectively open until ωHI 
+Source 
+IBIAS
+V-
+V+
+vin
++
+-
+CE
+CO
+vout
++
+-
++
+-
+vgs
++
+-
+vout
+vt
++
+-
+rt
+gmvgs
+go
+Cgs
+Cgd
+d
+s,b
+g
+gob
+-
+vin
++
+CS
+CO
+gsl
+gel
+LEC for common source stage with all the capacitors 
+Mid-band frequencies fall between: ωLO < ω < ωHI  
+Common emitter LEC for in mid-band range Note: gl = gsl + gel 
+What are ωLO and ωHI? 
+Clif Fonstad, 12/3/09 
+Lecture 23 - Slide 7 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+  
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Estimating ωHI - Open Circuit Time Constants Method 
+Open circuit time constants (OCTC) recipe: 
+1.  Pick one Cgd, Cgs, Cµ, Cπ, etc. (call it C1) and assume all 
+others are open circuits. 
+2.  Find the resistance in parallel with C1 and call it R1. 
+3.  Calculate 1/R1C1 and call it ω1. 
+4.  Repeat this for each of the N different Cgd's, Cgs's, Cµ's, 
+Cπ's, etc., in the circuit finding ω1, ω2, ω3, …, ωN. 
+5.  Define ωHI* as the inverse of the sum of the inverses of 
+the N ωi's:  
+ωHI* = [Σ(ωi)-1]-1 = [ΣRiCi]-1  
+6.  The true ωHI is similar to, but greater than, ωHI*. 
+Observations: 
+The OCTC method gives a conservative, low estimate for ωHI. 
+The sum of inverses favors the smallest ωi, and thus the 
+capacitor with the largest RC product dominates ωHI*. 
+Clif Fonstad, 12/3/09  
+Lecture 23 - Slide 8 
+
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Estimating ωLO - Short Circuit Time Constants Method 
+Short circuit time constants (SCTC) recipe: 
+1.  Pick one CO, CI, CE, etc. (call it C1) and assume all others 
+are short circuits. 
+2.  Find the resistance in parallel with C1 and call it R1. 
+3.  Calculate 1/R1C1 and call it ω1. 
+4.  Repeat this for each of the M different CI's, CO's, CE's, CS's, 
+etc., in the circuit finding ω1, ω2, ω3, …, ωM. 
+5.  Define ωLO* as the sum of the M ωj's:  
+ωLO* = [Σ(ωj)] = [Σ(RjCj)-1]  
+6.  The true ωLO is similar to, but less than, ωLO*. 
+Observations: 
+The SCTC method gives a conservative, high estimate for ωLO. 
+The sum of inverses favors the largest ωj, and thus the 
+capacitor with the smallest RC product dominates ωLO*. 
+Clif Fonstad, 12/3/09  
+Lecture 23 - Slide 9 
+
+ 
+ 
+  
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+Summary of OCTC and SCTC results 
+• OCTC: an estimate for ωHI 
+log !
+log |A vd|
+!b
+!c
+!d
+!a
+!LO
+!LO*
+!4
+!5 !2!1
+!3
+!HI*
+!HI
+Mid-band Range
+1.  ωHI* is a weighted sum of ω's associated with device capacitances: 
+(add RC's and invert) 
+2. Smallest ω (largest RC) dominates ωHI * 
+3. Provides a lower bound on ωHI 
+• SCTC: an estimate for ωLO 
+1.  ωLO * is a weighted sum of w's associated with bias capacitors: 
+(add ω's directly) 
+2. Largest ω (smallest RC) dominates ωLO * 
+3. Provides a upper bound on ωLO 
+Clif Fonstad, 12/3/09  
+Lecture 23 - Slide 10 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ωHI for the Common Source - the full treatment  
+The full gain expression is: 
+Av j"
+(
+) =
+#gt gm # j"Cgd
+(
+)
+j"
+(
+)
+2CgsCgd + j" gl + go
+(
+)Cgs + gl + go + gt + gm
+(
+)Cgd
+[
+] + gl + go
+(
+)gt
+{
+}
+gl
++
+-
+vin = v gs
++
+-
+vout
+vt
++
+-
+rt
+gmvgs
+go
+Cgs
+Cgd
+d
+s,b
+s,b
+g
+There are two poles (call them ω1 and ω2), and one zero (call it ω3):  
+"1 = gt
+Cgs + gl + go + gt + gm
+(
+)rl
+' Cgd
+[
+]              with  rl
+' # gl + go
+(
+)
+$1
+"2 = gl + go
+(
+) Cgd + gl + go + gt + gm
+(
+) Cgs
+"3 = gm Cgd
+Upon examination of these three expressions we find that ω1 << ω2, 
+ω3, so ω1 is clearly the dominant pole, and ωHI is effectively ω1. 
+Note: Cdb has been neglected to keep
+Clif Fonstad, 12/3/09 
+Lecture 23 - Slide 11 
+things simpler; it is very small. 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ωHI for the Common Source - the OCTC method  
+gl
++
+-
+vin = v gs
++
+-
+vout
+vt
++
+-
+rt
+gmvgs
+go
+Cgs
+Cgd
+d
+s,b
+s,b
+g
+The resistance, Rgs, seen by Cgs with Cgd removed is 1/gt, so 
+"gs = gt Cgs
+That seen by Cgd with Cgs 
+gd
+"gd = gt
+gl
+' + gt + gm
+[
+]rl
+' Cgd
+removed, R , is (gl'+gt+gm)/gtgl', so 
+Using the OCTC method we estimate 
+" HI
+* = "gs
+#1 + "gd
+#1
+(
+)
+#1 = gt
+Cgs + gl
+' + gt + gm
+(
+)rl
+' Cgd
+[
+]
+ωHI as 
+This is actually identical to the dominant pole, ω1, found using 
+the full analysis. 
+Clif Fonstad, 12/3/09 
+Lecture 23 - Slide 12 
+
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+   
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+  
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ωHI for the Common Source: the Miller effect 
+In both of our analyses we note that in the dominant term Cgd is 
+multiplied by the factor (gl'+gt+gm)rl'. Noting (1) that typically it 
+is true that gm >> gt, and (2) that -gmrl' is the mid-band voltage 
+gain, Av, of the amplifier, we see that this factor can be approx­
+imated as one minus the voltage gain of the stage, i.e.: 
+gl
+' + gt + gm
+(
+)rl
+' = 1+ gt + gm
+(
+)rl
+'
+[
+] " 1+ gmrl
+'
+[
+] = 1# Av
+(
+)
+If the voltage gain is large, then in effect Cgd looks bigger from  
+the input side of the circuit than it really is, i.e. (1 - Av)Cgd:  
+This "magnification" of a capacitor bridging the input and the 
+output of a voltage amplifier, as Cgd does here, by |Av| is called 
+the Miller effect. 
+gl
++
+-
+vin = v gs
++
+-
+vout
+vt
++
+-
+rt
+gmvgs
+go
+Cgs
+d
+s,b
+s,b
+g
+Cgd(1-Av)
+Clif Fonstad, 12/3/09 
+Lecture 23 - Slide 13 
+
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+The Miller effect (general)  
++
+-
+vin
+(1-Av)vin
+Cm
+vout = Avvin
++
+-
++
+-
+iin
+Consider an amplifier shunted by a capacitor, and consider 
+how the capacitor looks at the input and output terminals: 
+Note: Av is negative 
+vout
++
+-
+Cm
+vin
++
+-
+Av
+iin = Cm
+d 1" Av
+(
+)vin
+[
+]
+dt
+= 1" Av
+(
+)Cm
+dvin
+dt
++
+-
+vout
+Cm
++
+-
+vin
+(1-Av)Cm
+Cin looks much 
+Cm
+1" Av
+(
+)
+Av
+# Cm
+bigger than Cm 
+Cout looks like Cm 
+Clif Fonstad, 12/3/09 
+Lecture 23 - Slide 14  
+
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+The Miller effect: Miller capacitors in other basic stages  
+Common drain or source follower 
++
+-
+vgs
++
+-
+vout
+vt
++
+-
+rt
+gmvgs
+go
+Cgs
+Cgd
+d
+s,b
+s,b
+g
+gl
+-
+vin
++
+Repositioning Cgd makes the situation clearer: 
++
+-
+vgs
++
+-
+vout
+vt
++
+-
+rt
+gmvgs
+go
+Cgs
+d
+s,b
+s,b
+g
+gl
+-
+vin
++
+Cgd
+C
+is in the 
+gs 
+Miller position, 
+but the voltage 
+gain is one so 
+there is no 
+Miller effect. 
+Clif Fonstad, 12/3/09 
+Lecture 23 - Slide 15 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+   
+ 
+ 
+ 
+ 
+ 
+   
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+Common gate, substrate grounded
+The way one often sees common gate stages. 
+No Miller effect, just as in common-base. 
+gl
+(gm + gmb)vsg
+go
++
+-
+vin 
+= v sg
++
+-
+vout
+vt
++
+-
+rt
+Cgs+Cbs
+Cgd+Cbd
+s
+d
+g,b
+g,b
+The Miller effect: Miller capacitors in other basic stages 
+Common gate, substrate shorted to source 
+- But note that the gain is positive, so (1-A ) is negative and C
+||(1-A
+Clif Fonstad, 12/3/09 
+v
+gs
+v)Cbd 
+Lecture 23 - Slide 16  
+This is the connection used in the design problem. 
+Now Cbd shows up in the Miller position. 
+gl
+gmvsg
+go
++
+-
+vin 
+= v sg
++
+-
+vout
+vt
++
+-
+rt
+Cgs
+Cgd
+s,b
+d
+g
+g
+Cbd
+is < Cgs, i.e. the Miller effect helps! 
+
+ 
+ 
+ 
+ 
+ 
+ 
+    
+ 
+        
+ 
+ 
+ 
+  
+Schematic: 
+The cascode when the substrate is grounded: 
+VBS ≠ 0 (alternative to VBS = 0 as 
+in the design problem circuit) 
++
+-
+Q1
+gl
+V-
+VIN+vin
+ Q2
+V+
++
+-
+VOUT+vout
+Common-
+source
+Common-
+gate
+Common-gate L.E.C. when VGS ≠ 0: 
+(gm + gmb)vsg
+go
++
+-
+vin 
+= vsg
+g,b
+d
+s
+s
+* The effective 
+transconductance 
+is increased by the
+substrate 
+generator term. 
+Clif Fonstad, 12/3/09 
+Lecture 23 - Slide 17 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+The cascode when the substrate is grounded, cont:  
+VGS ≠ 0 
+L.E.C.: 
+Av = vout
+vin
+=
+"gm1
+gl +
+g01
+gm2 + gmb2 + g02
+(
+)
+gl + g02
+(
+)
+#o
+"gm1
+gl + g01
+g02
+gm2 + gmb2
+(
+)
+vgs1
+gm1vgs1
+ro1
++
+-
+ro2
+(gm2+gmb2)vgs2
++
+-
+vgs2
++
+-
+vout
+rl
+The equivalent transistor, QCC:  
+gm,CC = gm1          ro,CC " r01
+gm2 + gmb2
+(
+)
+go2
+        VA,CC " VA1
+gm2 + gmb2
+(
+)
+go2
+ 
+vgsCC
+gmCCvgsCC
+roCC
++
+-
+g
+s
+s
+d
+The output resistance is even higher!
+Clif Fonstad, 12/3/09 
+Lecture 23 - Slide 18 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+The cascode when the substrate is grounded, cont: 
+High frequency issues: 
+L.E.C. of cascode: can't use equivalent transistor idea here 
+because it didn't address the issue of the C's! 
+ro2
+vgs1
+gm1vgs1
+ro1
++
+-
+(gm2+gmb2)vgs2
++
+-
+vgs2
++
+-
+vout
+rl
+Cdb1 +Cgs2 +Cbs2
+Cgd2 +Cbd2
+Cgd1
+Cgs1
+g1
+d1,s2,b2
+d2
+s1,b1,b2
+s1,b1,g2,b2
+g2,b2
+Voltage gain ≈ -1 so 
+Voltage gain ≈ g rl,
+m
+minimal Miller effect. 
+without Miller effect. 
+Common-source gain without the Miller effect penalty! 
+Clif Fonstad, 12/3/09 
+Lecture 23 - Slide 19 
+
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Multi-stage ampliﬁer analysis and design: The µA741  
+Figuring the circuit out: 
+Current mirror load 
+The full schematic 
+Simpliﬁed schematic 
+Push-pull
+output 
+Darlington common-
+emitter gain stage 
+Emitter-follower/
+common-base "cascode"
+differential gain stage 
+EF 
+CB 
+© Source unknown. All rights reserved. 
+This content is excluded from our Creative Commons license.  
+For more information, see http://ocw.mit.edu/fairuse. 
+  
+© Source unknown. All rights reserved. This content is excluded from our Creative Commons license. 
+For more information, see http://ocw.mit.edu/fairuse. 
+Another interesting discussion of the µA741: 
+Clif Fonstad, 12/3/09 
+Lecture 23 - Slide 20 
+http://en.wikipedia.org/wiki/Operational_amplifier 
+
+ 
+ 
+ 
+ 
+  
+ 
+Multi-stage ampliﬁer analysis and design: The µA741 
+The chip:  a bipolar IC 
+Capacitor 
+Resistors 
+Transistors 
+Bonding pads 
+© Source unknown. All rights reserved. This content is excluded from our Creative Commons license.  
+For more information, see http://ocw.mit.edu/fairuse. 
+Clif Fonstad, 12/3/09 
+Lecture 23 - Slide 21 
+
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+Multi-stage amplifier analysis and design: The µA741  
+Why is there a capacitor in the circuit?:  the added capacitor
+introduces a low
+ frequency pole. 
+Without it the gain 
+is still greater than 1 
+when the phase shift 
+exceeds 180˚ (dashed 
+curve).  This can result 
+in positive feedback 
+and instability. 
+With it the gain 
+is less than 1 by 
+the time the phase 
+shift exceeds 180˚ 
+(solid curve). 
+Low
+frequency
+pole 
+Clif Fonstad, 12/3/09 
+Lecture 23 - Slide 23  
+
+ 
+ 
+  
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+  
+  
+ 
+ 
+ 
+  
+    
+ 
+  
+ 
+  
+  
+ 
+ 
+ 
+ 
+6.012 - Microelectronic Devices and Circuits 
+Lecture 23 - Circuits at High Frequencies - Summary  
+Bounding mid-band - finding ωHI, ωLO 
+ωHI: Find the resistance in parallel with each device capacitor assuming the
+such device capacitors are open circuits, calculate all the RC time
+constants, and add them. The inverse is a lower bound on ωHI. 
+ωLO: Find the resistance in parallel with each bias capacitor assuming the
+other such capacitors are short circuits, calculate all the 1/RC frequencies,
+and add them. This sum is an upper bound on ωLO. 
+The Miller effect: why Cgd is so important 
+The concept: a capacitor shunting a gain stage looks larger by (1 - A )
+v
+Examples: (1) The Miller effect magnifies Cgd in common-source stages;
+(2) There is no significant Miller effect impact on common-gate stages or
+on source-followers; (3) The Miller effect is used in the µA741 to get the
+relatively large capacitor needed to stabilize it. 
+The Marvelous cascode 
+Concept and ωHI: Current gain from a CS stage and voltage gain from 
+a CG to circumvent the Miller effect. 
+Output resistance: significantly larger than CS alone. 
+The costs: The added device increases the voltage distance away from 
+the rails and limits voltage swings 
+Clif Fonstad, 12/3/09 
+Lecture 23 - Slide 24 
+
+ 
+ 
+MIT OpenCourseWare
+http://ocw.mit.edu 
+6.012 Microelectronic Devices and Circuits 
+Fall 2009 
+For information about citing these materials or our Terms of Use, visit: http://ocw.mit.edu/terms. 
+

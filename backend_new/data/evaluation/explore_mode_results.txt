@@ -1,0 +1,66 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 8873.83it/s]
+Loading weights:   0%|          | 0/105 [00:00<?, ?it/s]Loading weights: 100%|██████████| 105/105 [00:00<00:00, 5286.81it/s]
+[transformers] `torch_dtype` is deprecated! Use `dtype` instead!
+[TinySLM] device=cpu | dtype=torch.float32
+Loading weights:   0%|          | 0/290 [00:00<?, ?it/s]Loading weights:  59%|█████▉    | 171/290 [00:00<00:00, 1664.90it/s]Loading weights: 100%|██████████| 290/290 [00:00<00:00, 1666.07it/s]
+[TinySLM] Loading LoRA adapter from 'models\finetuned_slm'...
+==========================================================================================
+EXPLORE MODE EVALUATION — 12 queries
+==========================================================================================
+[S1] How do I choose W/L for Id = 1mA, Vov = 0.5V?
+       mode=EXPLORE | SOLVE | numeric=8 | prov=50% | dim=OK | conf=0.775 MODERATE | hand=PASS
+
+[S2] How do I choose W/L for Id = 200uA, Vov = 0.3V?
+       mode=EXPLORE | SOLVE | numeric=4.444 | prov=50% | dim=OK | conf=0.775 MODERATE | hand=PASS
+
+[S3] Design the W/L ratio for Id = 2mA, Vov = 0.4V.
+       mode=EXPLORE | SOLVE | numeric=25 | prov=50% | dim=OK | conf=0.775 MODERATE | hand=PASS
+
+[S4] Calculate the W/L needed for Id = 500uA, Vov = 0.6V.
+       mode=EXPLORE | SOLVE | numeric=2.778 | prov=50% | dim=OK | conf=0.775 MODERATE | hand=PASS
+
+[S5] What Vth do I get with Vsb = 0.5V, gamma = 0.4?
+       mode=EXPLORE | SOLVE | numeric=0.6035 | prov=50% | dim=OK | conf=0.775 MODERATE | hand=PASS
+
+[S6] What Vth do I get with Vsb = 1.0V, gamma = 0.4?
+       mode=EXPLORE | SOLVE | numeric=0.6869 | prov=50% | dim=OK | conf=0.775 MODERATE | hand=PASS
+
+[S7] What gamma gives threshold voltage Vth = 0.60V with Vsb = 0.
+       mode=EXPLORE | SOLVE | numeric=0.3864 | prov=50% | dim=OK | conf=0.775 MODERATE | hand=PASS
+
+[S8] What gamma gives threshold voltage Vth = 0.70V with Vsb = 1.
+       mode=EXPLORE | SOLVE | numeric=0.4281 | prov=60% | dim=OK | conf=0.800 HIGH | hand=PASS
+
+[N1] What Id do I get for W/L = 10, Vov = 0.6V?
+       mode=LOOKUP | NOT FOUND | numeric=N/A | prov=— | dim=OK | conf=0.650 MODERATE | hand=HONEST FAIL (correct)
+
+[N2] What overdrive voltage Vov gives gm = 2mA/V with W/L = 10?
+       mode=LOOKUP | NOT FOUND | numeric=N/A | prov=— | dim=FAIL | conf=0.492 LOW | hand=HONEST FAIL (correct)
+
+[N3] What tox is required to achieve Cox = 0.01 F/m2?
+       mode=LOOKUP | NOT FOUND | numeric=N/A | prov=— | dim=OK | conf=0.903 HIGH | hand=HONEST FAIL (correct)
+
+[N4] What Cox do I need for tox = 3nm gate oxide?
+       mode=LOOKUP | NOT FOUND | numeric=N/A | prov=— | dim=FAIL | conf=0.331 LOW | hand=HONEST FAIL (correct)
+
+==========================================================================================
+ID   Target  Solved?        Numeric    Expected   Prov     Dim   Sanity  Conf   Label     Hand-check
+------------------------------------------------------------------------------------------
+S1   WL      8              8          50%      OK    OK      0.775  MODERATE  PASS
+S2   WL      4.444          4.444      50%      OK    OK      0.775  MODERATE  PASS
+S3   WL      25             25         50%      OK    OK      0.775  MODERATE  PASS
+S4   WL      2.778          2.778      50%      OK    OK      0.775  MODERATE  PASS
+S5   Vth     0.6035         0.6035     50%      OK    OK      0.775  MODERATE  PASS
+S6   Vth     0.6869         0.6869     50%      OK    OK      0.775  MODERATE  PASS
+S7   gamma   0.3864         0.3864     50%      OK    OK      0.775  MODERATE  PASS
+S8   gamma   0.4281         0.4281     60%      OK    OK      0.800  HIGH      PASS
+N1   Id      NOT FOUND      —          —        OK    —       0.650  MODERATE  HONEST FAIL (correct)
+N2   Vov     NOT FOUND      —          —        FAIL  —       0.492  LOW       HONEST FAIL (correct)
+N3   tox     NOT FOUND      —          —        OK    —       0.903  HIGH      HONEST FAIL (correct)
+N4   Cox     NOT FOUND      —          —        FAIL  —       0.331  LOW       HONEST FAIL (correct)
+
+  Solved:         8/12
+  Honest NOT FOUND: 4/12
+  Hand-check pass:  12/12
+==========================================================================================

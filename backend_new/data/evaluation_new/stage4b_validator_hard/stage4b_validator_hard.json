@@ -1,0 +1,443 @@
+{
+  "n_1": {
+    "sys_best": {
+      "avg_score": 1.467,
+      "parseable": 65.0,
+      "coverage": 31.7,
+      "nvr_cond": 100.0,
+      "dcr_cond": 60.0
+    },
+    "sys_first": {
+      "avg_score": 1.467,
+      "parseable": 65.0,
+      "coverage": 31.7,
+      "nvr_cond": 100.0,
+      "dcr_cond": 60.0
+    },
+    "sys_rand": {
+      "avg_score": 1.467,
+      "parseable": 65.0,
+      "coverage": 31.7,
+      "nvr_cond": 100.0,
+      "dcr_cond": 60.0
+    },
+    "raw_best": {
+      "avg_score": 0.45,
+      "parseable": 15.0,
+      "coverage": 10.0,
+      "nvr_cond": 100.0,
+      "dcr_cond": 50.0
+    },
+    "raw_first": {
+      "avg_score": 0.45,
+      "parseable": 15.0,
+      "coverage": 10.0,
+      "nvr_cond": 100.0,
+      "dcr_cond": 50.0
+    },
+    "_analysis": {
+      "validator_gap_SYS": 0.0,
+      "validator_gap_RAW": 0.0,
+      "bestofN_gain": 0.0
+    },
+    "_sampling": {
+      "temperature": 0.9,
+      "top_p": 0.95,
+      "top_k": 50,
+      "repetition_penalty": 1.05,
+      "max_new_tokens": 512
+    }
+  },
+  "n_11": {
+    "sys_best": {
+      "avg_score": 2.057,
+      "parseable": 90.0,
+      "coverage": 45.7,
+      "nvr_cond": 100.0,
+      "dcr_cond": 50.0
+    },
+    "sys_first": {
+      "avg_score": 1.467,
+      "parseable": 65.0,
+      "coverage": 31.7,
+      "nvr_cond": 100.0,
+      "dcr_cond": 60.0
+    },
+    "sys_rand": {
+      "avg_score": 1.367,
+      "parseable": 65.0,
+      "coverage": 26.7,
+      "nvr_cond": 100.0,
+      "dcr_cond": 50.0
+    },
+    "raw_best": {
+      "avg_score": 1.973,
+      "parseable": 80.0,
+      "coverage": 37.3,
+      "nvr_cond": 100.0,
+      "dcr_cond": 33.3
+    },
+    "raw_first": {
+      "avg_score": 0.45,
+      "parseable": 15.0,
+      "coverage": 10.0,
+      "nvr_cond": 100.0,
+      "dcr_cond": 50.0
+    },
+    "_analysis": {
+      "validator_gap_SYS": 0.69,
+      "validator_gap_RAW": 1.523,
+      "bestofN_gain": 0.59
+    },
+    "_sampling": {
+      "temperature": 0.9,
+      "top_p": 0.95,
+      "top_k": 50,
+      "repetition_penalty": 1.05,
+      "max_new_tokens": 512
+    }
+  },
+  "n_13": {
+    "sys_best": {
+      "avg_score": 2.107,
+      "parseable": 95.0,
+      "coverage": 45.7,
+      "nvr_cond": 100.0,
+      "dcr_cond": 50.0
+    },
+    "sys_first": {
+      "avg_score": 1.467,
+      "parseable": 65.0,
+      "coverage": 31.7,
+      "nvr_cond": 100.0,
+      "dcr_cond": 60.0
+    },
+    "sys_rand": {
+      "avg_score": 1.367,
+      "parseable": 65.0,
+      "coverage": 26.7,
+      "nvr_cond": 100.0,
+      "dcr_cond": 50.0
+    },
+    "raw_best": {
+      "avg_score": 2.023,
+      "parseable": 85.0,
+      "coverage": 37.3,
+      "nvr_cond": 100.0,
+      "dcr_cond": 33.3
+    },
+    "raw_first": {
+      "avg_score": 0.45,
+      "parseable": 15.0,
+      "coverage": 10.0,
+      "nvr_cond": 100.0,
+      "dcr_cond": 50.0
+    },
+    "_analysis": {
+      "validator_gap_SYS": 0.74,
+      "validator_gap_RAW": 1.573,
+      "bestofN_gain": 0.64
+    },
+    "_sampling": {
+      "temperature": 0.9,
+      "top_p": 0.95,
+      "top_k": 50,
+      "repetition_penalty": 1.05,
+      "max_new_tokens": 512
+    }
+  },
+  "n_15": {
+    "sys_best": {
+      "avg_score": 2.169,
+      "parseable": 100.0,
+      "coverage": 46.9,
+      "nvr_cond": 100.0,
+      "dcr_cond": 50.0
+    },
+    "sys_first": {
+      "avg_score": 1.467,
+      "parseable": 65.0,
+      "coverage": 31.7,
+      "nvr_cond": 100.0,
+      "dcr_cond": 60.0
+    },
+    "sys_rand": {
+      "avg_score": 1.417,
+      "parseable": 70.0,
+      "coverage": 26.7,
+      "nvr_cond": 100.0,
+      "dcr_cond": 50.0
+    },
+    "raw_best": {
+      "avg_score": 2.086,
+      "parseable": 90.0,
+      "coverage": 38.6,
+      "nvr_cond": 100.0,
+      "dcr_cond": 33.3
+    },
+    "raw_first": {
+      "avg_score": 0.45,
+      "parseable": 15.0,
+      "coverage": 10.0,
+      "nvr_cond": 100.0,
+      "dcr_cond": 50.0
+    },
+    "_analysis": {
+      "validator_gap_SYS": 0.752,
+      "validator_gap_RAW": 1.636,
+      "bestofN_gain": 0.702
+    },
+    "_sampling": {
+      "temperature": 0.9,
+      "top_p": 0.95,
+      "top_k": 50,
+      "repetition_penalty": 1.05,
+      "max_new_tokens": 512
+    }
+  },
+  "n_17": {
+    "sys_best": {
+      "avg_score": 2.169,
+      "parseable": 100.0,
+      "coverage": 46.9,
+      "nvr_cond": 100.0,
+      "dcr_cond": 50.0
+    },
+    "sys_first": {
+      "avg_score": 1.467,
+      "parseable": 65.0,
+      "coverage": 31.7,
+      "nvr_cond": 100.0,
+      "dcr_cond": 60.0
+    },
+    "sys_rand": {
+      "avg_score": 1.267,
+      "parseable": 60.0,
+      "coverage": 26.7,
+      "nvr_cond": 100.0,
+      "dcr_cond": 50.0
+    },
+    "raw_best": {
+      "avg_score": 2.086,
+      "parseable": 90.0,
+      "coverage": 38.6,
+      "nvr_cond": 100.0,
+      "dcr_cond": 33.3
+    },
+    "raw_first": {
+      "avg_score": 0.45,
+      "parseable": 15.0,
+      "coverage": 10.0,
+      "nvr_cond": 100.0,
+      "dcr_cond": 50.0
+    },
+    "_analysis": {
+      "validator_gap_SYS": 0.902,
+      "validator_gap_RAW": 1.636,
+      "bestofN_gain": 0.702
+    },
+    "_sampling": {
+      "temperature": 0.9,
+      "top_p": 0.95,
+      "top_k": 50,
+      "repetition_penalty": 1.05,
+      "max_new_tokens": 512
+    }
+  },
+  "n_3": {
+    "sys_best": {
+      "avg_score": 1.55,
+      "parseable": 70.0,
+      "coverage": 35.0,
+      "nvr_cond": 100.0,
+      "dcr_cond": 60.0
+    },
+    "sys_first": {
+      "avg_score": 1.467,
+      "parseable": 65.0,
+      "coverage": 31.7,
+      "nvr_cond": 100.0,
+      "dcr_cond": 60.0
+    },
+    "sys_rand": {
+      "avg_score": 1.267,
+      "parseable": 60.0,
+      "coverage": 26.7,
+      "nvr_cond": 100.0,
+      "dcr_cond": 50.0
+    },
+    "raw_best": {
+      "avg_score": 0.833,
+      "parseable": 35.0,
+      "coverage": 18.3,
+      "nvr_cond": 100.0,
+      "dcr_cond": 33.3
+    },
+    "raw_first": {
+      "avg_score": 0.45,
+      "parseable": 15.0,
+      "coverage": 10.0,
+      "nvr_cond": 100.0,
+      "dcr_cond": 50.0
+    },
+    "_analysis": {
+      "validator_gap_SYS": 0.283,
+      "validator_gap_RAW": 0.383,
+      "bestofN_gain": 0.083
+    },
+    "_sampling": {
+      "temperature": 0.9,
+      "top_p": 0.95,
+      "top_k": 50,
+      "repetition_penalty": 1.05,
+      "max_new_tokens": 512
+    }
+  },
+  "n_5": {
+    "sys_best": {
+      "avg_score": 1.55,
+      "parseable": 70.0,
+      "coverage": 35.0,
+      "nvr_cond": 100.0,
+      "dcr_cond": 60.0
+    },
+    "sys_first": {
+      "avg_score": 1.467,
+      "parseable": 65.0,
+      "coverage": 31.7,
+      "nvr_cond": 100.0,
+      "dcr_cond": 60.0
+    },
+    "sys_rand": {
+      "avg_score": 1.367,
+      "parseable": 65.0,
+      "coverage": 26.7,
+      "nvr_cond": 100.0,
+      "dcr_cond": 50.0
+    },
+    "raw_best": {
+      "avg_score": 0.917,
+      "parseable": 40.0,
+      "coverage": 16.7,
+      "nvr_cond": 100.0,
+      "dcr_cond": 33.3
+    },
+    "raw_first": {
+      "avg_score": 0.45,
+      "parseable": 15.0,
+      "coverage": 10.0,
+      "nvr_cond": 100.0,
+      "dcr_cond": 50.0
+    },
+    "_analysis": {
+      "validator_gap_SYS": 0.183,
+      "validator_gap_RAW": 0.467,
+      "bestofN_gain": 0.083
+    },
+    "_sampling": {
+      "temperature": 0.9,
+      "top_p": 0.95,
+      "top_k": 50,
+      "repetition_penalty": 1.05,
+      "max_new_tokens": 512
+    }
+  },
+  "n_7": {
+    "sys_best": {
+      "avg_score": 1.973,
+      "parseable": 90.0,
+      "coverage": 42.3,
+      "nvr_cond": 100.0,
+      "dcr_cond": 60.0
+    },
+    "sys_first": {
+      "avg_score": 1.467,
+      "parseable": 65.0,
+      "coverage": 31.7,
+      "nvr_cond": 100.0,
+      "dcr_cond": 60.0
+    },
+    "sys_rand": {
+      "avg_score": 1.367,
+      "parseable": 65.0,
+      "coverage": 26.7,
+      "nvr_cond": 100.0,
+      "dcr_cond": 50.0
+    },
+    "raw_best": {
+      "avg_score": 1.34,
+      "parseable": 60.0,
+      "coverage": 24.0,
+      "nvr_cond": 100.0,
+      "dcr_cond": 33.3
+    },
+    "raw_first": {
+      "avg_score": 0.45,
+      "parseable": 15.0,
+      "coverage": 10.0,
+      "nvr_cond": 100.0,
+      "dcr_cond": 50.0
+    },
+    "_analysis": {
+      "validator_gap_SYS": 0.606,
+      "validator_gap_RAW": 0.89,
+      "bestofN_gain": 0.506
+    },
+    "_sampling": {
+      "temperature": 0.9,
+      "top_p": 0.95,
+      "top_k": 50,
+      "repetition_penalty": 1.05,
+      "max_new_tokens": 512
+    }
+  },
+  "n_9": {
+    "sys_best": {
+      "avg_score": 2.057,
+      "parseable": 90.0,
+      "coverage": 45.7,
+      "nvr_cond": 100.0,
+      "dcr_cond": 50.0
+    },
+    "sys_first": {
+      "avg_score": 1.467,
+      "parseable": 65.0,
+      "coverage": 31.7,
+      "nvr_cond": 100.0,
+      "dcr_cond": 60.0
+    },
+    "sys_rand": {
+      "avg_score": 1.367,
+      "parseable": 65.0,
+      "coverage": 26.7,
+      "nvr_cond": 100.0,
+      "dcr_cond": 50.0
+    },
+    "raw_best": {
+      "avg_score": 1.673,
+      "parseable": 70.0,
+      "coverage": 32.3,
+      "nvr_cond": 100.0,
+      "dcr_cond": 20.0
+    },
+    "raw_first": {
+      "avg_score": 0.45,
+      "parseable": 15.0,
+      "coverage": 10.0,
+      "nvr_cond": 100.0,
+      "dcr_cond": 50.0
+    },
+    "_analysis": {
+      "validator_gap_SYS": 0.69,
+      "validator_gap_RAW": 1.223,
+      "bestofN_gain": 0.59
+    },
+    "_sampling": {
+      "temperature": 0.9,
+      "top_p": 0.95,
+      "top_k": 50,
+      "repetition_penalty": 1.05,
+      "max_new_tokens": 512
+    }
+  }
+}

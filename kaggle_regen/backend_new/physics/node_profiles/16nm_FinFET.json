@@ -1,0 +1,12 @@
+{
+  "name": "16nm FinFET",
+  "description": "Multi-gate FinFET, 16nm node. Higher Cox from 3D gate wrap, mobility penalty from fin sidewall scattering.",
+  "params": {
+    "mu":   { "value": 0.032, "unit": "m^2/Vs", "note": "electron mobility (16nm FinFET, sidewall scattering penalty)" },
+    "Cox":  { "value": 0.045, "unit": "F/m^2",  "note": "gate oxide capacitance (16nm, multi-gate wrap)" },
+    "W":    { "value": 1e-6,  "unit": "m",      "note": "effective gate width (fin perimeter)" },
+    "L":    { "value": 1.6e-8,"unit": "m",      "note": "gate length (16nm node)" },
+    "tox":  { "value": 1.0e-9,"unit": "m",      "note": "effective oxide thickness (16nm node)" },
+    "Vth":  { "value": 0.22,  "unit": "V",      "note": "threshold voltage (16nm FinFET)" }
+  }
+}

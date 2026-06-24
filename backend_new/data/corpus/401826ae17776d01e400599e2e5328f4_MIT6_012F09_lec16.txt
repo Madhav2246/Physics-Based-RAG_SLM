@@ -1,0 +1,1537 @@
+ 
+  
+ 
+ 
+ 
+ 
+ 
+  
+  
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+  
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+6.012 - Microelectronic Devices and Circuits 
+Lecture 16 - CMOS scaling; The Roadmap - Outline 
+• Announcements 
+PS #9 - Will be due next week Friday; no recitation tomorrow.  
+Postings - CMOS scaling (multiple items)  
+Exam Two - Tonight, Nov. 5, 7:30-9:30 pm  
+• Review - CMOS  gate delay and power 
+Lecture 15 results:  Gate Delay = 12 n Lmin 
+2 VDD/ µn(VDD - VT)2 
+Pdyn@fmax ∝ CLVDD 
+2/GD = KnVDD (VDD - VT)2/4 
+Velocity Saturation 
+• CMOS scaling rules 
+Power density issues and challenges  
+Approaches to a solution: 
+Dimension scaling alone  
+Scaling voltages as well  
+• The Road Map; the Future 
+Size and performance evolution with time  
+How long can it go on?  
+Clif Fonstad, 11/5/09  
+Lecture 16  - Slide 1 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+  
+ 
+ 
+CMOS: transfer characteristic  
+Complete characteristic w.o. Early effect: 
+VDD
+vOUT
+vIN
++
++
+–
+–
+Kp
+VTp
+Kn
+VTn
+V Tn
+V DD
+V DD
+-V Tp
+V DD/2
+V IN
+V OUT
+(V DD+
+   V Tp)
+(V DD/2-V Tp)
+(V DD/2-V Tn)
+V DD/2
+NOTE: We design CMOS inverters to have  Kn = Kp and VTn = -VTp 
+to obtain the optimum symmetrical characteristic. 
+Clif Fonstad, 11/5/09 
+Lecture 16  - Slide 2 
+
+ 
+ 
+ 
+ 
+ 
+ 
+CMOS: transfer characteristic calculation, cont. 
+We found from an LEC analysis that 
+the slope in Region III is not infinite, 
+but is instead: 
+Lecture 16  - Slide 3 
+V DD
+V DD
+V DD/2
+vIN
+vOUT
+V DD/2
+Av
+V Tn
+V DD
+V DD
+-V Tp
+V DD/2
+vIN
+vOUT
+(V DD-
+  |VTp|)
+V DD/2
+Av
+Av " vout
+v in
+= #vOUT
+#vIN
+Q =VDD / 2,VDD / 2
+(
+)
+= $
+gmn + gmp
+[
+]
+gon + gop
+[
+]
+= $
+2 2Kn
+%n + %p
+[
+] IDn
+Quick approximation:  An easy 
+way to sketch the transfer 
+characteristic of a CMOS gate 
+is to simply draw the three 
+straight line portions in 
+Regions I, III, and V: 
+Clif Fonstad, 11/5/09 
+
+ 
+  
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+  
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+  
+    
+ 
+  
+  
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+  
+  
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+CMOS: switching speed; minimum cycle time 
+The load capacitance: CL 
+• Assume to be linear 
+• Is proportional to MOSFET gate area 
+•  In channel: µe = 2µh so to have Kn = Kp we must have Wp/Lp = 2Wn/Ln 
+Typically Ln = Lp = Lmin and Wn = Wmin, so we also have Wp = 2Wmin 
+CL " n WnLn + W pLp
+[
+]Cox
+* = n WminLmin + 2WminLmin
+[
+]Cox
+* = 3nWminLminCox
+*
+Charging cycle: vIN: HI to LO; Qn off, Qp on; vOUT: LO to HI 
+• Assume charged by constant iD,sat 
+VDD
+vOUT
+vIN
++
++
+–
+–
+CL
+Qp
+Qn
+Clif Fonstad, 11/5/09  
+Lecture 16  - Slide 4 
+iCh arg e = "iDp # K p
+2 VDD " VTp
+[
+]
+2 = Kn
+2 VDD "VTn
+[
+]
+2
+qCh arge = CLVDD
+$Ch arge = qCh arg e
+iCh arge
+=
+2CLVDD
+Kn VDD "VTn
+[
+]
+2
+           =
+6nWminLminCox
+* VDD
+Wmin
+Lmin
+µeCox
+* VDD "VTn
+[
+]
+2 =
+6nLmin
+2 VDD
+µe VDD "VTn
+[
+]
+2
+
+ 
+  
+  
+ 
+ 
+ 
+ 
+ 
+ 
+  
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+    
+  
+ 
+ 
+ 
+ 
+    
+  
+ 
+ 
+ 
+ 
+CMOS: switching speed; minimum cycle time, cont.  
+Discharging cycle: vIN: LO to HI; Qn on, Qp off; vOUT: HI to LO 
+• Assume discharged by constant iD,sat 
+VDD
+vOUT
+vIN
++
++
+–
+–
+CL
+Qp
+Qn
+iDisch arg e = iDn " Kn
+2 VDD #VTn
+[
+]
+2
+qDisch arge = CLVDD
+$ Disch arge = qDisch arg e
+iDisch arge
+=
+2CLVDD
+Kn VDD #VTn
+[
+]
+2
+           =
+6nWminLminCox
+* VDD
+Wmin
+Lmin
+µeCox
+* VDD #VTn
+[
+]
+2 =
+6nLmin
+2 VDD
+µe VDD #VTn
+[
+]
+2
+Minimum cycle time: 
+vIN: LO to HI to LO; 
+vOUT: HI to LO to HI  
+" Min.Cycle = "Ch arge + " Disch arge = 12nLmin
+2 VDD
+µe VDD #VTn
+[
+]
+2
+Clif Fonstad, 11/5/09 
+Lecture 16  - Slide 5 
+
+ 
+  
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+CMOS: switching speed; minimum cycle time, cont.  
+Discharging and Charging times:  
+What do the expressions tell us?  We have 
+" MinCycle = 12nLmin
+2 VDD
+µe VDD #VTn
+[
+]
+2
+This can be written as:  
+" MinCycle =
+12nVDD
+VDD #VTn
+(
+)
+$
+Lmin
+µe VDD #VTn
+(
+) Lmin
+The last term is the channel transit time:  
+Lmin
+µe VDD "VTn
+(
+) Lmin
+=
+Lmin
+µe#Ch
+= Lmin
+s e,Ch
+= $Ch Transit
+Thus the gate delay is a multiple of the channel transit time:  
+" MinCycle =
+12nVDD
+VDD #VTn
+(
+)
+"ChannelTransit = n' "ChannelTransit
+Clif Fonstad, 11/5/09 
+Lecture 16  - Slide 6 
+
+ 
+  
+  
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+CMOS: power dissipation - total and per unit area 
+Average power dissipation
+ Only dynamic for now 
+Pdyn,ave = EDissipated per cycle f = CLVDD
+2 = 3nWminLminCox
+* VDD
+2 f
+Power at maximum data rate
+ Maximum f will be 1/τGate Delay Min. 
+Pdyn@ fmax = 3nWminLminCox
+* VDD
+2
+" Min.Cycle
+= 3nWminLminCox
+* VDD
+2 # µe VDD $VTn
+[
+]
+2
+12nLmin
+2 VDD
+                   = 1
+4
+Wmin
+Lmin
+µeCox
+* VDD VDD $VTn
+[
+]
+2
+Power density at maximum data rate
+ Assume that the area per inverter is proportional to WminLmin 
+PDdyn@ fmax =
+Pdyn@fmax
+InverterArea " Pdyn@fmax
+WminLmin
+= µeCox
+* VDD VDD #VTn
+[
+]
+2
+Lmin
+2
+Clif Fonstad, 11/5/09 
+Lecture 16  - Slide 7 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+    
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+  
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+  
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+    
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+  
+ 
+ 
+ 
+CMOS: design for high speed  
+Maximum data rate
+ Proportional to 1/τMin Cycle 
+" Min.Cycle = "Ch arge + " Disch arge = 12nLmin
+2 VDD
+µe VDD #VTn
+[
+]
+2
+Implies we should reduce Lmin and increase VDD. 
+Note: As we reduce Lmin we must also reduce tox, but tox doesn't 
+enter directly in fmax so it doesn't impact us here 
+Power density at maximum data rate
+ Assume that the area per inverter is proportional to WminLmin 
+PDdyn@ fmax " Pdyn@fmax
+WminLmin
+= µe#oxVDD VDD $VTn
+[
+]
+2
+toxLmin
+2
+Shows us that PD increases very quickly as we reduce Lmin 
+unless we also reduce VDD (which will also reduce fmax). 
+Note:  Now tox does appear in the expression, so the rate of increase 
+with decreasing Lmin is even greater because tox must be reduced 
+along with L to stay in the gradual channel regime. 
+How do we make fmax larger without melting the silicon? 
+Clif Fonstad, 11/5/09 
+By following CMOS scaling rules, the topic of today's lecture. Lecture 16  - Slide 8 
+
+ 
+   
+ 
+  
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+   
+  
+ 
+  
+ 
+CMOS: velocity saturation 
+Sanity check before looking at device scaling 
+CMOS gate lengths are now under 0.1 µm (100 nm). The electric field 
+in the channel can be very high: Ey ≥ 104 V/cm when vDS ≥ 0.1 V. 
+Model A 
+Electrons: 
+Holes: 
+Clearly the velocity of the electrons and holes in the channel will 
+be saturated at even low values of vDS! 
+What does this mean for the device and inverter characteristics? 
+Clif Fonstad, 11/5/09 
+Lecture 16  - Slide 10 
+
+ 
+ 
+  
+  
+ 
+ 
+ 
+ 
+MOS: Output family with velocity saturation  
+iD 
+vDS 
+EcritL 
+iD(vGS,vDS,vBS) "
+0
+for
+vGS < VT,
+0 < vDS
+W ssat Cox
+* vGS #VT (vBS)
+[
+]
+for
+VT < vGS, $critL < vDS
+W
+L µe Cox
+* vGS #VT (vBS)
+[
+]vDS
+for
+VT < vGS, 0 < vDS < $critL
+% 
+& 
+' ' 
+( 
+' 
+' 
+Cutoff 
+Saturation 
+Linear 
+This simple model for the output characteristics of a very short 
+channel MOSFET (plotted above) provides us an easy way to 
+understand the impact of velocity saturation on MOSFET and 
+CMOS inverter performance. 
+Clif Fonstad, 11/5/09 
+Lecture 16  - Slide 11 
+
+ 
+ 
+ 
+ 
+ 
+  
+  
+ 
+ 
+ 
+ 
+ 
+ 
+CMOS: Gate delay and fmax with velocity saturation 
+Charge/discharge cycle and gate delay: 
+The charge and discharge currents, charges, and times are now: 
+iDisch arg e = iCh arg e = Wmin ssat Cox
+* VDD "VTn
+(
+)
+qDisch arge = qCh arg e = CLVDD = 3WminLminCox
+* VDD
+# Disch arge = #Ch arg e = qDisch arge
+iDisch arge
+=
+3WminLminCox
+* VDD
+Wmin ssat Cox
+* VDD "VTn
+(
+)
+=
+3nLminVDD
+ssat VDD "VTn
+(
+)
+CMOS minimum cycle time and power density at fmax: 
+" Min.Cycle #
+LminVDD
+ssat VDD $VTn
+[
+]
+= n'"ChanTransit
+" Min.Cycle = "Ch arge + " Disch arge =
+6n LminVDD
+ssat VDD #VTn
+[
+]
+"ChanTransit = L
+ssat
+Note: 
+Lessons: We still benefit from reducing L, but not as quickly.
+Channel transit time, Lmin/ssat, is still critical. 
+Clif Fonstad, 11/5/09 
+Lecture 16  - Slide 12 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+CMOS: Power and power density with velocity saturation 
+Average power dissipation
+ All dynamic 
+Pave = EDissipated per cycle f = CLVDD
+2 = 3nWminLminCox
+* VDD
+2 f
+Power at maximum data rate
+ Maximum f will be 1/τGate Delay Min. 
+Pdyn@ fmax = 3nWminLminCox
+* VDD
+2
+" Min.Cycle
+= 3nWminLminCox
+* VDD
+2 # ssat VDD $VTn
+[
+]
+6n LminVDD
+                = 1
+2WminssatCox
+* VDD VDD $VTn
+[
+]
+Power density at maximum data rate
+ Assume that the area per inverter is proportional to WminLmin 
+PDdyn@ fmax =
+Pdyn@fmax
+InverterArea " Pdyn@fmax
+WminLmin
+= ssat Cox
+* VDD VDD #VTn
+[
+]
+Lmin
+Lesson: Again benefit from reducing L, but again not as quickly. 
+Clif Fonstad, 11/5/09 
+Lecture 16  - Slide 13 
+
+ 
+  
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+CMOS: Collected results 
+Maximum data rate: 
+No velocity saturation: 
+Smaller 
+With velocity saturation: 
+is faster 
+" Min.Cycle #
+LminVDD
+ssat VDD $VTn
+[
+]
+" Min.Cycle #
+Lmin
+2 VDD
+µe VDD $VTn
+[
+]
+2
+Power density at maximum data rate: 
+No velocity saturation: 
+Smaller also 
+dissipates 
+more power
+per unit area 
+With velocity saturation: 
+PDdyn@ fmax = ssat "ox VDD VDD #VTn
+[
+]
+tox Lmin
+PDdyn@ fmax = µe "ox VDD VDD #VTn
+[
+]
+2
+tox Lmin
+2
+Clif Fonstad, 11/5/09 
+Lecture 16  - Slide 14 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Scaling Rules - making CMOS faster without melting Si 
+General idea: 
+Reduce dimensions by factor 1/s:  s > 1  
+Evaluate impact on speed, power, power density  
+Assume no velocity saturation for now  
+Scaling dimensions alone: 
+Lmin " Lmin s
+W "W s
+tox " tox s
+NA " sNA
+This yields  
+and thus 
+Cox
+* = "ox
+tox
+:
+Cox
+* # sCox
+*
+K = W
+L µeCox
+* :
+K # sK
+                         " #
+Lmin
+2 VDD
+µe VDD $VTn
+[
+]
+2 :
+" % " s2
+             Pdyn = 3nWminLminCox
+* VDD
+2 f :
+Pdyn % sPdyn
+PDdyn@ fmax = µe &ox VDD VDD $VTn
+[
+]
+2
+tox Lmin
+2
+:
+PDdyn@ fmax % s3PDdyn@ fmax
+Clif Fonstad, 11/5/09 
+Scaling dimensions alone can yield melted silicon!! 
+Lecture 16  - Slide 15 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Scaling Rules, cont. - constant E-field scaling 
+Observation: 
+Reducing dimensions alone won't work. 
+Reduce voltage in concert (constant E-field scaling) 
+Scaling dimensions and voltages by 1/s: 
+We still have 
+but now we find 
+Cox
+* " sCox
+*
+K " sK
+                         " #
+Lmin
+2 VDD
+µe VDD $VTn
+[
+]
+2 :
+" % " s
+             Pdyn = 3nWminLminCox
+* VDD
+2 f :
+Pdyn % Pdyn s2
+PDdyn@ fmax = µe &ox VDD VDD $VTn
+[
+]
+2
+tox Lmin
+2
+:
+PDdyn@ fmax % PDdyn@ fmax
+VDD "VDD s
+VBS "VBS s
+VT "VT s
+Lmin " Lmin s
+W "W s
+tox " tox s
+NA " sNA
+When we scale dimension and voltage we get higher speed and  
+lower power, while holding the power density unchanged.  
+Clif Fonstad, 11/5/09 
+Lecture 16  - Slide 16 
+
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+   
+ 
+ 
+  
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Scaling Rules, cont. - constant E-field scaling 
+Threshold voltage: 
+We've said VT scales, but this merits some discussion*: 
+             VT (vBS) " VFB + 2#p$Si + tox
+%ox
+2%SiqNA 2#p$Si + vBS
+[
+]
+Small because with n+-poly Si 
+Dominated by |vBS| if 
+gate, φm ≈ - φp and VFB ≈ -|2φp| 
+|vBS| >> |2φp| 
+             VT (vBS) " tox
+#ox
+2#SiqNA vBS $ tox s
+#ox
+2#SiqsNA vBS s $VT s
+Thus: 
+It works. 
+Subthreshold leakage and static power: 
+Including VBS, IDoff is: 
+ID,off " W
+L µe Vt
+2
+#SiqNA
+2 $2%p + VBS
+[
+]
+e
+$VT
+{
+} nVt " W
+L µe Vt
+2
+#SiqNA
+2 VBS
+e
+$VT
+{
+} nVt
+Scaling all the factors, we find that IDoff and Pstatic scale poorly! 
+ID,off " sID,off e
+1#1
+s
+$ 
+% & 
+' 
+( ) VT
+* 
++ 
+, 
+- 
+. 
+/ 
+nVt
+PStatic = VDDID,off " PStatic e
+1#1
+s
+$ 
+% & 
+' 
+( ) VT
+* 
++ 
+, 
+- 
+. 
+/ 
+nVt
+Clif Fonstad, 11/5/09 
+* We're talking n-channel here, but similar results 
+Lecture 16  - Slide 17 
+are found for the p-channel MOSFETs. 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Scaling Rules, cont. - static power scales badly, but...  
+Static power density's scaling is even worse:  
+A typical 
+VT/nVt is ~10. 
+If s = √ 2 , the 
+exponential 
+factor is ~e3, 
+or about 20! 
+Bottom Line: 
+be neglected. 
+Figure source:
+Intel Web Site 
+Clif Fonstad, 11/5/09 
+Lecture 16  - Slide 18 
+PDstatic = ID,off VDD
+Wmin Lmin
+" sID,off e s#1
+(
+)VT snVt VDD s
+WminLmin s2
+" s2 e s#1
+(
+)VT snVt PDstatic
+Static power 
+can no longer
+in a chip 
+Reprinted with permission of Intel Corporation. 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+  
+ 
+ 
+Scaling Rules, cont. - What about velocity saturation?  
+Do the same constant E-field scaling by 1/s: 
+Cox
+* " sCox
+*
+K " sK
+so 
+VDD "VDD s
+VBS "VBS s
+VT "VT s
+Lmin " Lmin s
+W "W s
+tox " tox s
+NA " sNA
+Examining our expressions when velocity saturation is 
+important we find: 
+                         " #
+LminVDD
+ssat VDD $VTn
+[
+]
+:
+" % " s
+             Pdyn = 3nWminLminCox
+* VDD
+2 f :
+Pdyn % Pdyn s2
+PDdyn@ fmax = ssat &ox VDD VDD $VTn
+[
+]
+tox Lmin
+:
+PDdyn@ fmax % PDdyn@ fmax
+Amazingly, there is no difference in the scaling behavior of the gate  
+delay, average power, or power density in this case!  
+Clif Fonstad, 11/5/09 
+Note: Velocity saturation is not a factor in ID,off. 
+Lecture 16  - Slide 19  
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+An historical scaling example - Inside Intel  
+Parameter 
+386 
+486 
+Pentium 
+Scaling factor, s 
+1 
+2 
+3 
+Lmin (µm) 
+1.5 
+0.75 
+0.5 
+Wn (µm) 
+10 
+5 
+3 
+tox (nm) 
+30 
+15 
+9 
+VDD (V) 
+5 
+3.3 
+2.2 
+VT (V) 
+1 
+-
+-
+Fan out 
+3 
+3 
+3 
+K (µA/V2) 
+230 
+450 
+600 
+GD (ps) 
+840 
+400 
+250 
+fmax (MHz) 
+29 
+50 
+100 
+Pave/gate (mW) 
+92 
+23 
+10 
+Density 
+(kgates/cm2 @ 20W/cm2 max.) 
+220 
+880 
+2,000 
+Clif Fonstad, 11/5/09 
+Lecture 16  - Slide 20 
+Sources: Prof. Jesus del Alamo and Intel 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+An second look inside Intel - a slightly different perspective  
+Parameter 
+486 
+Pentium generations 
+Scaling factor, s 
+-
+1 
+1.6 
+2.3 
+Lmin (µm) 
+1.0 
+0.8 
+0.5 
+0.35 
+SRAM cell area (µm2)
+-
+111 
+44 
+21 
+Die size (mm2) 
+170 
+295 
+163 
+91 
+fmzx (MHz) 
+38 
+66 
+100 
+200 
+tox (nm) 
+20 
+10 
+8 
+6 
+Metal layers 
+2 
+3 
+4 
+4 
+Planarization 
+SOG 
+CMP 
+CMP 
+CMP 
+Poly type 
+n 
+n,p 
+n,p 
+n,p 
+Transistors 
+CMOS 
+BiCMOS BiCMOS BiCMOS 
+Source: Dr. Leon D. Yau, Intel, 10/8/96 
+Clif Fonstad, 11/5/09 
+Lecture 16  - Slide 21 
+
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+Moore's Law - Everything* doubles every 2 years.  
+Figure source:
+Intel Web Site 
+* Density, speed, performance, transistors per chip, transistors 
+shipped, transistors per cent, revenues, etc. First stated in 
+Clif Fonstad, 11/5/09 
+1965 as every year; revised to every 2 years in 1975. 
+Lecture 16  - Slide 22 
+Reprinted with permission of Intel Corporation. 
+
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+  
+ 
+ 
+ 
+   
+ 
+ 
+ 
+  
+ 
+    
+                                 
+ 
+   
+  
+  
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+  
+  
+  
+  
+  
+ 
+ 
+ 
+ 
+  
+  
+ 
+  
+ 
+ 
+  
+ 
+6.012 - Microelectronic Devices and Circuits  
+Lecture 16 - CMOS scaling; The Roadmap - Summary  
+• CMOS gate delay and power 
+Three key performance metrics: (We want to make them all smaller) 
+Gate Delay = 12 n Lmin 
+(VDD - VT)2
+2 VDD/ µe
+Pdyn@fmax ∝ CLVDD 
+2/GD = (Wn/Lmin) µeC*
+ox VDD (VDD - VT)2/4 
+2
+PDdyn,max ∝ Pdyn@fmax/WnLmin = µeεoxVDD (VDD - VT)2/4 toxLmin 
+• CMOS scaling rules 
+Summary of rules: Constant E-field - scale all dimensions 
+and all voltages by 1/s 
+Scaling as: Lmin → Lmin/s 
+Results in: K → sK 
+w → w/s 
+C* 
+→ sC* 
+ox 
+ox 
+t
+→ t /s 
+τ →τ/s 
+ox 
+ox
+NA → sNA 
+Pdyn → Pdyn /s2 
+VT,VBS,VDD → VT/s,VBS/s,VDD/s 
+PDdyn → PDdyn 
+• The Roadmap; what's next? 
+Stay tuned: 3-D; new semiconductors; performance over size 
+Clif Fonstad, 11/5/09 
+Lecture 16  - Slide 24 
+
+ 
+ 
+MIT OpenCourseWare
+http://ocw.mit.edu 
+6.012 Microelectronic Devices and Circuits 
+Fall 2009 
+For information about citing these materials or our Terms of Use, visit: http://ocw.mit.edu/terms. 
+

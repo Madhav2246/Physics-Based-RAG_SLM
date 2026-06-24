@@ -1,0 +1,12 @@
+{
+  "name": "5nm GAA (Gate-All-Around)",
+  "description": "Gate-All-Around nanosheet, 5nm node. Maximum electrostatic control: highest Cox, thinnest oxide, lowest Vth.",
+  "params": {
+    "mu":   { "value": 0.028, "unit": "m^2/Vs", "note": "electron mobility (5nm GAA, strong confinement penalty)" },
+    "Cox":  { "value": 0.06,  "unit": "F/m^2",  "note": "gate oxide capacitance (5nm, all-around wrap)" },
+    "W":    { "value": 1e-6,  "unit": "m",      "note": "effective gate width (nanosheet perimeter)" },
+    "L":    { "value": 5e-9,  "unit": "m",      "note": "gate length (5nm node)" },
+    "tox":  { "value": 0.8e-9,"unit": "m",      "note": "effective oxide thickness (5nm node)" },
+    "Vth":  { "value": 0.18,  "unit": "V",      "note": "threshold voltage (5nm GAA, lowest)" }
+  }
+}

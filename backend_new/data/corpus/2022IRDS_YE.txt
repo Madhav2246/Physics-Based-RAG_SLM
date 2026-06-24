@@ -1,0 +1,2292 @@
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+INTERNATIONAL  
+ROADMAP  
+FOR  
+DEVICES AND SYSTEMS™ 
+ 
+2022 UPDATE 
+  
+ 
+YIELD ENHANCEMENT 
+ 
+ 
+THE IRDS IS DEVISED AND INTENDED FOR TECHNOLOGY ASSESSMENT ONLY AND IS WITHOUT REGARD TO ANY 
+COMMERCIAL CONSIDERATIONS PERTAINING TO INDIVIDUAL PRODUCTS OR EQUIPMENT. 
+ 
+ 
+ 
+
+ii 
+ 
+THE INTERNATIONAL ROADMAP FOR DEVICES AND SYSTEMS:  2022 
+COPYRIGHT © 2022 IEEE. ALL RIGHTS RESERVED. 
+© 2022 IEEE. Personal use of this material is permitted. Permission from IEEE must be obtained for all other uses, in any 
+current or future media, including reprinting/republishing this material for advertising or promotional purposes, creating 
+new collective works, for resale or redistribution to servers or lists, or reuse of any copyrighted component of this work in 
+other works. 
+Bluetooth® SIG and its members, licensors, and suppliers own all right, title, and interest (including intellectual property 
+rights) in the Services, Content, and all draft and adopted specifications for the Bluetooth standard and reserve all rights not 
+expressly granted to you in these Terms or, if applicable, the SIG Member Terms. The Bluetooth logos and word marks 
+referenced in the Services and Content are the trademarks of Bluetooth SIG and its affiliates. Any other company names, 
+product names, service names and logos referenced in connection with the Services or Content may be the trademarks of 
+their respective owners. 
+Wi-Fi® and Wi-Fi Alliance® are registered trademarks of Wi-Fi Alliance. 
+The IEEE emblem is a trademark owned by the IEEE. 
+"IEEE", the IEEE logo, and other IEEE logos and titles (IRDSTM, IEEE 802.11™, IEEE P1785™, IEEE P287™, IEEE 
+P1770™, IEEE P149™, IEEE 1720™, etc.) are registered trademarks or service marks of The Institute of Electrical and 
+Electronics Engineers, Incorporated. All other products, company names or other marks appearing on these sites are the 
+trademarks of their respective owners. Nothing contained in these sites should be construed as granting, by implication, 
+estoppel, or otherwise, any license or right to use any trademark displayed on these sites without prior written permission 
+of IEEE or other trademark owners. 
+All product names, trademarks and registered trademarks are property of their respective owners. All company, product 
+and service names used in this document are for identification purposes only. Use of these names, trademarks and brands 
+does not imply endorsement.   
+ 
+ 
+
+iii 
+ 
+THE INTERNATIONAL ROADMAP FOR DEVICES AND SYSTEMS:  2022 
+COPYRIGHT © 2022 IEEE. ALL RIGHTS RESERVED. 
+Table of Contents 
+1. 
+Introduction ................................................................................................................. 1 
+1.1. 
+Current State of Technology ....................................................................................... 2 
+1.1. 
+Reliability – Emerging Technology Driver for Contamination Control .......................... 3 
+1.2. 
+Drivers and Technology Targets ............................................................................... 17 
+1.3. 
+Vision of Future Technology ..................................................................................... 17 
+2. 
+Scope of Report ........................................................................................................ 18 
+3. 
+Summary and Key Points ......................................................................................... 20 
+4. 
+Challenges................................................................................................................ 21 
+4.1. 
+Near-term Challenges —CIA .................................................................................... 21 
+4.2. 
+Surface Environmental Contamination Control ......................................................... 24 
+4.3. 
+Characterization, Inspection and Analysis ................................................................ 32 
+4.4. 
+Long-term Challenges .............................................................................................. 32 
+5. 
+Technology Requirements ........................................................................................ 32 
+5.1. 
+Summary .................................................................................................................. 32 
+6. 
+Potential Solutions .................................................................................................... 32 
+6.1. 
+General  .................................................................................................................... 32 
+6.2. 
+Surface Environmental Contamination Control ......................................................... 33 
+6.3. 
+Characterization, Inspection and Analysis ................................................................ 34 
+7. 
+Cross Teams ............................................................................................................ 34 
+8. 
+Emerging/Disruptive Concepts and Technologies .................................................... 34 
+8.1. 
+Directed Self Assembly ............................................................................................ 34 
+9. 
+Conclusions and Recommendations ........................................................................ 35 
+10. Appendices ............................................................................................................... 35 
+10.1. Appendix A—Supplemental Materials ...................................................................... 35 
+10.2. Appendix B—Acronyms ............................................................................................ 36 
+11. References ............................................................................................................... 39 
+ 
+List of Figures 
+Figure YE-1 Random Yield Area of Focus ......................................................................... 1 
+Figure YE-2 Expected lifetime of chips in years. ................................................................ 4 
+Figure YE-3 Reliability Failure Mechanisms ....................................................................... 5 
+Figure YE-4 Tolerable defect density in finFET (2022) and GAA (2025) for 10-year field 
+operation. ...................................................................................................... 5 
+Figure YE-5 Defect Density Calculation ............................................................................. 7 
+Figure YE-6 Proactive Particle Control ............................................................................... 8 
+Figure YE-8 Yield Enhancement Scope ........................................................................... 18 
+Figure YE-9 General Test Methodology for Ultrapure Water ............................................ 28 
+Figure YE-10 Yield Enhancement IFT Cross Team Linkage Diagram ................................ 34 
+ 
+ 
+ 
+
+iv 
+ 
+THE INTERNATIONAL ROADMAP FOR DEVICES AND SYSTEMS:  2022 
+COPYRIGHT © 2022 IEEE. ALL RIGHTS RESERVED. 
+ 
+List of Tables 
+Table YE-1 
+Definitions for the Different Interface Points.................................................. 20 
+Table YE-2 
+Yield Enhancement Difficult Challenges ....................................................... 22 
+Table YE-3 
+Technology Requirements for Surface Environmental  
+Contamination Control ................................................................................. 24 
+Table YE-4 
+AMC Monitoring Methods ............................................................................. 24 
+Table YE-4a   Supporting Table for On-line Methods .......................................................... 24 
+Table YE-4b   Supporting Table for Bulk Gas On-line Methods .......................................... 31 
+Table YE-5 
+Yield Requirements for MEMS Production ................................................... 32 
+ 
+ 
+ 
+ 
+
+v 
+ 
+THE INTERNATIONAL ROADMAP FOR DEVICES AND SYSTEMS:  2022 
+COPYRIGHT © 2022 IEEE. ALL RIGHTS RESERVED. 
+Acknowledgments 
+This chapter was prepared by a group of experts representing broad spectrum of knowledge and activities associated with 
+contamination control and yield analysis. The Yield Enhancement forum is represented by a number of leading advanced 
+semiconductor manufacturing companies, most of major semiconductor EOMs, as well as many materials, components, 
+metrology, and facility technology suppliers.  
+The Yield Enhancement roadmap described in this narrative is based on extensive data analysis, mathematical modeling, 
+and experimental work conducted by the forum. This data correlates the criteria defining defect conditions on the surface 
+of the critical substrates (wafer, lithography mask, lithography optics, etc.) with parameters of liquid chemicals, ultrapure 
+water, air, gases, critical components, and thin film materials. 
+The Yield Enhancement leadership team acknowledges a valuable input provided by the More Moore IFT as well as 
+resources and time of all contributors involved. 
+Matthijs Agricola, Latif Ahmed, Kaneko Akimasa, Gustavo Albuquerque, Roberto Alzaga, Takeru Amano, Jake 
+Armstrong, Carlos Augusto, Joel Barnett, Greg Baumgart, Dwight Beal, Carlos Beitia, Jim Belanger, Didier Beloit, Glen 
+Biggs, Frederic Boeuf, Yannick Borde, Bill Bottoms, Taylor Boyd, William Bozydaj, Kirk M. Bresniker, Kameron Brown, 
+Will Byars, Mark Camenzind, Kirk Chassaniol, Brett Clark, Robert Clark, Nora Colligan, Patrick Connor, Dan Cowles, 
+Tomasso Crisenza, Oliver Crout, Chris Davies, John DeGenova, Gil Delgado, Manuel Didierjean, Jennifer Dionne, John 
+Dunleavy, Chris Ebert, Andreas Eckl, Peter Egger, Majid Entezarian, Albert Escusa, Kim Farnsworth, Arnaud Favre, 
+William Forster, Dan Freeman, Guillaume Gallet, C. Michael Garner, Cesar M Garza, Astrid Gettel, Bob Gieger, Rick 
+Godec, Felipe Gomez Cuba, George Gonnella, Sandhya Gopalakrishnan, Hugh Gotts, Don Hadder, Maka Havali, Yoshihiro 
+Hayashi, Jim Henry, Gerd Heser, Christoph Hocke, Hideaki Iino, Hiroki Ishikuro, Ajey Jacob, Hans Jansen, Pratik Joshi, 
+Jost Kames, Keith Kerwin, Kenji Kingsford, Alan Knapp, Kaoru Kondo, Vindhya Kunduru, Cristian Landoni, Enrico 
+Laurin, Mark Lawrence, Ravi Laxman, Laura Ledenbach, Jae Seok Lee, Kevin Leigh, Slava Libman, Jürgen M Lobert, 
+Vanda Locati, Christopher Long, Ruben Lopez-Trigo, Ce Ma, Peter Maguire, Ulrich Mantz, Rushi Matkar, Sven Mattson, 
+Bob McIntosh, Paul Mertens, Matt Milburn, Tim Miller, Nabil Mistkawi, Steve Moffatt, Sungin Moon, Hiroki Morimura, 
+Christopher Muller, Nobuhiko Nakano, Andreas Neuber, Alain Nezer, Rob Nine, Dick Otte, Richard Paciej, John Painter, 
+Diwakar Paramasivam, Makonnen Payne, Markus Pfeffer, Andy Pham, Thomas Phely-Bobin, Kevin Prettyman, Sriram 
+Ramamoorthy, Abbas Rastegar, Jan Rau, Gerd Reinig, Steffen Reyman, Chuck Richardson, Sarah Riddle, Francois Rivet, 
+Dave Roberts, Dan Rodier, Steve Rogers, Jochen Ruth, Philippe Rychen, Koichiro Saga, David Schaaf, Tony Schleisman, 
+Michael Schroeter, Akshey Sehgal, Archita Sengupta, Simone Severi, Ashkan Seyedi, Israel Shebley, Tony Shucosky, 
+Bobbie Smith, Georg Smudde, Jim Snow, Chris Spark, Deena Starkel, Jonas Sundqvist, Lars Sundstrom, Joe Sweeney, 
+Yoichi Tanaka, Alexei Tchelnokov, Vincent Terracina, Marcel Teunissen, Gregory T. Their, Ines Thurner, Van To, Koichi 
+Tokudome, Ichiru Tsunemitsu, Gary Van Schooneveld, Rao Varanasi, Sarah Vogt, Juliane Weise, Ulrich Wende, Daniel 
+Wiederin, Dan Wilcox, Daun Wilcox, Leif R. Wilhelmsson , Hubert Winzig, Enghwa Wong, Bernie Zerfas 
+
+Introduction  1 
+ 
+THE INTERNATIONAL ROADMAP FOR DEVICES AND SYSTEMS:  2022 
+COPYRIGHT © 2022 IEEE. ALL RIGHTS RESERVED. 
+YIELD ENHANCEMENT 
+1. INTRODUCTION 
+The Yield Enhancement focus area is dedicated to activity ensuring that semiconductor manufacturing set up is optimized 
+towards identifying, reducing, and avoiding yield-relevant defects and contamination. 
+Yield in most industries has been defined as the number of products made divided by the number of products that can be 
+potentially made. In the semiconductor industry, yield is represented by the functionality and reliability of integrated circuits 
+produced on the wafer surfaces. During the manufacturing of integrated circuits yield loss is caused, for example, by defects, 
+faults, process variations, and design. The relationship of defects and yield, and an appropriate yield-to-defect correlation, 
+is critical for yield enhancement. 
+The Yield Enhancement (YE) chapter will display the current advanced and next generation future requirements for high 
+yielding manufacturing of More Moore as well as More than Moore products separated in “critical process groups” 
+including microelectromechanical (MEMS), back-end processes, e. g., packaging. Consequently, an inclusion of material 
+specifications for Si, SiC, GaN, etc., are considered. 
+In the manufacturing of integrated circuits yield loss is related to a variety of sources. During processes such as implantation, 
+etching, deposition, planarization, cleaning, lithography, etc., failures responsible for yield loss occur. Several examples of 
+contamination and mechanisms responsible for yield loss are listed in the following: a) airborne molecular contamination 
+(AMC), b) airborne particular contamination (APC) of organic or inorganic matter caused by the environment, personnel 
+or by the tools, c) process induced defects as scratches, cracks, and particles, overlay faults, and stress, d) process variations 
+resulting, e.g., in differing doping profiles or layer thicknesses, e) the deviation from design, due to pattern transfer from 
+the mask to the wafer, results in deviations and variations of layout and critical dimensions, and f) diffusion of atoms 
+through layers and in the semiconductor bulk material. 
+The determination of defects and yield, and an appropriate yield to defect correlation are essential for yield enhancement. 
+The specification of tools for defect detection and classification of defect for root cause analysis addresses the technology 
+requirements for More Moore and More than Moore. Out of two typical types of defects, systematic and random, Yield 
+Enhancement focuses on random ones, related to the areas of technology responsible for contamination control, as shown 
+in Figure YE-1. 
+ 
+Figure YE-1   Random Yield Area of Focus 
+ 
+
+2  Introduction 
+ 
+THE INTERNATIONAL ROADMAP FOR DEVICES AND SYSTEMS:  2022 
+COPYRIGHT © 2022 IEEE. ALL RIGHTS RESERVED. 
+The YE chapter has two focus topics: “Substrate Environment Contamination Control” (SECC) and “Characterization, 
+Inspection and Analysis (CIA)”. These two topics crosscut front-end process technology, interconnect processes, 
+lithography, metrology, design, process integration, test, and facility infrastructures.” 
+YE is broken down into prevention of defects, focusing on random, and CIA (characterization, inspection and analysis). 
+Current focus of YE is to add reliability enhancement to our focus, both of which focus on prevention of random defects 
+that result in yield loss and reliability risk through proactive contamination control. The CIA portion will identify the 
+challenge of not being able to measure defects but can correlate these defects to something that we can measure. This was 
+agreed to be the area for collaboration between YE and FI (Factory Integration) chapter of IRDS. Specific topics to be 
+addressed are (1) analysis of data at yield excursion event s and (2) yield prediction using manufacturing big data and data 
+analytics tools. 
+Definition of technology needs will depend on the approach to the big data application. Potential correlation between a 
+measurable parameter and a target feature that is unmeasurable directly will likely become the only feasible way to predict 
+yield loss due to manufacturing issues. FI considers the use of virtual metrology as a viable method to support the needs.   
+Refer to FI Chapter for more details on the technology needs in this space. 
+The focus of this chapter is enabling yield improvement through defect reduction in high-volume semiconductor 
+manufacturing facilities via: 
+• 
+Conducting ongoing risk analysis of the high purity materials, parts, utilities, and environments involved in 
+advanced semiconductor manufacturing. 
+• 
+Proposing potential solutions and risk mitigations associated with technology gaps that limit measurement and 
+control of environmental wafer, mask, or substrate contamination. 
+• 
+Initiating and conducting collaborative experimental studies and models to better define and quantify exposure of 
+environmental contamination to wafer surfaces. Communicate results of the risks and their mitigation strategies to 
+the industry in the form of the International Roadmap for Devices and Systems (IRDS) published roadmaps, 
+conference presentations, and technical journal presentations. 
+• 
+Initiating Semiconductor Equipment and Materials International (SEMI) standard development activities to 
+address the risks. 
+• 
+Supporting new technology trials through benchmarking studies. 
+Physical device dimensions and corresponding defect dimensions continue shrinking, while device complexity is increasing 
+exponentially, posing new challenges to detection as well as tolerable contamination. The wafer edges and backside surface 
+were identified to show significant impact on yield. Process variations and design are also factors impacting yield. 
+Additional new challenges arise specifically for MEMS manufacturing as well as assembly lines using new material. 
+Development of defect detection, defect review, and classification technologies showing highest sensitivity at high 
+throughput solving those challenges is crucial for cost-efficient manufacturing. Furthermore, for efficient manufacturing 
+the monitoring of contamination in the environment as well as on the critical surfaces requires appropriate analytical 
+capabilities. Automated, intelligent analysis and reduction algorithms, which correlate facility, design, process, electrical 
+and virtual metrology results, and their correlation to yield, test and work-in-progress data, will have to be developed to 
+enhance root cause analysis and therefore enable rapid yield learning. 
+1.1. CURRENT STATE OF TECHNOLOGY 
+Yield Correlation/Data Mining—In the future the need for prediction will become even more important. The use of semi 
+and unstructured data sources and unsupervised data mining will become necessary. Nonetheless, a high level of process 
+knowledge will still be required. 
+Wafer Defect Metrology—Defect metrology continues to be important towards smaller nodes, especially considering new 
+yield challenges like multiple patterning. The main way to detect yield impacting defects in production is defect inspection. 
+Therefore, the requirements are defined together with the More Moore chapter.  
+Heterogenous Integration—3D integration is the challenge. Finding the right solutions for those inspection requirements 
+will be the focus for future roadmap development.  
+Yield Management for MEMS—MEMS technology holds specific challenges for inspection and characterization based on 
+structures at backside, capwafers, and a need of inspection and characterization of covered defects. The different MEMS 
+
+Introduction  3 
+ 
+THE INTERNATIONAL ROADMAP FOR DEVICES AND SYSTEMS:  2022 
+COPYRIGHT © 2022 IEEE. ALL RIGHTS RESERVED. 
+technologies need to be separated in surface and bulk technologies for it causes different requirements to inspection and 
+characterization. 
+Yield Management for Packaging and Assembly—As technology requirements in the assembly and packaging area 
+increases, yield loss, and therefore yield improvement methodologies, become essential. Yet the most appropriate 
+methodologies have to be selected and Front End (FE) yield tools need to be adapted to Back End (BE) requirements. This 
+is a future opportunity to define a dedicated roadmap addressing Back End requirements.  
+Critical Surface Environment Control includes the ambient space around the wafer, lithography optics, lithography masks, 
+and other critical substrates at all times. This includes tool environment consideration, cleanroom air, as well as storage of 
+wafers in front opening unified pods (FOUPs). As the list of ambient contaminants to be controlled broadens, so must 
+measurement capabilities. Affordable, accurate, repeatable, high capture rate, real-time monitoring equipment for non-
+particulate contamination are becoming increasingly necessary. The use of inert environments to transport, store, and even 
+process wafers is expected to increase with process sensitivities. Pre-gate, pre-contact clean, salicidation, exposed copper, 
+and reticle exposure are cited as processes that first require this capability. In addition, using inert environments offers the 
+opportunity to reduce the introduction of moisture into vacuum load-lock tools, thereby decreasing contamination and load-
+lock pump-down times. Drier environments can contribute to static charging, so this needs to be considered. While closed-
+carrier purging systems currently exist, and wet-processing tool environments are evolving into enclosed, low-O2 single 
+wafer processing chambers may need to become inert, such as needed wet-sink end-stations present a challenge. Safety 
+when using inert purges must be carefully considered, including during maintenance. As wafer isolation technologies 
+evolve, design and material selection of carriers and enclosures will be critical for performance in isolating the wafers from 
+the ambient and in not contributing contaminants themselves. In addition, the materials and designs must not promote cross-
+contamination between processes. Seal technology, low-outgassing, and non-absorbing material development are key to an 
+effective wafer and reticle isolation deployment. 
+There are three primary sources of process environment contamination. One is the impurities in the process materials as 
+supplied. The second is the delivery system or the process itself. The third is reaction, such as contaminant- or thermally 
+induced decomposition, by process such as reactive ion etch (RIE) contamination of FOUPs. These contamination sources 
+are found throughout the pathway from the delivered gas or chemical to the substrate surface.  
+Current state of technology suggests significant gaps in contamination measurement capability. Complexity of the advanced 
+semiconductor devices and continual geometrical scaling led to the situation when killer particle size became much smaller 
+than capability of the most advanced metrology to detect those particles. This situation has been true in UPW (ultrapure 
+water) for nearly a decade, with particle metrology providers investing into closing the gap, while the gap has been only 
+increasing. Current definition of the killer size of the particles is based on half of critical dimension in logic devices.  
+As the result, the risk is considered high to continue monitoring particles of the sizes much larger than the killer size in the 
+attempt of killer particles control. What makes the situation even more problematic are the following factors: 
+1. Most advanced particles filtration in UPW has reached its limits to control killer particles (the killer particles are 
+significantly smaller than the smallest filter pore sizes). 
+2. There are indications that high purity materials shed significant number of particles at current killer sizes or larger. 
+3. There is a concern that high molecular weight polymers may form killer size particle when they attach to the wafer 
+and the water dries out. 
+It should be noted that particle control in UPW and liquid chemicals is not the only parameter that requires proactive 
+approach. Particles are more critical than other types of contaminants, leading to yield and reliability problems and therefore 
+used in this paper to illustrate the approach. 
+1.1. RELIABILITY – EMERGING TECHNOLOGY DRIVER FOR CONTAMINATION CONTROL 
+The Yield Enhancement (YE) chapter of the IRDS has been engaged in extensive collaboration with the More Moore (MM) 
+chapter to ensure that the risk of reliability becomes a critical driver and focus in the development of the IRDS roadmap in 
+2021 and beyond.  The importance of reliability is becoming more critical due to the changes in device development and 
+complexity of application.  
+Today’s complex applications require dramatic enhancements in communications and networking capabilities as well as 
+real time human computer interfaces. Examples of this include intelligent edge devices such as augmented reality glasses, 
+autonomous cars and navigation systems that collect, communicate, generate, and analyze data in real-time.  These systems 
+require the device to continuously process algorithms 24/7 either directly on the device or on a server that is near the device. 
+This results in stringent workload profiles for the device, which if not properly managed, could lead to deterioration over 
+
+4  Introduction 
+ 
+THE INTERNATIONAL ROADMAP FOR DEVICES AND SYSTEMS:  2022 
+COPYRIGHT © 2022 IEEE. ALL RIGHTS RESERVED. 
+time. The life expectancy of the device depends on its application or use, for instance a consumer electronic device, or smart 
+phone may have an acceptable life span of 2 – 5 years and simply be replaced with a new model, where high-performance 
+servers require a lifespan between 5 and 10 years before the datacenter expects to replace it (Figure-YE-2). This is further 
+amplified with increased temperature because of shrinking feature sizes and 3D integration partitioning targeting high-
+density memory on logic. Regarding integration, many processes rely on highly conformal thin films constituted by new 
+materials on high-aspect ratio and tight-pitch 3D structures. These three trends, namely stringent mission profiles, increased 
+power density, and shrinking feature sizes on 3D structures, necessitate a focus on identifying roadmap for Yield 
+Enhancement to enable adequate reliability. 
+ 
+Figure YE-2   Expected lifetime of chips in years. 
+Source: https://semiengineering.com/making-chips-to-last-their-lifetime/, October 2020 
+ 
+The most important modules for reliability are gate stack integrity, interconnect, and source/drain engineering. Bias 
+temperature instability (BTI) in the gate stack, via-bottom voids in the interconnect, and source/drain EPI are also important 
+concerns of reliability degradation in More Moore technologies. These are mostly induced by the initial defect density on 
+the interfaces, which does not cause any electrical signature during wafer sort test but further enhanced during its operation 
+by increased electrical field and/or diffusion of those defects causing shifts in device behavior, further leading to permanent 
+device failure. BTI failure manifests itself by unacceptable threshold voltage shift causing irrecoverable timing failure 
+causing functional failure, via void causing current crowding leading to blow of via, and source/drain EPI causing time-
+dependent-di-electric-breakdown (TDDB) of di-electric between the gate and source/drain and/or an increase of tunneling 
+current at the junctions.  BTI in the gate stack is a more critical one because of inspection difficulties for the quality check 
+of the gate stack as well as the very small thickness of di-electric stack (down to 2nm). Typical sources of contamination 
+are from airborne sources and ultrapure water used in last cleaning steps of the Si channel before oxide and high-k di-
+electric (e.g. HfO2) deposition.  
+The images below illustrate the defect formation mechanisms. 
+
+Introduction  5 
+ 
+THE INTERNATIONAL ROADMAP FOR DEVICES AND SYSTEMS:  2022 
+COPYRIGHT © 2022 IEEE. ALL RIGHTS RESERVED. 
+ 
+ 
+Figure YE-3   Reliability Failure Mechanisms  
+Source: Based on communication with MM and reference to G. Klimeck (Purdue, ECE606: Solid State Devices). 
+ 
+Since an impact on reliability is expected to be caused by changes in the properties of the very thin films, it is understood 
+that such defects would be inflicted by molecules and ions, as opposed to particles. Detailed knowledge of the 
+manufacturing process steps, material reliability, and lifetime requirements are needed to determine defects that impact or 
+will impact performance of the device during its lifetime. YE in collaboration with MM is currently working on 
+deconstructing the risks and quantifying the contamination limits for the roadmap. MM has developed the model (shown 
+in Figure YE-4) that illustrates reliability projections that will be used to define the target limits along with other 
+publications and supporting literature. 
+Figure YE-4 shows initial defect density causing a potential BTI failure at 10% shift threshold. Defect density numbers 
+shown in the figure correspond to the critical area (e.g. active) of device, but not across the whole wafer. Wafer-level defect 
+densities will be similar, since the effective active footprint is 3x the planar footprint, which is depreciated by the gate 
+length being 1/3rd of the contacted gate pitch.  
+ 
+ 
+Figure YE-4   Tolerable defect density in finFET (2022) and GAA (2025) for 10-year field operation. 
+Source: More Moore, IRDS, 2021  
+ 
+Collaboration between Yield and MM teams will continue into 2022 to also address the defectivity issues impacting yield. 
+ 
+
+6  Introduction 
+ 
+THE INTERNATIONAL ROADMAP FOR DEVICES AND SYSTEMS:  2022 
+COPYRIGHT © 2022 IEEE. ALL RIGHTS RESERVED. 
+“Proactive approach” in the IRDS target parameters 
+As the result of the above deficiencies, the YE chapter of IRDS has changed its direction from Reactive to Proactive Yield 
+management in the cases where the previous approach cannot work. New IRDS parameters were added to the roadmap 
+targets. This approach assumes no ability to monitor defect related parameters due to insufficient capability of the existing 
+metrology. For example, when it is impossible to monitor killer particles in UPW and liquid chemicals, IRDS focuses on 
+particle occurrence prevention by both reducing particle challenge to the final filters as well as ensuring enhanced 
+performance of the filters. The new Proactive parameter added to the roadmap is shifting monitoring to the point in the 
+treatment system where particle detection is feasible and meaningful, leveraging power-law correlation factor. At this 
+location, the particle size distribution is not affected by filtration, the size distribution is typically normal, and power law 
+correlation can be used to project the level of contamination to the target particle size. Knowing the efficiency of the final 
+and point-of-use (POU) filters, relationship between the particle challenge to the filters and the level of particles at POE 
+can be established.  
+In contrast with reactive approach, dependent on the measurement at the target point, proactive approach is focused on what 
+is measurable and drives continuous improvement ignoring metrology deficiencies. Proactive approach also focuses on 
+proactive risk analysis as opposed to corrective actions following reported yield excursions. This is particularly important 
+in applications of semiconductor devices where reliability is critical. 
+Target particle size. The following image illustrates the level of discussion between YE IFT and the device experts (More 
+Moore IFT) that helps to deconstruct the sensitivity of the device to particle related defects and determine the killer size of 
+the particle, as defined in Table YE-3. 
+Target particle density. In addition to the killer particle size above, it is important to determine the target level of the 
+defect density distribution of each layer, which meets required product yield which consists of every layer yield IRDS More 
+Moore defines. This targeted defect density distribution is estimated using typical key parameters (such as k and q) in Yield 
+projection formula. Yield calculation model below is an example that was referred from More Moore published method 
+and agreed between Yield Enhancement and More Moore chapters of the IRDS. 
+
+Introduction  7 
+ 
+THE INTERNATIONAL ROADMAP FOR DEVICES AND SYSTEMS:  2022 
+COPYRIGHT © 2022 IEEE. ALL RIGHTS RESERVED. 
+ 
+Source – IRDS More Moore IFT 
+Dx—defect density value in the units of the number of defects per 300 mm wafer, based on the device complexity and defect 
+characteristics for the given layer of the device manufacturing. 
+Figure YE-5   Defect Density Calculation 
+This calculation is based on well-known critical area-based yield forecasting model above published by More Moore IRDS 
+Team which calculates critical area for each layer. The critical layers have different sensitivity to different type and sizes 
+of the particles due to complexity, critical area distribution which is dependent on pattern design, and device critical 
+dimensions. 
+1.1.1. ULTRAPURE WATER 
+Ultrapure water (UPW) is purified water with most of the quality parameters below or near the detection limits of the most 
+advanced metrology. Current state of UPW technology generally can provide effective control of contamination. However, 
+whereas some parameters are relatively easy to control, the effect of others requires further investigation. Recent 
+development of the defectivity definitions suggests that some of the contaminants, such as particles, are going to affect 
+yield, whereas others, such as non-particulate, may not affect yield but may impact reliability (see Section 1.1). There is 
+ongoing effort to characterize the risk to reliability that has not been included in the 2022 roadmap. 
+Particle levels in UPW are reduced using the best available ultra-filtration (UF) technology, but today’s particle detection 
+and counting technology is not able to keep up with the fast-growing requirements for “killer” particle control due to 
+continued scaling of critical semiconductor devices. Monitoring available for particles is limited to laser particle counters 
+capable of monitoring 20nm particles with limited counting efficiency. There are new measurement devices for smaller 
+particle sizes under development and commercialization, but their capabilities have not been fully demonstrated yet. 
+In recent years, the YE IRDS team together with the SEMI Standards organization developed a series of standards providing 
+tools and methodologies to implement proactive particles control in advanced semiconductor facilities. Figure YE-6 
+indicates the numbers of the UPW SEMI Standards supporting the effort. SEMI F104 is the method for testing critical 
+components for particles. SEMI C79 drives filter performance by measuring ability of the filters to remove particles down 
+
+8  Introduction 
+ 
+THE INTERNATIONAL ROADMAP FOR DEVICES AND SYSTEMS:  2022 
+COPYRIGHT © 2022 IEEE. ALL RIGHTS RESERVED. 
+to 4-nm size and ensuring low particle shedding by the filters. Ion exchange resin was found to be a major potential 
+contributor of small particles. SEMI C93 measures contamination shedding by ion exchange resin. 
+Lack of proven particle metrology limits the ability to confirm whether UF is effective in controlling particles down to the 
+critical particle size. At the same time, it is apparent that the killer size of the particles has approached filtration capability 
+of the most advanced final filters. Furthermore, there is test data suggesting the particle challenge concentrations in the feed 
+to the final filters from UPW system components can be very high. Current definition of the killer size of the particles is 
+based on half-pitch logic and is as small as 3.5 nm for the most critical electrically active particles (EAP). To address the 
+metrology gaps and particle contamination risks, a new approach has been proposed. The details are described in the white 
+paper “Proactive Particle Control in Ultrapure Water (UPW) in Silicon Wafer Cleaning Process, IRDS, 2022”. New 
+“Proactive” UPW IRDS parameters have been added to the Table YE-3. This approach assumes no ability to monitor killer 
+particles in UPW, but instead focuses on particle occurrence prevention by both reducing particle challenge to the UPW 
+final filters as well as ensuring adequate performance of the filters. Figure YE-6 illustrates application of the proactive 
+approach in UPW, relying on SEMI standards and the supply chain to deliver solutions based on use of those standards. 
+Particle precursors. This is a new parameter added to UPW roadmap in 2021. It was demonstrated that presence of high 
+molecular weight organics may result in residue formation of the wafer, similar to particle of a size of approximately 8 nm 
+and larger. The semiconductor industry is entering a region where dimensions of particles, particle precursors and molecules 
+in liquids, begin to overlap.  A particle precursor is defined as a dissolved molecular compound, which may form particles 
+on the wafer. The ability to distinguish particle precursors from solid particles in UPW is becoming critical. While advanced 
+filtration can remove nanometer sized solid particles, the same filter may have little or no ability to remove particle 
+precursors. Experimental work has been conducted to determine relationships between the particle precursor concentration 
+measured in UPW and the defect density formation on the wafer.  
+ 
+ 
+Figure YE-6   Proactive Particle Control 
+The conclusions of the experimental work are provided below. For more details, please refer to the Particle White Paper 
+linked to this report. 
+1. Conducted series of the experimental work suggest that the particle risk originating from precursors is real. All 
+experiments conducted thus far indicate particle formation from all precursor materials tested. 
+• 
+The challenge solution used in the experiment involving IX resin leach-out, represents >1 order of 
+magnitude higher concentration of such contamination than that of typical UPW. This produced >1000 
+particle per wafer on the surface of the sizes 10nm and larger, vs. concentration of at least 1E+7/ml as 
+detected in solution by Liquid Nanoparticle Sizer (LNS). This means that in order to achieve the level 
+
+Introduction  9 
+ 
+THE INTERNATIONAL ROADMAP FOR DEVICES AND SYSTEMS:  2022 
+COPYRIGHT © 2022 IEEE. ALL RIGHTS RESERVED. 
+of particles per Figure YE-7) of <5/wafer, the level of such precursors in UPW should be non-detect by 
+Scanning Threshold Particle Counter (sTPC) (online version of LNS). sTPC DL is ~1E+5/ml. 
+2. This experimental work indicates that current ultrafiltration technology is not fully effective in mitigating ion 
+exchange resin particle precursor passage.  Continued improvements in the UPW final filtration technology is 
+needed. 
+3. Different types of organic polymers that may occur in UPW may lead to different defect types and densities. And 
+although mixed ion exchange leach-outs are used for quantification of the target precursor contamination level 
+(due to the high probability of occurrence of such material), proactive minimization of all particle precursors is 
+needed to support yield targets of the advanced existing and next generations of semiconductor technology. 
+• 
+Anion IX resin had much stronger affinity to the wafer surface vs. cation exchange resin, whereas 
+mixed resin appears to produce lower contamination level than the two. 
+• 
+Synthetic polymer used in the 1st round of testing showed even higher tendency to adsorption and 
+agglomeration of the formed particles. 
+• 
+The data indicate high potential of particle agglomeration, further increasing the risk to Yield.  
+4. The ratio of 3,300 LNS particles/ml forming one particle per 300mm wafer was chosen to calculate the allowed 
+(target) level of UPW precursor contamination measured by LNS (or similar instrument based on 
+nebulization/condensation particle counting technology). Referring to Figure YE-7, below suggesting that 
+particles of the size of 7-10 nm range must be controlled at the level of less than 5 particles per wafer, the target 
+level of the particle precursor (by LNS) is ~20,000 particles/ml (rounded up).  
+5. Measurement of the particles precursors still needs to be standardized to ensure high quality detection. New 
+SEMI standard development is underway. It is recommended that metrology combining 
+nebulization/condensation is used for the analysis, given the capability of the measurements observed in all 
+conducted by IRDS experiments in the period of 2019-2021. However, no specific organic compound was found 
+to be representative and helpful for conducting calibration/verification studies. More work still needs to be done 
+to develop such standard. 
+ 
+Figure YE-7   UPW Roadmap Particle Development 
+  
+Silica is one of more complex impurities in UPW. Silica may occur in UPW in a form of reactive (dissolved ionic) or 
+colloidal silica. The main concern around colloidal silica is that its occurrence in UPW is highly probable, its retention by 
+final filters is more difficult than other particles, and also because it may adsorb metal ions, thus becoming more detrimental 
+on the wafer (these effects are based on published data). Recent data on particle precursors triggers additional concern of 
+formation of high molecular weight polymeric dissolved silica (likely to be formed in the ion exchange media).  
+While it is easy to control reactive silica (within defined sensitivities of metrology), colloidal (including polymeric) silica 
+is difficult to monitor at the level where it presents a problem. Traditionally colloidal silica has been measured as the delta 
+between total and reactive silica in UPW. The killer particle size of currently considered generations has become very small, 
+making it impractical to expect that the colloidal silica particles in critical concentration (posing risk to critical surface) 
+could be measured as the delta of total and reactive silica, i.e., very small particles do not contain sufficient measurable 
+amount of the silica compound. Since colloidal silica cannot be effectively monitored using state-of-the-art metrology as 
+the compound, further consideration of colloidal silica will be done as part of particles monitoring. Given the criticality of 
+this parameter, it is recommended to consider taking mitigation steps to prevent colloidal silica occurrence via improved 
+treatment process control and use of higher purity materials.  
+Polish resin was demonstrated to have very little capacity to retain silica, while colloidal silica may be formed inside of the 
+Polish beds from traces of reactive silica. This point is addressed in the roadmap (see Table YE-3) by adding a “proactive” 
+
+10  Introduction 
+ 
+THE INTERNATIONAL ROADMAP FOR DEVICES AND SYSTEMS:  2022 
+COPYRIGHT © 2022 IEEE. ALL RIGHTS RESERVED. 
+silica control parameter in the feed to UPW tank. Pushing silica control upstream to the treatment process helps to reduce 
+silica loads to the Polish loop. 
+Hydrogen peroxide has been reported to occur in final UPW as a by-product of 185 nm UV (ultraviolet) reactors used to 
+decompose UPW organics. There are technologies available for removal of hydrogen peroxide in UPW; however, their 
+implementation requires major system change and substantial investment. The UPW Roadmap defined H2O2 target at 3 
+ppb. This is based on the data suggesting that 10 ppb of H2O2 in UPW in pre-Epi cleans may affect wafer surface roughness. 
+It is still unclear if a 3-ppb level may have similar detrimental effects. Additional study is needed to verify this concern. In 
+the meantime, this target should allow for reducing H2O2 level, while possibly avoiding any major capital investments 
+necessary to reach lower peroxide levels. 
+Metallic contamination in UPW is another important concern. Although metal control in UPW has never been a difficult 
+challenge from the treatment process point of view, new technology drivers may put the entire technology supply chain in 
+front of such challenges in the near future. Based on literature data “extremely low level of metal contamination is required 
+for specific devices like CMOS image sensors”. There are suggestions that some of the metals for such applications should 
+be controlled at the level of two or even three orders of magnitude below the levels typically specified in most UPW systems.  
+The supplemental white paper for this chapter titled “Metal Contamination of Image sensors by Ultrapure Water in Silicon 
+Wafer Cleaning Process” (link is given in the Appendix) provides details of the literature data as well as how new specific 
+metal targets (see Table YE-3) for UPW have been calculated for image sensors metal control. The ability to control some 
+of the metals in UPW by current state-of-the-art treatment technology to such low levels may not be possible. This includes 
+limitations of metrology and treatment technology, as well as materials purity of the critical components use in UPW Polish 
+and delivery systems. For this reason, an additional parameter for proactive metal contamination control was added in the 
+feed to the UPW tank.  
+Organic contamination is currently measured in terms of its total organic carbon content (TOC). This measurement of the 
+organic content does not account for the types of organic comprising TOC; how it may react with various wafer surfaces, 
+or how the reaction may impact device yield. While for most applications’ organic compounds in UPW are categorized as 
+critical and non-critical based on their boiling point, immersion lithography lens hazing is driven by factors besides boiling 
+point. Although controlling organics at the target levels is difficult, both treatment and sensitive metrology solutions are 
+available. 
+There is indication that residual amounts of TOC (less than 500 ppt) may be present as nm-size organic particles that can 
+penetrate even the smallest pore size filter.  
+Note: It is important to keep in mind that the SECC roadmap is focused on technology enablers, identifying the parameters 
+that require new technologies for monitoring and control. For the practical purposes of UPW system design and operation, 
+SEMI F631 and SEMI F612 provide guidance that can be used as a reference specification for the UPW quality, design, 
+and operation of advanced semiconductor processes, considering feasibility of the existing technologies. The UPW IRDS 
+team collaborates closely with the SEMI UPW Task Force to develop guides and test methods to mitigate existing risks and 
+challenges. 
+1.1.2. AIRBORNE MOLECULAR CONTAMINATION 
+Airborne Molecular Contamination (AMC) first became an issue with the introduction of chemically amplified resists in 
+the 1990s.3 
+A defect occurred once the photolytically initiated acids within the resist were neutralized by airborne ammonia from 
+cleanroom air. This interaction is device defect relevant as it deteriorates line width and line structures. 
+More defect patterns with a strong relation to AMC root causes have been identified over the decades. Often AMC problems 
+arose from revolutionary steps in manufacturing technology necessary to drive ahead More Moore feature shrinking or 
+wafer throughput. 
+One example is the rapidly increasing formation of microcrystal contamination on masks and lenses from sulfurous AMC, 
+such as sulfur dioxide that was photolytically activated by the 193 nm laser wavelength in ArF scanners. Another example 
+is unwanted residues of strong acids, such as HF and HCl from dry etch processes attached to wafer surfaces, once FOUPs 
+became the dominant technology for wafer transport and storage. 
+ 
+1 SEMI F063. Guide For Ultrapure Water Used In Semiconductor Processing 
+2 SEMI F061. Guide To Design And Operation Of A Semiconductor Ultrapure Water System 
+
+Introduction  11 
+ 
+THE INTERNATIONAL ROADMAP FOR DEVICES AND SYSTEMS:  2022 
+COPYRIGHT © 2022 IEEE. ALL RIGHTS RESERVED. 
+Technical solutions have since been developed to minimize the above cited defects and are available in production. However 
+these solutions have been found in a “reactive way”. Their exploration has been driven by yield losses that were already 
+impacting high volume manufacturing at the time any preventive solution was addressed. 
+The AMC section of the YE chapter is edited to formulate a more proactive approach and advance contamination control. 
+The goal is to trigger research and close potential technology gaps in AMC control for the most defect-critical process steps 
+of the next generation devices. For AMC, past experience shows that this could either be systematic and road blocking 
+impacts, or random and event driven impacts. Yet they are both yield relevant. 
+For the IRDS YE AMC chapter, the team points out that effects, defects and technological solutions must not necessarily 
+be feature size (line width) related. Device defects also often occur related to the introduction of new materials, metals or 
+processes. Consequently, a more proactive approach is needed to prevent the occurrence of major impact on transfers of 
+technology from development to high volume production. 
+The continuous development of the AMC roadmap in the YE chapter will be based on an ongoing exchange with experts 
+from “More Moore” and “More than Moore” defectivity modelling and process integration. The assessment of the impact 
+to the product includes the aspects of yield (% good dyes) as well as the aspect of device reliability (lifetime before failure). 
+The most critical AMC related defects to next generation devices are identified and included in Table YE3, together with 
+the AMC concentration limit information, as soon as they are available from research or experimental work. Citation of 
+critical AMC and the limits is strictly related to the direct wafer environment contamination control (WECC) at the point 
+where AMC (airborne molecular contamination) transfers into SMC (surface molecular contamination). AMC 
+concentration limits are carefully evaluated and curated together with the typical expected time of impact to the sensitive 
+wafer step. It can be shown that most AMC effects and defects are predominantly dose related (where dose = concentration 
+x time of impact). Indications of the time of impact related to the AMC limit are included in Table YE3. 
+The 2021 edition for the YE AMC section deals with documented or expected device defects manufactured in high-aspect 
+FIN technology or GAA (gate all around) technology. 
+Requirements for wafer contamination control have been identified for gate oxide formation (gate oxide pre-clean), source 
+drain contact module (trench etch & epi) and metallization (specifically copper metallization, via bottom filling). The entries 
+to Table YE3 have been updated and now detail specific AMC with a high device damage potential and exclude those 
+explicitly for which no concern prevail. With the review and focus to the most vulnerable process steps  these could be 
+named now and replaced former generic entries in Table YE3 as FEOL (front end of line), MEOL (Middle of line) and 
+BEOL (back end of line). 
+It is recognized that further tight control of the wafer environmental conditions in FOUPs is mandatory to prevent AMC 
+conversion into SMC and subsequent defects, e.g., in metallization. This control involves more specific monitoring of 
+critical AMC in FOUPs at short cycle times as well as efficient purge and clean technologies. The deteriorating effect to 
+wafer surfaces spans all AMC classes. The group of experts identified a technology gap in the availability of fast and reliable 
+on-line monitoring technology to unambiguously quantify small levels of high-impact AMC. Once AMC can be quantified, 
+technological solutions to prevent the impact of such AMC can be formulated. 
+The availability of time resolving and compound resolving AMC monitoring technologies is a current need and field of 
+research as  concentration totals for AMC classes have been identified to be less useful and could be misleading. Totals can 
+both be masking the importance of individual, high-impact compounds and/or driving AMC control setups into non-
+effective positions along the process chain at unnecessary, high cost. 
+As the AMC chapter for 2021 was restructured and focused to device critical defects, the group acknowledges that there 
+are fields of applications of AMC control which remain important but for which mature technological solutions exist. Such 
+applications are, for example, the environmental cleanroom control of AMC in lithography zones to safely operate UV 
+exposure tools. The AMC control limits for those tools are typically provided by the OEM device manufacturers.  
+The environmental cleanroom specifications span the entire range from acidic, basic AMC to condensable organics and Si-
+containing compounds, but also compounds such as reduced sulfur and ozone that have been added in recent years. Control 
+of such compound typically calls for concentration limits in the single digit parts per billion (ppbv 10-9 moles per mole) 
+range, and it is required to maintain operation of the optical systems in the interior of the tools. Beyond UV exposure tools, 
+this also applies more and more to inspection tools with high energy light applications. The tool-based AMC control for 
+inspection equipment is typically not yet at the advanced level of UV exposure tools. Consequently, it is recommended to 
+keep control of AMC at the cleanroom location, specifically for acid and base contamination, at the level of 1 – 2 ppbv. 
+Alternatively, tool-based solutions can be applied that guarantee for these levels at the point of entry to the tool interior. 
+
+12  Introduction 
+ 
+THE INTERNATIONAL ROADMAP FOR DEVICES AND SYSTEMS:  2022 
+COPYRIGHT © 2022 IEEE. ALL RIGHTS RESERVED. 
+Furthermore, general AMC control limits exist, e.g., for cleanroom make-up air and cleanroom recirculation air. However, 
+limits to support contamination control are highly dependent on the individual “shell” approach of the IDM and the location 
+- from the outer environment to the wafer environment - and a generalized tabulation of standardized limits is less 
+meaningful. In this context, the way to achieve the appropriate AMC control limit at wafer point of entry is an engineering 
+and facility effort and allows – besides good practice considerations – many degrees of freedom. Consequently, cleanroom 
+concentration limits were removed from Table YE3. The IRDS YE experts encourage managers responsible for cleanrooms 
+to consult in-house and external expertise on appropriate concepts. For any such concepts, the occurrence of short term or 
+event driven AMC excursions in cleanroom environments should be included in these considerations. 
+AMC on-line monitoring (selectivity, time-resolution, applicability) 
+AMC control deals with prevention of AMC release, impact and recirculation, for all of which a tight source control or 
+mitigation is mandatory. To determine accurate AMC concentrations, there is clearly a need for better AMC monitoring 
+instrumentation in the cleanroom and the wafer environment to determine AMC from the parts per billion (10-9) to the part 
+per trillion level (10-12; by volume) in real time. Ion mobility spectrometry techniques (IMS), cavity ring-down spectroscopy 
+(CRDS), Fourier Transform Infrared (FTIR), ultraviolet (UV) fluorescence and chemiluminescence instruments and various 
+atmospheric pressure ionized mass spectroscopy (APIMS) have been used to measure low level AMC. Most of these 
+technologies are either too unspecific (IMS), too involved or they lack a sufficient level of sensitivity and portability. A 
+larger variety of online methods and instrumentation is still needed.  Industrialized technology currently lags behind actual 
+technology needs. The main challenge is to combine high sensitivity with high specificity at manageable cost, maintenance, 
+portability and automated operation. Witness wafers have been used to link surface molecular contaminant (SMC) 
+concentrations to specific defects. The surface concentrations are usually expressed in a maximum allowable number of 
+molecules/cm2, ions/cm2, or atoms/cm2 for elements or ng/cm2 for organics. Witness wafers are capable methods, but they 
+are run offline at small scale. 
+Supplemental information about on-line monitoring methods is found in the Appendix of this chapter on Table YE4 and 
+YE4a for AMC monitoring programs. The evaluation of the technical demands for on-line monitoring technologies and 
+their communication to potential suppliers will be a focus item for IRDS YE AMC over the next years. 
+1.1.3. GASES, LIQUID CHEMICALS, AND PRECURSORS 
+The targeted purity levels can be reached either by bulk delivery of a fluid with required purity or through use of local 
+purification/filtration step. Care should be taken, at a minimum, to maintain the quality of the gas and chemicals coming 
+from the source, ensuring that contamination is not added downstream, as may occur due to particle generation at 
+components (such as valve switching), moisture outgassing, byproduct generation due to incompatible materials, etc. 
+Particle filtration as close to the point of use (POU) or chamber entrance as possible is generally advisable for gases. For 
+the most critical applications a local purifier may be used to enhance or ensure ultimate purity at the POU. In those cases, 
+the prevailing approach is to seek levels that are adequate for the process and to view the purifier as “insurance.” The 
+challenge to the purifier is minimal, and long purifier lifetimes can normally be expected.  
+An important exception to this guidance is for some specialty materials that undergo a variation in composition as they are 
+distilled from the cylinder or other delivery vessel in a bulk vapor delivery set up. For example, anhydrous HCl is known 
+to form very stable hydrates with water that result in changes in the concentration in the water content in the cylinder and 
+gas phase as the original specified contents are removed. In this case, a combination of rigid specifications on how much 
+of the contents can be used before moisture becomes unacceptable requiring application of moisture removal devices is 
+needed in the vapor transport path. Liquid anhydrous ammonia is another specialty gas with this potential issue. Within the 
+realm of relatively volatile liquids that are delivered in bulk, i.e., not by direct liquid injection, volatilization, aqueous 
+hydrogen peroxide, aqueous ammonia, and likely many of the amine-amide based chemical vapor deposition/atomic layer 
+deposition (CVD/ALD) precursors, are expected to undergo similar distillative variation and/or thermal degradation under 
+delivery conditions. Depending upon the process sensitivity this might be a source of poor film quality or process variability 
+that can be addressed by attention to the delivery method. Reactivity of transport surfaces, impact of aging of bulk/spec 
+gases within the delivery system, impact of perturbation of gases during transport as well as outgassing need to be 
+considered, as well. 
+Point of use purifiers and filtration units are finding application in newer ALD techniques, for example, where the films are 
+deposited as monolayer and incorporated impurities can be especially destructive. Purifiers must not add any new 
+contaminants. A near- and medium-term challenge is filtration of the precursor vapor. The sources can be sublimable solids 
+or readily condensable vapors of low volatility liquids. These can re-solidify or re-liquefy causing plugging and instability 
+in fluid transfer to the substrate surface.  
+
+Introduction  13 
+ 
+THE INTERNATIONAL ROADMAP FOR DEVICES AND SYSTEMS:  2022 
+COPYRIGHT © 2022 IEEE. ALL RIGHTS RESERVED. 
+1.1.3.1. BULK AND SPECIALTY GASES 
+Increased levels of purity requirements are expected in advanced processes. This type of improvement might be anticipated, 
+based upon historical trends as design rules tightened, but there is again little objective evidence to support the need for 
+improvements across the range of bulk gases. For very special applications where extraordinarily higher purities are critical, 
+special purity grades or additional purification will be required.  
+The situation is similar for many of the specialty gases. Statistical process control (SPC), such as 3-sigma limits for process 
+gases and liquids was implemented by most semiconductor manufacturer for critical process fluids, e.g., TEOS.   
+The promise of providing “in control” process fluids is anticipated to improve process yields by either minimizing the 
+overall variability of the manufacturing process or in simply reducing the likelihood of a process crash resulting from large 
+variations in material quality that would still nominally have met a more standard specification. 
+For some processes, such as advanced lithography (especially 193 nm and EUV), very small quantities of “high molecular 
+weight/high boiling point” (e.g., C6-C30) hydrocarbons in supply gases are detrimental because of a tendency to adhere to 
+the exposed surfaces, and potential for photochemical degradation to leave non-volatile residues that impact optical 
+characteristics on lenses, masks, mirrors, etc. However, any organics, even ones with lower molecular mass than C6-organic 
+compounds are considered detrimental if they result in refractory deposits. For the same reason, other potential impurities 
+such as siloxanes or organophosphates can also be very detrimental in extremely small quantities. In order to detect such 
+species, e.g. siloxanes and organophosphates with sufficient sensitivity, it is necessary to directly detect the relevant species 
+and calibrate the analyzer with the appropriate standard near the quantitation limit. The methods used are analogous to those 
+for AMC, such as thermal desorption (TD) gas chromatography (GC), mass spectrometry (MS) or TD GC with flame 
+ionization detector (FID), photo ionization detector (PID), or ion mobility spectrometry (IMS).  
+New developments include reaction steps and time-of-flight (TOF) measurements. These approaches may still miss some 
+heavier hydrocarbons and/or polar species that tend to remain in the column or emerge as very broad peaks, if not optimized. 
+For methods using adsorbent traps, it is very important to determine the trap efficiency, which are used as sampling 
+techniques. Using atmospheric pressure ionized mass spectroscopy (APIMS) to provide real-time measurement of 
+individual hydrocarbons is possible in principle, but very involved and calibration is difficult, because larger hydrocarbons 
+may be collisionally dissociated in the ionization process.  
+An approach that has gained some acceptance is to use TD GC/MS and sum all peaks corresponding to C6 and higher. The 
+instrument is usually calibrated with a multi-component standard and results are reported as “toluene” or “hexadecane” for 
+wafers or as toluene for clean dry air (CDA) or gases. While the quantization provided by this method is approximate, and 
+some species may be overlooked, it does at least provide a metric for contamination level and a straightforward calibration.  
+Historically, applications for both O2 and H2 generally tolerate higher levels of N2 contamination than other contaminants; 
+however, H2 as a carrier for epitaxy now requires more stringent N2 levels and the table reflects this observation. 
+Requirements for critical CDA with stricter control of organics and refractories, lithography purge gases, and supercritical 
+CO2 supply are included. Whereas critical CDA may not always be conveniently or cheaply available, there is no 
+technological barrier to its production. Analytical methods are usually the same as used for airborne molecular 
+contamination in clean room air, such as bubbling through ultra-pure water (for metals, acids, amines, etc.) or trapping on 
+an adsorbent trap for organics. In each case, the sampler concentrates impurities so that requisite sensitivities are achieved 
+when the sample is introduced to the analyzer inductively coupled plasma - mass spectrometry (ICP-MS) or ion 
+chromatography for aqueous samples, GC-MS for desorption of organics). Such methods are time consuming by nature, 
+and direct methods would be preferred if available. However, there is no apparent pressing need for real-time analysis. For 
+SO2 there are convenient online methods, e.g., UV fluorescence.  
+For specialty gases, contaminant values in etchants, dopants, and deposition gases emphasize in Table YE-3 the increased 
+number of different materials in use, and to better delineate the processes in which they are used. Particulate contamination 
+is omitted since online monitoring of particle concentrations is not commonly practiced and the efficacy of POU particle 
+filters is well established. Whereas there is evidence that the most demanding applications, such as low temperature epi and 
+its cleaning gases, will continue to benefit from improvements in purity as deposition temperatures are lowered, this is 
+expected to be reflected in wider use of the best available purity rather than substantial improvements of those levels 
+indicated in the table, which reflects the most critical application. 
+Tighter control over the variation in purity in both bulk and specialty gases is more important than improvement in absolute 
+purity levels. However, the often more chemically reactive specialty gases present a more formidable challenge for 
+maintaining of point of supply (POS) purity levels throughout the delivery to the point of process. Selected specialty gases, 
+e.g., HCl are now commonly under statistical process control at the POS. 
+
+14  Introduction 
+ 
+THE INTERNATIONAL ROADMAP FOR DEVICES AND SYSTEMS:  2022 
+COPYRIGHT © 2022 IEEE. ALL RIGHTS RESERVED. 
+More detailed consideration of the impurity levels found in the growing number of novel materials used in processing will 
+be increasingly important. Requisite purity levels for critical materials such as novel metal oxides, chemical mechanical 
+planarization (CMP) slurries, low/high κ dielectric materials, precursor materials (used in CVD, ALD, and electroplating 
+solutions) for barrier and conductor metals (such as Cu, Ta) have not been widely studied, and many of these materials have 
+not been called out in Table YE-3. An early attempt to start to catalogue and characterize the properties of the thin film 
+precursors utilized in semiconductor processing is found in the supplementary material for this chapter. 
+Deposition precursors for thin film materials are often sensitive to moisture, air and high temperatures. Control over the 
+delivery process from the POS to the reaction chamber is critical to high yielding performance. The use of very high purity 
+carrier and purge gases in these systems is often required to prevent decomposition that can contribute detrimental molecular 
+and particulate impurities. Traditionally bulk purifiers were used in the bulk gas delivery systems to remove particles and 
+other homogeneous chemical contaminations like oxygen, or moisture present in the supply gases. However, with the 
+development and commercial availability of POU purifiers, there is a strong interest from end users to utilize POU purifiers 
+particularly for specialty gases needed for critical process steps with very critical level of contamination control. These 
+point-of-use purifiers POU are highly effective to remove chemical contaminants to extreme low level (~ ppt), easy to use, 
+easy to replace, with low cost-of-ownership. The capability of placing those POU purifiers very close to inlet of process 
+chamber, assures least travel path (less contamination) for process gases after chemical purification and filtration. 
+By analogy with the definition of UPW particle precursors, The IRDS YE Gas Team defines particle precursors as 
+contaminants in the gas in molecular form may generate particles by reaction or agglomeration. 
+1.1.4. LIQUID CHEMICALS 
+Pre-diffusion cleaning and EUV mask blank cleaning requirements drive the most aggressive impurity levels. Liquid 
+particle level requirements are expected to become tighter with each technology generation. These target values are derived 
+from the purity requirements on a wafer as calculated by the surface preparation experts assuming a linear relationship 
+between the concentration in the liquid and on the wafer. Particle counters are currently only capable of measuring down 
+to 30-40 nanometers (nm) in liquid chemicals. By assuming a particle size distribution, it should be possible to infer particle 
+concentrations to smaller particle sizes, but this will be influenced by the level of filtration utilized. Another measurement 
+challenge for several chemicals is the differentiation between foreign particles, micelles and bubbles, which is currently not 
+possible, although solutions can be degassed and/or pressurized to dissolve gases and bubbles into solution. The ability to 
+differentiate between damaging foreign particles and intentionally created micelles is also important for any effort to impart 
+filtration that is effective but does not interfere with the chemical functional properties.  
+Liquid chemicals can be separated into the two main categories of “Functional Chemistry” and “Cleaning Chemistry”. 
+Functional Chemistry is used to modify the wafer surface by removing material (Etch, CMP) or depositing a new film onto 
+the surface (plating, coating). Whereas, Cleaning Chemistry is used to remove contaminates from any previous processing 
+step or modify the surface charge of the wafer surface to facilitate particle removal. This distinction is important to 
+understand what is important in controlling the quality of the chemistry to minimize the defect contribution from it. For 
+Functional Chemistry, assay control is key to the process in making sure the proper amount intended material is removed 
+without removing material not intended. Either situation will result in a feature on the wafer surface that is measured by 
+any subsequent defect metrology inspection step as a defect. For Cleaning Chemistry, the controls for preventing any foreign 
+material or unintentional compounds in the chemistry is key to ensuring the ability to remove surface defects without 
+contributing to additional ones.  
+For this reason, the two categories were specifically listed out in the Liquid Chemicals section of the tables so that 
+appropriate requirements can be considered and specified based on their application in the manufacturing process. The 
+"Cleaning Chemistry" (or "critical cleans") will have a longer list of parameters and much more restrictive limits as 
+compared to their "Functional Chemistry" counterpart. For example, HF cleaning chemistries may have less restrictions on 
+contamination type parameters as compared to HF being used as an etchant. Conversely, HF etchant may be more restrictive 
+on assay variance than its counterpart for use as a cleaner. Often many chemical cleaners are blended with other chemistries 
+or diluted with water, which further highlights the need for strict controls on all of the constituents used in these blends to 
+maintain contamination levels where they need to be to protect wafer yield. This is also why new categories were created 
+to include proprietary chemistries and etchants to incorporate the diverse products in use that are provided by chemical 
+suppliers or are blended at the IDM site. The number of these proprietary chemistries is growing such that they have become 
+more dominant in number as compared to the general and historical standard list of processing chemistries, and do require 
+some level of guidance for maintaining quality control. 
+As the need for precise photolithography process control continues to become more critical, the quality control for the 
+associated process chemistries also needs to more restrictive. With the proliferation with EUV in various process nodes 
+
+Introduction  15 
+ 
+THE INTERNATIONAL ROADMAP FOR DEVICES AND SYSTEMS:  2022 
+COPYRIGHT © 2022 IEEE. ALL RIGHTS RESERVED. 
+the need for more consistent developers of high quality is necessary. As a result, placeholder sections have been added to 
+signify the ongoing characterization and future development of established quality criteria for these emerging 
+technologies.   
+The ability to accurately analyze organic, anion, and cation contamination in process chemicals is becoming more critical 
+to successful wafer processing. With the increased use of CMP and plating chemicals, there is critical need for a better 
+understanding of purity requirements for the delivered chemicals that takes into account the wide variety of ingredients 
+used to make them.  
+The performance characteristics of many of the process chemicals that are used for etching, plating, CMP and cleaning 
+depend heavily on the amount and type of foreign material present as well as the consistency from batch to batch that is 
+used in the process. The integrated effects of variability in the performance of these chemistries will play a significant role 
+in the defect control within the manufacturing process. The process flow is designed based on the premise that each process 
+step is stable and repeatable. Any deviations from these integrated design parameters will most likely have adverse effects 
+of other process steps in the process flow which includes wafer defect impacts.  
+For the control of metal ions in liquid chemicals, the processing and control of these contaminants at the supplier (POS) is 
+an important first step. However, with the exposure of the chemistry to the shipping containers and various process and 
+delivery equipment before it reaches the wafer process (POP); additional purification steps may be warranted to maintain 
+the necessary purity levels. These additional purification steps can occur at the distribution system (POD), connection point 
+to the distribution system (POC), entry into the processing equipment (POE) or even inside the wafer processing tool itself 
+(POU). The critical nature of the specific processing step should dictate whether that specific chemistry should have 
+additional purification employed.  
+The ability to detect, control, and protect the process from adverse defect conditions relies on both the sensitivity of liquid 
+defect metrology to detect the critical size of particle but also in the ability for the various metrologies to have the same or 
+similar response to a change in the population and size distribution of these particles. Too often particle distribution baseline 
+shifts occur at the end user's detection point with no signal observed at the chemical source location. By the time the 
+chemical distribution system has detected this change, it is too late to protect the manufacturing process from the impacts 
+of this increased defect level. Furthermore, many defect elevations occur in the wafer process with no detectable shift in 
+any of the online liquid particle counting systems due to a mismatch in the sensitivity of the liquid particle counting 
+metrology and the wafer defect sensitivity. 
+1.1.4.1. ALD/CVD PRECURSORS 
+At recent nodes ALD processes have been adopted aggressively and that proliferation is expected to accelerate in the future. 
+ALD processes will therefore constitute a growing subset of the processes used in high volume manufacturing (HVM) and 
+some discussion of common/unique aspects of ALD processes with respect to SECC is warranted.  
+For the clear majority of semiconductor processes, gaseous reactants are delivered to the processing chamber at atmospheric 
+or super atmospheric pressures. However, for most ALD processes, the precursor is delivered at pressures typically in the 
+range of 5 Torr to 100 Torr (667 Pa to 13.3 kPa) to the reactor, which is processing typically less than 1 Torr (133 Pa). To 
+minimize precursor deposition/condensation within a delivery system, the equipment is typically heated to 100°C or greater. 
+At such conditions, the gas flow through many of the delivery system sub-components is in the slip flow regime. In the slip 
+flow regime, there is a non-zero boundary velocity at solid surfaces and a thinner boundary layer. This significantly alters 
+both the fluid dynamics and heat transfer properties of the system. Additionally, ALD precursors can readily form particles 
+in the precursor delivery system through both condensation and reaction with residual oxygen-containing species. With 
+solid precursor sources, there is an added risk that source material particulate can be entrained by the carrier gas.  
+Furthermore, metallic impurities in inorganic, metalorganic, organometallic or organometalloid precursors are typically 
+orders of magnitude higher in concentration than in most non-metal containing gas streams and can be a source of metallic 
+contamination in the resulting films. In addition, thermal decomposition of precursors on the wafer or in the gas phase can 
+produce particles or provide another source of in-film contamination. Original equipment manufacturers (OEMs) and 
+precursor suppliers should keep these complexities in mind when designing or modifying precursor delivery sub-
+components and systems. Semiconductor manufacturers should consult with their suppliers if they are interested in re-
+engineering or adapting their precursor delivery systems since changing the pressure drop or flow dynamics of a vapor 
+delivery system for a sensitive precursor may have unintended negative consequences.  
+Due to the low vapor pressure of many ALD precursors, the process canisters are usually kept at elevated temperature 
+(>90°C) at the point of use in the tool gas box. Many ALD precursors will have a slow rate of decomposition at these 
+temperatures and extra care should be taken to adjust the size of the on-board source canister to consume the source before 
+
+16  Introduction 
+ 
+THE INTERNATIONAL ROADMAP FOR DEVICES AND SYSTEMS:  2022 
+COPYRIGHT © 2022 IEEE. ALL RIGHTS RESERVED. 
+process deteriorating decomposition starts. In many cases smaller heated onboard source canister that is refilled by a bulk 
+deliver system or a liquid injection system without tank are preferred solutions. 
+When supplying the precursor from a bulk delivery system in the sub fab, extra care should be taken to avoid release of 
+bubbles from the push gas into the liquid precursor. The bubbles are released due to the pressure drop going from the point 
+of push gas insertion (sub fab) up to the tool. These bubbles will typically disturb the liquid flow controllers in the tool gas 
+box or direct liquid injection systems resulting in a disturbed fluctuating delivery flow of precursor into the reaction chamber 
+and possible particle generation in the injection system if the injection is over flown with precursor above it is optimal 
+working conditions. 
+Downstream of the ALD reactor, the relatively low vapor pressure ALD precursors and process by-products tend to 
+condensate at the first point of temperature drop. Therefore, the pump stack and pressure control should be heated above 
+the condensation temperature and all the way to preferably a cold trap that condensate the precursor in a controlled manner 
+to avoid back streaming particles into the reactor. 
+Finally, semiconductor manufacturers should conduct due diligence audits of any analytical methods or techniques used to 
+screen precursor quality with the understanding that many of the possible errors made while analyzing the precursors (e.g. 
+incomplete digestion, failing to account for sample matrix effects, etc.) can lead to results that under-report the true impurity 
+level. Many manufacturers are adopting ship to control standards individually with their suppliers in order to minimize any 
+precursor variation associated yield loss in their factories. 
+1.1.5. CRITICAL COMPONENTS 
+Critical Components are defined as the high-purity polymer materials used in the manufacture, storage and conveyance of 
+process chemicals that are a liquid at room temperature and up to 85oC.  This includes UPW and the broad range of 
+chemicals used in the semiconductor manufacturing process.  As such they should not contribute more than a certain portion 
+of the allowed contamination per the individual liquid specifications.  Typically, it is based on “50%” of the concentration 
+contributed by all the critical components making up the distribution system.  These polymeric materials are made by high 
+temperature and high-pressure molding or extrusion.  It is critical that the starting materials (raw polymer pellets) be as 
+clean and meet the same specification as the finished products (pipe or tubing or fitting or valve, etc.).  Gaskets and seals 
+have not been included in the list to date.  This is primarily due to the extremely low surface area of exposure to the fluid.  
+They are included in SEMI F57 for extractables.  There is no practical way to assess the particle contribution for gaskets 
+and seals due to the requirement to have them included in a flowing system where it would be very difficult to determine 
+what any particle source is. The component manufacturing process is mechanical and thermal in nature (i.e., there are no 
+chemicals involved).  
+Critical Components are essential to the delivery of clean chemicals to the wafer.  There is a large surface area exposure 
+and there can be a long exposure time as well.  The knowledge of the end user’s challenges is essential in defining the 
+material requirements.  The impact of particles, metals and organics on the wafer is the prime concern of the roadmap.  
+Further as the particle size gets very small (<10 nm), the make-up of the “particle” becomes more difficult to determine.  
+They are not hard, optically visible items anymore.  They will more likely be large organic molecules or amorphous silicon 
+compounds that could agglomerate into a larger mass or individually end up as a defect on the wafer surface.  We have 
+added a category called Non-Volatile Residue (NVR) which is defined as matter that remains on the wafer after a clean 
+and/or rinse step.  It is likely that for Critical Components that these materials will be an organic compound from materials 
+of construction.  There is the possibility of “new” contaminants (like organics that are particle precursors) that they may 
+not be removed by the re-treatment system.   
+In Critical Components we have added an alternate definition to the UPW definition for critical organics.  In the UPW 
+section critical organics are actually particle precursors.    For Critical Components it will be related to compounds that 
+have properties similar to cyclohexanone or cyclohexanol in terms of molecular weight and boiling point, (approximately 
+99 molecular weight and about 160oC boiling point).  These organics are known to have an impact on wafer production 
+and as such are considered critical organics.  These organics can remain on the wafer surface as a film or a splotch or can 
+agglomerate into a particle.  There are now three different definitions of critical organics.  One each for UPW, HP chemicals 
+and critical components.  For critical components there needs to be an assessment of what the effect of organics coming 
+from critical components is on the wafer so we can actually establish both a definition of these and target concentrations 
+for the roadmap.  This will be first for UPW and then for various classes of HP chemicals. 
+The model developed by Mustafa Badaroglu in the More Moore chapter of the IRDS was used as the method to establish 
+the permitted particle contribution from Critical Components.  This value for critical components is based on a percentage 
+of the value calculated for UPW.  There are four different particle categories:  static and dynamic before the final filter and 
+
+Introduction  17 
+ 
+THE INTERNATIONAL ROADMAP FOR DEVICES AND SYSTEMS:  2022 
+COPYRIGHT © 2022 IEEE. ALL RIGHTS RESERVED. 
+static and dynamic post final filter.  Static components (like tubing or non-actuated valves) are allowed a smaller fraction 
+of the UPW target than dynamic (components that actuate and move during use like an on-off final dispense valve).  There 
+are values per actuation for dynamic components.  The particle targets for chemicals are the same as for UPW.   The post 
+filter value is for any chemical that is last step. 
+Generally, the specification for metals is more restrictive for UPW because UPW is generally cleaner than chemicals and 
+is mostly the final rinse step after a chemical process step.  The requirements for extractables in UPW, particularly at 
+ambient temperature, are typically easier to achieve in UPW than in certain chemicals.  The aggressive nature of the 
+chemical environment will tend to extract more metals than UPW.  Further the conveyance (and containment) of organics 
+used in the wafer process may extract different organics from the material matrix than UPW.  The aggressive nature of the 
+chemicals used in the wafer process places an extra emphasis on the quality and nature of the materials of construction.  
+Due to the very small size of particles that can affect the device and the limitation of current metrology, we have to use a 
+“proactive” means to measure particles, i.e., we use current methodology to measure larger particles and then using the 
+statistical Power Law relate that to smaller particle concentration.  This allows us to list measurable particles into the 
+roadmap.  
+While we have included filters in the list of Critical Components, we have not addressed the many varieties of configurations 
+and materials of construction of filters.  Further the manufacturing of filters is much more complex than the manufacture 
+of those made of one raw material.  There is also a myriad of different surface preparations used in filters to provide for a 
+specific performance feature.  These are typically chemical in nature (a functional group type of treatment) that further 
+complicates the nature of filters.  In addition, there is the pore sizing and type of filtration (e.g., surface vs depth filtration) 
+that also adds complexity.  We have included in the Critical Components calculation methodology the use of filters in the 
+chemical distribution systems.  This was done to account for the total surface area of everything that touches the fluid as 
+accurately as possible.  For any pre-final filter the same logic applies, i.e., it is a static pre-filter component.  We also caution 
+that operation of POU filters can be problematic if these are not operated at stable conditions of flow and pressure, because 
+filters have the potential to shed particles if not operated properly.  There is still work to be done to assess the ability of 
+final filters to remove very small particles (<10nm) and to determine how this information could be used in the allocation 
+of particle contribution from critical components before and after a final filter.  
+1.2. DRIVERS AND TECHNOLOGY TARGETS 
+Yield technology drivers are changing. While in past memory was the primary driver of the Yield Enhancement roadmap 
+due to smaller critical dimension, now Logic has become and will likely continue to be the leading driver in the future. 
+Logic was chosen to be a driver for Yield roadmap for the following reasons (refer to the IRDS More Moore chapter for 
+additional information): 
+• 
+It has tighter pitch size than that of other types of semiconductor products 
+• 
+Advanced Flash manufacturing is transitioning to 3D structure where the pitch equivalent is almost an order of 
+magnitude larger than that of Logic 
+• 
+Logic has significantly more metal layers and higher complexity, increasing risks to yield  
+• 
+Logic has less redundancy compared to Flash memory 
+• 
+Flash has self-alignment – that is not available for logic 
+This year roadmap effort conducted extensive analysis of the possible defect occurrence as function of the device structure. 
+New defectivity drivers are based on the device driven definitions, supporting critical dimensions of the advanced logic 
+devices (for particles) and device sensitivity to the molecular and ionic contamination (see Figure YE-5).  
+1.3. VISION OF FUTURE TECHNOLOGY 
+Given significant limitation of particle and other metrology as outlined in the following sections, the vision for future 
+technology involved in Yield Enhancement is based on the effort of proactive and systematic defect control throughout the 
+entire supply chain. The IRDS Yield Enhancement Chapter will continue focusing on definition of the technology needs 
+while the technology providers and SEMI Standards will focus on delivering optimized process control and material purity 
+independently of the ability of direct monitoring of those defects. Electrical characterization methods, Big Data and 
+modeling will become more and more important for yield learning and yield prediction. 
+It should be noted that the vision of future technology in the space of Yield Enhancement is limited to a few next generations, 
+as uncertainty of the future device design limits the ability to adequately anticipate and project the needs. There are those 
+who believe that future of shrinking beyond 5 nm node may be limited by ability to enable high enough production Yield. 
+
+18  Scope of Report 
+ 
+THE INTERNATIONAL ROADMAP FOR DEVICES AND SYSTEMS:  2022 
+COPYRIGHT © 2022 IEEE. ALL RIGHTS RESERVED. 
+As indicated in the More Moore roadmap, geometrical scaling is approaching its limits that means that if the near-term 
+challenges are resolved, it will likely support the technology needs for the longer term than what is currently covered by 
+YE roadmap. 
+2. SCOPE OF REPORT 
+Yield in most industries has been defined as the number of products that can be sold divided by the number of products that 
+can be potentially made. In the semiconductor industry, yield is represented by the functionality and reliability of integrated 
+circuits produced on the wafer surfaces. During the manufacturing of integrated circuits yield loss is caused for example by 
+defects, faults, process variations, and design. The relationship of defects and yield, and an appropriate yield to defect 
+correlation, is critical for yield enhancement. 
+The previous scope of the Yield Enhancement group, which was More Moore driven front end processing, was extended 
+towards More Moore and More than Moore yield considerations. The roadmap focus moved from a technology orientation 
+to a product/application orientation. The Yield Enhancement section displays the current and future requirements for high 
+yielding manufacturing of More Moore as well as More than Moore products separated in “critical process groups” 
+including MEMS, back-end processes, e. g. packaging.  
+Airborne molecular contamination (AMC), packaging, liquid chemicals and ultra-pure water were identified as the main 
+focus topics for the next period. Electrical characterization methods, big data, and modeling will become increasingly 
+important for yield learning and yield prediction. Here Yield Enhancement benefits from the big data activities within the 
+Factory Integration IFT. Regarding AMC, liquid chemicals, and ultra-pure water a close link to Environmental Safety and 
+Health IFT is already indicated. 
+The scope of the report is to provide an overview of the needs of next generation semiconductor technology with respect to 
+the measures needed to enable high manufacturing yield of future technologies. Yield enhancement chapter focuses on next 
+two generations of technologies due to the urgency of dealing with the challenges of next two generations. There are experts 
+who believe that the More Moore roadmap may soon be constrained by Yield. In this case, higher focus should be provided 
+on near term roadmap. 
+This report provides narrative in support to the enclosed excel document delivering key parameters and their values helping 
+to specify quantitative technology targets. This reports also provides an appendix with additional supporting information 
+that is used to justify certain definitions in the roadmap table.  
+ 
+Figure YE-8   Yield Enhancement Scope 
+In the manufacture of integrated circuits yield loss is related to a variety of sources. During processes such as implantation, 
+etching, deposition, planarization, cleaning, lithography, etc. failures responsible for yield loss occur. Several examples of 
+contaminations and mechanisms responsible for yield loss are listed in the following: a) airborne molecular contamination 
+(AMC) or particles of organic or inorganic matter caused by the environment or by the tools; b) process induced defects as 
+scratches, cracks, and particles, overlay faults, and stress; c) process variations resulting, e.g., in differing doping profiles 
+
+Scope of Report  19 
+ 
+THE INTERNATIONAL ROADMAP FOR DEVICES AND SYSTEMS:  2022 
+COPYRIGHT © 2022 IEEE. ALL RIGHTS RESERVED. 
+or layer thicknesses; d) the deviation from design, due to pattern transfer from the mask to the wafer, results in deviations 
+and variations of layout and critical dimensions; and e) diffusion of atoms through layers and in the semiconductor bulk 
+material. Figure YE-8 illustrates the YE scope. 
+The determination of defects and yield, and an appropriate yield to defect correlation are essential for yield enhancement. 
+This correlation is of major importance, because not all defects change device properties or cause failure of devices or 
+integrated circuits. 
+The YE section has two focus topics: “Surface Environment Contamination Control” and “Characterization, Inspection and 
+Analysis.” These two topics crosscut front end process technology, interconnect processes, lithography, metrology, design, 
+process integration, test, and facility infrastructures. 
+Surface Environment Contamination Control – Although most of the parameters in Table YE-3 table do not require 
+significant improvements, nor indicate challenges in process critical fluid and gas impurity control, some parameters present 
+a serious technology challenge. New materials and their precursors introduce challenges that require continuous study. 
+Clarification of potential contamination from point-of-supply to point-of-process will define control systems necessary for 
+delivered purity. There are several locations in the pathway from the original delivery package, i.e., the Point of Supply 
+(POS) of a liquid or gas to the location where that material contacts the wafer, i.e., the Point of Process (POP), for 
+ascertaining purity. This has led to a considerable amount of confusion and ambiguity in discussing the quality of process 
+fluids, including the data found in Table YE-3. Table YE-1 summarizes the major fluid handling and/or measurement nodes 
+found along the typical systems supplying process fluid. This table is an effort to create a common language for the 
+discussion of attributes and requirements at these different node points. Further information regarding pathway nodes can 
+be found in the supplementary materials in the Appendix and sources in the References section, such as the Semiconductor 
+Equipment and Materials International (SEMI) Standards.  
+ 
+ 
+
+20  Summary and Key Points 
+ 
+THE INTERNATIONAL ROADMAP FOR DEVICES AND SYSTEMS:  2022 
+COPYRIGHT © 2022 IEEE. ALL RIGHTS RESERVED. 
+ 
+Table YE-1   Definitions for the Different Interface Points 
+ 
+POS 
+POD 
+POC 
+POE 
+POU 
+POP 
+ 
+Delivery Point of 
+Gas/Chemical 
+Supplier 
+Outlet of Central 
+Facility System 
+Submain or 
+VMB/VMP Take off 
+Valve 
+Entry to Equipment 
+or Sub Equipment 
+Entry to the 
+Process Chamber 
+Contact with Wafer 
+Ultrapure 
+water 
+Raw water 
+Outlet of final 
+filtration in UPW 
+plant 
+Outlet of submain 
+take off valve 
+Inlet of wet bench 
+or sub-equipment 
+(downstream POU 
+filter, if available) 
+Inlet of wet bench 
+bath, spray nozzle, 
+or connection point 
+to piping, which is 
+also used for other 
+chemicals 
+Wafer in production 
+Process 
+chemicals 
+Chemical 
+drum/tote/bulk 
+supply 
+Outlet of final 
+filtration of chemical 
+distribution unit 
+Outlet of VMB valve 
+Inlet of wet bench 
+or intermediate tank 
+Inlet of wet bench 
+bath or spray nozzle 
+Wafer in production 
+Specialty 
+gases 
+Gas cylinder or 
+bulk specialty gas 
+systems 
+Outlet of final 
+filtration of gas 
+cabinet 
+Outlet of VMB valve 
+Inlet of equipment 
+Inlet of chamber 
+(outlet of MFC) 
+Wafer in production 
+Bulk gases 
+Bulk gas 
+delivered on site 
+or gas generator 
+Outlet of final 
+filtration/purification 
+Outlet of submain 
+take off valve or 
+VMB valve 
+Inlet of equipment/ 
+sub-equipment 
+Inlet of chamber 
+(outlet of MFC) 
+Wafer in production 
+Cleanroom 
+and AMC 
+Outside air 
+Outlet of make-up 
+air handling unit 
+Outlet of filters in 
+cleanroom ceiling 
+Inlet to mini-
+environment or sub 
+equipment for 
+AMC, outlet of the 
+tool filter for 
+particles 
+Gas/air in vicinity 
+to wafer/substrate 
+Wafer/substrate in 
+production (AMC/ 
+SMC) 
+POD—point of delivery   POC—point of connection   POE—point of entry   POP—point of process   POU—point of use   VMB— valve manifold box  
+VMP—valve manifold post   UPW—ultra pure water   MFC—mass flow controller   AMC—airborne molecular contamination  
+SMC—surface molecular contamination 
+Characterization, Inspection and Analysis – Physical device dimensions and corresponding defect dimensions continue 
+shrinking, posing new challenges to detection as well as tolerable contamination. The wafer edges and backside were 
+identified to show significant impact on yield as well as process variations and design. Development of defect detection, 
+defect review, and classification technologies showing highest sensitivity at high throughput is crucial for cost efficient 
+manufacturing. Furthermore, for efficient manufacturing the monitoring of contamination in the environment and on the 
+wafer, surface requires appropriate analytic capabilities. Automated, intelligent analysis and reduction algorithms, which 
+correlate facility, design, process, electrical and virtual metrology results, and their correlation to yield, test and work-in-
+progress data, will have to be developed to enhance root cause analysis and therefore enable rapid yield learning. 
+3. SUMMARY AND KEY POINTS  
+It is recommended that the reader of the IRDS Yield Enhancement Chapter reviews this narrative along with other materials 
+and particularly Table YE-3, including associated notes. It is important to keep in mind that although the values in the 
+roadmap were defined based on empirical data and modeling, there is no sufficient ground to justify specific technological 
+decision, which are expected to be made by the technology end users based on the process specific sensitivities and 
+requirements.  
+It is also important to note that definition of the semiconductor technology needs in the roadmap does not take into account 
+feasibility of existing facility technology and metrology capability. Applying the roadmap values for facility systems 
+specifications may pose execution challenges. Instead, it is recommended to refer to definitions of most current SEMI 
+standards (if available) where the feasibility issues are taken into account and solutions are recommended, under 
+consideration of the roadmap definitions. 
+Given limitations of the metrology used in material, environment, and process control, it is recommended to focus on 
+proactive measures related to the technology management. Such approach should lean on standardization, data mining, and 
+process performance optimizations related to all aspects of the facility, materials, and other technologies involved in the 
+Yield enabling and enhancement. Particles control in liquid chemicals and UPW is an example of such challenge. 
+ 
+
+Challenges  21 
+ 
+THE INTERNATIONAL ROADMAP FOR DEVICES AND SYSTEMS:  2022 
+COPYRIGHT © 2022 IEEE. ALL RIGHTS RESERVED. 
+4. CHALLENGES  
+4.1. NEAR-TERM CHALLENGES —CIA  
+Currently, one of the important key challenges will be the detection of multiple killer defects and the signal-to-noise ratio. 
+It is a challenge to detect multiple killer defects and to differentiate them simultaneously at high capture rates, low cost of 
+ownership and high throughput. Furthermore, it is difficult to identify yield relevant defects under a vast amount of nuisance 
+and false defects. As another challenge with high priority the requirement for 3D inspection was identified. This necessitates 
+for inspection tools with the capability to inspect high aspect ratios but also to detect non-visuals such as voids, embedded 
+defects, and sub-surface defects is crucial. The demand for high-speed and cost-effective inspection tools remains, 
+especially in the area of 3D inspection as the importance of 3D defect types increases. In subchapter to Characterization, 
+Inspection and Analysis another key challenge was identified: detection of organic contamination on surfaces – the detection 
+and characterization of non-volatile organics on surfaces is currently not possible in the fab. There are few laboratories or 
+fab scale instrumentation available or implemented except ToF-SIMS, and XPS. 
+MEMS technologies have different challenges. Inspection and review tools need to be able to handle a broad range of wafer 
+thicknesses. Infrared inspection is required as an automatic and full wafer scan option, which is available in principle but 
+has not yet proven to meet the required throughput requirements. Review options need to be able to have solely edge grip 
+handling and an automatic focus adjustment for a considerable wafer bow.  
+Traditional yield management focuses on adequate inline inspection capabilities to detect and control all relevant defect 
+types to set up short feedback loops as well as enable correlation to yield and test fails. To move to a more proactive 
+approach, a complete range of inline-produced data needs to be used, with the ultimate goal to get signals before hardware 
+is affected.  Therefore, a system for yield prediction to achieve a proactive yield perfection based on a full fab data 
+transparency is needed. The data used are MES/wafer tracking data, trace (streaming data from machines), metrology, 
+defectivity, PCM data, yield data (wafer probe, binsort, final test), consumables/raw material data, facility data, environment 
+data, material release data, device and product data, failure analysis data, reliability data, and equipment/maintenance (log 
+files). 
+The goal will be the improvement of process stability, yield and reliability through a holistic approach for data analysis. 
+Major challenges are the connection of all relevant data sources, Continuous learning from unknowns, how to incorporate 
+subject matter expertise (SME), the definition of a way to structure and facilitate the capture of relevant information (e.g., 
+FDC trace data) to bring value for analysis, traceability, ownership and responsibility on data (overcome ownership siloing) 
+Other topics challenging the Yield Enhancement community are listed as follows for the focus in the near term: 
+• 
+Process stability versus absolute contamination level  
+• 
+Wafer edge, backside and bevel monitoring and contamination control 
+• 
+Development of sub 10 nm water and chemical liquid particle counter as well as tight particle control technologies 
+(new, tighter filters with low particles shedding and minimal contribution of metal and organic species)  
+• 
+Correlation yield and contamination levels 
+Data, test structures, and methods are needed for correlating critical tool parts quality as well as process fluid contamination 
+types and levels to yield and to determine the required control limits. The issues for this challenge are to define the relative 
+importance of different contaminants to wafer yield, a standard test for yield/parametric effect, and a maximum process 
+variation (control limits). The fundamental challenge is to understand the correlation between impurity concentration in key 
+process steps and device yield, reliability, and performance. This correlation will determine whether further increases in 
+contamination limits are truly required. The challenge increases in complexity as the range of process materials widens and 
+selection of the most sensitive processes for study will be required for meaningful progress. 
+Furthermore, in the long term the following key challenges were identified: 
+• 
+Inline defect characterization and analysis  
+The difficult challenges for the Yield Enhancement chapter are summarized in Table YE-2. Currently, the most important 
+key challenge will be the detection of multiple killer defects and the signal-to-noise ratio. It is a challenge to detect multiple 
+killer defects and to differentiate them simultaneously at high capture rates, low cost of ownership and high throughput. 
+Furthermore, it is difficult to identify yield relevant defects under a vast amount of nuisance and false defects. As a challenge 
+with second priority the requirement for 3D inspection was identified. This necessitates for inspection tools the capability 
+to inspect high aspect ratios but also to detect non-visuals such as voids, embedded defects, and sub-surface defects is 
+
+22  Challenges 
+ 
+THE INTERNATIONAL ROADMAP FOR DEVICES AND SYSTEMS:  2022 
+COPYRIGHT © 2022 IEEE. ALL RIGHTS RESERVED. 
+crucial. The demand for high-speed and cost-effective inspection tools remains, especially in the area of 3D inspection as 
+the importance of 3D defect types increases. In 2011 and with the change of the scope of the subchapter to Characterization, 
+Inspection and Analysis a new key challenge was identified: Detection of organic contamination on surfaces – the detection 
+and speciation of non-volatile organics on surfaces is currently not possible in the fab. There is no laboratory or fab scale 
+instrumentation available or implemented.  In 2020 IRDS is in the process of continuing studies in organic precursor 
+deposition on the wafer surface.  These studies are to determine the risks associated with organic contamination on the 
+wafer surface.  Results were published in 2021. 
+Other topics challenging the Yield Enhancement community are prioritized as follows in the near term: 
+• 
+Process Stability versus Absolute Contamination Level  
+• 
+Wafer Edge, Backside and Bevel Monitoring and Contamination Control 
+• 
+Development of sub 10 nm water and chemical liquid particle counter 
+• 
+Correlation Yield and Contamination Levels 
+Furthermore, in the long term the following key challenges were identified: 
+• 
+Inline defect characterization and analysis  
+• 
+Next generation lithography 
+ 
+Table YE-2   Yield Enhancement Difficult Challenges 
+Near-Term Challenges: 2022-2028 
+Description 
+Challenge #1  Control of Electrically Active and other 
+particles in Ultrapure Water and Liquid Chemicals for 
+advanced semiconductor manufacturing (logic key 
+driver) 
+Insufficient metrology and marginal treatment technology 
+capability 
+Challenge #2  Control of Electrically Active and other 
+particles in UPW of EUV mask production 
+Insufficient metrology and marginal treatment technology 
+capability 
+Challenge #3  Critical Organics in UPW 
+Insufficient metrology for online speciation of organics 
+Challenge #4  Metals in H2O2 
+Insufficient metrology capability. Characterization needed for 
+specific critical metals for key process steps and segments.  
+Challenge #5  Slurry particle characterization and 
+other impurity monitoring 
+Insufficient metrology capability 
+Challenge #6  Plating chemicals: particles > critical 
+size  
+(>0.150 µm) (#/ml) 
+Need reliable monitoring of large particles 
+Challenge #7  Liquid Chemicals: particles > critical 
+size (#/ml) 
+Need reliable monitoring of particles <10 nm. 
+Need Filtration technology that is reliable at the stated 
+retention rating and that has minimal "rise up" contributions 
+at the time of install into the process. 
+Challenge #8  CMP Slurries: large particles > MPS 
+(#/ml) 
+Need reliable LPC metrology that can measure targeted 
+particles sizes and concentrations that ignore the MPS sizes 
+and do not require sample dilution to obtain the measurement. 
+
+Challenges  23 
+ 
+THE INTERNATIONAL ROADMAP FOR DEVICES AND SYSTEMS:  2022 
+COPYRIGHT © 2022 IEEE. ALL RIGHTS RESERVED. 
+Near-Term Challenges: 2022-2028 
+Description 
+Challenge #9  Post-CMP (pCMP) Cleans particles 
+Some pCMP cleans will have volatile or highly reactive 
+ingredients that form bubbles in solution, therefore; new 
+metrology and new techniques will be needed to differentiate 
+between bubbles and real particles for contamination control. 
+The pCMP cleans that contain surfactants will have micelle 
+particles and structures that are necessary for the chemistry to 
+perform the intended function. The need is for reliable and 
+accurate metrology to distinguish micelles from other foreign 
+particles in solution. 
+Challenge #10  Particle measurement for ISO class 1 
+Need more efficient and effective laser particle counters with 
+detection limit << 100 nm or CPC with sample flow >> 0,1 
+cfm 
+Challenge #11  AMC metrology 
+Need of more sensitive gas analyzers for HCl, HF, HNO3, 
+HBr, NH3, Total Acids, H2S, SO2, organic acids, sulphuric 
+acids and Total bases   with detection limit << 100 ppt 
+Challenge #12  Particle contribution by critical 
+components and its control  
+Insufficient analytical capability and unknown level of 
+cleanliness 
+Challenge #13 Critical metals in UPW for CMOS 
+image sensors 
+Insufficient metrology sensitivity below 200 ppq 
+concentration 
+Challenge #14 Low concentration particle 
+measurement in the 10-100nm range to check the 
+cleanliness of gases and to judge the contribution to 
+particle cleanliness from hardware present in the gas 
+delivery system (upstream or downstream from POD). 
+Preferably these measurements should be possible at a freely 
+selectable flowrate instead of fixed 1 cfm or 0.1 cfm 
+Challenge #15 Composition and/or structural 
+information for <100nm particles, especially when 
+present in small numbers. 
+Low amounts of particles have the potential of creating 
+issues. Having excess to techniques that can learn about 
+elemental composition and/or chemical structures can help a 
+lot in root cause finding of observed issues. 
+Challenge #16 Particulate precursor metrology < 10 
+nm 
+Need better understanding of particle precursors and critical 
+concentrations to form particles. Important to determine 
+relationship between species/concentrations and particle size. 
+Challenge #17 Removing particles < 30 nm 
+Overcoming the static/van der Waals forces that make 
+particles adhere to critical surfaces is much more difficult for 
+particles < 30 nm. 
+Long-Term Challenges: 2029–2037  
+Description 
+OUT OF CURRENT SCOPE OF YIELD ENHANCEMENT 
+ 
+ 
+ 
+
+24  Challenges 
+ 
+THE INTERNATIONAL ROADMAP FOR DEVICES AND SYSTEMS:  2022 
+COPYRIGHT © 2022 IEEE. ALL RIGHTS RESERVED. 
+4.2. SURFACE ENVIRONMENTAL CONTAMINATION CONTROL 
+Surface environmental contamination control requirements are categorized by manufacturing materials or environment, as 
+shown in Table YE-3. 
+ 
+Table YE-3   Technology Requirements for Surface Environmental Contamination Control 
+ 
+Surface environment control—The surface environment control includes the ambient space around the wafer at all times, 
+whether the wafers are open to the cleanroom air or stored in PODs/FOUPs. As the list of ambient contaminants to be 
+controlled broadens so must measurement capabilities. Affordable, accurate, repeatable, high capture rate, real time sensors 
+for non-particulate contamination are becoming increasingly necessary. The use of inert environments to transport and store 
+wafers is expected to increase with process sensitivities. Pre-gate, pre-contact clean, salicidation, exposed copper, and 
+reticle exposure are cited as processes that first require this capability. In addition, using inert environments offers the 
+opportunity to reduce the introduction of moisture into vacuum load-lock tools, thereby decreasing contamination and load-
+lock pump-down times. While closed carrier purging systems exist and are evolving, tool environments that may need to 
+become inert, such as wet sink end-stations, present a challenge. As wafer isolation technologies evolve, design and material 
+selection of carriers and enclosures will be critical for performance in isolating the wafers from the ambient and in not 
+contributing contaminants themselves. All carriers and enclosure materials must meet factory one specifications. In 
+addition, the materials and designs must not promote cross-contamination between processes. Seal technology, low-
+outgassing, and non-absorbing materials development are key to an effective wafer and reticle isolation deployment. 
+Airborne molecular contamination (AMC)— Fugitive emissions from chemicals used in wafer processing and inadequate 
+exhaust are the main sources of AMC. Only in some highly congested area, makeup air is a significant yet temporarily 
+important source for AMC. Outgassing from materials of construction in the cleanroom, wafer processing equipment, post 
+processed wafers, and wafer environmental enclosures as well as inadequate exhaust and fugitive emissions from chemicals 
+used in wafer processing are the main sources of AMC. Oxygen and water vapor as well as low concentration atmospheric 
+contaminants (e.g., CO, O3) can also be considered as part of the AMC burden. Acid vapors in the air have been linked to 
+corrosion, as well as with the release of boron from HEPA filters. The impact of amines on deep ultraviolet (DUV) 
+photoresists are well known examples of AMC affecting wafer processing. Hydrocarbon films of only a few monolayers 
+may lead to loss of process control, especially for front-end processes. Other areas of concerns for AMC are IPA from 
+semiconductor cleaning equipment and corrosion when Cu is exposed. The impact of AMC on wafer processing can only 
+be expected to become more deleterious. This is not only driven by device dimensions decreasing but also by the 
+introduction of new chemistry and recipes for future technical nodes that exhibit new defect schemes. Besides AMC creating 
+defects to the wafer surface or bulk material Yield Enhancement group engages on defects or shortfalls in productivity that 
+originate from the impact of AMC to production tools as reticles, metrology, or exposure tools. AMC is in many cases - as 
+for excursions - a highly dynamic phenomenon. AMC control deals mainly with prevention of AMC release for which a 
+tight source control is mandatory. There is clearly a need for better AMC monitoring instrumentation in the clean room to 
+measure AMC at the part per trillion level (by volume) in real time. Surface acoustic wave (SAW) devices and atmospheric 
+pressure ionized mass spectroscopy (APIMS) have been used to measure low level AMC, but a larger variety of on-line 
+methods and instrumentation is needed and expected to be available in the future, see also the link for AMC monitoring 
+programs in the Appendix. Table YE-4 and YE-4a provide more detail for AMC monitoring and on-line methods. 
+Table YE-4   AMC Monitoring Methods 
+ 
+Table YE-4a   Supporting Table for On-line Methods 
+ 
+Numerous studies related to AMC outgassing from the materials of construction of environmental enclosures and FOUPs 
+have been performed to guide material selection for these enclosures. Progress has been made by proper material choice 
+and pump-and-purge steps for FOUPs support reducing AMC induced wafer defects. The potential for AMC to impact new 
+processes should be considered in all process integration studies.  
+While not specifically mentioned, charged defects are also an area of concern where ion control is critical in areas such as 
+lithography, particularly EUV. Wafer charging must also be managed to avoid attracting charged particles to the wafer. 
+ 
+
+Challenges  25 
+ 
+THE INTERNATIONAL ROADMAP FOR DEVICES AND SYSTEMS:  2022 
+COPYRIGHT © 2022 IEEE. ALL RIGHTS RESERVED. 
+4.2.1. CRITICAL COMPONENTS 
+One of the biggest challenges of contamination affecting Yield is due to our limited ability to control particles. In both high 
+purity liquid chemicals and UPW, the particles originate mostly from the materials of construction of the components used 
+in the respective liquid delivery systems. The following sections discuss the implications and additional controls needed to 
+maintain sufficiently low level of particles. However, it is important to make sure that the materials used in those systems 
+are of adequate quality to mitigate the risk of particles occurrence.  
+The challenge of such particle quality control is due to the limitations of the existing analytical techniques and related 
+metrology to qualify high purity components. Currently used SEMI F0573  and SEMI F1044  methods only measure 
+particles of the size of 100 nm and larger. There is a need for 10nm particle measurement of the components shedding. 
+Metrology for such analysis does not currently exist, although new non-optical particle detection techniques are being 
+developed for detecting 10nm and smaller particles. Application of the Power Law from 100 nm to 10 nm and less has not 
+been demonstrated and hence cannot be assumed to hold true. Ability to measure 10nm particles is critical to gaining actual 
+understanding of particle performance for critical components. 
+4.2.2. ULTRAPURE WATER QUALITY 
+Ultrapure water – Specific definitions of the water quality requirements to enable future technology are presented in the 
+Table YE-3. Critical challenges are summarized in Table YE-2b  
+Particle levels are reduced using the best available ultra-filtration (UF) technology, but today’s particle counting technology 
+is not able to keep up with critical particle node due to continued scaling of critical semiconductor devices. Lack of proven 
+particle metrology limits the ability to confirm whether UF is effective in controlling killer size particles down to the critical 
+particle size referenced in Table YE-3. Section 1.1.1 provides an explanation of the proactive approach used in UPW. 
+It is important to note that the roadmap is focused on technology enabling, thus identifying the parameters that require new 
+technologies for monitoring and control. For the practical purposes, SEMI F063 provides a guide that can be used as a 
+reference specification for the UPW quality in design and operation of advanced semiconductor processes, considering 
+feasibility of the existing technologies. UPW SEMI standards are in process of alignment with the new direction of the 
+UPW roadmap for proactive technology management.  
+More stringent criteria beyond 2021 are only projected where there is evidence that manufacturing process requirements 
+demand improvements. UPW is generally the cleanest fluid available in the manufacturing process. Limited data is currently 
+available to correlate contamination level to device yield. For this reason, the UPW Roadmap for contamination tolerance 
+is relatively stable over time.  
+The UPW section of Table YE-3 considers some parameters as process variables rather than contaminants. The stability of 
+the wafer processing environment can be as important as the level of contaminants present for some parameters. For 
+example, some semiconductor manufacturers treat dissolved oxygen (DO2) in this way, while others consider it a 
+contaminant. Stability of temperature continues to be important for immersion lithography.  
+Since 2018 some commonly monitored parameters such as resistivity and bacteria were no longer included in the table, as 
+they do not represent technology challenges and are only used for monitoring operational performance of the UPW systems. 
+These parameters are critical for the water quality, but non-critical for the future technology enabling. Bacteria can be 
+controlled down to a level of non-detect and the resistivity has become not sensitive enough to monitor water quality 
+variation within the ranges targeted for the ionic species in UPW.  
+UPW parameters were reviewed for the 2018 roadmap for the specific location where they are critical to maintaining 
+semiconductor yield. The notes to the Table YE-3 contain definitions for these parameters. Some parameters are specified 
+for point of process (POP), while the others are specified in various locations. The definitions are driven by the consideration 
+of whether the tool environment may further contribute to changes in those parameters. 
+ 
+4.2.2.1. PARTICLE CONTAMINATION IN UPW 
+The focus has turned more to critical parameters such as particles, metals, and organic compounds. Particles remain a high 
+and growing risk, critical for implementing future semiconductor technology due to its high sensitivity to decreasing line 
+ 
+3 SEMI F057- Specification for Polymer Materials and Components Used in Ultrapure Water and Liquid Chemical Distribution 
+Systems 
+4 SEMI F104 - Particle Test Method Guide for Evaluation of Components Used in Ultrapure Water and Liquid Chemical Distribution 
+Systems 
+
+26  Challenges 
+ 
+THE INTERNATIONAL ROADMAP FOR DEVICES AND SYSTEMS:  2022 
+COPYRIGHT © 2022 IEEE. ALL RIGHTS RESERVED. 
+widths. On-line metrology for particles in liquid does not address killer particle size, and therefore, filtration efficiency for 
+killer particles is not known. At the same time, it is apparent that the killer size of the particles has approached filtration 
+capability of the most advanced final filters. Furthermore, there is some test data suggesting the particle challenge 
+concentrations to the final filters from UPW system components can be much higher than previously believed (Refer to 
+SEMI C795  and SEMI C936  for filter performance test data and UPW Polish ion exchange particle shedding, respectively).  
+Detailed analysis provided with input from More Moore suggested the higher criticality of the electrically active particles 
+(EAP) compared to other particles. This difference is reflected in Table YE-3.  
+Particles continue to be important for EUV mask operation because the EUV mask defect has in semiconductor 
+manufacturing, replicating of thousands of times during the lifetime of the mask. The mask is expected to be defect free, 
+which requires particularly tight particle control in mask production. It is important to note that the killer size of the particles 
+on mask is independent of the device pitch size, but a function of the EUV wavelength (refer to the sizes of killer particles 
+in Table YE-3).  
+Colloidal silica, long considered as delta between total and reactive silica, has been removed from the roadmap, even though 
+experimental work further confirmed high criticality of this material. Colloidal silica is now considered and treated as a 
+particle, subject to the particle specification in the table. If colloidal silica particles are controlled to the particles 
+specification, all measurable silica in UPW will be in the form of dissolved silica. Hence the value for a total silica 
+specification remains (total silica = dissolved/reactive silica). Reactive silica concentration is limited due to its negative 
+impact on device yield, forming water marks on the wafer. In this case, reactive silica specification can be measured using 
+either total silica analyses methods (i.e., ICP-MS) or as reactive silica (by colorimetric method) to the level specified in the 
+table. For practical purposes, measuring total and reactive silica may be considered to confirm no presence of colloidal 
+silica.  
+As a workaround to the particle metrology gap, the UPW forum has worked with SEMI to develop a filter performance 
+validation standard (SEMI C079) as a risk mitigation measure. The UPW Task Force of SEMI has also developed a 
+document for ion exchange resin testing, thus helping to mitigate significant particle shedding from the resin. It is believed 
+that ion exchange resin sheds different forms of organic materials between low (LMW) and high molecular weight (HMW); 
+these organic materials are dissolved as well as undissolved materials (particles). It is now believed (based on experimental 
+data) that HMW dissolved organics may permeate through the UPW final filters and form particles on the wafers due to the 
+drying mechanism. This adds further complexity to particle monitoring in UPW as current optical particle counters target 
+suspended solids particles and are incapable of detecting these organic, or soft particles. Even sub-ppb levels of very HMW 
+organics may form particles levels greater than millions of organic particles per milliliter of UPW and subsequently 
+extremely high numbers of particles on the wafer surface. Additional experimental work is needed (and is being planned) 
+to verify this concern. 
+4.2.2.2. PARTICLE PRECURSORS 
+The smallest critical particle size for the manufacture of semiconductors is now 3.5 nm. The semiconductor industry is 
+entering a region where particles, particle precursors and molecules in liquids, begin to overlap.  Particle precursors are 
+defined as a dissolved or suspended nanomaterial that when dried could result in a particle of critical size. The ability to 
+distinguish particle precursors from solid particles in UPW is becoming critical. While advanced filtration can remove 
+nanometer sized solid particles, the same filter may have little or no ability to remove particle precursors. 
+A primary source of particle precursors in UPW are thought to be high-molecular weight organics that rinse off ion-
+exchange resins. As part of the development of SEMI C93 “Guide for Determining the Quality of Ion Exchange Resin used 
+in Polish Applications for Ultrapure Water System”, a benchmark study was initiated. The benchmark study consisted of 
+monitoring the “particles” rinsing off a number of virgin polish resins using the particle detection technique “Nebulization 
+and Condensation Particle Counting”. Particles were detected as high as 1E9 particles per mL. Using the Focused Aerosol 
+Deposition technique, these particles were found to contain sulfur, supporting the thesis that this material came from the 
+resin. 
+Further benchmarking studies using the high molecular weight organic Poly (sodium 4-styrenesulfonate), Mw 
+approximately 70,000da, have been deposited on one inch silicon wafer. Analysis of the silicon wafer surface by SEM and 
+surface scan metrology have indicated the presence of a high concentration of nanometer sized particles attributed to the 
+ 
+5 SEMI C79-0113 - Guide to Evaluate the Efficacy of Sub-15 nm Filters Used in Ultrapure Water (UPW) Distribution Systems 
+6 SEMI C93-0217 - Guide for Determining the Quality of Ion Exchange Resin Used in Polish Applications of Ultrapure Water System 
+
+Challenges  27 
+ 
+THE INTERNATIONAL ROADMAP FOR DEVICES AND SYSTEMS:  2022 
+COPYRIGHT © 2022 IEEE. ALL RIGHTS RESERVED. 
+high-molecular weight organic. This confirms the ability of particle precursors in the form of high molecular polymers, 
+may become killer particles and present a serious problem to the future manufacture of semiconductors. 
+Series of experiments were performed in 2022 using High Molecular Weight (HMW) Organic compounds and ion exchange 
+resin leach-outs deposited on wafer surface which determined that higher concentration of these compounds in the UPW 
+sample showed notable correlation to higher particle counts on wafer surfaces. This was measured on wafer surface scan 
+metrology and comparable results were found using an alternative method with particle detection to 8nm. Particle 
+distribution was similar in bulk liquid sample and both surface detection methods.   
+4.2.2.3. METAL CONTAMINATION IN UPW 
+The IRDS roadmap has revisited its approach to metal specification. The details of the new approach are provided is the 
+white paper linked in the Appendix. The current approach includes special considerations for CMOS image sensors. New 
+parameters for critical metals for image sensors have been introduced. Target levels of critical metals is redefined. For some 
+metals, this target level is below limits of detection of most advanced metrology. 
+4.2.2.4. ORGANIC CONTAMINATION IN UPW 
+There has been an increased interest in the past few years to understand how organic contamination of UPW may affect 
+semiconductor devices. Organic contamination is currently measured in terms of its total organic carbon content or TOC. 
+This measurement of the organic content does not account for the type of organic and how it may react with various wafer 
+surfaces or how the reaction may impact device yield. In place of TOC we are now categorizing organic compounds in 
+UPW for critical and non-critical based on their boiling point. Immersion lithography lens hazing was previously a driver 
+of UPW TOC<1.0 ppb.  
+The Yield roadmap includes a separate line for immersion lithography TOC (<1.0 ppb), implying that this may be required 
+as POU definition, while the rest of the water quality spec was relaxed to 3 ppb of non-critical organics. We continue 
+working on a new definition of critical organics, based on polar strength as quantified using boiling point. The definition 
+of the critical organics was included in the table notes, which recommend end users to consider characterization of the UPW 
+organics in their own specs. New metrology is needed for on-line detection of the critical organics. 
+● 
+Critical Organics – non-volatile polar organic compounds with boiling point >200°C 
+− 
+Critical organic compounds should be controlled to <1 ppb 
+− 
+Organic compounds are categorized as critical with respect to its ability to form a hydrogen bond with any oxide 
+surfaces including gate, tunnel, or native oxide  
+− 
+Total non-critical organic compounds should be controlled to <3 ppb  
+● 
+Critical carbon atoms on wafer related to TOC in bulk fluid 
+− 
+Defined by FEP as 1x1012 atoms/cm2 for Si-C defect in furnace. 
+− 
+Breakdown of organic compounds particularly at higher temperature (>200oC) is an important consideration for 
+the formation of Si-C defect. The level proposed is considered to be adequate to mitigate such risk of such defect 
+formation. 
+− 
+Critical boiling point of organic compounds previously defined by FEP as 200oC 
+− 
+UPW IRDS group is looking at compounds with lower boiling point that may be related to other defects  
+In addition to the above definition of the critical organics, there is special attention to HMW organics; their mechanism of 
+impact to wafers may be due to killer size particle formation. This aspect is a growing focus of the UPW team. 
+We continue to use failure mode effects analysis (FMEA) approach to determine the overall risk of each subgroup to the 
+wafer manufacturing process. Previously the UPW team completed an organic speciation benchmarking study which used 
+LC-OCD analysis to speciate-organic compounds in UPW used at ten advanced technology facilities. This information is 
+available as supporting documents and will provide baseline data to identify typical organic compounds in semiconductor 
+UPW systems and can be used for occurrence risk factor in the FMEA review. 
+UPW measurement methodologies—General test methodologies for monitoring contaminants in UPW are indicated in the 
+Figure YE-9 below. Over the past few years the UPW IRDS team has benchmarked many advanced UPW systems to 
+determine water quality. Past benchmark efforts have identified the inadequacy of some measurement methodologies to 
+quantify contaminants in the UPW. Sensitivity of the following methods is presently adequate: viable bacteria, dissolved 
+
+28  Challenges 
+ 
+THE INTERNATIONAL ROADMAP FOR DEVICES AND SYSTEMS:  2022 
+COPYRIGHT © 2022 IEEE. ALL RIGHTS RESERVED. 
+gasses, ions, total organic, and metals. While particle measurement is not adequately sensitive to validate quality at the 
+critical dimension it continues to be a valuable tool to detect filtration failures.  
+ 
+Parameter 
+Measured (POD/POC) 
+Test Method[A] 
+TOC 
+Online 
+Membrane-Conductivity/CO2, 
+Conductivity/CO2 
+Organic ions 
+Lab 
+Ion chromatography 
+Other organics 
+Lab 
+LC-MS, GC-MS, LC-OCD 
+Total silica 
+Lab 
+ICP-MS or GFAAS 
+Reactive Silica 
+Lab 
+Colorimetry 
+Particle monitoring 
+Online 
+Light scatter (additional new methods are being 
+qualified) 
+Particle 
+count/characterization 
+Lab 
+SEM—capture filter at various pore sizes 
+Cations, anions, metals 
+Lab 
+Ion chromatography, ICP-MS 
+Dissolved O2 
+Online 
+Electric cell 
+Dissolved N2 
+Online 
+Electric cell 
+ 
+ICP-MS—inductively coupled plasma mass spectrometry    GFAAS—graphite furnace atomic absorption spectrometry    SEM—
+scanning electron microscope  
+Note: [A] See SEMI F63 and F75 for additional information about UPW metrology 
+Figure YE-9   General Test Methodology for Ultrapure Water 
+ 
+UPW and liquid chemicals particle measurement—Problem Definition and Goals: The sensitivity limit of particle counters 
+for UPW and liquid chemicals has not kept pace with critical particle size (the size of particles which are thought to be 
+detrimental to wafer yield). Although this concept needs to be discussed again since particles not only impact yield because 
+of their physical dimensions, but even more by the chemical composition, e.g., as spot Fe contamination. Measurements of 
+these nanoparticles are made difficult by their low scattering efficiency. Low particle concentrations and small sample 
+volumes of current particle monitors can result in large sample-to-sample variability. More sensitive particle measurement 
+methodology with adequate measurement statistics is needed to meet projected purity goals. 
+4.2.3. THE PARTICLE SENSITIVITY PROBLEM 
+The highest sensitivity laser on-line particles counter commercially available for both UPW and liquid chemicals is 0.02 
+microns. Even at this size the detection efficiency is only 2–5%, so most particles at 0.02 microns and smaller go undetected. 
+Improvements in particle counter sensitivity for UPW have been accomplished by increases in laser power. While 
+improvements in sensitivity for liquid chemical particle counters are viable, further sensitivity improvements for UPW 
+using this approach are unlikely, due to the significant cost implications. There is an ongoing effort to develop alternative 
+technologies to the optically based particle counters.  
+To estimate the concentration of smaller particles in chemicals, currently an extrapolation is made that assumes a 1/d3 
+relationship between particle counts and particle size in liquid chemicals. The further away the particle size of interest gets 
+from actual measurement capabilities, the higher the potential for error-error being defined as the difference in the projected 
+value compared to the true value. Moreover, the power law coefficient may be significantly affected by the actual filtration 
+capability of the final filters used upstream to the particle measurement, making projections impossible. Therefore, it is 
+
+Challenges  29 
+ 
+THE INTERNATIONAL ROADMAP FOR DEVICES AND SYSTEMS:  2022 
+COPYRIGHT © 2022 IEEE. ALL RIGHTS RESERVED. 
+important for the industry to develop a more sensitive method that can measure particle concentrations at greater sensitivity 
+to validate the particle count versus particle size relationship so that the relationship can continue to be reliably used. Power 
+low is not currently used/recommended for specification of the critical liquid chemical and UPW quality. However, the use 
+of power law is considered to be effective for the critical components as particles contributes by those components are not 
+affected by filtration (in contrast with UPW and chemicals). 
+4.2.4. THE MEASUREMENT PRECISION PROBLEM 
+Statistical process control is increasingly being used to monitor the consistency of process parameters. Process variation of 
+fluid purity can be as critical to wafer yield as the absolute purity of the fluids. Therefore, it is important that measurement 
+methods detect a sufficient number of events to ensure confidence in measured particle concentrations. Development of 
+other statistically significant particle counting methods or a higher sample volume particle counter is needed to improve 
+confidence in reported particle counts. The sample volume (volume of fluid measured) will determine the number of particle 
+counts that are detected during the sample interval. Refer to SEMI F063 for additional information on particles monitoring 
+in UPW.  
+Although the gas/liquid chemical section of Table YE-3 shows an essentially flat purity trend, there is likelihood that 
+specific process steps may require higher purity. In some cases, yield improvements may be achieved more by reducing 
+variations in purity than by reduction of average contamination levels. Hence, there is a need for improved statistical process 
+control of contamination levels during manufacturing and delivery of these process materials. In 2008, SEMI released the 
+results of a comprehensive effort to create a standard set of guidelines for defining “in control” specialty gases7. A 
+coincident effort by several large semiconductor manufacturers began for the purchase of selected specialty gases. Although 
+the number of companies that have started utilizing in control guidelines for the purchase of consumable raw materials has 
+increased, along with the breadth of the offering for in control materials, the industry has not yet settled on one standard set 
+of criteria.  
+Overview for gases and liquid chemicals—The recommended contaminant values for gases and chemicals in Table YE-3 
+represent typical gas/liquid chemical quality requirements at the point of entry to the process tool (POE) for the more 
+demanding manufacturing processes in the roadmap. In many applications, the requirements for the contaminants in these 
+gases and/or liquid chemicals may be relaxed as dictated by the specific process requirements. On the other hand, some 
+manufacturers have claimed benefits from lower contaminant levels. Considering that a given process can be run 
+successfully within a “window” defined by a range of material purity and also by ranges in other parameters (purging time, 
+etc.), it follows that, in practice, trade-offs exist between imposed purity requirements, process throughput, etc. Pushing a 
+process to the upper limit of its “purity window” may require significant investment of time and effort in optimizing other 
+parameters, and the economics of pursuing that effort will depend on the environment. It may also be that benefits attributed 
+to low contaminant levels are more attributable to the reduction in contaminant variations achieved with high-purity process 
+gases and chemicals. This topic is addressed in more detail below regarding the push for the adoption of statistical process 
+control, SPC, for specifying process fluid purity. 
+There are three primary sources of process environment contamination: One is the impurities in the process materials as 
+supplied. The second is the delivery system or the process itself. The third is decomposition, which may be caused thermally 
+or by reaction with adventitious contaminants e.g., moisture. These contamination sources are found throughout the 
+pathway from the delivered gas or chemical to the wafer surface. Table YE-1 describes the several interfacial points of 
+process materials with equipment found along these paths and associates them with the various chapters within the IRDS 
+and other organizations such as SEMI that focuses on them. This helps to clarify the relationship of these organizations 
+with the WECC while also removing ambiguity about the definition of various points along the process path. 
+While purity measurements at the Point of Process, POP (that is, in the processing chamber itself), would provide the most 
+direct correlation between gas or liquid quality and process performance, these measurements are often exceedingly difficult 
+to obtain except for certain fluid properties in wafer immersion baths. Examples include both particulate generation during 
+plasma processes and wafer out gassing. The latter is the most important source of water vapor contamination in many 
+processes, often obscuring moisture contributions from the process fluid. Measurements at the POU provide the most direct 
+information of the quality of process fluids going directly into the process chamber, but these are also not available for 
+many of the common processes.  
+Because of these difficulties, the values in Table YE-3 are intended to represent those at the Point of Entry, POE, defined 
+as the inlet to the process tool as described in Table YE-1. There are sufficient measurement data on bulk gases and aqueous 
+fluids to provide guidance regarding POE impurity levels for many applications, although measurements on these fluids are 
+ 
+7 SEMI. Standard Practices for the Development of Ship to Control Process Limits, 2008. 
+
+30  Challenges 
+ 
+THE INTERNATIONAL ROADMAP FOR DEVICES AND SYSTEMS:  2022 
+COPYRIGHT © 2022 IEEE. ALL RIGHTS RESERVED. 
+often performed at the POS, POD, or POC. For these materials, which are relatively unreactive and delivered in large 
+volume, the extrapolation to POE is generally very reasonable. In the case of Specialty Gases and other reactive process 
+fluids, such extrapolation is more delicate because delivered volumes are smaller, increasing sensitivity to contamination 
+effects, and degradation in the distribution system related to materials of construction, atmospheric contamination, thermal 
+degradation, etc. is more likely. These factors are minimized with normal best construction and operations practices, and 
+therefore the best guidance available is often regarding POS specification and to a lesser extent POD or POC measurements, 
+which are interpreted as equivalent to POE. In summary, while the intention is to recommend POE purity levels for all 
+gases and liquids, in practice, the supporting data has more often been collected at POS, POD, or POC. 
+The targeted levels can be reached either by bulk delivery of a fluid with requisite purity or through use of a local 
+purification/filtration. Care should be taken, at a minimum, to maintain the quality of the gas coming from the source, 
+ensuring that contamination is not added downstream of the POS, as may occur due to particle generation at components, 
+moisture out gassing, byproduct generation due to incompatible materials, etc. Particle filtration as close to the POU as 
+possible is generally advisable for gases. For the most critical applications a local purifier may be used to enhance or ensure 
+ultimate purity at the POU. In those cases, the prevailing approach is to seek POC levels that are adequate for the process 
+and to view the purifier as “insurance.” The challenge to the purifier is minimal, and long purifier lifetimes can normally 
+be expected.       
+Point of use purifiers and filtration units are finding application in newer atomic layer deposition techniques, ALD, for 
+example where the films are deposited by the monolayer and incorporated impurities can be especially destructive. A 
+near/medium term challenge is filtration of the precursor vapor. The sources can be sublimable solids or readily condensable 
+vapors of low volatility liquids. These can resolidify or reliquify causing plugging and instability in fluid transfer to the 
+substrate surface. In addition, these vapor delivery systems are typically low pressure (<100 Torr) which can change the 
+fluid dynamics and hence filtration efficiency dramatically. One additional limitation with the POUP systems in particular 
+is endpoint monitoring to determine when the purifier matrix is exhausted. Practically this is handled by routine change out 
+of the purifier units at a frequency that typically results in no problems. 
+Specific purity challenges will be discussed below, but generally there is little objective evidence to suggest that the purity 
+levels listed in Table YE-3 are not suitable for multiple generations of semiconductor manufacturing. Yield improvements 
+are expected to be achieved by reducing variations in purity. Statistical process control (SPC) on incoming materials will 
+reduce variation at the POS. Inconsistencies at the POU may remain due to variations in downstream contributions, e.g., 
+when the flow in a distribution system is decreased, moisture contamination due to out gassing tends to increase. Elimination 
+of these variations may again require purification at the appropriate point (e.g., POU purification, POUP). 
+Bulk and Specialty Gases—The major bulk gases are listed separately in Table YE-3. The 2007 roadmap had indicated an 
+increase in purity requirements post 45 nm. This type of improvement might be anticipated, based upon historical trends as 
+design rules tightened, but there is again little objective evidence to support the need for improvements across the range of 
+bulk gases. Informal poling of several large semiconductor manufacturing organizations suggests that an increase above 
+current purity requirements for the majority of bulk gases is not necessary to meet post 45 nm design rule manufacturing. 
+For very special applications where extraordinarily higher purities are critical, special purity grades or additional 
+purification will be required. As exemplified above, downstream POUP might also be utilized as an additional means of 
+removing variability in POS gases. Therefore, Table YE-3 has been modified from 2005 to remove many of the step 
+improvements scheduled for future manufacturing nodes except where specific information has been identified to justify 
+the change.  
+The situation is similar for many of the Specialty Gases, although several additional categories of applications have been 
+added to better identify needs for specific processes, e.g., etch, deposition, doping and laser applications. Like the Bulk 
+gases, the values in Table YE-3 have been left at current levels, unless an objective justification for increased purity can be 
+identified. Although changes to the current Table YE-3 values for gases are small, the introduction of so many new materials 
+and the process innovations required to meet future design rules, e.g., atomic layer deposition, will require close monitoring.  
+Statistical process control for process gases and liquids was implemented circa 2005 by large semiconductor manufacturer 
+for a selection of critical process fluids, e.g., TEOS. Rather than simply meeting specification values for a set of quality 
+control parameters, the materials were selected against specifications dictated by statistical control of variability of the 
+materials. The utilization of SPC selection criteria continues and has expanded, however, there are still no standards 
+accepted across the industry that define the SPC process.  
+The promise of providing “in control” process fluids is anticipated to improve process yields by either minimizing the 
+overall variability of the manufacturing process or in simply reducing the likelihood of a process crash resulting from large 
+variations in material quality that would still nominally have met a more standard specification. 
+
+Challenges  31 
+ 
+THE INTERNATIONAL ROADMAP FOR DEVICES AND SYSTEMS:  2022 
+COPYRIGHT © 2022 IEEE. ALL RIGHTS RESERVED. 
+An informal survey of several large semiconductor manufacturing companies on their implementation of statistical process 
+control requirements for their bulk and specialty gas purchases indicates that SPC processes are already being applied to 
+many of the materials utilized in manufacturing or will be shortly. However, the criteria that form the basis of “in control” 
+varies substantially. Survey responses suggest that customer expectation is that the application of process control for the 
+preparation of POS materials will improve their semiconductor manufacturing process stability and are critical for high 
+yield manufacturing. Initial implementation will likely focus on specialty gases that exhibit the greatest potential for causing 
+semiconductor process variability, e.g., anhydrous HCl but will be used on new and existing products for both memory and 
+microprocessors. See Table YE-4b. 
+ 
+Table YE-4b   Supporting Table for Bulk Gas On-line Methods 
+ 
+Liquid chemicals—Table YE-3 summarizes the purity requirements for liquid chemicals delivered to process tools. Pre-
+diffusion cleaning and EUV mask blank cleaning requirements drive the most aggressive impurity levels. Liquid particle 
+level targets are shown to become purer each technology generation. These target values are derived from the purity 
+requirements on a wafer as calculated by the FEP surface preparation group assuming a linear relationship between the 
+concentration in the liquid and on the wafer. Particle counters currently are capable of measuring only to 40 nm for liquid 
+chemicals. By assuming a particle size distribution, it should be possible to infer particle concentrations to smaller particle 
+sizes, but this will be influenced by the level of filtration utilized. Another measurement challenge for several chemicals is 
+the differentiation between particles and bubbles, which is currently not possible.  
+The ability to accurately analyze organic, anion, and cation contamination in process chemicals is becoming more critical 
+to successful wafer processing. ALD/CVD precursors: At recent nodes Atomic Layer Deposition (ALD) processes have 
+been adopted aggressively and that proliferation is expected to accelerate in the future. ALD processes will therefore 
+constitute a growing subset of the processes used in HVM and some discussion of common/unique aspects of ALD 
+processes with respect to Surface Environmental Contamination Control (SECC) is warranted.       
+Table YE-3 contains information only for very few CVD/ALD precursors. The variety of layers and the respective 
+contaminants is enormous.  
+Therefore, a link to the precursor table is provided in the Appendix. The precursor table provides information by application 
+as to which precursors are potential candidates at different technology generations, and the nature of contamination that can 
+be expected. A major challenge is the development of accelerated yield learning for critical processes that introduce new 
+precursors that will only be used for one or two generations. 
+Bulk/specialty gases—There were only a few changes to the bulk gas purity requirements. The measurement of organic 
+refractory components at <0.1 ppb is a detect ability challenge for both nitrogen and helium used in lithography applications. 
+The roadmap indicates these areas as orange from 2007 to 2010 because this is at the limit of detection for current analytical 
+methods. 
+In addition, changes were made to better delineate the need to control Ar as an impurity. The N2 specification was changed 
+to eliminate Ar as a critical impurity, although it was left in the O2 specification. Even so, the 50 ppbv limit given in 2005 
+was raised to an Ar limit of <1000 ppbv. The ongoing requirement in O2 derives from the potential for uncontrolled Ar 
+impurities to impact plasma etching processes, although typical Ar specifications for O2 used for etching is more consistent 
+with the <1000 ppbv level. 
+Novel materials—More detailed consideration of the impurity levels found in the growing number of novel materials used 
+in processing will be increasingly important. Requisite purity levels for critical materials such as novel metal oxides, CMP 
+slurries, low/high k dielectric materials, precursor materials (such as CVD and electroplating solutions) for barrier and 
+conductor metals (such as Cu, Ta) have not been widely studied, and many of these materials have not been called out in 
+Table YE-3. An early attempt to start to catalogue and characterize the properties of the thin film precursors utilized in 
+semiconductor processing is found in the supplementary material for this chapter. 
+Deposition precursors for thin film materials are often sensitive to moisture, air and high temperatures. Control over the 
+delivery process from the POS to the reaction chamber is critical to high yielding performance. The use of very high purity 
+carrier and purge gases in these systems are often required to prevent decomposition that can contribute detrimental 
+molecular and particulate impurities. Traditionally bulk purifiers were used in the bulk gas delivery systems to remove 
+particles and other homogeneous chemical contaminations like oxygen, or moisture present in the supply gases. However, 
+with the development and commercial availability of point-of-use (POU) purifiers, there is a strong interest from end users 
+to utilize point-of-use (POU) purifiers particularly for specialty gases needed for critical process steps with very critical 
+level of contamination control. These point-of-use purifiers (POU) are highly effective to remove chemical contaminants 
+
+32  Technology Requirements 
+ 
+THE INTERNATIONAL ROADMAP FOR DEVICES AND SYSTEMS:  2022 
+COPYRIGHT © 2022 IEEE. ALL RIGHTS RESERVED. 
+to extreme low level (~ ppt), easy to use, easy to replace, with low cost-of-ownership. The capability of placing those point-
+of-use (POU) purifiers very close to inlet of process chamber, assures least travel path (less contamination) for process 
+gases after chemical purification and filtration. 
+Novel measurement techniques and impact studies are needed to ensure that these materials are produced with the impurity 
+specifications that meet technology requirements. Additional detail on the variety of thin film precursors under 
+consideration can be found in Liquid Chemicals section of Table YE-3 and the supplementary precursor table. 
+4.3. CHARACTERIZATION, INSPECTION AND ANALYSIS 
+The following section of the near-term challenges remains unchanged from 2020 publication. 
+This subchapter focuses on equipment requirements to perform the characterization inspection and analysis tasks. This is 
+facing the demands of nowadays yield enhancement in a broad application as e.g. ‘More than Moore’ technologies but also 
+power electronics and mechatronics and MEMS applications. Furthermore, the characterization, inspection and analysis 
+demands of e.g., packaging and assembly could be taken into account.  
+The More Moore requirements for defect detection on un-patterned wafers as well as patterned wafers are the most 
+challenging. Therefore, those requirements are directly integrated in the More Moore chapter for Logic. As Logic was 
+defined to be the technology driver see chapter 1.2. 
+A specific MEMS expert group is defining the specific requirements of inline control in MEMS production. The different 
+MEMS technologies need to be separated in surface and bulk technologies for it causes different requirements to inspection 
+and characterization. Surface technology is defined for structures till 30 µm depth. Any stacked technologies and those with 
+depth more than 30 µm are considered bulk technology. 
+The detailed requirements are presented in Table YE-5. 
+ 
+Table YE-5   Yield Requirements for MEMS Production 
+ 
+4.4. LONG-TERM CHALLENGES 
+This section is not included in the Yield chapter due to the focus on near term challenges. 
+5. TECHNOLOGY REQUIREMENTS 
+5.1. SUMMARY 
+The Technology Requirements section deals with the issues outlined in the Critical Challenges section. 
+The Yield Enhancement Technology Requirements include definitions of the yield characterization, inspection, and 
+analysis, as well as definitions of the level of impurities of the materials and environments used in semiconductor 
+manufacturing. Table YE-3 provides a list of the parameters and their level that needs to be controlled to ensure minimum 
+of 80% yield. Those parameters define both the technology necessary to achieve those level (i.e., purification) and 
+metrology necessary to monitor those parameters. In cases where metrology does not exist, it is required that the yield will 
+be ensured by either tighter process control measures or by tight material quality control throughout associated supply chain, 
+based on SEMI Standards. 
+6. POTENTIAL SOLUTIONS 
+6.1. GENERAL 
+For pattern wafer inspection the requirements the next years will be to overcome issues of detection of the defects within 
+the nuisance signal. This is correlated to the issue to obtain high sensitivity at high throughput. Major breakthroughs are 
+required to achieve the required throughputs at roadmap sensitivities for yield ramp and volume production. The high aspect 
+ratio inspection is still requiring for high yield at high throughput due to the high cost of ownership of the inspection tools. 
+This also requires a good separation of the defect signals from the noise. The introduction of advanced lithography process 
+using high energies has a potential to initiate chemical reactions and layer modification on the surface. Therefore, the 
+detection of volatile and non-volatile organics is crucial. Currently, only synchrotron radiation-based facilities have the 
+
+Potential Solutions  33 
+ 
+THE INTERNATIONAL ROADMAP FOR DEVICES AND SYSTEMS:  2022 
+COPYRIGHT © 2022 IEEE. ALL RIGHTS RESERVED. 
+potential to analyze traces of non-volatile organic surface contamination. This is with respect to qualification and 
+quantification.       
+Critical Components—There is currently no means to measure particles smaller than 20nm from Critical Components.  The 
+intent is to measure larger particles using existing technology and apply the Power Law to extrapolate smaller particle 
+population.  The basis for the Power Law is the established relationship of particle size to population (concentration).  In 
+statistics, a power law is a functional relationship between two quantities, where a relative change in one quantity results in 
+a proportional relative change in the other quantity, independent of the initial size of those quantities: one quantity varies 
+as a power of another.  In particles it is a logarithmic relation of size as particles get smaller.  There is a SEMI task force 
+working on measurement and results interpretation for 10nm particles.  There will need to be ongoing work for <10nm 
+particles.   
+Surface Environment Control—As the list of ambient contaminants to be controlled broadens so must measurement 
+capabilities. Affordable, accurate, repeatable, real-time sensors for non-particulate contamination are becoming 
+increasingly necessary. The use of inert environments to transport and store wafers is expected to increase with process 
+sensitivities. Pre-gate and pre-contact clean and salicidation are cited as processes to first require this capability. In addition, 
+using inert environments offers the opportunity to reduce the introduction of moisture into vacuum load-lock tools, thereby 
+decreasing contamination and load-lock pump-down times. While closed carrier purging systems exist and are evolving. 
+Wet clean and etch, tool environments have also transitioned that may need to single-wafer and use of closed processing 
+systems are becoming more prevalent for corrosion sensitive layers become inert, such as wet sink end-stations, present a 
+challenge. As wafer isolation technologies evolve, design and material selection of carriers and enclosures will be critical 
+for performance in isolating the wafers from the ambient and in not contributing contaminants themselves. In addition, the 
+materials and designs must not promote cross-contamination between processes. Seal technology, low outgassing of volatile 
+contaminants, and non-absorbing materials development are a key to effective wafer isolation deployment. 
+6.2. SURFACE ENVIRONMENTAL CONTAMINATION CONTROL 
+Process Equipment—Defect reduction in process equipment remains paramount to achieving defect density goals. Solutions 
+and technology developments are required to provide major enhancement capabilities in the next years and continue to 
+enable cost-effective high-volume manufacturing for device dimensions below 14 nm. New cleaning chemistries, in situ 
+chamber monitoring, materials development, and other techniques including improved techniques of parts cleaning can 
+help maintain chamber cleanliness run-to-run and dramatically reduce the frequency of chamber wet cleans. These 
+developments will also act to increase equipment utilization. Reduced backside wafer contamination control must drive 
+both measurement technology and fundamental changes in equipment. Metal/particle cross contamination from backside to 
+next wafer front-side, hot spots/depth of focus in lithography, and punch through on electrostatic chucks are all examples 
+of issues that must be addressed in future tools. Particle avoidance techniques (O-ring material selection, gas 
+flow/temperature management, wafer chuck optimization) will continue to play a key role in meeting defect densities. It is 
+believed that a more fundamental understanding of reactor contamination formation, transport, and deposition will be 
+required to enhance current equipment and process design and aid in the placement and interpretation of data from in situ 
+sensors. These fundamental physical, chemical, and plasma reactor contamination models must be employed. In situ process 
+control will become increasingly important to reduce process-induced defects and to minimize requirements for post-
+measurements. Intelligent process control at a tool requires a fundamental understanding of how parameters impact device 
+performance. Open tool control systems that allow both users and equipment suppliers to easily integrate new sensor and 
+new control software will be necessary to enable intelligent process control. 
+Process critical materials— Further studies into device impact are necessary to validate any need for increased purities. 
+System concerns such as corrosion potential may lead process concerns in seeking higher purities.  
+In order to accelerate yield enhancement for processes that incorporate new materials, it is very desirable that development 
+studies include purity data as much as is practical. Studies of new materials (e.g., for gate dielectrics) are initially concerned 
+with basic process performance, and later with integration issues. During those stages of development contamination is a 
+relatively minor concern. However, if no information is collected, later yield enhancement efforts proceed with inadequate 
+technical basis. Collecting and reporting both environmental and material contamination data whenever practical will lead 
+to long-term benefits. 
+UPW—Effect of UPW quality to wafer defects for most advanced device geometries is unknown. Particles (including 
+colloidal silica) are considered to be high risk. Potential solution for the particle control is due to reduction of the particle 
+challenge in the final filters and application of the POU filtration, providing additional layer of protection. Use of SEMI 
+C079 and SEMI C093 guides are recommended for the particle challenge reduction. Proactive colloidal silica control using 
+frequent regeneration of the ion exchange resin is also recommended. 
+
+34  Cross Teams 
+ 
+THE INTERNATIONAL ROADMAP FOR DEVICES AND SYSTEMS:  2022 
+COPYRIGHT © 2022 IEEE. ALL RIGHTS RESERVED. 
+Although updated target levels for hydrogen peroxide have been defined, additional study is needed to better correlated 
+process related issues with the level of H2O2 in UPW. 
+Recycling and reclaiming initiatives must drive improvements in rapid online analytical technology, especially detection 
+of organics, to ensure that POU-recycled UPW is equal or better than single-pass water. 
+Chemicals—Figure YE-1 also shows various technological areas that may be required to enhance and measure the purity 
+of delivered chemicals to the wafer manufacturing process.  
+6.3. CHARACTERIZATION, INSPECTION AND ANALYSIS 
+For the challenges of MEMS production, the potential solutions for infrared inspection of metal wafers will be to switch to 
+other technologies like thermography, photoacoustic, or ultrasonic in the future. Possible solutions for critical dimension 
+(CD) scanning electron microscopy (SEM) measurements under angle on silicon on glass could be the use of special 
+structures, the use of reduced beam intensity, or the use of gas as option to discharge. 
+7. CROSS TEAMS 
+Yield Enhancement forum interacts with the teams that either provide definitions about defects and factors affecting 
+manufacturing yield or can benefit from the information generated by the forum for their respective roadmap development. 
+SECC forum of Yield Enhancement provides input into SEMI Standards development by triggering new standards 
+development or existing standard updates in the areas associated with the respective technology challenges. The following 
+diagram illustrated the cross-team linkage. 
+ 
+Figure YE-10   Yield Enhancement IFT Cross Team Linkage Diagram 
+Currently, most of the input into Yield Enhancement is coming from the More Moore IFT, helping to define defects for the 
+most advanced and tightest critical dimension technologies. Additionally, Yield Enhancement works with the Metrology 
+IFT to align on definitions of the required metrology sensitivity.  
+Yield Enhancement IFT provides input to Factory integration, helping to define conditions in the factory enabling high 
+yield production. 
+8. EMERGING/DISRUPTIVE CONCEPTS AND TECHNOLOGIES 
+8.1. DIRECTED SELF ASSEMBLY 
+An emerging and disruptive technology that is expected to be increasingly important is directed self-assembly (DSA) and 
+utilizing structured nano-materials. The impact for yield would be more emphasis on defects associated with nonuniformity 
+in structure than in foreign materials or molecular impurities. 
+
+Conclusions and Recommendations  35 
+ 
+THE INTERNATIONAL ROADMAP FOR DEVICES AND SYSTEMS:  2022 
+COPYRIGHT © 2022 IEEE. ALL RIGHTS RESERVED. 
+9. CONCLUSIONS AND RECOMMENDATIONS 
+Most advanced semiconductor technologies and particularly logic (the new yield technology driver) have reached the point 
+when yield may become a constraining factor of the future shrinkage of the critical dimensions. This is due to the fact that 
+the defect metrology of both critical substrates (wafer, mask, lithography optics, etc.) and materials has reached their limits. 
+This affects the ability to prevent, predict, and control defects in the manufacturing facility. This requires new systematic 
+approaches to continue enabling future technology in accordance with the IRDS roadmap definitions. Such new approaches 
+should include combination of the following measures: 
+• 
+Proactive measurement of contamination control of the critical materials used throughout the supply chain; 
+• 
+Leveraging data analytics to correlate process variation in production with any deviations in critical parameters; 
+• 
+Employ prediction modeling and experimentation to help with decisions on the choice of the technologies and method 
+of their applications at all levels of the manufacturing facility; 
+• 
+Standardize quality control using SEMI and other standards; 
+• 
+Take advantage of collaborative development in the industry via IRDS, SEMI, and other research institutions to drive 
+most productive technology solutions related to the SECC. Assist emerging metrology to commercialize via 
+benchmarking studies and independent third-party qualifications. 
+For next steps, the Yield Enhancement IFT will continue focusing on the areas of the technology challenges as defined in 
+this chapter. More detailed definition of the technology needs and challenges should help to address those needs. There is 
+an increasing need in collaborative development that will require tighter interaction between the roadmap group within 
+Yield IFT and other forums external to Yield. 
+10. APPENDICES 
+10.1.APPENDIX A—SUPPLEMENTAL MATERIALS 
+Below is the list of supplemental materials and the links to them: 
+Title 
+File Name 
+Proactive Particle Control in Ultrapure Water 
+(UPW) in Silicon Wafer Cleaning Process, IRDS, 
+2022 
+WP_Proactive_Particle_Control_in_Ultrapure_Water_20
+22.pdf 
+Metals Spec in UPW, White Paper by Drew Sinha 
+and Slava Libman 
+Metals_WP.pdf 
+Metal Contamination of Image sensors by 
+Ultrapure Water in Silicon Wafer Cleaning 
+Process White Paper by Drew Sinha and Slava 
+Libman 
+Me_WP_Image_Sensor_9_18_18.pdf 
+Precursor Table 
+1403_14rev2master_precursor_table.pdf 
+ 
+ 
+ 
+
+36  Appendices 
+ 
+THE INTERNATIONAL ROADMAP FOR DEVICES AND SYSTEMS:  2022 
+COPYRIGHT © 2022 IEEE. ALL RIGHTS RESERVED. 
+10.2.APPENDIX B—ACRONYMS 
+Acronym/Abbreviation 
+Definition 
+ALD 
+atomic layer deposition techniques 
+AMC 
+airborne molecular contamination 
+APC 
+airborne particular contamination 
+APIMS 
+atmospheric pressure ionized mass spectroscopy 
+ATE 
+automatic test equipment 
+ATPG 
+automatic test pattern generation 
+BE 
+back end 
+CCCS 
+critical contamination control specifications 
+CDA 
+clean dry air 
+CIA 
+characterization, inspection and analysis 
+CMOS 
+complementary metal-oxide semiconductor 
+CMP 
+chemical mechanical planarization 
+CoO 
+cost of ownership 
+CPC 
+condensation particle counter 
+CRDS 
+cavity ring-down spectroscopy 
+CVD 
+chemical vapor deposition 
+DSA 
+directed self assembly 
+DUV 
+deep ultraviolet 
+EAP 
+electrically active particle 
+EMI 
+electromagnetic interference 
+ESA 
+electrostatic attraction 
+ESD 
+electrostatic discharge 
+EUV 
+extreme ultraviolet 
+FE 
+front end 
+FEP 
+front end processes 
+FID 
+flame ionization detector 
+FMEA 
+failure mode and effects analysis 
+FOUPs 
+front opening unified pods 
+FTIR 
+Fourier transform infrared spectroscopy 
+
+Appendices  37 
+ 
+THE INTERNATIONAL ROADMAP FOR DEVICES AND SYSTEMS:  2022 
+COPYRIGHT © 2022 IEEE. ALL RIGHTS RESERVED. 
+Acronym/Abbreviation 
+Definition 
+GC 
+gas chromatography 
+GCMS 
+gas chromatography–mass spectrometry 
+GFAAS 
+graphite furnace atomic absorption spectroscopy 
+HEPA 
+high-efficiency particulate arrestance  
+HMW 
+high molecular weight 
+HVM 
+high volume manufacturing 
+ICP-MS 
+inductively coupled plasma mass spectrometry 
+IMS 
+ion mobility spectrometry 
+IRDS 
+International Roadmap for Devices and Systems 
+ISO 
+International Standards Organization 
+LCOCD 
+liquid chromatography: organic carbon detection 
+LMW 
+low molecular weight 
+LPC 
+laser particle counter 
+MEMS 
+microelectromechanical system 
+MFC 
+mass flow controller 
+MPS 
+mean particle size 
+MS 
+mass spectrometry 
+NEXAF 
+near edge x-ray absorption fine structure 
+O=C=S 
+type of chemical compound containing oxygen, carbon, and sulfur  
+OEMs 
+original equipment manufacturer 
+pCMP 
+post-CMP or post chemical mechanical planarization 
+PID 
+photo ionization detector 
+POD 
+point of delivery or point of distribution 
+POE 
+point of entry 
+POP 
+point of process 
+POS 
+point of supply 
+POU 
+point-of-use 
+POUP 
+POU purification 
+ROI 
+return on investment 
+SAW 
+surface acoustic wave 
+
+38  Appendices 
+ 
+THE INTERNATIONAL ROADMAP FOR DEVICES AND SYSTEMS:  2022 
+COPYRIGHT © 2022 IEEE. ALL RIGHTS RESERVED. 
+Acronym/Abbreviation 
+Definition 
+SECC 
+surface environment contamination control 
+SEM-EDS 
+scanning electron microscopy - energy-dispersive x-ray spectroscopy 
+SEMI 
+Semiconductor Equipment and Materials International 
+SMC 
+surface molecular contaminant 
+SMLY 
+systematic mechanisms limited yield 
+SPC 
+statistical process control 
+TD 
+thermal desorption 
+TEOS 
+ Tetraethylorthosilicate 
+TOC 
+total organic carbon content 
+ToF-SIMS 
+time-of-flight - secondary ion mass spectroscopy 
+UF 
+ultra-filtration 
+UPW 
+ultrapure water 
+UV 
+Ultraviolet 
+VC-D 
+vibrational circular dichroism  
+VMB 
+valve manifold box 
+VMP 
+valve manifold post 
+WECC 
+wafer environment contamination control 
+XCDA 
+Extreme clean dry air 
+XPS 
+x-ray photoelectron spectroscopy 
+YE 
+Yield Enhancement 
+ 
+ 
+ 
+
+References  39 
+ 
+THE INTERNATIONAL ROADMAP FOR DEVICES AND SYSTEMS:  2022 
+COPYRIGHT © 2022 IEEE. ALL RIGHTS RESERVED. 
+ 
+11. REFERENCES 
+1. 
+S. Libman, S. Edmund, B. McIntosh, et al. UPW IRDS and SEMI: Reinforced Process of Enabling Advanced 
+Existing and Future Semiconductor Technologies. UPW Micro Conference. Portland, OR. (2017). 
+2. 
+S. Libman, G. Van Schooneveld, B. McIntosh, et al. UPW IRDS and SEMI: Reinforced Process of Enabling 
+Advanced Existing and Future Semiconductor Technologies. UPM Conference. Phoenix, AZ. (2019). 
+3. 
+Yield Enhancement, International Roadmap for Devices and Systems, 2018 edition (2019). IEEE. White Paper: 
+Proactive Particle Control in Ultrapure Water (UPW) in Silicon Wafer Cleaning Process. Supplemental Materials, 
+YE IRDS, 2018 (2019). 
+4. 
+SEMI F104 – Particle Test Method Guide for Evaluation of Components Used in Ultrapure Water and Liquid 
+Chemical Distribution Systems. SEMI, 673 S. Milpitas Blvd., Milpitas, CA. 
+5. 
+SEMI C79-0113 - Guide to Evaluate the Efficacy of Sub-15 nm Filters Used in Ultrapure Water (UPW) Distribution 
+Systems. SEMI, 673 S. Milpitas Blvd., Milpitas, CA. 
+6. 
+SEMI C93-0217 - Guide for Determining the Quality of Ion Exchange Resin Used in Polish Applications of 
+Ultrapure Water System. SEMI, 673 S. Milpitas Blvd., Milpitas, CA. 
+7. 
+P. Herrling, P. Rychen, D, Starkel, and Keanan Cassidy. Nanoparticle profiling in a UPW Polishing Section by 
+Different Monitoring Systems: Advanced Understanding of Sources and Sinks. UPM Conference. Austin, TX. 
+(2018). 
+8. 
+G. Van Schooneveld and B. McIntosh, Understanding Particle Contribution from Components Used in Ultrapure 
+Water and High-Purity Chemical Systems and Their Impact on Industry-Driven Particle Requirements.  Ultrapure 
+Micro 2019, Phoenix, AZ  (2019) 
+9. 
+G. Van Schooneveld, SEMI C79 Task Force Technical Review, CT Associates, Eden Prairie, MN 55344 (2018) 
+10. 
+Proactive Contamination Control for Sub 10nm Particle in Advanced Semiconductor Manufacturing. 236th ECS 
+Meeting. October 13-17, 2019, | Atlanta, GA 
+11. 
+SEMI F063. Guide For Ultrapure Water Used In Semiconductor Processing. SEMI, 673 S. Milpitas Blvd., Milpitas, 
+CA. 
+12. 
+SEMI F061. Guide To Design And Operation Of A Semiconductor Ultrapure Water System. SEMI, 673 S. Milpitas 
+Blvd., Milpitas, CA. 
+13. 
+Thompson, L. F.; Willson, C. G.; Bowden, M. J. Introduction to microlithography, 2nd ed.; American Chemical 
+Society: Washington, DC, 1994. 
+14. 
+SEMI MF 1982-1103 (formerly ASTM 1982-99 
+15. 
+SEMI F057 – Specification for Polymer Materials and Components Used in Ultrapure Water and Liquid Chemical 
+Distribution Systems 
+16. 
+SEMI. Standard Practices for the Development of Ship to Control Process Limits, 2008. 
+17. 
+Alvarez Jr, D.; Spiegelman, J.; Heinlein, E.; Ramos, C.; Holmes, R. J.; Shamsi, Z., New Chemical Vapor Delivery 
+Systems for Surface Cleaning. Solid State Phenomena 2013, 195, 25–29. 
+18. 
+Norton, E. T.; Amato-Wierda, C., Kinetic and Mechanistic Studies of the Thermal Decomposition of Ti (N (CH3) 
+2) 4 during Chemical Vapor Deposition by in Situ Molecular Beam Mass Spectrometry. Chemistry of materials 
+2001, 13 (12), 4655–4660. 
+19. 
+Libman S., McIntosh B., Hadder D., Van Schooneveld G., UPW IRDS and SEMI Standards: Enabling Yield by Wet 
+Processing Defect Control in Advanced Semiconductor Technologies. May/June 2018, Austin TX. 
+

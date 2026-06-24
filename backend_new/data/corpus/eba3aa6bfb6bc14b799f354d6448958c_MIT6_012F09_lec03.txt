@@ -1,0 +1,1656 @@
+  
+ 
+ 
+ 
+ 
+  
+ 
+  
+ 
+  
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+6.012 - Electronic Devices and Circuits 
+Lecture 3 - Solving The Five Equations - Outline  
+• Announcements 
+Handouts - 1. Lecture; 2. Photoconductivity; 3. Solving the 5 eqs. 
+See website for Items 2 and 3.
+• Review 
+5 unknowns: n(x,t), p(x,t), Je(x,t), Jh(x,t), E(x,t) 
+5 equations: Gauss's law (1), Currents (2), Continuity (2) 
+What isn't covered: Thermoelectric effects; Peltier cooling 
+• Special cases we can solve (approximately) by hand  
+Carrier concentrations in uniformly doped material 
+(Lect. 1) 
+Uniform electric field in uniform material (drift) 
+(Lect. 1) 
+Low level uniform optical injection (LLI, τmin) 
+(Lect. 2) 
+Photoconductivity 
+(Lect. 2) 
+Doping profile problems (depletion approximation) 
+(Lects. 3,4) 
+Non-uniform injection (QNR diffusion/flow) 
+(Lect. 5) 
+• Doping profile problems 
+Electrostatic potential 
+Poisson's equation 
+Clif Fonstad, 9/17/09 
+Lecture 3 - Slide 1 
+
+    
+ 
+ 
+ 
+    
+ 
+ 
+ 
+    
+ 
+  
+      
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+Non-uniform doping/excitation: Summary 
+What we have so far: 
+Five things we care about (i.e. want to know): 
+Hole and electron concentrations: 
+Hole and electron currents: 
+Electric field: 
+p(x,t)    and    n(x,t)
+Jhx(x,t)    and    Jex(x,t)
+Ex(x,t)
+And, amazingly, we already have five equations relating them:  
+Hole continuity:  
+Electron continuity:  
+Hole current density:  
+Electron current density:  
+Charge conservation:  
+"p(x,t)
+"t
++ 1
+q
+"Jh(x,t)
+"x
+= G # R $ Gext(x,t) # n(x,t)p(x,t) # ni
+2
+[
+]r(t)
+"n(x,t)
+"t
+# 1
+q
+"Je(x,t)
+"x
+= G # R $ Gext(x,t) # n(x,t)p(x,t) # ni
+2
+[
+]r(t)
+Jh(x,t) = qµh p(x,t)E(x,t) # qDh
+"p(x,t)
+"x
+Je(x,t) = qµen(x,t)E(x,t) + qDe
+"n(x,t)
+"x
+%(x,t) = " &(x)Ex(x,t)
+[
+]
+"x
+$ q p(x,t) # n(x,t) + Nd (x) # Na(x)
+[
+]
+So...we're all set, right? No, and yes..... 
+Clif Fonstad, 9/17/09 
+Lecture 3 - Slide 2
+We'll see today that it isn't easy to get a general solution, but we can prevail. 
+
+         
+     
+            
+ 
+ 
+ 
+     
+ 
+ 
+ 
+ 
+      
+ 
+ 
+ 
+ 
+    
+  
+  
+ 
+      
+ 
+ 
+ 
+ 
+        
+Thermoelectric effects* - the Seebeck and Peltier effects 
+(current fluxes caused by temperature gradients, and visa versa) 
+Hole current density, isothermal conditions: 
+Drift 
+Diffusion 
+Jh = µh p " d q#
+[
+]
+dx    
+$ 
+% & 
+' 
+( ) + qDh " dp
+dx
+$ 
+% & 
+' 
+( ) 
+Hole potential
+Concentration
+energy gradient 
+gradient 
+Hole current density, non-isothermal conditions: 
+Drift  
+Diffusion 
+Seebeck Effect 
+Jh = µh p " d q#
+[
+]
+dx    
+$ 
+% & 
+' 
+( ) + qDh " dp
+dx
+$ 
+% & 
+' 
+( ) + qSh p " dT
+dx
+$ 
+% & 
+' 
+( ) 
+Temperature
+gradient 
+Seebeck Effect: 
+temperature gradient  → current 
+Generator 
+Peltier Effect: 
+current  → temperature gradient 
+Cooler/heater 
+* A cultural item; we will only consider isothermal
+Clif Fonstad, 9/17/09 
+Lecture 3 - Slide 3
+situations on 6.012 exams and problem sets. 
+
+ 
+  
+ 
+  
+ 
+ 
+ 
+ 
+ 
+     
+  
+  
+ 
+ 
+ 
+Thermoelectric effects - the Seebeck and Peltier effects 
+Two examples: 
+Right - The hot point probe, an  
+apparatus for determining the  
+carrier type of semiconductor  
+samples.  
+Below - A thermoelectric array  
+like those in thermoelectric  
+generators and solid-state  
+refrigerators.  
+(current fluxes caused by temperature gradients, and visa versa) 
+Clif Fonstad, 9/17/09 
+Ref.: Appendix B in the course text. 
+Lecture 3 - Slide 4 
+
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+  
+  
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Thermoelectric Generators and Coolers ­
+Cooling/heating for the 
+necessities of life 
+Image of thermoelectric wine cooler 
+removed due to copyright restrictions. 
+"…electrical power for the New Horizons spacecraft
+Thermoelectric Wine Cooler 
+28 bottles 
+12˚C - 18˚C 
+Quiet, gas free, vibration free,
+environmentally friendly, LED
+display, interior light.
+Zhongshan Candor Electric Appl. Co. 
+http://www.alibaba.com/ 
+Lecture 3 - Slide 5
+http://pluto.jhuapl.edu/ 
+Source: NASA/Johns Hopkins University Applied Physics 
+Laboratory/Southwest Research Institute. 
+Electrical power for a trip to Pluto 
+Source: NASA.
+Clif Fonstad, 9/17/09 
+Launched 
+1/19/2006 
+and science instruments [is] provided by a single
+radioisotope thermoelectric generator, or RTG." 
+
+    
+ 
+ 
+ 
+    
+ 
+ 
+ 
+    
+ 
+  
+ 
+ 
+     
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+      
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+Non-uniform doping/excitation: Back to work 
+(laying the groundwork to model diodes and transistors) 
+What we have: 
+Five things we care about (i.e. want to know): 
+Hole and electron concentrations: 
+Hole and electron currents: 
+Electric field: 
+p(x,t)    and    n(x,t)
+Jhx(x,t)    and    Jex(x,t)
+Ex(x,t)
+And, five equations relating them:  
+Hole continuity:  
+Electron continuity:  
+Hole current density:  
+Electron current density:  
+Charge conservation:  
+"p(x,t)
+"t
++ 1
+q
+"Jh(x,t)
+"x
+= G # R $ Gext(x,t) # n(x,t)p(x,t) # ni
+2
+[
+]r(t)
+"n(x,t)
+"t
+# 1
+q
+"Je(x,t)
+"x
+= G # R $ Gext(x,t) # n(x,t)p(x,t) # ni
+2
+[
+]r(t)
+Jh(x,t) = qµh p(x,t)E(x,t) # qDh
+"p(x,t)
+"x
+Je(x,t) = qµen(x,t)E(x,t) + qDe
+"n(x,t)
+"x
+%(x,t) = " &(x)Ex(x,t)
+[
+]
+"x
+$ q p(x,t) # n(x,t) + Nd (x) # Na(x)
+[
+]
+We can get approximate analytical solutions in 5 important cases! 
+Clif Fonstad, 9/17/09 
+Lecture 3 - Slide 6 
+
+ 
+ 
+ 
+  
+ 
+ 
+ 
+                                                   
+ 
+ 
+ 
+ 
+ 
+ 
+Solving the five equations: special cases we can handle 
+1. Uniform doping, thermal equilibrium (n p product, n , po): 
+Lecture 1 
+o
+o 
+o
+"
+"x = 0,
+"
+"t = 0,
+gL(x,t) = 0,
+Je = Jh = 0
+2. Uniform doping and E-field (drift conduction, Ohms law):  
+Lecture 1 
+"
+"x = 0,
+"
+"t = 0,
+gL(x,t) = 0,
+Ex constant
+3.  Uniform doping and uniform low level optical injection (
+"
+"x = 0,
+gL(t),
+n'<< po
+τmin): 
+Lecture 2 
+3'. Uniform doping, optical injection, and E-field (photoconductivity):  
+"
+"x = 0,
+Ex constant,
+gL(t)
+Lecture 2 
+4. Non-uniform doping in thermal equilibrium (junctions, interfaces) 
+"
+"t = 0,
+gL(x,t) = 0,
+Je = Jh = 0
+Lectures 3,4 
+5. Uniform doping, non-uniform LL injection (QNR diffusion)  
+Lecture 5 
+"Nd
+"x = "Na
+"x = 0,
+n'# p',
+n'<< po,
+Je # qDe
+"n'
+"x ,
+"
+"t # 0
+Clif Fonstad, 9/17/09 
+Lecture 3 - Slide 7 
+
+     
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+   
+   
+   
+   
+   
+   
+   
+   
+Non-uniform material with non-uniform excitations  
+(laying the groundwork to model diodes and transistors) 
+Where cases 2, 4, and 5 appear in important semiconductor devices 
+Junction diodes, LEDs: 
+Bipolar transistors: 
+MOS transistors: 
+p-type
+n-type
+Flow problem
+Junctiion problem
+Flow problem
+n-type
+p
+n-type
+E
+B
+C
+Flow problems
+Junction problem
+n+
+n+
+S
+G
+D
+p-type
+Diodes
+Depletion approximation
+Drift
+Case 4 - Interface 
+Case 4 - Junctions 
+Case 4 - Junction 
+Case 4 - Junctions 
+Case 5 - Flow 
+Case 5 - Flow 
+Case 5 - Flow 
+Case 2 - Drift 
+(In subthrehsold:  Case 5 - Flow)
+Clif Fonstad, 9/17/09 
+Lecture 3 - Slide 8 
+
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+  
+   
+ 
+Case 4: Non-uniform doping in thermal equilibrium  
+Doping Profiles and p-n Junctions in TE: Na (x), Nd (x) 
+Any time the doping varies with position, we can no longer assume that 
+there is charge neutrality everywhere and that ρ(x) = 0. The dopants 
+are fixed, but the carriers are mobile and diffuse: 
+no(x), 
+Nd-N
+Nd-Na 
+a 
+Can't say: no(x) = ND(x)
+ρ(x) < 0 
+no(x) 
+ρ(x) > 0 
+E(x) 
+x 
+In T.E., the  
+net fluxes  
+must be zero  
+Electron diffusion 
+Electron drift 
+Hole drift 
+Hole diffusion 
+Clif Fonstad, 9/17/09 
+Lecture 3 - Slide 9 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+  
+ 
+   
+ 
+Non-uniform doping in thermal equilibrium, cont. 
+To treat non-uniformly doped materials we begin by looking at
+them in thermal equilibrium, as we've said. 
+This is useful because in thermal equilibrium we must have: 
+gL(x,t) = 0
+n(x,t) = no(x)
+p(x,t) = po(x)
+Je(x,t) = 0
+Jh(x,t) = 0
+Consequently, the 2 continuity equations in our 5 equations
+reduce to 0 = 0, e.g.: 
+"n(x,t)
+"t
+# 1
+q
+"Je(x,t)
+"x
+= gL(x,t) # n(x,t)$ p(x,t) # no(x)$ po(x)
+[
+]r(T)
+0
+0 
+0
+0 
+Clif Fonstad, 9/17/09 
+Lecture 3 - Slide 10 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Non-uniform doping in thermal equilibrium, cont.  
+The third and fourth equations, the current equations,
+give: 
+0 = qµeno(x)E(x) + qDe
+dno(x)
+dx
+"
+d#
+dx = De
+µe
+1
+no(x)
+dno(x)
+dx
+0 = qµh po(x)E(x) " qDh
+dpo(x)
+dx
+#
+d$
+dx = " Dh
+µh
+1
+po(x)
+dpo(x)
+dx
+And Poisson’s equation becomes:  
+dE(x)
+dx
+= " d2#(x)
+dx 2
+= q
+$ po(x) " no(x) + Nd (x) " Na(x)
+[
+]
+In the end, we have three equations in our three remaining 
+unknowns, no(x), po(x), and φ(x), so all is right with the 
+world. 
+Clif Fonstad, 9/17/09 
+Lecture 3 - Slide 11 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Non-uniform doping in thermal equilibrium, cont.  
+Looking initially at the first of our new set of equations,
+we note that both sides can be easily integrated with
+respect to position : 
+    
+d"
+dx dx
+xo
+x#
+= De
+µe
+1
+no(x)
+dno(x)
+dx
+dx
+xo
+x#
+"(x) $ "(xo) = De
+µe
+lnno(x) $ lnno(xo)
+[
+] = De
+µe
+ln no(x)
+no(xo)
+Next, raising both sides to the e power yields: 
+no(x) = no(xo)e
+µe
+De
+"(x)#"(xo )
+[
+]
+We chose intrinsic material as our zero reference for the 
+electrostatic potential: 
+and arrive at :  
+"(x) = 0   where   no(x) = ni
+no(x) = nie
+µe
+De
+"(x)
+Clif Fonstad, 9/17/09 
+Lecture 3 - Slide 12 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+   
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+  
+ 
+  
+ 
+ 
+ 
+Non-uniform doping in thermal equilibrium, cont. 
+From the corresponding equation for holes we also find : 
+po(x) = nie
+" µh
+Dh
+#(x)
+Incredibly 
+Next use the Einstein relation: 
+µh
+Dh
+= µe
+De
+= q
+kT
+Multilingually 
+rhyming 
+Note: this relationship rhymes as written, as well as when inverted, and also
+either way in Spanish. It is a very fundamental, and important, relationship! 
+Note :   @ R.T.   q kT " 40 V #1  and  kT q " 25 mV
+Using the Einstein relation we have: 
+no(x) = nieq"(x) kT
+and
+po(x) = nie#q"(x) kT
+Finally, putting these in Poisson’s equation, a single 
+equation for φ(x) in a doped semiconductor in TE 
+materializes: 
+d2"(x)
+dx 2
+= # q
+$ ni e#q"(x)/ kT # eq"(x)/ kT
+(
+) + Nd (x) # Na(x)
+[
+]
+Clif Fonstad, 9/17/09 
+Lecture 3 - Slide 13 
+
+     
+ 
+ 
+ 
+ 
+ 
+ 
+          
+Non-uniform doping in thermal equilibrium, cont.  
+(an aside) 
+What do these equations say? 
+no(x) = nieq"(x) kT
+and
+po(x) = nie#q"(x) kT
+To see, consider what they tell us about the ratio of the hole 
+concentration at x2, where the electrostatic potential is φ2, and 
+that at x1, φ1: 
+po(x2) = po(x1)e"q #(x2 )"#(x1 )
+[
+] / kT
+The thermal energy is kT, and the change in potential energy of a 
+hole moved from x1 to x2 is q(φ2 - φ1), so have: 
+po(x2) = po(x1)e
+"#PEx1$x2 / kT
+If the potential energy is higher at x2, than at x1, then the population 
+is lower at x2 by a factor e-ΔPE/kT. 
+That is, the population is lower at the top of a potential hill. 
+If the potential energy is lower, then the population is higher. 
+That is, the population is, conversely, higher at the bottom of a potential hill. 
+Clif Fonstad, 9/17/09 
+Lecture 3 - Slide 14 
+
+     
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+Non-uniform doping in thermal equilibrium, cont. 
+(continuing the aside) 
+The factor e-ΔPE/kT is called a Boltzman factor.  It is a factor 
+relating the population densities of particles in many 
+situations, such as gas molecules in an ideal gas under the 
+influence of gravity (i.e, the air above the surface of the earth) 
+and conduction electrons and holes in a semiconductor.* 
+The potential energy difference for holes is qΔφ, while that for 
+electrons is -qΔφ.  Thus when we look at the electron and hole 
+populations at a point where the electrostatic potential is φ, 
+relative to those where the potential is zero (and both 
+populations are ni) we have: 
+no(x) = nieq"(x) kT
+and
+po(x) = nie#q"(x) kT
+We will return to this picture of populations on either side of a 
+potential hill when we examine at the minority carrier 
+populations on either side of a biased p-n junction. 
+* Until the doping levels are very high, in which case the 
+Boltzman factor must be replaced by a Fermi factor.** 
+Clif Fonstad, 9/17/09 
+** Don’t worry about it. 
+Lecture 3 - Slide 15 
+
+   
+  
+ 
+ 
+ 
+ 
+ 
+    
+ 
+ 
+   
+ 
+ 
+  
+  
+ 
+ 
+ 
+ 
+ 
+ 
+    
+ 
+  
+   
+ 
+ 
+ 
+ 
+   
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Doing the numbers: 
+I. D to µ conversions, and visa versa 
+To convert between D and µ it is convenient to say 
+25 mV,
+kT/q ≈ 
+in which case q/kT ≈ 40 V-1: 
+17˚C/62˚F 
+Example 1: µe = 1600 cm2/V-s, µh = 600 cm2/V-s 
+De = µe
+q kT
+(
+) =1600/40 = 40 cm2 /s
+Dh = µh
+q kT
+(
+) = 600/40 =15 cm2 /s
+II. Relating φ to n and p, and visa versa 
+To calculate φ knowing n or p it is better to say that 
+kT/q 
+26 mV,
+≈ 
+because then (kT/q)ln10 ≈ 60 mV: 
+28˚C/83˚F 
+Example 1: n-type,  ND = Nd - Na = 1016 cm-3 
+"n = kT
+q ln1016
+1010 = kT
+q ln106 = kT
+q ln10# log106 $ 0.06 ln106 = 0.36 eV
+Example 2: p-type,  NA = Na - Nd = 1017 cm-3 
+"p = # kT
+q ln1017
+1010 = # kT
+q ln10$ log107 % #0.06 $ 7 = #0.42 eV
+Example 3:  60 mV rule: 
+For every order of magnitude the doping is above (below) ni, 
+the potential increases (decreases) by 60 meV. 
+Clif Fonstad, 9/17/09 
+Lecture 3 - Slide 16 
+
+      
+ 
+  
+1019 − 
+101 − 
+0.54 − 
+1018 − 
+102 − 
+0.48 − 
+1017 − 
+103 − 
+0.42 − 
+1016 − 
+104 − 
+0.36 − 
+1015 − 
+105 − 
+0.30 − 
+1014 − 
+106 − 
+0.24 − 
+1013 − 
+107 − 
+0.18 − 
+1012 − 
+108 − 
+0.12 − 
+1011 − 
+109 − 
+0.06 − 
+1010 − 
+1010 − 
+0.00 − 
+109 − 
+1011 − 
+-0.06 − 
+108 − 
+1012 − 
+-0.12 − 
+107 − 
+1013 − 
+-0.18 − 
+106 − 
+1014 − 
+-0.24 − 
+105 − 
+1015 − 
+-0.30 − 
+104 − 
+1016 − 
+-0.36 − 
+103 − 
+1017 − 
+-0.42 − 
+102 − 
+1018 − 
+-0.48 − 
+101 − 
+1019 − 
+-0.54 − 
+ 
+ 
+ 
+ 
+ 
+More numbers 
+no[cm-3] 
+po[cm-3] 
+φ [V] 
+Typical range 
+n-type 
+Intrinsic 
+p-type 
+Typical range 
+Clif Fonstad, 9/17/09 
+Lecture 3 - Slide 17 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+                  
+  
+ 
+ 
+ 
+ 
+ 
+ 
+    
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Non-uniform doping in thermal equilibrium,cont: 
+We have reduced our problem to solving one equation for
+one unknown, in this case φ(x): 
+d2"(x)
+dx 2
+= # q
+$ ni e#q"(x)/ kT # eq"(x)/ kT
+(
+) + Nd (x) # Na(x)
+[
+]
+Once we find φ(x) we can find no and po from: 
+no(x) = nieq"(x) kT
+and
+po(x) = nie#q"(x) kT
+Solving Poisson’s equation for φ(x) is in general non-trivial,
+and for precise answers a "Poisson Solver" program must
+be employed. However, in two special cases we can find
+very useful, insightful approximate analytical solutions: 
+Case I: Abrupt changes from p- to n-type (i.e., junctions) 
+also:  surfaces (Si to air or other insulator) 
+interfaces (Si to metal, Si to insulator, or Si to insulator to metal) 
+Case II: Slowly varying doping profiles. 
+Clif Fonstad, 9/17/09  
+Lecture 3 - Slide 18 
+
+   
+ 
+ 
+      
+ 
+ 
+ 
+ 
+NDn 
+ - NAp 
+Non-uniform doping in thermal equilibrium, cont.:  
+Case I: Abrupt p-n junctions 
+Consider the profile below: 
+Nd-Na 
+x 
+p-type 
+n-type 
+no = NDn,
+po = ni
+2 NDn
+" = kT
+q
+ln NDn /ni
+(
+) # "n
+po = NAp,
+no = ni
+2 NAp
+" = # kT
+q
+ln NAp /ni
+(
+) $ "p
+?
+Clif Fonstad, 9/17/09 
+no(x) = ?
+po(x) = ?
+"(x) = ?
+Lecture 3 - Slide 19 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+  
+  
+Abrupt p-n junctions, cont: 
+First look why there is a dipole layer in the vicinity of the 
+junction, and a "built-in" electric field. 
+NDn 
+NAp 
+ni 
+2/NAp 
+NDn 
+NAp 
+ni 
+2/NDn 
+no, po 
+x  
+Hole diffusion 
+Electron diffusion  
+qNDn 
+0 
+0
++Q 
+-Q 
+-qNAp 
+ρ(x)  
+Drift balances 
+diffusion in the 
+steady state. 
+x  
+Hole drift 
+Electron drift 
+Clif Fonstad, 9/17/09 
+Lecture 3 - Slide 20 
+
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+   
+  
+ 
+ 
+ 
+ 
+ 
+  
+  
+ 
+ 
+ 
+ 
+ 
+ 
+Abrupt p-n junctions, cont: 
+If the charge density is no longer zero there must be an 
+electric field: εEx(x) = ∫ρ(x)dx 
+Ex
+0 
+Epk 
+0 
+x 
+and an electrostatic potential step: φ(x) = -∫Ex(x)dx 
+φ(x) 
+φn 
+φp 
+x 
+Ok, but how do we find φ(x)? 
+Clif Fonstad, 9/17/09 
+Lecture 3 - Slide 21 
+
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+   
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+   
+ 
+ 
+Abrupt p-n Junctions: the general strategy 
+We have to solve an non-linear, second order differential 
+equation for φ: 
+d2"(x)
+dx 2
+= # $(x)
+%
+= # q
+% ni e#q"(x)/ kT # eq"(x)/ kT
+(
+) + Nd (x) # Na(x)
+[
+]
+Or, alternatively         "(x) = #
+$(x)
+%
+&&
+dx + Ax 2 + Bx
+In the case of an abrupt p-n junction we have a pretty good
+idea of what ρ(x) must look like, and we know the details 
+will be lost anyway after integrating twice, so we can try 
+the following iteration strategy: 
+Guess a starting ρ(x). 
+Integrated once to get E(x), and again to get φ(x). 
+Use φ(x) to ﬁnd po(x), no(x), and, ultimately, a new ρ(x). 
+Compare the new ρ(x) to the starting ρ(x). 
+- If it is not close enough, use the new ρ(x) to iterate again. 
+- If it is close enough, quit. 
+Clif Fonstad, 9/17/09 
+Lecture 3 - Slide 22 
+
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+The change in ρ must 
+be much more abrupt! 
+A 60 mV change in φ 
+decreases no  and po 
+10x and ρ increases to 
+90% of its final value. 
+ 
+ 
+  
+  
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+To figure out a good first guess for ρ(x), look at how quickly 
+no and po must change by looking first at how φ changes: 
+φ(x) 60 mV 
+x 
+φn 
+φp 
+φp 
+φn 
+700 to 900 mV 
+ρ(x) 
+60 mV 
+The observation that ρ changes a lot, when φ changes
+a little, is the key to the depletion approximation. 
+qNDn 
+0 
+0
++Q 
+-Q 
+-qNAp 
+…and what it 
+means for ρ(x): 
+90% 
+90% 
+x 
+Clif Fonstad, 9/17/09 
+Lecture 3 - Slide 23 
+
+  
+  
+ 
+ 
+  
+  
+ 
+ 
+ 
+ 
+  
+  
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+  
+ 
+ 
+ 
+ 
+  
+ 
+  
+ 
+ 
+  
+ 
+  
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+  
+ 
+ 
+ 
+ 
+6.012 - Electronic Devices and Circuits 
+Lecture 3 - Solving The Five Equations - Summary  
+• Non-uniform excitation in non-uniform samples
+The 5 unkowns: n(x,t), p(x,t), Je(x,t), Jh(x,t), E(x,t) 
+The 5 equations: coupled, non-linear differential equations 
+• Special cases we can solve (approximately)
+Carrier concentrations: 
+(Lect. 1) 
+Drift: Jdrift = Je,drift + Jh,drift  = q (µe no + µh po) E = σo E 
+(Lect. 2) 
+Low level optical injection: dn'/dt – n'/tmin ≈ gL(t) 
+(Lect. 2) 
+Doping profile problems: junctions and interfaces 
+Non-uniform injection: QNR flow problems 
+• Using the hand solutions to model devices 
+pn Diodes: two flow problems and a depl. approx. 
+BJTs: three flow problems and two depl. approx.’s 
+MOSFETs: three depl. approx.’s and one drift 
+• Non-uniform doping in T.E.
+Relating no, po, and electrostatic potential, φ 
+Poisson's equation: two situations important in devices 
+Clif Fonstad, 9/17/09 
+Lecture 3 - Slide 24 
+
+ 
+ 
+MIT OpenCourseWare
+http://ocw.mit.edu 
+6.012 Microelectronic Devices and Circuits 
+Fall 2009 
+For information about citing these materials or our Terms of Use, visit: http://ocw.mit.edu/terms. 
+

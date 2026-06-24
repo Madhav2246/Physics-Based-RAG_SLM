@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Physics RAG SLM — Module Architecture</title>
+<style>
+  :root{
+    --bg:#0a0e14; --panel:#121823; --panel2:#172030; --line:#27344a;
+    --txt:#dce6f5; --mut:#8497b3; --neon:#3fe0d0; --neon2:#5aa6ff;
+    --warn:#f5b545; --ok:#46d18a; --purple:#b07bff;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:radial-gradient(1200px 600px at 70% -10%,#0e1726,#0a0e14);
+       color:var(--txt);font:14px/1.5 "Segoe UI",Inter,system-ui,sans-serif;padding:30px}
+  h1{font-size:22px;margin:0 0 2px;letter-spacing:.3px}
+  h1 span{color:var(--neon)}
+  .sub{color:var(--mut);font-size:13px;margin-bottom:20px}
+  .legend{display:flex;gap:16px;flex-wrap:wrap;margin:0 0 24px;font-size:11px;color:var(--mut)}
+  .legend b{display:inline-flex;align-items:center;gap:6px;font-weight:500}
+  .dot{width:10px;height:10px;border-radius:3px;display:inline-block}
+  .flow{display:flex;flex-direction:column;align-items:center;gap:0}
+  .layer{width:100%;max-width:1040px;background:var(--panel);border:1px solid var(--line);
+         border-radius:14px;padding:16px}
+  .ltitle{font-size:11px;text-transform:uppercase;letter-spacing:.18em;color:var(--mut);margin-bottom:12px;text-align:center}
+  .row{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
+  .mod{background:var(--panel2);border:1px solid var(--line);border-radius:11px;
+       padding:13px 16px;flex:1;min-width:150px;text-align:center}
+  .mod .t{font-weight:600;font-size:14px}
+  .mod .d{color:var(--mut);font-size:11px;margin-top:3px}
+  .mod.neon{border-color:var(--neon);box-shadow:0 0 0 1px rgba(63,224,208,.15)}
+  .mod.blue{border-color:var(--neon2)}
+  .mod.ok{border-color:var(--ok)}
+  .mod.warn{border-color:var(--warn)}
+  .mod.purple{border-color:var(--purple)}
+  .arrow{width:2px;height:24px;background:linear-gradient(var(--neon),transparent);position:relative}
+  .arrow:after{content:"▼";position:absolute;bottom:-4px;left:-5px;color:var(--neon);font-size:12px}
+  .split{display:flex;gap:16px;width:100%;max-width:1040px}
+  .split .layer{flex:1}
+  .band{font-size:11px;color:var(--mut);text-align:center;margin:6px 0 2px;letter-spacing:.05em}
+</style>
+</head>
+<body>
+  <h1><span>Physics RAG SLM</span> — Module Architecture</h1>
+  <div class="sub">Neuro-symbolic Retrieval-Augmented Generation for semiconductor device physics</div>
+
+  <div class="legend">
+    <b><span class="dot" style="background:var(--neon)"></span>core flow</b>
+    <b><span class="dot" style="background:var(--neon2)"></span>retrieval</b>
+    <b><span class="dot" style="background:var(--purple)"></span>reasoning</b>
+    <b><span class="dot" style="background:var(--ok)"></span>physics validation</b>
+    <b><span class="dot" style="background:var(--warn)"></span>support / external</b>
+  </div>
+
+  <div class="flow">
+
+    <!-- USER INTERFACE -->
+    <div class="layer">
+      <div class="ltitle">User Interface</div>
+      <div class="row">
+        <div class="mod neon"><div class="t">Q&amp;A Console</div><div class="d">Ask questions, compare models, inspect confidence</div></div>
+        <div class="mod"><div class="t">Knowledge Base</div><div class="d">Upload &amp; manage physics documents</div></div>
+        <div class="mod"><div class="t">Evaluation</div><div class="d">Benchmark &amp; visualize results</div></div>
+        <div class="mod"><div class="t">Model Tuning</div><div class="d">Feedback-driven fine-tuning</div></div>
+      </div>
+    </div>
+
+    <div class="arrow"></div>
+
+    <!-- API -->
+    <div class="layer">
+      <div class="ltitle">Application Gateway</div>
+      <div class="row">
+        <div class="mod neon"><div class="t">API Service</div><div class="d">Request routing · async inference · job control</div></div>
+      </div>
+    </div>
+
+    <div class="arrow"></div>
+
+    <!-- ORCHESTRATOR -->
+    <div class="layer">
+      <div class="ltitle">RAG Orchestrator</div>
+      <div class="row">
+        <div class="mod neon"><div class="t">Query Router</div><div class="d">Mode detection: Lookup · Explore · Sweep</div></div>
+      </div>
+    </div>
+
+    <div class="arrow"></div>
+
+    <!-- CORE ENGINES (split) -->
+    <div class="split">
+      <div class="layer">
+        <div class="ltitle">Retrieval Engine</div>
+        <div class="row" style="flex-direction:column">
+          <div class="mod blue"><div class="t">Hybrid Retrieval</div><div class="d">Semantic (vector) + keyword search, fused &amp; reranked</div></div>
+        </div>
+      </div>
+      <div class="layer">
+        <div class="ltitle">Reasoning Engine</div>
+        <div class="row" style="flex-direction:column">
+          <div class="mod purple"><div class="t">Language Model</div><div class="d">Fine-tuned small model (SLM) generation</div></div>
+          <div class="mod purple"><div class="t">Best-of-N Re-ranking</div><div class="d">Pick best answer by physics validity + relevance</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="arrow"></div>
+
+    <!-- PHYSICS VALIDATION -->
+    <div class="layer">
+      <div class="ltitle">Neuro-Symbolic Physics Validation</div>
+      <div class="row">
+        <div class="mod ok"><div class="t">Equation Parser</div><div class="d">Extract &amp; symbolically parse equations</div></div>
+        <div class="mod ok"><div class="t">Dimensional Checker</div><div class="d">Verify unit consistency</div></div>
+        <div class="mod ok"><div class="t">Numerical Validator</div><div class="d">Substitute values, check physical bounds</div></div>
+        <div class="mod ok"><div class="t">Design Synthesis</div><div class="d">Solve / sweep equations deterministically</div></div>
+      </div>
+    </div>
+
+    <div class="arrow"></div>
+
+    <!-- TRUST -->
+    <div class="layer">
+      <div class="ltitle">Trust &amp; Scoring</div>
+      <div class="row">
+        <div class="mod"><div class="t">Confidence Engine</div><div class="d">Aggregate validation into a trust score</div></div>
+        <div class="mod"><div class="t">Uncertainty Engine</div><div class="d">Answer stability across samples</div></div>
+        <div class="mod"><div class="t">Physics Scorer</div><div class="d">0–4 physics-correctness metric</div></div>
+      </div>
+    </div>
+
+    <div class="arrow"></div>
+
+    <!-- KNOWLEDGE + STORAGE -->
+    <div class="layer">
+      <div class="ltitle">Knowledge &amp; Storage</div>
+      <div class="row">
+        <div class="mod warn"><div class="t">Document Ingestion</div><div class="d">PDF → chunks → embeddings</div></div>
+        <div class="mod"><div class="t">Vector Knowledge Base</div><div class="d">Indexed physics corpus</div></div>
+        <div class="mod"><div class="t">Feedback &amp; Training</div><div class="d">Human corrections → model updates</div></div>
+        <div class="mod"><div class="t">Audit Logs</div><div class="d">Query &amp; evaluation history</div></div>
+      </div>
+    </div>
+
+    <div class="band">— external —</div>
+
+    <!-- EXTERNAL -->
+    <div class="layer">
+      <div class="ltitle">External Baseline Models</div>
+      <div class="row">
+        <div class="mod warn"><div class="t">Large LLM Baselines</div><div class="d">Cloud 70B / mid-size models for comparison (unvalidated)</div></div>
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>

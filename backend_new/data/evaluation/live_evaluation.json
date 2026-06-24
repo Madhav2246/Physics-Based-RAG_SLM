@@ -1,0 +1,18 @@
+{
+  "status": "evaluating",
+  "updated_at": "2026-06-03T09:36:06.663934Z",
+  "overall": {
+    "done": 2,
+    "target": 100,
+    "percent": 2.0
+  },
+  "metrics": {
+    "high_conf_correct": 0,
+    "low_conf_caught": 2
+  },
+  "last": {
+    "question": "What is the equation for the current density in a metal-semiconductor contact?",
+    "confidence_score": 0.395,
+    "confidence_label": "LOW CONFIDENCE - REVIEW REQUIRED"
+  }
+}

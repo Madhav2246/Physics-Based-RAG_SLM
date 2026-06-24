@@ -1,0 +1,18 @@
+{
+  "status": "evaluating",
+  "updated_at": "2026-06-05T19:48:28.413629Z",
+  "overall": {
+    "done": 52,
+    "target": 100,
+    "percent": 52.0
+  },
+  "metrics": {
+    "high_conf_correct": 8,
+    "low_conf_caught": 30
+  },
+  "last": {
+    "question": "What is the relationship between the recombination current (Jr) and the depletion region width (W), and what is the governing equation? Physically, what is the origin of this relationship?",
+    "confidence_score": 0.523,
+    "confidence_label": "LOW CONFIDENCE - REVIEW REQUIRED"
+  }
+}

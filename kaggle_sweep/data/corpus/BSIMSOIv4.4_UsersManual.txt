@@ -1,0 +1,19733 @@
+BSIMSOIv4.4 Manual Copyright © 2010, UC Berkeley 
+ 
+ 
+ 
+ 
+BSIMSOIv4.4 MOSFET MODEL 
+Users’ Manual 
+ 
+ 
+BSIM GROUP 
+December 2010 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Department of Electrical Engineering and Computer Sciences 
+University of California, Berkeley, CA 94720 
+ 
+ 
+ 
+Copyright  2010 
+The Regents of the University of California 
+All Rights Reserved 
+
+BSIMSOIv4.4 Manual Copyright © 2010, UC Berkeley 
+ 
+ 
+ 
+B4SOI Developers: 
+ Dr. Wenwei Yang 
+ Dr. Chung-Hsun Lin 
+ Dr. Tanvir Hasan Morshed 
+ Mr. Darsen Lu 
+ Prof. Ali Niknejad 
+ Prof. Chenming Hu 
+ 
+Previous BSIMSOI/BSIMPD Developers: 
+ Mr. Hui Wan 
+ Dr. Xuemei Xi 
+ Dr. Samuel Fung 
+ Dr. Dennis Sinitsky 
+ Dr. Stephen Tang 
+ Dr. Pin Su 
+ Dr. Weidong Liu 
+ Dr. Robert Tu 
+ Prof. Mansun Chan 
+ Prof. Ping K. Ko 
+ Prof. Chenming Hu 
+ 
+BSIMSOIv4.x web site with BSIM source code and documents: 
+http://www-device.eecs.berkeley.edu/~bsimsoi/ 
+ 
+ 
+ 
+ 
+ 
+
+BSIMSOIv4.4 Manual Copyright © 2010, UC Berkeley 
+ 
+ 
+ 
+ 
+ 
+ 
+Acknowledgement: 
+ 
+BSIMSOIv4.4 model is backward compatible with its previous versions (BSIMSOIv4.3.2 or 
+below). The development of BSIMSOIv4.4 benefited from the input of many BSIMSOI users, 
+especially the Compact Model Council (CMC) member companies. The developers would like to 
+thank Joe Watts, Lawrence Wagner, Calvin Bittner and Richard Q Williams at IBM, Joddy 
+Wang, Jane Xi and Weidong Liu at Synopsys, Geoffrey Coram at ADI, Jushan Xie and Yafei 
+Yan at Cadence, Jung-Suk Goo, Wenwei Yang, Niraj Subba, and Sushant Suryagandh at 
+GLOBALFOUNDRIES, Ben Gu at Magma, Chip Workman  at Freescale, Rick Poore at Agilent 
+Technologies, Samuel Mertens at Ansoft, Ramadan Ahmed, Abo El-Hadid Ahmed and Selim 
+Mohamed at Mentor Graphics and James Ma at ProPlus Design Solutions for their valuable 
+assistance in identifying the desirable modifications and testing of the new model. 
+ 
+The BSIM project is partially supported by SRC and CMC.  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+BSIMSOIv4.4 Manual Copyright © 2010, UC Berkeley 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Chapter 1: Introduction 
+1 
+Chapter 2: MOS I-V Model 
+4 
+2.1. 
+Floating Body Operation and Effective Body Potential 
+5 
+2.2. 
+Threshold Voltage in the High Vbs Regime 
+6 
+2.2.1. Linear Extrapolation for the Square-Root Expression 
+6 
+2.2.2. Width Dependence of the Body Effect 
+6 
+2.3. 
+Bulk Charge Effect in the High Vbs Regime 
+6 
+2.4. 
+Asymmetric and Bias-Dependent Source/Drain Resistance Model 
+7 
+2.5. 
+Single Drain Current Equation 
+8 
+Chapter 3: Body Currents Model 
+10 
+3.1. 
+Diode and Parasitic BJT Currents 
+10 
+3.2. 
+New Impact Ionization Current Equation 
+13 
+3.3. 
+Gate Induced Source/Drain Leakage Current 
+15 
+3.4. 
+Oxide Tunneling Current 
+16 
+3.5. 
+Gate-to-Channel Current (Igc0) and Gate-to-S/D (Igs and Igd) 
+17 
+3.5.1 Partition of Igc 
+19 
+3.6. 
+Body Contact Current 
+19 
+3.6. 
+Body Contact Parasitics 
+20 
+Chapter 4: MOS C-V Model 
+21 
+4.1. 
+Charge Conservation 
+23 
+
+BSIMSOIv4.4 Manual Copyright © 2010, UC Berkeley 
+ 
+ 
+4.2.  
+Intrinsic Charges 
+24 
+4.3. 
+Source/Drain Junction Charges 
+26 
+4.4. 
+Extrinsic Capacitances 
+27 
+4.5. 
+Body Contact Parasitics 
+29 
+4.6  
+Finite Thickness Formulation 
+31 
+Chapter 5: Temperature Dependence and Self-Heating 
+34 
+5.1.  
+Temperature Dependence 
+34 
+5.2. 
+Self-Heating Implementation 
+35 
+Chapter 6: BSIMSOI –A Unified Model for PD and FD SOI MOSFETs 
+37 
+6.1. 
+BSIMSOI Framework and Built-In Potential Lowering Model 
+37 
+6.2. 
+Verification 
+41 
+6.3. 
+Model Selector SOIMOD 
+43 
+Chapter 7: BSIMSOI RF Model 
+46 
+7.1  
+Gate Electrode and Intrinsic-Input Resistance (IIR) Model 
+46 
+7.2  
+Body Resistance Network 
+48 
+Chapter 8 BSIMSOI Noise Model 
+49 
+8.1  
+Flicker noise models 
+49 
+8.2  
+Thermal noise models 
+51 
+8.3  
+Other improvement on noise model 
+53 
+Chapter 9 
+Stress Effect Model 
+54 
+9.1  
+Mobility Related Equations 
+54 
+9.2  
+Vth-related Equations 
+56 
+9.3  
+Multiple Finger Device 
+57 
+Chapter 10 
+New Material Model 
+58 
+
+BSIMSOIv4.4 Manual Copyright © 2010, UC Berkeley 
+ 
+ 
+10.1  Non-Silicon Channel 
+58 
+10.2   Non-SiO2 Gate insulator 
+59 
+10.3   Non-Poly Silicon Gate Material 
+59 
+Appendix A: Model Instance Syntax 
+61 
+A.2.  
+About Optional Nodes 
+63 
+A.3.  
+Notes on Debugging 
+63 
+Appendix B: Model Parameter List 
+66 
+B.1.  
+BSIMSOI Model Control Parameters 
+66 
+B.2.  Process Parameters 
+67 
+B.3.  DC Parameters 
+68 
+B.4. 
+Gate-to-body tunneling parameters 
+76 
+B.5.  AC and Capacitance Parameters 
+77 
+B.6.  Temperature Parameters 
+79 
+B.7.  
+BSIMSOI Built-In Potential Lowering (Vbi) Model Parameters 
+81 
+B.8.  
+BSIMSOI RF Model Parameters 
+82 
+B.9.  
+BSIMSOI Noise Model Parameters 
+83 
+B.10.  BSIMSOI Stress Model Parameters 
+83 
+B.11.  Model Parameter Notes 
+84 
+Appendix C: Equation List 
+87 
+C1:  
+Equation List for BSIMSOI Built-In Potential Lowering Calculation 
+87 
+C2: 
+Equation List for BSIMPD IV 
+90 
+Appendix D: Parameter Extraction 
+111 
+D.1. 
+Extraction Strategy 
+111 
+D.2. 
+Suggested I-V Measurement 
+111 
+
+BSIMSOIv4.4 Manual Copyright © 2010, UC Berkeley 
+ 
+ 
+Appendix E: Model Parameter Binning 
+113 
+E.1.  DC Parameters 
+114 
+E.2.  AC and Capacitance Parameters 
+117 
+References 
+118 
+
+Chapter 1: Introduction  
+ 
+BSIMSOIv4.4 Manual Copyright © 2010, UC Berkeley 
+Page 1 
+ 
+ 
+Chapter 1: Introduction  
+BSIMSOI is an international standard model for SOI (Silicon-On-Insulator) circuit design 
+[20, 21]. This model is formulated on top of the BSIM3 framework [1]. It shares the same basic 
+equations with the bulk model so that the physical nature and smoothness of BSIM3v3 are 
+retained. Most parameters related to general MOSFET operation (non-SOI specific) are directly 
+imported from BSIM3v3 to ensure parameter compatibility.  
+BSIMPD [18] is the Partial-Depletion (PD) mode of BSIMSOI. Many enhanced features are 
+included in BSIMPD through the joint effort of the BSIM Team at UC Berkeley and IBM 
+Semiconductor Research and Development Center (SRDC) at East Fishkill. In particular, the 
+model has been tested extensively within IBM on its state-of-the-art high speed SOI technology.  
+BSIMPD, a derivative of BSIM3SOIv1.3 [2], has the following features and enhancements: 
+ Real floating body simulation in both I-V and C-V. The body potential is determined by 
+the balance of all the body current components. 
+ An improved parasitic bipolar current model. This includes enhancements in the various 
+diode leakage components, second order effects (high-level injection and Early effect),  
+diffusion charge equation, and temperature dependence of the diode junction capacitance. 
+ An improved impact-ionization current model. The contribution from BJT current is also 
+modeled by the parameter Fbjtii.  
+ A gate-to-body tunneling current model, which is important to thin-oxide SOI 
+technologies. 
+ Enhancements in the threshold voltage and bulk charge formulation of the high positive 
+body bias regime. 
+
+Chapter 1: Introduction  
+ 
+BSIMSOIv4.4 Manual Copyright © 2010, UC Berkeley 
+Page 2 
+ 
+ Instance parameters (Pdbcp, Psbcp, Agbcp, Aebcp, Nbc) are provided to model the 
+parasitics of devices with various body-contact and isolation structures [17]. 
+ An external body node (the 6th node) and other improvements are introduced to facilitate 
+the modeling of distributed body-resistance [17].   
+ Self heating. An external temperature node (the 7th node) is supported to facilitate the 
+simulation of thermal coupling among neighboring devices. 
+ A unique SOI low frequency noise model, including a new excess noise resulting from 
+the floating body effect [3]. 
+ Width dependence of the body effect is modeled by parameters (K1, K1w1, K1w2).  
+ Improved history dependence of the body charges with two new parameters, (Fbody, 
+DLCB).  
+ An instance parameter Vbsusr is provided for users to set the transient initial condition of 
+the body potential.  
+ The new charge-thickness capacitance model introduced in BSIM3v3.2 [4], capMod=3, 
+is included. 
+ 
+In BSIMSOIv4.0, based on BSIMSOIv3.2 [26] and BSIMv4.5.0 bulk model [27], we 
+included the following features: 
+1. A scalable stress effect model for process induced stress effect, device performance becoming 
+thus a function of the active area geometry and the location  of the device in the active area; 
+2. Asymmetric current/capacitance model S/D diode and asymmetric S/D resistance; 
+3. Improved GIDL model with BSIM4 GIDL compatibility;  
+4. Noise model Improvements: 
+    1) Improved width/length dependence of flicker noise 
+    2) SPICE2 thermal noise model is introduced as TNOIMOD=2 with parameter NTNOI that 
+adjusts the magnitude of the noise density 
+    3) Body contact resistance induced thermal noise 
+    4) Thermal noise induced by the body resistance network 
+    5) Shot noises induced by Ibs and Ibd separated 
+5. A two resistance body resistance network introduced for RF simulation; 
+
+Chapter 1: Introduction  
+ 
+BSIMSOIv4.4 Manual Copyright © 2010, UC Berkeley 
+Page 3 
+ 
+6. Threshold voltage model enhancement: 
+    1) Long channel DIBL effect model added 
+    2) Channel-length dependence of body effect improved 
+7. Drain induced threshold shift(DITS) model introduced in output conductance; 
+8. Improved model accuracy in moderate inversion region with BSIM4 compatible Vgsteff; 
+9. Multi-finger device with instance parameter NF; 
+10. A new instance parameter AGBCPD to improve gate current for body contact; 
+11. A new instance parameter DELVTO representing threshold voltage variation; 
+12. FRBODY is both instance/model parameter. 
+ 
+In BSIMSOIv4.1, the following features are added:  
+1. A new material model (mtrlMod); 
+2. Asymmetric GIDL/GISL model and new GIDL/GISL model (gidlMod); 
+3. A new impact-ionization current model; 
+4. An improved Coulombic scattering model for high k/metal gate; 
+5. An improved body-contact model to characterize the opposite-type gate; 
+6. A new ∆Vbi model to simplify the parameter extraction; 
+7. A new VgsteffCV model for C-V, which is similar to Vgsteff in I-V; 
+8. A new gate current component in body contact region; 
+9. An improved DITS model with more flexibility and better fit. 
+ 
+ 
+BSIMSOIv4.2 up to v4.4 benefits from an extensive review of the code by the CMC 
+members. A significant number of code implement issues/ errors are resolved and fixed in these 
+versions through close interaction with many user companies. The voltage, temperature and 
+charge derivatives are reviewed and improved as well. We believe users will greatly benefit from 
+the improvements introduced in the latest version. In BSIMSOIv4.4 two new features are 
+added(Vb check in SOIMOD=2 and fringe capacitance model enhancement) , compared to 
+BSIMSOIv4.3.1. The latest version is released as the first Verilog-A version (v4.4), with an 
+archival version of C code (v4.4C) which closely matches the Verilog-A code.    
+
+Chapter 2: MOS I-V Model  
+ 
+BSIMSOIv4.4 Manual Copyright © 2010, UC Berkeley 
+Page 4 
+ 
+Chapter 2: MOS I-V Model 
+A typical PD SOI MOSFET structure is shown in Fig. 2.1. The device is formed on a thin 
+SOI film of thickness Tsi on top of a layer of buried oxide with thickness Tbox. In the floating 
+body configuration, there are four external biases which are gate voltage (Vg), drain voltage (Vd), 
+source voltage (Vs) and substrate bias (Ve). The body potential (Vb) is iterated in circuit 
+simulation. If a body contact is applied, there will be one more external bias, the body contact 
+voltage (Vp).   
+ 
+ 
+Fig. 2.1 
+Schematic of a typical PD SOI MOSFET. 
+ 
+Since the backgate (Ve) effect is decoupled by the neutral body, PD SOI MOSFETs have 
+similar characteristics as bulk devices. Hence most PD SOI models reported [5, 6] were 
+SOURCE
+EXTERNAL BODY BIAS
+BODY
+SUBSTRATE
+GATE
+DRAIN
+V
+V
+V
+V
+V
+V
+b
+e
+p
+s
+g
+d
+Tox
+Tsi
+Tbox
+
+Chapter 2: MOS I-V Model  
+ 
+BSIMSOIv4.4 Manual Copyright © 2010, UC Berkeley 
+Page 5 
+ 
+developed by adding some SOI specific effects onto a bulk model. These effects include parasitic 
+bipolar current, self-heating and body contact resistance.    
+BSIMPD is formulated on top of the BSIM3v3 framework. In this way, a lot of physical 
+effects which are common in bulk and SOI devices can be shared. These effects are reverse short 
+channel effect, poly depletion, velocity saturation, DIBL in subthreshold and output resistance, 
+short channel effect, mobility degradation, narrow width effect and source/drain series resistance 
+[1, 4]. 
+2.1. Floating Body Operation and Effective Body Potential 
+In BSIMPD, the floating body voltage is iterated by the SPICE engine. The result of iteration 
+is determined by the body currents [7, 18]. In the case of DC, body currents include diode 
+current, impact ionization, gate-induced drain leakage (GIDL), oxide tunneling and body contact 
+current. For AC or transient simulations, the displacement currents originated from the capacitive 
+coupling are also contributive.   
+To ensure a good model behavior during simulations, the iterated body potential Vbs is 
+bounded by the following smoothing function 
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+bsc
+bsc
+bs
+bsc
+bs
+bsc
+V
+V
+V
+V
+V
+.
+V
+T
+
+
+
+4
+5
+0
+2
+1
+, V
+V
+bsc 5
+ 
+(2.1) 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1
+2
+1
+1
+1
+1
+1
+4
+5.0
+T
+T
+T
+V
+s
+s
+s
+bsh
+
+
+
+
+
+
+, 
+V
+s
+5.1
+1 
+
+ 
+(2.2) 
+ 
+Here the body potential Vbsh is equal to the Vbs bounded between (Vbsc, s1), and is used in the 
+threshold voltage and bulk charge calculation. To validate the popular square root expression 
+bsh
+s
+V
+
+
+ in the MOSFET model, Vbsh is further limited to 0.95s to give the following effective 
+body potential 
+ 
+
+
+V
+V
+V
+V
+bseff
+s
+s
+bsh
+s
+bsh
+bsh
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+0
+0
+0
+2
+0 5
+4
+.
+, 
+
+s
+s
+0
+0 95
+.
+ 
+(2.3) 
+
+Chapter 2: MOS I-V Model  
+ 
+BSIMSOIv4.4 Manual Copyright © 2010, UC Berkeley 
+Page 6 
+ 
+2.2. Threshold Voltage in the High Vbs Regime  
+2.2.1. Linear Extrapolation for the Square-Root Expression 
+Using the Vbseff which is clamped to the surface potential s, the square-root dependence 
+bseff
+s
+V
+
+
+of the threshold voltage is ensured to behave properly during simulations [20]. 
+However the real body potential may be larger than the surface potential in state-of-the-art PD 
+SOI technologies. To accurately count the body effect in such a high body bias regime, we 
+extend the square-root expression by 
+
+
+bseff
+bsh
+bseff
+s
+V
+V
+s
+V
+t
+sqrtPhisEx
+
+
+
+
+
+, 
+0
+2
+1
+s
+s
+s
+
+
+
+
+  
+(2.4) 
+where a linear extrapolation is employed for 
+s
+bsh
+V
+
+95
+.0
+
+. Notice that 
+bseff
+s
+V
+t
+sqrtPhisEx
+
+
+
+ 
+for 
+s
+bsh
+V
+
+95
+.0
+
+.  
+ 
+2.2.2. Width Dependence of the Body Effect 
+In BSIMPD, the body effect coefficient K1 is replaced by 
+
+
+
+
+
+
+
+
+
+
+
+2
+1
+'
+1
+1
+1
+1
+1
+w
+w
+eff
+K
+W
+K
+K
+K
+eff
+  
+ 
+ 
+ 
+(2.5) 
+to model the width dependence of the body effect. Notice that K1eff  approaches K1 asymptotically 
+as the effective channel width W’
+eff increases. While the body effect coefficient will be 
+determined by the parameters (K1w1, K1w2 ) when W’
+eff  becomes small so that the contribution 
+from the channel-stop doping should be taken into account. 
+ 
+The complete equation of the threshold voltage Vth can be found in the Appendix C. 
+ 
+ 
+2.3. Bulk Charge Effect in the High Vbs Regime  
+The bulk charge factor in BSIMSOI4.0 is given as     
+
+Chapter 2: MOS I-V Model  
+ 
+BSIMSOIv4.4 Manual Copyright © 2010, UC Berkeley 
+Page 7 
+ 
+2
+1
+0
+0
+'
+1
+1
+/
+1
+1
+2
+2
+2 (
+)
+1
+ox
+eff
+eff
+eff
+bulk
+gs
+gsteff
+eff
+bsh
+eff
+si
+dep
+eff
+si
+dep
+s
+bsh
+K
+LPEB L
+A L
+L
+B
+A
+A V
+W
+B
+V
+L
+T X
+L
+T X
+Ketas
+Keta V
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ (2.6) 
+to accommodate the model behavior in the high body bias regime, which is important in PD SOI. 
+The parameter Ketas acts like an effective increment of the surface potential, which can be used 
+to adjust the Abulk rollup with the body potential Vbsh. While the other parameter Keta is used to 
+tune the rate of rollup with Vbsh. By using this new expression, the non-physical drain current 
+roll-off due to the dramatic Abulk rollup at high body bias can be avoided [20].   
+ 
+2.4. Asymmetric and Bias-Dependent Source/Drain Resistance Model 
+BSIMSOI4.0 models source/drain resistances in two components: bias-independent diffusion 
+resistance (sheet resistance) and bias-dependent LDD resistance. Accurate modeling of the bias-
+dependent LDD resistances is important for deep submicron CMOS technologies. In 
+BSIMSOI3.2 and BSIMPD models, the LDD source/drain resistance Rds(V) is modeled 
+internally through the I-V equation and symmetry is assumed for the source and drain sides. 
+BSIMSOI4.0 keeps this option for the sake of simulation efficiency. In addition, BSIMSOI4.0 
+allows the source LDD resistance Rs(V) and the drain LDD resistance Rd(V) to be external and 
+asymmetric (i.e. Rs(V) and Rd(V) can be connected between the external and internal source and 
+drain nodes, respectively; furthermore, Rs(V) does not have to be equal to Rd(V)). This feature 
+makes accurate RF CMOS simulation possible. The internal Rds(V) option can be invoked by 
+setting the model selector rdsMod = 0 (internal) and the external one for Rs(V) and Rd(V) by 
+setting rdsMod = 1 (external). 
+• rdsMod = 0 (Internal Rds(V)) 
+
+
+
+
+Wr
+eff
+s
+bseff
+s
+rwb
+gsteff
+rwg
+dsw
+ds
+W
+V
+P
+V
+P
+R
+R
+'
+6
+10
+1
+
+
+
+
+
+
+
+ 
+ 
+• rdsMod = 1 (External Rd(V) and Rs(V)) 
+
+Chapter 2: MOS I-V Model  
+ 
+BSIMSOIv4.4 Manual Copyright © 2010, UC Berkeley 
+Page 8 
+ 
+
+
+1
+1
+(
+)
+( )
+1 6
+bd
+gd
+fbsd
+d
+WR
+eff
+RDWMIN
+RDW
+PRWB V
+PRWG V
+V
+R V
+e
+W
+NF
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+1
+1
+(
+)
+( )
+1 6
+bs
+gs
+fbsd
+s
+WR
+eff
+RSWMIN
+RSW
+PRWB V
+PRWG V
+V
+R V
+e
+W
+NF
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+where 
+20
+ln 10
+gate
+B
+fbsd
+N
+k T
+V
+q
+
+
+
+
+
+
+
+ for NGATE larger than 0, otherwise 
+0
+fbsd
+V
+
+. 
+2.5. Single Drain Current Equation 
+After improving the Vth and Abulk behavior in the high body bias regime, we can describe the 
+MOSFET drain current by the same equation as BSIM3v3. The effective drain voltage Vdseff and 
+effective gate overdrive voltage Vgsteff (i.e., effective Vgse – Vth in Appendix C-5) introduced in 
+BSIM3v3 [1] are employed to link subthreshold, linear and saturation operation regions into a 
+single expression as  
+ 
+)
+1(
+1
+0
+,
+A
+dseff
+ds
+dseff
+dso
+ds
+ds
+MOSFET
+ds
+V
+V
+V
+V
+I
+R
+I
+I
+
+
+
+
+ 
+ 
+
+
+
+eff
+ox
+eff
+eff
+C
+W
+L
+ 
+ 
+
+
+I
+V
+A
+V
+V
+v
+V
+V
+E
+L
+dso
+gsteff
+bulk
+dseff
+gsteff
+t
+dseff
+dseff
+sat
+eff
+
+
+
+
+
+
+
+
+
+
+
+1
+2
+2
+1
+ 
+(2.7) 
+where Vdseff is the effective source-drain bias (Appendix C-8), Rds is the source/drain series 
+resistance, eff is the mobility( Users are suggested to check the details in Chap. 10 and Appendix 
+C), Esat is the critical electrical field at which the carrier velocity becomes saturated and VA 
+accounts for channel length modulation (CLM) and DIBL as in BSIM3v3. The substrate current 
+
+Chapter 2: MOS I-V Model  
+ 
+BSIMSOIv4.4 Manual Copyright © 2010, UC Berkeley 
+Page 9 
+ 
+body effect (SCBE) [8, 9] on VA is not included because it has been taken into account explicitly 
+by the real floating body simulation determined by the body currents, which will be detailed in 
+the next chapter. 
+ 
+
+Chapter 3: Body Currents Model  
+ 
+BSIMSOIv4.4 Manual Copyright © 2010, UC Berkeley 
+Page 10 
+ 
+Chapter 3: Body Currents Model 
+Body currents determine the body potential and therefore the drain current through the body 
+effect. Beside the impact ionization current considered in BSIM3v3, diode (bipolar) current, 
+GIDL, oxide tunneling and body contact current are all included in the BSIMPD model [Fig. 3.1] 
+to give an accurate body-potential prediction in the floating body simulation [18]. 
+3.1. Diode and Parasitic BJT Currents 
+In this section we describe various current components originated from Body-to-Source/Drain 
+(B-S/D) injection, recombination in the B-S/D junction depletion region, Source/Drain-to-Body 
+(S/D-B) injection, recombination current in the neutral body, and diode tunneling current.   
+ 
+ 
+ 
+Fig. 3.1 
+Various current components inside the body.  
+ 
+ 
+ The backward injection current in the B-S/D diode can be expressed as 
+Iii
+Idiode
+Igb
+Iii
+Idiode
+Igb
+
+Chapter 3: Body Currents Model  
+ 
+BSIMSOIv4.4 Manual Copyright © 2010, UC Berkeley 
+Page 11 
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1
+exp
+1
+exp
+1
+1
+t
+dioded
+bd
+difd
+si
+diod
+bd
+t
+diodes
+bs
+difs
+si
+dios
+bs
+V
+n
+V
+j
+T
+W
+I
+V
+n
+V
+j
+T
+W
+I
+ 
+(3.1) 
+Here 
+diod
+difd
+dioded
+dios
+difs
+diodes
+W
+j
+n
+W
+j
+n
+,
+,
+,
+,
+,
+ are the non-ideality factor, the saturation current, the 
+effective B-S diode width and the B-D diode width, respectively.  
+The carrier recombination and trap-assisted tunneling current in the space-charge region is 
+modeled by 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+db
+d
+rec
+d
+rec
+recrd
+db
+recfd
+bd
+recd
+si
+diod
+bd
+sb
+s
+rec
+s
+rec
+recrs
+sb
+recfs
+bs
+recs
+si
+dios
+bs
+V
+V
+V
+n
+V
+n
+V
+j
+T
+W
+I
+V
+V
+V
+n
+V
+n
+V
+j
+T
+W
+I
+0
+0
+2
+0
+0
+2
+026
+.0
+exp
+026
+.0
+exp
+026
+.0
+exp
+026
+.0
+exp
+ 
+(3.2) 
+Here 
+recd
+recrd
+recfd
+recs
+recrs
+recfs
+j
+n
+n
+j
+n
+n
+,
+,
+,
+,
+,
+ are non-ideality factors for forward bias and reverse bias, 
+the saturation current, respectively. Note that the parameters 
+d
+rec
+s
+rec
+V
+V
+0
+0 ,
+are provided to model 
+the current roll-off in the high reverse bias regime. 
+The reverse bias tunneling current, which may be significant in junctions with high doping 
+concentration, can be expressed as 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+db
+d
+tun
+d
+tun
+tund
+db
+tund
+si
+diod
+bd
+sb
+s
+tun
+s
+tun
+tuns
+sb
+tuns
+si
+dios
+bs
+V
+V
+V
+n
+V
+j
+T
+W
+I
+V
+V
+V
+n
+V
+j
+T
+W
+I
+0
+0
+4
+0
+0
+4
+026
+.0
+exp
+1
+026
+.0
+exp
+1
+  
+(3.3) 
+where
+tund
+tuns j
+j
+,
+ are the saturation currents. The parameters 
+tund
+tuns n
+n
+,
+ and 
+d
+tun
+s
+tun
+V
+V
+0
+0 ,
+ are 
+provided to better fit the data. 
+ 
+ 
+The recombination current in the neutral body can be described by 
+
+Chapter 3: Body Currents Model  
+ 
+BSIMSOIv4.4 Manual Copyright © 2010, UC Berkeley 
+Page 12 
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+2
+_
+_
+0
+'
+0
+'
+3
+3
+5.0
+exp
+1
+exp
+1
+exp
+1
+1
+1
+1
+1
+1
+1
+exp
+1
+1
+1
+1
+exp
+1
+n
+eff
+bjt
+t
+dioded
+bd
+eff
+hlid
+hlid
+t
+diodes
+bs
+eff
+hlis
+hlis
+N
+n
+eff
+bjt
+bjtd
+si
+eff
+end
+N
+n
+eff
+bjt
+bjts
+si
+eff
+ens
+hlid
+t
+dioded
+bd
+end
+bjt
+bd
+hlis
+t
+diodes
+bs
+ens
+bjt
+bs
+L
+L
+V
+n
+V
+A
+E
+V
+n
+V
+A
+E
+L
+L
+L
+j
+T
+W
+I
+L
+L
+L
+j
+T
+W
+I
+E
+V
+n
+V
+I
+I
+E
+V
+n
+V
+I
+I
+bjt
+bjt
+
+
+
+ 
+(3.4) 
+Here 
+bjt
+
+ is the bipolar transport factor, whose value depends on the ratio of the effective 
+channel length 
+eff
+L
+ and the minority carrier diffusion length 
+n
+L . 
+bjts
+j
+ and
+bjtd
+j
+ are the saturation 
+currents, while the parameters 
+0
+bjt
+L
+ and 
+bjt
+N
+ are provided to better fit the forward injection 
+characteristics. Notice that 
+hlis
+E
+ and 
+hlid
+E
+, determined by the parameter 
+hlis
+A
+ and 
+hlid
+A
+, stand for 
+the high level injection effect in the B-S/D diode, respectively. 
+The parasitic bipolar transistor current is important in transient body discharge, especially in 
+pass-gate floating body SOI designs [7]. The BJT collector current is modeled as 
+
+Chapter 3: Body Currents Model  
+ 
+BSIMSOIv4.4 Manual Copyright © 2010, UC Berkeley 
+Page 13 
+ 
+ 
+2
+2
+2
+1
+exp
+exp
+4
+2
+1
+bs
+bd
+c
+bjt
+en
+diodes
+t
+dioded
+t
+nd
+ely
+ely
+hli
+nd
+bs
+bd
+ely
+Abjt
+ely
+eff
+hli
+hlis
+hlid
+V
+V
+I
+I
+n
+V
+n
+V
+E
+E
+E
+E
+E
+V
+V
+E
+V
+A L
+E
+E
+E
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+(3.5) 
+where 
+nd
+E2
+ is composed of the Early effect 
+ely
+E
+ and the high level injection roll-off 
+hli
+E
+. Note 
+that 
+ely
+nd
+E
+E
+
+2
+ as 
+hli
+ely
+E
+E
+
+. While 
+hli
+nd
+E
+E
+
+2
+ as 
+ely
+hli
+E
+E
+
+, in which case the Early 
+voltage 
+eff
+ely
+Abjt
+L
+A
+V
+
+ is high. 
+To sum up, the total B-S current is 
+
+
+
+4
+1
+i
+bsi
+bs
+I
+I
+, and the total B-D current is 
+
+
+
+4
+1
+i
+bdi
+bd
+I
+I
+. 
+The total drain current including the BJT component can then be expressed as 
+ 
+c
+MOSFET
+ds
+total
+ds
+I
+I
+I
+
+
+,
+,
+ 
+(3.6) 
+3.2. New Impact Ionization Current Equation 
+IiiMod = 0 
+An accurate impact ionization current equation is crucial to the PD SOI model since it may 
+affect the transistor output characteristics through the body effect [11]. Hence in BSIMPD we 
+use a more recent expression [22] to formulate the impact ionization current Iii as   
+ 
+0
+,
+_
+2
+2
+1
+0
+(
+)exp
+diff
+ii
+ds MOSFET
+ii
+BJT
+diff
+diff
+V
+I
+I
+I
+V
+V
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+                                Here, when IiiMod = 0, Iii_BJT is defined as: 
+                                
+_
+ii
+BJT
+bjtii
+c
+I
+F
+I
+
+ 
+                               V
+V
+V
+diff
+ds
+dsatii
+
+
+ 
+
+Chapter 3: Body Currents Model  
+ 
+BSIMSOIv4.4 Manual Copyright © 2010, UC Berkeley 
+Page 14 
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ds
+iid
+gst
+ii
+ii
+gsteff
+ii
+eff
+satii
+eff
+satii
+eff
+ii
+nom
+ii
+dsatii
+dsatii
+V
+S
+V
+S
+S
+V
+S
+L
+E
+L
+E
+VgsStep
+L
+L
+T
+T
+T
+V
+VgsStep
+V
+1
+1
+1
+1
+1
+1
+0
+2
+1
+0
+ 
+(3.7) 
+Here the 
+c
+bjtiiI
+F
+ term represents the contribution from the parasitic bipolar current. Notice that 
+the classical impact ionization current model [12] adopted in BSIM3v3 is actually a special case 
+of Eqn. (3.6) when 
+
+
+
+0,0,1
+,
+,
+2
+1
+0
+
+
+
+
+
+. However, the dependence of 
+)
+log(
+ds
+ii I
+I
+ on the drain 
+overdrive voltage 
+diff
+V
+ is quite linear [22] for state-of-the-art SOI technologies due to thermally 
+assisted impact ionization [23]. In this case, 
+
+
+1,0,0
+,
+,
+2
+1
+0
+
+
+
+
+.  
+     The extracted saturation drain voltage 
+dsatii
+V
+ depends on the gate overdrive voltage 
+gst
+V
+ and 
+eff
+L
+. One can first extract the parameters 
+
+ii
+dsatii L
+V
+,
+0
+ by the 
+dsatii
+V
+-
+eff
+L
+ characteristics at 
+0
+
+gst
+V
+. 
+All the other parameters 
+)
+,
+,
+,
+,
+(
+0
+2
+1
+iid
+ii
+ii
+ii
+satii
+S
+S
+S
+S
+E
+ can then be determined by the plot of 
+dsatii
+V
+ 
+versus 
+gs
+V  for different 
+eff
+L
+. Notice that a linear temperature dependence of 
+0
+dsatii
+V
+ with the 
+parameter 
+ii
+T  is also included. 
+     IiiMod = 1  
+     When IiiMod = 0, the two component currents 
+MOSFET
+ds
+I
+,
+ and Ic have a same bias dependence 
+for impact ionization rate. This approximation generally won’t cause accuracy problem because 
+the MOSFET drain current is the major contribution on impact ionization current in the 
+interested operation regions. While SOI MOSFET device operates in subthreshold to 
+accumulation regions, parasitic BJT effect starts to dominant nodal drain current at high drain 
+bias. In order to model Iii better, IiiMod =1 is introduce to treat 
+MOSFET
+ds
+I
+,
+ and Ic separately. It 
+means that these two components have the different impact ionization rate [30]. 
+     Here 
+MOSFET
+ds
+I
+,
+ still uses the old impact ionization model. The BJT contribution is expressed 
+in Equ (3.8).  The temperature dependence is also improved. 
+    
+
+Chapter 3: Body Currents Model  
+ 
+BSIMSOIv4.4 Manual Copyright © 2010, UC Berkeley 
+Page 15 
+ 
+
+
+(
+1)
+_
+(
+)exp
+(
+)
+1
+1
+eff
+MBJTII
+ii
+BJT
+C
+bci
+bd
+bci
+bd
+eff
+bci
+CBJTII
+EBJTII L
+I
+I
+V
+V
+ABJTII V
+V
+L
+T
+V
+VBCI
+TVBCI TNOM
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+      (3.8) 
+  where ABJTII, CBJTII, EBJTII, MBJTII, VBCI and TVBCI are model parameters and explained 
+in Appendix B. 
+3.3. Gate Induced Source/Drain Leakage Current 
+gidlMod = 0 
+GISL/GIDL can be important in SOI device because it can affect the body potential in the 
+low Vgs and high Vds regime.  
+The formula for GIDL current is: 
+3
+3
+3
+exp
+3
+ds
+gse
+fbsd
+oxe
+db
+GIDL
+diod
+oxe
+ds
+gse
+db
+V
+V
+EGIDL V
+T
+BGIDL
+V
+I
+AGIDL W
+Nf
+T
+V
+V
+EGIDL
+CGIDL V
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+             
+(3.9) 
+where AGIDL, BGIDL, CGIDL, and EGIDL are model parameters and explained in Appendix A. 
+CGIDL accounts for the body-bias dependence of IGIDL and IGISL. Here Vgse accounts for poly 
+depletion effect. 
+      Following BSIM4, BSIMSOI4.1 also introduces GISL current. In order to model asymmetric 
+source/drain, GISL model has another set of parameters: AGISL, BGISL, CGISL, and   EGISL. 
+3
+exp
+3
+ds
+gse
+fbsd
+oxe
+GISL
+dios
+oxe
+ds
+gse
+V
+V
+EGISL V
+T
+BGISL
+V
+I
+AGISL W
+Nf
+T
+V
+V
+EGISL
+CGISL
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+    
+(3.1
+0) 
+ 
+gidlMod = 1 
+In this new model, the basic idea is to decouple Vds and Vgs dependence by introducing an 
+extra parameter rgidl. The body bias dependence part is also revised. Here, KGIDL and FGILD 
+are Vbs dependent parameters. 
+
+Chapter 3: Body Currents Model  
+ 
+BSIMSOIv4.4 Manual Copyright © 2010, UC Berkeley 
+Page 16 
+ 
+3
+3
+          
+exp
+exp
+3
+3
+          
+exp
+ds
+gse
+fbsd
+GIDL
+diod
+oxe
+oxe
+ds
+gse
+ds
+ds
+gse
+fbsd
+GISL
+dios
+oxe
+ox
+V
+RGIDL V
+EGIDL
+V
+I
+AGIDL W
+Nf
+T
+T
+BGIDL
+KGIDL
+V
+V
+EGIDL
+V
+FGIDL
+V
+RGISL V
+EGISL
+V
+I
+AGISL W
+Nf
+T
+T
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+exp
+e
+ds
+gse
+bs
+BGISL
+KGISL
+V
+V
+EGISL
+V
+FGISL
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+    (3.11) 
+           Here Vfbsd = 0 when mtrlMod = 0. 
+3.4. Oxide Tunneling Current 
+     For thin oxide (below 20Å), oxide tunneling is important in the determination of floating-
+body potential [20]. In BSIMPD the following equations are used to calculate the tunneling 
+current density Jgb : 
+In inversion, 
+
+
+0
+2
+3
+3
+EVB
+g
+EVB
+gb1
+gb1
+gb1
+N
+oxref
+2
+3.0
+2.4
+3
+2
+8
+8
+V
+φ
+exp
+1
+ln
+V
+V
+1
+β
+α
+exp
+T
+tox
+m
+m
+eV
+hq
+m
+B
+h
+q
+A
+V
+V
+V
+T
+V
+B
+T
+T
+V
+V
+A
+J
+ox
+b
+b
+ox
+b
+ox
+aux
+ox
+ox
+ox
+oxqm
+ox
+aux
+gb
+gb
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+ 
+(3.12) 
+ 
+In accumulation, 
+
+Chapter 3: Body Currents Model  
+ 
+BSIMSOIv4.4 Manual Copyright © 2010, UC Berkeley 
+Page 17 
+ 
+
+
+0
+2
+3
+3
+ECB
+ECB
+gb2
+gb2
+gb2
+N
+oxref
+2
+4
+0
+1
+3
+3
+2
+8
+8
+V
+1
+V
+V
+1
+T
+tox
+m
+.
+m
+eV
+.
+hq
+m
+B
+h
+q
+A
+V
+V
+exp
+ln
+V
+V
+V
+T
+V
+B
+exp
+T
+T
+V
+V
+A
+J
+ox
+b
+b
+ox
+b
+fb
+gb
+t
+aux
+ox
+ox
+ox
+oxqm
+ox
+aux
+gb
+gb
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+β
+α
+  
+ 
+(3.13) 
+Igb is evaluated in IgbMod=1. IgbMod=0 turns it off. Please see Appendix B for model 
+parameter descriptions. 
+In BSIMSOI4.1, the instance parameter Agbcp2 represents the parasitic gate-to-body overlap 
+area due to the body contact. This parameter applies for the opposite-type gate, which is shown 
+Fig. 4.4.  In order to account the tunneling current in this region, Ig_agbcp2 is introduced as 
+following:  
+     
+
+
+
+
+
+
+
+_
+2
+2
+2
+_
+_
+_
+2
+2
+_
+2
+2
+min(
+,0)
+                exp
+2
+2
+1
+2
+0.5
+0.01
+g
+agbcp
+agbcp
+gp
+fb
+gp
+eff
+oxRatio
+oxqm
+gp
+eff
+gp
+eff
+gp
+eff
+gp
+fb
+gp
+fb
+I
+A
+A
+V
+V
+V
+T
+B T
+AIGBCP
+BIGBCP
+V
+CIGBCP
+V
+V
+V
+V
+V
+V
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+          
+(3.14) 
+ 
+3.5. Gate-to-Channel Current (Igc0) and Gate-to-S/D (Igs and Igd) 
+Igc0, determined by ECB for NMOS and HVB (Hole tunneling from Valence Band) 
+for PMOS at Vds=0, is formulated as 
+
+
+
+0
+exp
+1
+eff
+eff
+oxRatio
+gse
+aux
+oxdepinv
+oxdepinv
+Igc
+W L
+A T
+V
+V
+B TOXE AIGC
+BIGC V
+CIGC V
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+ 
+(3.15) 
+
+Chapter 3: Body Currents Model  
+ 
+BSIMSOIv4.4 Manual Copyright © 2010, UC Berkeley 
+Page 18 
+ 
+where A = 4.97232 A/V2 for NMOS and 3.42537 A/V2 for PMOS, B = 7.45669e11 
+(g/F-s2)0.5 for NMOS and 1.16645e12 (g/F-s2)0.5 for PMOS, and 
+0
+log 1 exp
+gse
+aux
+t
+t
+V
+VTH
+V
+NIGC v
+NIGC v
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+(3.16) 
+Igs and Igd -- Igs represents the gate tunneling current between the gate and the 
+source diffusion region, while Igd represents the gate tunneling current between the 
+gate and the drain diffusion region. Igs and Igd are determined by ECB for NMOS 
+and HVB for PMOS, respectively. 
+
+
+
+'
+'
+'
+exp
+1
+gs
+eff
+oxRatioEdge
+gs
+gs
+gs
+gs
+I
+W DLCIG A T
+V
+V
+B TOXE POXEDGE
+AIGS
+BIGS V
+CIGS V
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+(3.17) 
+and 
+
+
+
+'
+'
+'
+exp
+1
+gd
+eff
+oxRatioEdge
+gd
+gd
+gd
+gd
+I
+W DLCIGD A T
+V
+V
+B TOXE POXEDGE
+AIGD
+BIGD V
+CIGD V
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+(3.18) 
+where A = 4.97232 A/V2 for NMOS and 3.42537 A/V2 for PMOS, B = 7.45669e11 
+(g/F-s2)0.5 for NMOS and 1.16645e12 (g/F-s2)0.5 for PMOS, and 
+
+
+2
+1
+NTOX
+oxRatioEdge
+TOXREF
+T
+TOXE POXEDGE
+TOXE POXEDGE
+
+
+
+
+
+
+
+
+
+
+ 
+(3.19) 
+
+
+2
+'
+1.0
+4
+gs
+gs
+fbsd
+V
+V
+V
+e
+
+
+
+ 
+(3.20) 
+
+
+2
+'
+1.0
+4
+gd
+gd
+fbsd
+V
+V
+V
+e
+
+
+
+ 
+(3.21) 
+Vfbsd is the flat-band voltage between gate and S/D diffusions calculated as 
+If NGATE > 0.0 
+log
+B
+fbsd
+k T
+NGATE
+V
+VFBSDOFF
+q
+NSD
+
+
+
+
+
+
+
+
+ 
+(3.22) 
+Else Vfbsd = 0.0. 
+ 
+
+Chapter 3: Body Currents Model  
+ 
+BSIMSOIv4.4 Manual Copyright © 2010, UC Berkeley 
+Page 19 
+ 
+ 
+3.5.1 Partition of Igc 
+To consider the drain bias effect, Igc is split into two components, Igcs and Igcd, that 
+is Igc = Igcs + Igcd, and  
+
+
+2
+2
+exp
+1 1.0e
+4
+0
+2.0e
+4
+dseff
+dseff
+dseff
+PIGCD V
+PIGCD V
+Igcs
+Igc
+PIGCD
+V
+
+
+
+
+
+
+
+
+
+
+
+ 
+(3.23) 
+and 
+
+
+
+
+2
+2
+1
+1 exp
+1.0e
+4
+0
+2.0e
+4
+dseff
+dseff
+dseff
+PIGCD V
+PIGCD V
+Igcd
+Igc
+PIGCD
+V
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+(3.24) 
+where Igc0 is Igc at Vds=0. 
+If the model parameter PIGCD is not specified, it is given by 
+2
+1
+2
+dseff
+gsteff
+gsteff
+V
+B TOXE
+PIGCD
+V
+V
+
+
+
+
+
+
+
+
+
+
+
+ 
+(3.25) 
+ 
+Igc is evaluated in IgcMod=1. IgcMod=0 turns it off. 
+3.6. Body Contact Current 
+In BSIMPD, a body resistor is connected between the body (B node) and the body contact (P 
+node) if the transistor has a body-tie. The body resistance is modeled by 
+ 
+rb
+bsh
+bodyext
+'
+halo
+eff
+'
+body
+bp
+N
+R
+R
+,
+W
+R
+||
+L
+W
+R
+R
+eff
+eff
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+2
+ 
+(3.26) 
+Here 
+bp
+R  and 
+bodyext
+R
+ represent the intrinsic and extrinsic body resistance respectively. 
+body
+R
+ is 
+the intrinsic body sheet resistance, Rhalo accounts for the effect of halo implant, Nrb is the number 
+of square from the body contact to the device edge and Rbsh is the sheet resistance of the body 
+contact diffusion. 
+The body contact current 
+bp
+I
+ is defined as the current flowing through the body resistor:  
+
+Chapter 3: Body Currents Model  
+ 
+BSIMSOIv4.4 Manual Copyright © 2010, UC Berkeley 
+Page 20 
+ 
+ 
+bodyext
+bp
+bp
+bp
+R
+R
+V
+I
+
+
+ 
+(3.27) 
+where 
+bp
+V  is the voltage across the B node and P node. Notice that 
+0
+
+bp
+I
+ if the transistor has a 
+floating body. 
+3.6. Body Contact Parasitics   
+The effective channel width may change due to the body contact. Hence the following 
+equations are used: 
+ 
+sbcp
+eff
+dios
+dbcp
+eff
+diod
+bc
+bc
+bc
+drawn
+eff
+bc
+bc
+bc
+drawn
+eff
+P
+W
+W
+P
+W
+W
+dW
+N
+dW
+N
+W
+W
+dW
+N
+dW
+N
+W
+W
+
+
+
+
+
+
+
+
+
+
+
+
+'
+'
+'
+'
+)
+2
+(
+)
+2
+(
+ 
+(3.28) 
+Here 
+bc
+dW  is the width offset for the body contact isolation edge. 
+bc
+N
+ is the number of body 
+contact isolation edge. For example: 
+0
+
+bc
+N
+ for floating body devices, 
+1
+
+bc
+N
+ for T-gate 
+structures and 
+2
+
+bc
+N
+ for H-gate structures. 
+dbcp
+P
+/
+sbcp
+P
+ represents the parasitic perimeter length 
+for body contact at drain/source side. The body contact parasitics [17] may affect the I-V 
+significantly for narrow width devices [20]. 
+  
+After introducing all the mechanisms that contribute the body current, we can express the 
+nodal equation (KCL) for the body node as  
+ 
+
+
+
+
+0
+bs
+bd
+bp
+ii
+dgidl
+sgisl
+gb
+I
+I
+I
+I
+I
+I
+I
+
+
+
+
+
+
+
+ 
+(3.29) 
+Eqn. (3.18) is important since it determines the body potential through the balance of various 
+body current components. The I-V characteristics can then be correctly predicted after this 
+critical body potential can be well anchored. 
+
+Chapter 4: MOS C-V Model  
+ 
+BSIMSOIv4.4 Manual Copyright © 2010, UC Berkeley 
+Page 21 
+ 
+Chapter 4: MOS C-V Model 
+BSIMPD approaches capacitance modeling by adding SOI-specific capacitive effect to the 
+C-V model of BSIM3v3. Similar to the I-V case, the body charges belonged to the floating body 
+node will be our emphasis. The model incorporates features listed below with the SOI-specific 
+features bold-faced and italicized.  
+ 
+Separate effective channel length and width for IV and CV models. 
+ 
+The CV model is not piece-wise (i.e. divided into inversion, depletion, and 
+accumulation). Instead, a single equation is used for each nodal charge covering all 
+regions of operation. This ensures continuity of all derivatives and enhances convergence 
+properties. Just like in BSIM3v3, the inversion and body capacitances are continuous at 
+the threshold voltage. 
+ 
+In BSIMSOI4.1, a new model selector vgstcvMod is introduced for the Vgsteff 
+calculation. When vgstcvMod = 0, it is the old code. Nothing has been changed; even 
+Qinv/Cgs/Cgd etc., are untouched for the backward compatibility. Thus users are 
+suggested to choose vgstcvMod =1 or 2. Here, vgstcvMod = 1 fixes the bug in 
+vgstcvMod = 0 (For more details, please check the BSIMSOI4.1 release note). 
+vgstcvMod = 2 adopts a new Vgsteff, which is similar to that in IV model. Body effect 
+and DIBL are automatically incorporated in the capacitance model.   
+ 
+Intrinsic capacitance model has two options. The capMod = 2 option yields capacitance 
+model based on BSIM3v3 short channel capacitance model. The capMod = 3 option is 
+the new charge-thickness model from BSIM3v3.2 [4]. 
+ 
+Front gate overlap capacitance is comprised of two parts: 1) a bias independent part 
+which models the effective overlap capacitance between the gate and the heavily doped 
+source/drain, and 2) a gate bias dependent part between the gate and the LDD region. 
+
+Chapter 4: MOS C-V Model  
+ 
+BSIMSOIv4.4 Manual Copyright © 2010, UC Berkeley 
+Page 22 
+ 
+ 
+Bias independent fringing capacitances are added between the gate and source as well as 
+the gate and drain. A sidewall source/drain to substrate (under the buried oxide) fringing 
+capacitance is added. 
+ 
+A source/drain-buried oxide-Si substrate parasitic MOS capacitor is added. 
+ 
+Body-to-back-gate coupling is added. 
+ 
+Parasitic gate capacitance model is improved by the new body contact model. 
+ 
+A good intrinsic charge model is important in bulk MOSFETs because intrinsic capacitance 
+comprises a sizable portion of the overall capacitance, and because a well behaved charge model 
+is required for robust large circuit simulation convergence. In analog applications there are 
+devices biased near the threshold voltage. Thus, a good charge model must be well-behaved in 
+transition regions as well. To ensure proper behavior, both the I-V and C-V model equations 
+should be developed from an identical set of charge equations so that Cij/Id is well behaved.  
+A good physical charge model of SOI MOSFETs is even more important than in bulk. This is 
+because transient behavior of the floating body depends on capacitive currents [18]. Also, due to 
+the floating body node, convergence issues in PD SOI are more volatile than in bulk, so that 
+charge smoothness and robustness are important. An example is that a large negative guess of 
+body potential by SPICE during iterations can force the transistor into depletion, and a smooth 
+transition between depletion and inversion is required. Therefore the gate/source/drain/backgate 
+to body capacitive coupling is important in PD SOI. 
+
+Chapter 4: MOS C-V Model  
+ 
+BSIMSOIv4.4 Manual Copyright © 2010, UC Berkeley 
+Page 23 
+ 
+4.1. Charge Conservation 
+ 
+Fig. 4.1 
+Intrinsic charge components in BSIMPD CV model 
+To ensure charge conservation, terminal charges instead of terminal voltages are used as state 
+variables. The terminal charges Qg, Qd, Qs, Qb, and Qe are the charges associated with the gate, 
+drain, source, body, and substrate respectively. These charges can be expressed in terms of 
+inversion charge (Qinv), front gate body charge (QBf), source junction charge (Qjs) and drain 
+junction charge (Qjd). The intrinsic charges are distributed between the nodes as shown in Fig. 
+4.1. The charge conservation equations are: 
+ 
+Q
+Q
+Q
+Q
+Bf
+ac
+sub
+subs
+
+
+
+0
+0
+ 
+ 
+ 
+ 
+Q
+Q
+Q
+inv
+inv s
+inv d
+
+
+,
+,  
+  
+ 
+
+
+Bf
+inv
+g
+Q
+Q
+Q
+
+
+
+ 
+ 
+  
+ 
+jd
+js
+e
+Bf
+b
+Q
+Q
+Q
+Q
+Q
+
+
+
+
+ 
+(4.1) 
+ 
+Q
+Q
+Q
+s
+inv s
+js
+
+
+,
+ 
+ 
+ 
+Q
+Q
+Q
+d
+inv d
+jd
+
+
+,
+ 
+ 
+ 
+Q
+Q
+Q
+Q
+Q
+g
+e
+b
+s
+d
+
+
+
+
+0 
+ 
+
+Chapter 4: MOS C-V Model  
+ 
+BSIMSOIv4.4 Manual Copyright © 2010, UC Berkeley 
+Page 24 
+ 
+The front gate body charge (QBf) is composed of the accumulation charge (Qac0) and the bulk 
+charge (
+0
+sub
+Q
+ and 
+subs
+Q
+), which may be divided further into two components: the bulk charge at 
+Vds=0 (Qsub0), and the bulk charge induced by the drain bias (Qsubs) (similar to Qsub in 
+BSIM3v3). 
+All capacitances are derived from the charges to ensure charge conservation. Since there are 
+5 charge nodes, there are 25 (as compared to 16 in BSIM3v3) components. For each component: 
+C
+dQ
+dV
+ij
+i
+j
+
+, where i and j denote transistor nodes. In addition, 
+C
+C
+ij
+ij
+j
+i
+
+
+
+
+0 . 
+ 
+ 
+ 
+4.2.  Intrinsic Charges 
+BSIMPD uses similar expressions to BSIM3v3 for 
+inv
+Q
+ and 
+Bf
+Q
+. First, the bulk charge 
+constant AbulkCV is defined as 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+CLE
+active
+bulk
+bulkCV
+L
+CLC
+A
+A
+1
+0
+ 
+(4.2) 
+where 
+
+
+0
+0
+
+
+gsteff
+bulk
+bulk
+V
+A
+A
+ 
+(4.3) 
+This is done in order to empirically fit VdsatCV  to channel length. Experimentally,   
+ 
+V
+V
+V
+V
+A
+dsatIV
+dsatCV
+dsatIV L
+gsteffCV
+bulk
+
+
+
+
+ 
+(4.4) 
+vgstcvMod = 0 or 1 
+  The effective CV Vgst is defined as 
+ 
+ln 1 exp
+exp
+gs
+th
+gsteffCV
+t
+t
+t
+V
+V
+delvt
+V
+nv
+nv
+nv
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+(4.5) 
+  vgstcvMod = 0 and 1 use the same VgsteffCV definition. As mentioned above, the only difference 
+between vgstcvMod = 0 and 1 is that Mod =1 fixes the bug in the code. Users are suggested to 
+choose vgstcvMod =1 or 2. 
+
+Chapter 4: MOS C-V Model  
+ 
+BSIMSOIv4.4 Manual Copyright © 2010, UC Berkeley 
+Page 25 
+ 
+vgstcvMod = 2 
+  This new VgsteffCV follows that in IV model. There are two new model parameters MINVCV 
+and VOFFCV, which are binnable.  
+*
+_
+*
+_
+*
+*
+(
+)
+ln 1 exp(
+)
+(1
+)(
+)
+2
+exp(
+)
+arctan(
+)
+0.5
+CV
+gs eff
+th
+t
+t
+gsteffCV
+CV
+gs eff
+th
+offCV
+CV
+s
+ox
+si
+dep
+t
+CV
+m
+V
+V
+delvt
+nv
+nv
+V
+m
+V
+V
+delvt
+V
+m
+nC
+q
+N
+nv
+MINVCV
+m
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+                
+(4.6) 
+ 
+Then we can calculate the CV saturation drain voltage 
+ 
+V
+V
+A
+dsatCV
+gsteffCV
+bulkCV
+
+/
+.  
+(4.7) 
+Define effective CV Vds as 
+ 
+)
+4
+)
+(
+(
+2
+1
+2
+dsatCV
+ds
+dsatCV
+ds
+dsatCV
+dsatCV
+dsCV
+V
+V
+V
+V
+V
+V
+V
+
+
+
+
+
+
+
+
+
+
+
+ 
+(4.8) 
+Then the inversion charge can be expressed as 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+dsCV
+bulkCV
+gsteffCV
+dsCV
+bulkCV
+dsCV
+bulkCV
+gsteffCV
+ox
+active
+active
+inv
+V
+A
+V
+V
+A
+V
+A
+V
+C
+L
+W
+Q
+2
+12
+2
+2
+2
+2
+ 
+(4.9) 
+where 
+active
+W
+ and 
+active
+L
+ are the effective channel width and length in CV, respectively. The 
+channel partition can be set by the Xpart parameter. The exact evaluation of source and drain 
+charges for each partition option is presented in Appendix C. 
+A parameter VFBeff is used to smooth the transition between accumulation and depletion 
+regions. The expression for VFBeff is: 
+ 
+
+
+
+
+V
+V
+V
+V
+V
+V
+FBeff
+fb
+fb
+gb
+fb
+gb
+
+
+
+
+
+
+
+
+
+
+
+
+05
+2
+2
+.
+
+
+
+ 
+(4.10) 
+where V
+V
+V
+gb
+gs
+bseff
+
+
+, 
+bseff
+s
+eff
+s
+th
+fb
+V
+K
+V
+V
+
+
+
+
+
+
+1
+. 
+
+Chapter 4: MOS C-V Model  
+ 
+BSIMSOIv4.4 Manual Copyright © 2010, UC Berkeley 
+Page 26 
+ 
+The physical meaning of the function is the following: it is equal to Vgb for Vgb<VFB, and 
+equal to VFB for Vgb>VFB. Using VFBeff, the accumulation charge can be calculated as 
+ 
+)
+(
+0
+fb
+FBeff
+ox
+activeB
+active
+body
+ac
+V
+V
+C
+L
+W
+F
+Q
+
+
+
+ 
+(4.11) 
+where 
+DLCB
+L
+L
+active
+activeB
+
+
+. Notice that the parameters 
+body
+F
+ and DLCB are provided to give 
+a better fit for the SOI-specific history dependence of the body charge [14]. 
+The gate-induced depletion charge and drain-induced depletion charge can be expressed as  
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+2
+1
+2
+1
+0
+)
+(
+4
+1
+1
+2
+eff
+bseff
+gsteffCV
+FBeff
+gs
+eff
+ox
+activeB
+active
+body
+sub
+K
+V
+V
+V
+V
+K
+C
+L
+W
+F
+Q
+ 
+(4.12) 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+2
+12
+2
+1
+2
+1
+dsCV
+bulkCV
+gsteffCV
+dsCV
+bulkCV
+dsCV
+bulkCV
+ox
+eff
+activeB
+active
+body
+subs
+V
+A
+V
+V
+A
+V
+A
+C
+K
+L
+W
+F
+Q
+ 
+(4.13) 
+respectively. 
+Finally, the back gate body charge can be modeled by 
+ 
+
+
+bseff
+fbb
+es
+box
+activeBG
+active
+body
+e
+V
+V
+V
+C
+L
+W
+F
+Q
+
+
+
+ 
+(4.14) 
+where 
+bg
+activeB
+activeBG
+L
+L
+L
+
+2
+
+
+. The parameter 
+bg
+L
+
+ is provided to count the difference of 
+activeB
+L
+ 
+and 
+activeBG
+L
+ due to the source/drain extension in the front channel. 
+For capMod=3, the flat band voltage is calculated from the bias-independent threshold 
+voltage, which is different from capMod=2. For the finite thickness formulation, refer to Section 
+4.6 and Chapter 7 of BSIM4.6.2 Users’ Manual. 
+ 
+4.3. Source/Drain Junction Charges 
+Beside the junction depletion capacitance considered in BSIM3v3, the diffusion capacitance, 
+which is important in the forward body-bias regime [20], is also included in BSIMPD. The 
+source/drain junction charges 
+jdwg
+jswg Q
+Q
+/
+ can therefore be expressed as 
+
+Chapter 4: MOS C-V Model  
+ 
+BSIMSOIv4.4 Manual Copyright © 2010, UC Berkeley 
+Page 27 
+ 
+ 
+bddif
+bddep
+jdwg
+bsdif
+bsdep
+jswg
+Q
+Q
+Q
+Q
+Q
+Q
+
+
+
+
+ 
+(4.15) 
+ 
+The depletion charges 
+bddep
+bsdep Q
+Q
+/
+ have similar expressions as in BSIM3v3 [Appendix C]. 
+While the diffusion charges 
+bddif
+bsdif Q
+Q
+/
+ can be modeled by 
+0
+0
+0
+0
+'
+1
+1
+1
+1
+exp
+1
+1
+'
+1
+1
+1
+exp
+dif
+dif
+N
+eff
+bs
+bsdif
+si
+sbjt
+dif
+bj
+seg
+eff
+n
+dios
+t
+hlis
+N
+eff
+bd
+bddif
+si
+dbjt
+dif
+bj
+seg
+eff
+n
+diod
+t
+W
+V
+Q
+T J
+L
+L
+N
+L
+L
+n
+V
+E
+W
+V
+Q
+T J
+L
+L
+N
+L
+L
+n
+V
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1
+1
+1
+hlid
+E
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+(4.16) 
+The parameter  represents the transit time of the injected minority carriers in the body. The 
+parameters 
+0
+dif
+L
+ and 
+dif
+N
+ are provided to better fit the data. 
+ 
+4.4. Extrinsic Capacitances  
+Expressions for extrinsic (parasitic) capacitances that are common in bulk and SOI 
+MOSFETs are taken directly from BSIM3v3. They are source/drain-to-gate overlap capacitance 
+and source/drain-to-gate fringing capacitance. Additional SOI-specific parasitics added are 
+substrate-to-source sidewall capacitance Cessw, and substrate-to-drain sidewall capacitance Cedsw, 
+substrate-to-source bottom capacitance (Cesb) and substrate-to-drain bottom capacitance (Cedb) 
+[Fig. 4.2]. 
+ 
+ 
+
+Chapter 4: MOS C-V Model  
+ 
+BSIMSOIv4.4 Manual Copyright © 2010, UC Berkeley 
+Page 28 
+ 
+ 
+Fig. 4.2 
+SOI MOSFET extrinsic charge components. Cessw is the substrate-to-
+source sidewall capacitance.  Cesb is the substrate-to-source bottom 
+capacitance. 
+In SOI, there is a parasitic source/drain-buried oxide-Si substrate parasitic MOS structure 
+with a bias dependent capacitance. If Vs,d=0, this MOS structure might be in accumulation. 
+However, if Vs,d=Vdd, the MOS structure is in depletion with a much smaller capacitance, 
+because the Si substrate is lightly doped. The bias dependence of this capacitance is similar to 
+high frequency MOS depletion capacitance as shown in Fig. 4.3. It might be substantial in 
+devices with large source/drain diffusion areas. BSIMPD models it by piece-wise expressions, 
+with accurately chosen parameters to achieve smoothness of capacitance and continuity to the 
+second derivative of charge. The substrate-to-source bottom capacitance (per unit source/drain 
+area) Cesb is: 
+
+
+
+
+
+
+C
+C
+if
+V
+V
+C
+A
+C
+C
+V
+V
+V
+V
+elseif
+V
+V
+A
+V
+V
+C
+A
+C
+C
+V
+V
+V
+V
+elseif
+V
+V
+C
+else
+esb
+box
+se
+sdfb
+box
+sd
+box
+se
+sdfb
+sdth
+sdfb
+se
+sdfb
+sd
+sdth
+sdfb
+sd
+box
+se
+sdth
+sdth
+sdfb
+se
+sdth
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1
+1
+1
+2
+2
+min
+min
+min
+min
+ 
+(4.17) 
+Physical parameters Vsdfb (flat-band voltage of the MOS structure) and Vsdth (threshold voltage of 
+the MOS structure) can be easily extracted from measurement. Cmin should also be extracted 
+from measurement, and it can account for deep depletion as well. Asd is a smoothing parameter. 
+Cessw
+Cesb
+
+Chapter 4: MOS C-V Model  
+ 
+BSIMSOIv4.4 Manual Copyright © 2010, UC Berkeley 
+Page 29 
+ 
+The expression for Cedb is similar to Cesb.  Fig. 4.3 shows the comparison of the model and 
+measured Cesb. 
+ 
+Fig. 4.3 
+Bottom source/drain to substrate capacitance for a PD SOI MOSFET. 
+Finally, the sidewall source/drain to substrate capacitance (per unit source/drain perimeter 
+length) can be expressed by 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+box
+si
+sdesw
+esw
+d
+s
+T
+T
+CfrCoeff
+C
+C
+1
+log
+,
+/
+ 
+(4.18) 
+which depends on the silicon film thickness 
+si
+T  and the buried oxide thickness 
+box
+T
+. The 
+parameter 
+sdesw
+C
+ represents the fringing capacitance per unit length. CfrCoeff has a default value 
+= 1, and is limited to a value of 2 (introduced in v4.4).  
+4.5. Body Contact Parasitics 
+The parasitic capacitive coupling due to the body contact is considered in BSIMPD. The 
+-4
+-2
+0
+2
+4
+80
+100
+120
+140
+160
+ 
+ measured data
+ 
+ model fit
+Capacitance (fF)
+Vs/d,e
+
+Chapter 4: MOS C-V Model  
+ 
+BSIMSOIv4.4 Manual Copyright © 2010, UC Berkeley 
+Page 30 
+ 
+instance parameter 
+gbcp
+A
+ represents the parasitic gate-to-body overlap area due to the body 
+contact, and 
+ebcp
+A
+ represents the parasitic substrate-to-body overlap area. The effect may be 
+significant for small area devices [CV part in Appendix C].   
+Note: There are four instance parameters used to calculate parasitic capacitances associated 
+with body contacts. They are: psbcp, pdbcp, agbcp and aebcp. It is worth pointing out that psbcp 
+and pdbcp represent additional gate perimeter to the source and drain and must be specified on a 
+per finger basis, while agbcp and aebcp represent addition gate area and addition area of body 
+over the box and must be specified on a total transistor basis.  
+BSIMSOI4.1 also considers the P+ implantation for body contact (as shown in Figure 4.4), 
+which will induce parasitic P+-poly gate/NMOS. 
+ 
+ 
+ 
+Fig. 4.4          Parasitic capacitance in opposite-type gate. 
+    In BSIMSOI4.0, the instance parameter Agbcp represents the parasitic gate-to-body overlap 
+area due to the body contact. This parameter only applies for the same-type gate. For the 
+opposite-type gate, the charge will be overestimated by Agbcp. Charge model has to be modified 
+to include the effect of P+/P region in this case.  
+
+Chapter 4: MOS C-V Model  
+ 
+BSIMSOIv4.4 Manual Copyright © 2010, UC Berkeley 
+Page 31 
+ 
+   The higher VFB in the P+/P region lowers the gate charge and the net gate charge is the sum of 
+N+/P and P+/P regions as shown below. One new instance parameter Agbcp2 is introduced to 
+account for the opposite-type parasitic capacitance. The final charge could be expressed as 
+following: 
+2
+Total Charge = 
+/
+/
+/
+gbcp
+gbcp
+WL N
+NMOS
+A
+N
+NMOS
+A
+P
+NMOS
+
+
+
+
+
+
+
+
+ 
+          (4.19) 
+ 
+Fig. 4.5                           The total charge in the opposite-type gate. 
+ 
+ 
+Note: In this case, there is a new instant parameters agbcp2, which is similar to agbcp and 
+specified on a total transistor basis. 
+ 
+4.6  
+Finite Thickness Formulation 
+      The finite thickness formulation is similar to that in BSIM4. 
+mtrlMod=0 
+
+Chapter 4: MOS C-V Model  
+ 
+BSIMSOIv4.4 Manual Copyright © 2010, UC Berkeley 
+Page 32 
+ 
+      The charge thickness introduces a capacitance in series with Cox, resulting in an effective 
+Coxeff. Based on numerical self-consistent solution of Shrődinger, Poisson and Fermi-Dirac 
+equations, universal and analytical XDC models have been developed. Coxeff can be expressed as: 
+oxp
+cen
+oxeff
+oxp
+cen
+C
+C
+C
+C
+C
+
+
+
+ 
+(4.20) 
+where 
+/
+cen
+si
+DC
+C
+X
+
+
+ 
+(4.21) 
+(i) XDC for accumulation and depletion 
+     The DC charge thickness in the accumulation and depletion regions can be expressed by 
+0.25
+16
+1
+exp
+3
+2 10
+gse
+bseff
+FBeff
+DC
+debye
+V
+V
+V
+NDEP
+X
+L
+ACDE
+TOXP
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+(4.22) 
+where Ldebye is Debye length, and XDC is in the unit of cm and (Vgse - Vbseff - VFBeff) / TOXP is in 
+units of MV/cm. For numerical stability, (4.22) is replaced by (4.23) 
+
+
+2
+max
+0
+0
+max
+1
+4
+2
+DC
+x
+X
+X
+X
+X
+X
+
+
+
+
+
+ 
+(4.23) 
+where  
+0
+max
+DC
+x
+X
+X
+X
+
+
+
+
+ 
+(4.24) 
+ 
+and Xmax = Ldebye / 3;  = 10-3TOXE. 
+(ii) XDC of inversion charge 
+      The inversion charge layer thickness can be formulated as 
+
+
+9
+0.7
+1.9 10
+m
+4
+0
+1
+2
+DC
+BDOS
+gsteff
+s
+ADOS
+X
+V
+VTH
+VFB
+TOXP
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+(4.25) 
+    Here, the density of states parameters ADOS and BDOS are introduced to control the charge 
+centroid. Their default values are one. 
+Through the VFB term, equation (4.25) is found to be applicable to N+ or P+ poly-Si gates and 
+even other future gate materials. 
+(iii) Body charge thickness in inversion 
+
+Chapter 4: MOS C-V Model  
+ 
+BSIMSOIv4.4 Manual Copyright © 2010, UC Berkeley 
+Page 33 
+ 
+     In inversion region, the body charge thickness effect is modeled by including the deviation of 
+the surface potential ФS (bias-dependence) from 2 ФB  
+1
+2
+1
+(
+2
+2
+2
+ln 1
+gsteffCV
+gsteffCV
+ox
+B
+s
+B
+t
+ox
+t
+V
+V
+K
+MOIN K
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+(4.26) 
+    The channel charge density is therefore derived as 
+
+
+,
+inv
+oxeff
+gsteff CV
+eff
+q
+C
+V
+
+
+
+
+
+ 
+(4.27) 
+ 
+mtrlMod = 1 
+    In this case, TOXP should be iteratively calculated by EOT first: 
+,
+0
+3.9
+gs
+ds
+bs
+DC V
+VDDEOT V
+V
+TOXP
+EOT
+X
+EPSRSUB
+
+
+
+
+
+
+ 
+(4.28) 
+ 
+ 
+     With the calculated TOXP, XDC could be obtained at different gate voltage, just like 
+mtrlMod=0. 
+
+Chapter 5: Temperature Dependence and Self-Heating 
+BSIMSOIv4.4 Manual Copyright © 2010, UC Berkeley 
+Page 34 
+ 
+Chapter 5: Temperature Dependence and Self-Heating 
+Self-heating in SOI is more important than in bulk since the thermal conductivity of silicon 
+dioxide is about two orders of magnitude lower than that of silicon [15]. It may degrade the 
+carrier mobility, increase the junction leakage [20], enhance the impact ionization rate [24], and 
+therefore affect the output characteristics [16] of floating-body SOI devices.  
+5.1.  Temperature Dependence 
+The temperature dependence of threshold voltage, mobility, saturation velocity and series 
+resistance in BSIMSOI is identical to BSIM3v3. However a different temperature dependence of 
+diode characteristics is adopted in BSIMSOI4.0:   
+ 
+(300
+)
+exp
+1
+g
+sbjt
+sbjt
+bjt
+diodes
+t
+nom
+E
+K
+T
+j
+i
+X
+n
+V
+T
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+(300
+)
+exp
+1
+g
+dbjt
+dbjt
+bjt
+dioded
+t
+nom
+E
+K
+T
+j
+i
+X
+n
+V
+T
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+ 
+(300
+)
+exp
+1
+g
+sdif
+sdif
+dif
+diodes
+t
+nom
+E
+K
+T
+j
+i
+X
+n
+V
+T
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+(300
+)
+exp
+1
+g
+ddif
+ddif
+dif
+dioded
+t
+nom
+E
+K
+T
+j
+i
+X
+n
+V
+T
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+ 
+0
+(300
+)
+exp
+1
+g
+srec
+srec
+rec
+recf
+s
+t
+nom
+E
+K
+T
+j
+i
+X
+n
+V
+T
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+0
+(300
+)
+exp
+1
+g
+drec
+drec
+rec
+recf
+d
+t
+nom
+E
+K
+T
+j
+i
+X
+n
+V
+T
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+ 
+exp
+1
+stun
+stun
+tun
+nom
+T
+j
+i
+X
+T
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+Chapter 5: Temperature Dependence and Self-Heating 
+BSIMSOIv4.4 Manual Copyright © 2010, UC Berkeley 
+Page 35 
+ 
+exp
+1
+dtun
+dtun
+tun
+nom
+T
+j
+i
+X
+T
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+(5.1) 
+0
+1
+1
+recrs
+recr s
+recr
+nom
+T
+n
+n
+nt
+T
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+0
+1
+1
+recrd
+recr d
+recr
+nom
+T
+n
+n
+nt
+T
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+ 
+0
+1
+1
+recfs
+recf
+s
+recf
+nom
+T
+n
+n
+nt
+T
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+0
+1
+1
+recfd
+recf
+d
+recf
+nom
+T
+n
+n
+nt
+T
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+ 
+The parameters 
+,
+,
+,
+,
+,
+,
+,
+sbjt
+dbjt
+sdif
+ddif
+srec
+drec
+stun
+dtun
+i
+i
+i
+i
+i
+i
+i
+i
+ are diode saturation currents at the nominal 
+temperature 
+nom
+T
+, and the parameters 
+tun
+rec
+dif
+bjt
+X
+X
+X
+X
+,
+,
+,
+ are provided to model the temperature 
+dependence. Notice that the non-ideality factors 
+,
+,
+,
+recfs
+recfd
+recrs
+recrd
+n
+n
+n
+n
+ are also temperature 
+dependent. 
+5.2. Self-Heating Implementation 
+BSIMPD/BSIMSOI models the self-heating by an auxiliary 
+th
+thC
+R
+ circuit as shown in Fig. 
+5.1 [18]. The temperature node (T node) will be created in SPICE simulation if the self-heating 
+selector shMod is ON and the thermal resistance is non-zero. The T node is treated as a voltage 
+node and is connected to ground through a thermal resistance Rth and a thermal capacitance Cth: 
+ 
+0
+0
+th
+'
+eff
+th
+th
+W
+W
+R
+R
+
+
+, 
+)
+W
+W
+(
+C
+C
+th
+'
+eff
+th
+th
+0
+0
+
+
+ 
+(5.2) 
+where 
+0
+th
+R
+ and 
+0
+th
+C
+ are normalized thermal resistance and capacitance, respectively. Wth0 is the 
+minimum width for thermal resistance calculation [19]. Notice that the current source is driving a 
+current equal to the power dissipated in the device. 
+
+Chapter 5: Temperature Dependence and Self-Heating 
+BSIMSOIv4.4 Manual Copyright © 2010, UC Berkeley 
+Page 36 
+ 
+ 
+P
+I
+V
+ds
+ds
+
+
+ 
+(5.3) 
+To save computation time, the turn-on surface potential s (Phi) is taken to be a constant 
+within each timepoint because a lot of parameters (e.g. Xdep) are function of s. Each timepoint 
+will use a s calculated with the temperature iterated in the previous timepoint. However this 
+approximation may induce error in DC, transient and AC simulation. Therefore, it is a tradeoff 
+between accuracy and speed. The error in DC or transient is minimal if the sweeping step or time 
+step is sufficiently small. 
+ 
+ 
+ 
+IdVd
+Rth
+Cth
+ 
+Fig. 5.1 
+Equivalent circuit for self-heating simulation. 
+ 
+
+Chapter 6: BSIMSOI - A Unified Model for PD and FD SOI MOSFETs 
+BSIMSOIv4.4 Manual Copyright © 2010, UC Berkeley 
+Page 37 
+ 
+Chapter 6: BSIMSOI –A Unified Model for PD and 
+FD SOI MOSFETs 
+Using BSIMPD as a foundation, we have developed a unified model for both PD and FD SOI 
+circuit designs based on the concept of body-source built-in potential lowering [20, 25]. 
+6.1. BSIMSOI Framework and Built-In Potential Lowering Model 
+As described in [20], we construct BSIMSOI based on the concept of body-source built-in 
+potential lowering, Vbi. There are four modes (soiMod = 0, 1, 2 and 3) in BSIMSOI: BSIMPD 
+(soiMod = 0) can be used to model the PD SOI device, where the body potential is independent 
+of Vbi (VBS > Vbi). Therefore the calculation of Vbi is skipped in this mode. On the other 
+hand, the ideal FD model (soiMod = 2) is for the FD device with body potential equal to Vbi. 
+Hence the calculation of body current/charge, which is essential to the PD model, is skipped. For 
+the unified SOI model (soiMod = 1), however, both Vbi and body current/charge are calculated 
+to capture the floating-body behavior exhibited in FD devices. As shown in Figure 6.1, this 
+unified model covers both BSIMPD and the ideal FD model. When soiMod = 3, BSIMSOI will 
+select the operation mode based on Vbs0t (For details, refer Section 6.3) 
+ 
+
+Chapter 6: BSIMSOI - A Unified Model for PD and FD SOI MOSFETs 
+BSIMSOIv4.4 Manual Copyright © 2010, UC Berkeley 
+Page 38 
+ 
+Fig. 6.1 The body potential in the unified model approaches the VBS solved in BSIMPD for PD 
+devices, while returns to Vbi for ideal FD devices [20].  
+ 
+ 
+This unified model shares the same floating-body module as BSIMPD, with a generalized diode 
+current model considering the body-source built-in potential lowering effect (IBS  exp(-
+qVbi/kT)). Therefore, an accurate and efficient Vbi model is crucial. The following 
+formulation for Vbi is mainly based on the Poisson equation and the physical characterization 
+for Vbi, as presented in [25].  
+      In order to keep backward compatibility, a new model selector fdMod is introduced. Here, 
+fdMod = 0 is the old Vbi formulation, while fdMod = 1 is the new one that is easier to fit. 
+    
+    fdMod = 0 
+For a given surface band bending  (source reference), Vbi can be formulated by applying 
+the Poisson equation in the vertical direction and continuity of normal displacement at the back 
+interface: 
+ 
+0.0
+0.5
+1.0
+1.5
+2.0
+0.0
+0.1
+0.2
+0.3
+0.4
+0.5
+0.6
+0.7
+Vbi
+VGS=0.5V
+L=0.5m
+TSi=40nm
+ 
+ 
+ soiMod=0 (BSIMPD)
+ soiMod=1 (Unified Model)
+ soiMod=2 (Ideal FD)
+VBS (V)
+VDS (V)
+
+Chapter 6: BSIMSOI - A Unified Model for PD and FD SOI MOSFETs 
+BSIMSOIv4.4 Manual Copyright © 2010, UC Berkeley 
+Page 39 
+ 
+
+
+
+
+
+OX
+OX
+OX
+BOX
+OX
+BOX
+Si
+Si
+Si
+FBb
+bGS
+BOX
+Si
+BOX
+eff
+e
+DIBL
+Si
+Si
+ch
+BOX
+Si
+Si
+bi
+T
+C
+,
+T
+C
+,
+T
+C
+V
+V
+C
+C
+C
+L
+V
+T
+qN
+C
+C
+C
+V
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+          
+  
+2
+2
+ 
+(6.1). 
+ 
+The first term of Equation (6.1) represents the frontgate coupling. TSi is the SOI thickness. Nch 
+accounts for the effective channel doping, which may vary with channel length due to the non-
+uniform lateral doping effect. Here, 
+2
+2
+Si
+si
+ch T
+qN
+
+ is band bending in the body due to depletion 
+charges, which is limited to (Eg-0.1) eV in v4.4. In SOIMOD=2, for any combinations of TSi and 
+Nch, if this term exceeds this limit, Nch is lowered accordingly. The second term of Equation (6.1) 
+represents the backgate coupling (VbGS). VFBb is the backgate flatband voltage. Equation (6.1) 
+shows that the impact of frontgate on Vbi reaches maximum when the buried oxide thickness, 
+TBOX, approaches infinity. 
+      In Equation (6.1), VDIBL represents the short channel effect on Vbi, 
+ 
+ 
+
+
+B
+bi
+eff
+vbd
+eff
+vbd
+vbd
+DIBL
+V
+l
+L
+D
+exp
+l
+L
+D
+exp
+D
+V
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+2
+2
+2
+1
+1
+0
+  
+ 
+(6.2), 
+ 
+as addressed in [25]. Here l is the characteristic length for the short-channel-effect calculation. 
+Dvbd0 and Dvbd1 are model parameters. Similarly, the following equation 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+l
+L
+D
+exp
+l
+L
+D
+exp
+K
+K
+L
+eff
+b
+k
+eff
+b
+k
+b
+b
+eff
+e
+2
+2
+2
+1
+2
+2
+
+ 
+ 
+ 
+(6.3) 
+is used to account for the short channel effect on the backgate coupling, as described in [25]. 
+DK1b, DK2b, K1b (default 1) and K2b (default 0) are model parameters. 
+ 
+fdMod = 1 
+     However, the two length-dependent functions (i.e., Eqr (6.2) and (6.3)) in Vbi model make 
+the parameter extraction difficult. Thus, BSIMSOI4.1 introduces a new Vbi equation as 
+following: 
+
+Chapter 6: BSIMSOI - A Unified Model for PD and FD SOI MOSFETs 
+BSIMSOIv4.4 Manual Copyright © 2010, UC Berkeley 
+Page 40 
+ 
+
+
+0
+2
+(1
+/
+)
+2
+          
+ 
+ch
+pe
+eff
+si
+bi
+si
+nonideal
+si
+BOX
+Si
+BOX
+bGS
+FBb
+SCE
+si
+BOX
+si
+BOX
+qN
+L
+L
+C
+V
+T
+V
+C
+C
+CDSBS
+C
+CDSBS
+V
+V
+V
+C
+C
+CDSBS
+C
+C
+CDSBS
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+                 (6.4) 
+     CDSBS is the new model parameter representing the capacitance of drain to the body-source 
+potential. ∆VSCE is the length dependence of the capacitance coupling from drain. VSCE is the 
+new model parameter for SCE of ∆Vbi at zero Vds. 
+
+
+0
+exp
+1
+2exp
+1
+2
+eff
+eff
+SCE
+ds
+L
+L
+V
+DVBD
+DVBD
+DVBD
+V
+VSCE
+l
+l
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+                 
+(6.4) 
+     If body contact devices are available, a direct probe of ∆Vbi can be achieved by finding the 
+onset of the external body bias after the channel current (threshold voltage) of FD device is 
+modulated. 
+     If body contact devices are not available, the length dependence related parameters of ∆Vbi 
+will be set to the value of SCE parameters in VT equation. 
+0
+1
+0
+1
+VT
+VT
+Dvbd
+D
+Dvbd
+D
+
+
+ 
+                 (6.5) 
+ 
+ 
+The surface band bending, , is determined by the frontgate VGS and may be approximated by 
+ 
+ 
+
+
+
+
+
+T
+GS
+GS
+T
+BOX
+Si
+OX
+OX
+ON
+T
+GS
+ON
+V
+V
+V
+V
+C
+C
+C
+C
+V
+V
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+for
+   
+         
+      
+ 
+for
+    
+          
+1
+1
+1
+
+ 
+ 
+ 
+(6.6). 
+ 
+To improve the simulation convergence, the following single continuous function from 
+subthreshold to strong inversion is used: 
+ 
+
+
+,
+_
+,
+,
+1
+1
+1
+,
+ln 1 exp
+T FD
+gs eff
+OFF FD
+OX
+ON
+OFF FD t
+OFF FD t
+OX
+Si
+BOX
+V
+V
+V
+C
+N
+v
+N
+v
+C
+C
+C
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+   (6.7). 
+
+Chapter 6: BSIMSOI - A Unified Model for PD and FD SOI MOSFETs 
+BSIMSOIv4.4 Manual Copyright © 2010, UC Berkeley 
+Page 41 
+ 
+ 
+Here Vgs_eff is the effective gate bias considering the poly-depletion effect. VT,FD is the threshold 
+voltage at VBS = Vbi(=2B). NOFF,FD (default 1) and VOFF,FD (default 0) are model parameters 
+introduced to improve the transition between subthreshold and strong inversion. Vt is the thermal 
+voltage. Notice that the frontgate coupling ratio in the subthreshold regime approaches 1 as TBOX 
+approaches infinity. 
+ 
+To accurately model Vbi and thus the device output characteristics, the surface band bending 
+at strong inversion, ON, is not pinned at 2B. Instead, the following equation 
+ 
+
+
+.
+,
+2
+2 1 2
+2
+ln 1
+1
+gsteff FD
+gsteff FD
+B
+ON
+B
+t
+t
+V
+V
+K
+v
+moin K
+v
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+ 
+ 
+ 
+(6.8) 
+ 
+is used to account for the surface potential increment with gate bias in the strong inversion 
+regime [4]. Here moin is a model parameter. K1 is the body effect coefficient. Notice that a 
+single continuous function, 
+  
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+t
+FD
+,
+OFF
+FD
+,
+OFF
+FD
+,
+T
+eff
+_
+gs
+t
+FD
+,
+OFF
+FD
+,
+gsteff
+V
+N
+V
+V
+V
+exp
+ln
+V
+N
+V
+1
+ 
+ 
+ 
+(6.9) 
+ 
+has been used to represent the gate overdrive in Equation (6.7). 
+6.2. Verification 
+The BSIMPD parameter extraction methodology presented in [20] may still be used under the 
+unified BSIMSOI framework, provided that the link between PD and FD, Vbi, can be accurately 
+extracted. As described in [25], a direct probe of Vbi can be achieved by finding the onset of the 
+external body bias (through a body contact) after which the threshold voltage and hence the 
+channel current of the FD SOI device is modulated. When the body contact is not available, 
+nevertheless, model parameters related to Vbi should be extracted based on the subthreshold 
+
+Chapter 6: BSIMSOI - A Unified Model for PD and FD SOI MOSFETs 
+BSIMSOIv4.4 Manual Copyright © 2010, UC Berkeley 
+Page 42 
+ 
+characteristics of the floating-body device. As shown in Figure 6.2, the reduction of Vbi with 
+backgate bias is responsible for the transition from the ideal subthreshold swing (~ 60 mV/dec. at 
+room temperature) to the non-ideal one. 
+Figure 6.2 clearly shows that the PD/FD transition can be captured by the Vbi approach. In 
+other words, Vbi is indeed an index of the degree of full depletion, as pointed out in [20, 25]. As 
+shown in Figure 6.3, larger floating-body effect can be observed for negative backgate bias due 
+to smaller Vbi. In case the Vbi value is raised by charge sharing as described in [25], it can be 
+predicted that the short-channel device should exhibit less floating-body effect than the long-
+channel one due to larger Vbi, as verified in Figure 6.4. 
+ 
+   
+(Left) Fig. 6.2 The PD/FD transition can be captured by modeling Vbi [20]. 
+ 
+(Right) Fig. 6.3 Larger floating-body effect can be seen for the negative backgate bias (source 
+reference) due to smaller Vbi [20]. 
+ 
+ 
+ 
+-0.5
+0.0
+0.5
+1.0
+1.5
+10
+-13
+10
+-12
+10
+-11
+10
+-10
+10
+-9
+10
+-8
+10
+-7
+10
+-6
+10
+-5
+10
+-4
+~102mV/dec.
+~67mV/dec.
+LG=0.5m
+VDS=0.05V
+T=27
+oC
+ 
+ 
+VbGS=4V 
+  2V
+  0V
+ -2V
+ -4V
+line: model
+ID (A)
+VGS (V)
+0.0
+0.3
+0.6
+0.9
+1.2
+1.5
+0.0000
+0.0005
+0.0010
+0.0015
+0.0020
+0.6V
+0.9V
+1.2V
+VGS=1.5V
+LG=0.5m
+line: model
+ 
+ 
+VbGS=0V
+VbGS=-1.5V
+ID (A)
+VDS (V)
+
+Chapter 6: BSIMSOI - A Unified Model for PD and FD SOI MOSFETs 
+BSIMSOIv4.4 Manual Copyright © 2010, UC Berkeley 
+Page 43 
+ 
+ 
+Fig. 6.4 Less floating-body effect can be seen for the short-channel device due to larger Vbi 
+[20]. 
+ 
+ 
+ 
+6.3. Model Selector SOIMOD 
+The model selector, SoiMod, is an instance parameter and a model parameter. SoiMod will 
+determine the operation of BSIMSOI. 
+ 
+If SoiMod=0 (default), the model equation is identical to BSIMPD equation. 
+ 
+If SoiMod=1 (unified model for PD&FD) or SoiMod=2 (ideal FD), the following equations (FD 
+module) are added on top of BSIMPD. 
+ 
+ 
+
+Chapter 6: BSIMSOI - A Unified Model for PD and FD SOI MOSFETs 
+BSIMSOIv4.4 Manual Copyright © 2010, UC Berkeley 
+Page 44 
+ 
+
+
+
+
+
+
+B
+bi
+eff
+vbd
+eff
+vbd
+vbd
+DIBL
+OX
+OX
+OX
+BOX
+OX
+BOX
+Si
+Si
+Si
+FBb
+es
+BOX
+Si
+BOX
+e
+DIBL
+nonideal
+Si
+Si
+eff
+LX
+ch
+BOX
+Si
+Si
+bs
+V
+l
+L
+D
+exp
+l
+L
+D
+exp
+D
+V
+T
+C
+,
+T
+C
+,
+T
+C
+V
+V
+C
+C
+C
+V
+V
+T
+L
+N
+qN
+phi
+C
+C
+C
+V
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+2
+2
+2
+  
+ where
+  
+2
+1
+1
+1
+0
+2
+0
+
+
+
+
+
+ 
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+l
+L
+D
+exp
+l
+L
+D
+exp
+K
+K
+eff
+b
+k
+eff
+b
+k
+b
+b
+e
+2
+2
+2
+1
+2
+2
+
+ 
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+t
+FD
+,
+OFF
+FD
+,
+OFF
+eff
+_
+gs
+FD
+,
+th
+t
+FD
+,
+OFF
+BOX
+Si
+OX
+OX
+ON
+V
+N
+V
+V
+V
+exp
+ln
+V
+N
+C
+C
+C
+C
+phi
+phi
+1
+1
+1
+1
+ 
+ 
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+2
+1
+2
+1
+2
+1
+2
+t
+B
+FD
+,
+gsteff
+FD
+.
+gsteff
+t
+B
+ON
+V
+K
+MoinFD
+K
+V
+V
+ln
+V
+phi
+,  
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+t
+FD
+,
+OFF
+FD
+,
+OFF
+FD
+,
+th
+eff
+_
+gs
+t
+FD
+,
+OFF
+FD
+,
+gsteff
+V
+N
+V
+V
+V
+exp
+ln
+V
+N
+V
+1
+ 
+ 
+Here Nch is the channel doping concentration. NLX is the lateral non-uniform doping coefficient 
+to account for the lateral non-uniform doping effect. VFBb is the backgate flatband voltage. Vth,FD 
+is the threshold voltage at Vbs=Vbs0(phi=2B). vt is thermal voltage. K1 is the body effect 
+coefficient. 
+ 
+ 
+If SoiMod=1, the lower bound of Vbs (SPICE solution) is set to Vbs0. If SoiMod=2, Vbs is pinned 
+at Vbs0. Notice that there is no body node and body leakage/charge calculation in SoiMod=2.  
+ 
+The zero field body potential that will determine the transistor threshold voltage, Vbsmos, is then 
+calculated by 
+ 
+
+Chapter 6: BSIMSOI - A Unified Model for PD and FD SOI MOSFETs 
+BSIMSOIv4.4 Manual Copyright © 2010, UC Berkeley 
+Page 45 
+ 
+
+
+
+
+
+
+0
+2
+0
+if 
+ 
+   
+2
+else
+ 
+ 
+  
+bs
+bs
+OX
+Si
+bsmos
+bs
+bs
+OX
+bs
+ch
+Si
+bsmos
+bs
+V
+V
+T
+C
+V
+V
+V
+T
+V
+qN T
+V
+V
+
+
+
+
+
+
+ 
+ 
+ 
+The subsequent clamping of Vbsmos will use the same equation that utilized in BSIMPD. Please 
+download the BSIMPD manual at (www-device.eecs.Berkeley.edu/~bsimsoi). 
+ 
+If SoiMod=3 is specified, BSIMSOI will select the operation mode for the user based on the 
+estimated value of Vbs0 at phi=2B (bias independent), Vbs0t: 
+  
+If Vbs0t > Vbs0fd, BSIMSOI will be in the ideal FD mode (SoiMod=2). 
+If Vbs0t < Vbs0pd, BSIMSOI will be in the BSIMPD mode (SoiMod=0).  
+Otherwise, BSIMSOI will be operated under SoiMod=1.  
+Notice that both Vbs0fd and Vbs0pd are model parameters.
+
+Chapter 7: BSIMSOI RF Model 
+BSIMSOIv4.4 Manual Copyright © 2010, UC Berkeley 
+Page 46 
+ 
+Chapter 7: BSIMSOI RF Model 
+BSIMSOI4.1 provides the gate resistance model and body resistance model for devices used in 
+RF application. 
+ 
+7.1  
+Gate Electrode and Intrinsic-Input Resistance (IIR) Model 
+ 
+Users have four options for modeling gate electrode resistance (bias independent) and intrinsic-
+input resistance (Rii, bias-dependent) by choosing model choice parameter rgateMod. 
+ 
+RgateMod = 0 (zero-resistance): 
+ 
+In this case, no gate resistance is generated. 
+ 
+RgateMod = 1 (constant-resistance): 
+ 
+ 
+ 
+In this case, only the electrode gate resistance (bias-independent) is generated by adding an 
+internal gate node. The electrode gate resistance Rgeltd is given by 
+Rgeltd 
+
+Chapter 7: BSIMSOI RF Model 
+BSIMSOIv4.4 Manual Copyright © 2010, UC Berkeley 
+Page 47 
+ 
+
+
+XGL
+L
+NGCON
+NSEG
+NGCON
+W
+XGW
+RSHG
+Rgeltd
+drawn
+eff
+
+
+
+
+
+
+
+
+
+
+
+
+
+3
+ 
+ 
+ 
+ 
+ 
+(7.1) 
+ 
+ 
+ 
+RgateMod = 2 (RII model with variable resistance): 
+ 
+ 
+ 
+In this case, the gate resistance is the sum of the electrode gate resistance and the intrinsic-input 
+resistance Rii as given by 
+
+
+
+
+
+
+
+
+
+
+eff
+B
+oxeff
+eff
+eff
+dseff
+ds
+qL
+T
+k
+C
+W
+XRCRG
+V
+I
+XRCRG
+Rii
+
+2
+1
+1
+  
+ 
+ 
+(7.2) 
+An internal gate node will be generated.  
+ 
+RgateMod = 3 (RII model with two nodes): 
+In this case, the gate electrode resistance is in series with the intrinsic-input resistance Rii 
+through two internal gate nodes, so that the overlap capacitance current will not pass through the 
+intrinsic-input resistance. 
+ 
+Rgeltd+ 
+Rii 
+
+Chapter 7: BSIMSOI RF Model 
+BSIMSOIv4.4 Manual Copyright © 2010, UC Berkeley 
+Page 48 
+ 
+ 
+ 
+ 
+7.2  
+Body Resistance Network 
+ 
+RbodyMod = 0 
+In this case, body resistance network turns off. RF data still could be fit for fully depleted SOI 
+device [28]. 
+ 
+RbodyMod =1 
+A two-resistance body resistance network turns on as shown in the following figure. 
+Two extra nodes sbNode and dbNode are introduced in this case. The body resistor 
+RBSB/RBDB are located between sbNode/dbNode and bNode. As in BSIM4, a minimum 
+conductance, GBMIN, is introduced in parallel with each resistance and therefore to prevent 
+infinite resistance values, which would otherwise cause poor convergence. 
+Note that the intrinsic model body reference point in this case is the internal body node bNode, 
+into which the impact ionization current Iii and the GIDL current IGIDL flow. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Rgeltd 
+Rii 
+Cgdo 
+Cgso 
+sbRbdb
+sbRbdb
+
+Chapter 8: BSIM SOI Noise Model 
+BSIMSOIv4.4 Manual Copyright © 2010, UC Berkeley 
+Page 49 
+ 
+ 
+Chapter 8 BSIMSOI Noise Model 
+8.1  
+Flicker noise models 
+BSIMSOI4.1 provides two flicker noise models. When the model selector fnoiMod is set to 
+0, a simple flicker noise model which is convenient for hand calculation is invoked. A 
+unified physical flicker noise model, which is the default model, will be used if fnoiMod=1. 
+These two modes come from BSIMSOI3.1, but the unified model has many improvements. 
+For instance, it is now smooth over all bias regions and considers the bulk charge effect. 
+ 
+ fnoiMod = 0 (simple model) 
+The noise density is: 
+1
+( )
+0
+AF
+AF
+eff
+ds
+id
+BF
+EF
+oxe
+eff
+W
+KF I
+S
+f
+W FLK
+C
+L
+f
+
+
+
+
+
+
+
+
+
+
+
+ 
+                (8.1) 
+ 
+ 
+ 
+ fnoiMOd = 1 (unified model) 
+ 
+The physical mechanism for the flicker noise is trapping/de-trapping related charge 
+fluctuation in oxide traps, which results in fluctuations of both mobile carrier numbers and 
+mobility in the channel. The unified flicker noise model captures this physical process. 
+ 
+The noise density in inversion region is given by: 
+
+Chapter 8: BSIM SOI Noise Model 
+BSIMSOIv4.4 Manual Copyright © 2010, UC Berkeley 
+Page 50 
+ 
+
+
+
+
+
+
+2
+2
+2
+0
+,
+0
+0
+2
+10
+2
+2
+2
+2
+10
+( )
+log
+10
+2
+10
+B
+eff
+ds
+id inv
+l
+l
+ef
+oxe
+eff
+bulk
+l
+B
+ds
+clm
+l
+l
+ef
+eff
+eff
+l
+k Tq
+I
+N
+NOIC
+N
+S
+f
+NOIA
+NOIB
+N
+N
+N
+N
+C
+L A
+f
+N
+N
+k TI
+L
+NOIA
+NOIB N
+NOIC N
+W L
+f
+N
+N
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+          
+(8.2) 
+Where 
+eff
+
+ is the effective mobility at the given bias condition, and 
+eff
+L
+ and 
+eff
+W
+ are the 
+effective length and width respectively. The parameter 
+0
+N  is the charge density at the source 
+side given by: 
+0
+ox
+gsteff
+C V
+N
+q
+
+ 
+                (8.3) 
+ 
+The parameter 
+l
+N  is the charge density at the source side given by: 
+1
+2
+ox
+gsteff
+bulk
+dseff
+l
+gsteff
+t
+C V
+A
+V
+N
+q
+V
+v
+
+
+
+
+
+
+
+
+
+
+
+ 
+                (8.4) 
+ 
+ 
+
+N  is given by: 
+2
+(
+)
+B
+ox
+d
+k T
+C
+C
+CIT
+N
+q
+
+
+
+
+
+ 
+                (8.5) 
+ 
+where CIT is a model parameter from DC IV and 
+d
+C  is the depletion capacitance. 
+ 
+clm
+L
+
+ is the channel length reduction due to channel length modulation and given by: 
+log
+2
+ds
+dseff
+clm
+sat
+sat
+eff
+V
+V
+EM
+Litl
+L
+Litl
+E
+VSAT
+E
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+                (8.6) 
+ 
+In the subthreshold region, the noise density is written as: 
+
+Chapter 8: BSIM SOI Noise Model 
+BSIMSOIv4.4 Manual Copyright © 2010, UC Berkeley 
+Page 51 
+ 
+2
+,
+*2
+10
+( )
+10
+B
+ds
+id subVt
+EF
+eff
+eff
+NOIA k T I
+S
+f
+W L
+f
+N
+
+
+
+
+ 
+                (8.5) 
+ 
+ 
+The total flicker noise density is given by 
+,
+,
+,
+,
+( )
+( )
+( )
+( )
+( )
+id inv
+id subvt
+id
+id inv
+id subvt
+S
+f
+S
+f
+S
+f
+S
+f
+S
+f
+
+
+
+ 
+                (8.6) 
+ 
+ 
+8.2  
+Thermal noise models 
+There are three channel thermal noise models in BSIMSOI4.0 beta version. One is the charge 
+based model (default) similar to that used in BSIMSOI3.1. The second is the BSIM4 
+compatible holistic thermal noise model. The simple SPICE2 thermal noise model is also 
+provided in BSIMSOI4.1. These three models can be selected through the model selector 
+tnoiMod. 
+ 
+ tnoiMod = 0 (charge based model) 
+The noise current is given by  
+2
+2
+4
+B
+d
+eff
+ds
+eff
+inv
+k T f
+i
+NTNOI
+L
+R
+Q
+
+
+
+
+
+ 
+                (8.7) 
+ 
+ 
+where 
+ds
+R  is the source/drain resistance, and the parameter NTNOI is introduced for more 
+accurate fitting of short-channel devices. 
+inv
+Q
+ is the inversion channel charge computed from 
+the capacitance models 
+ 
+ tnoiMod = 1 (holistic model) 
+In this thermal noise model, all the short-channel effects and velocity saturation effect 
+incorporated in the IV model are automatically included, hence the name “holistic thermal 
+
+Chapter 8: BSIM SOI Noise Model 
+BSIMSOIv4.4 Manual Copyright © 2010, UC Berkeley 
+Page 52 
+ 
+noise model”. In addition, the amplification of the channel thermal noise through 
+m
+G  and 
+mbs
+G
+ as well as the induced-gate noise with partial correlation to the channel thermal noise 
+are all captured in the new “noise partition” model.  
+ 
+The noise voltage source partitioned to the source side is given by: 
+2
+2
+4
+dseff
+d
+B
+tnoi
+ds
+V
+f
+v
+k T
+I
+
+
+
+
+
+ 
+                (8.8) 
+ 
+ 
+and the noise current source put in the channel region with gate and body amplification is 
+given by: 
+
+
+
+
+2
+2
+2
+2
+4
+dseff
+d
+B
+ds
+tnoi
+m
+mbs
+d
+m
+ds
+mbs
+ds
+V
+f
+i
+k T
+G
+G
+G
+v
+G
+G
+G
+I
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+                (8.9) 
+ 
+where 
+2
+2
+1
+1
+gsteff
+tnoi
+eff
+sat
+eff
+gsteff
+tnoi
+eff
+sat
+eff
+V
+RNOIB
+TNOIB L
+E L
+V
+RNOIA
+TNOIA L
+E L
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+                    (8.10) 
+ 
+ 
+ tnoiMod = 2 (SPICE2 model) 
+
+
+2
+8
+3
+B
+d
+m
+mbs
+ds
+k T f
+i
+NTNOI
+G
+G
+G
+
+
+
+
+
+
+ 
+                (8.11) 
+ 
+The parameter NTNOI is added to give the flexibility to tune the magnitude of noise 
+density. 
+ 
+
+Chapter 8: BSIM SOI Noise Model 
+BSIMSOIv4.4 Manual Copyright © 2010, UC Berkeley 
+Page 53 
+ 
+8.3  
+Other improvement on noise model 
+In BSIMSOI4.1, some other improvements on noise model are made as following 
+1. Body contact resistance induced thermal noise is introduced. 
+2. Thermal noise induced by the body resistance network is introduced as RBODYMOD=1. 
+3. Shot noises induced by Ibs and Ibd are equal in BSIMSOI3.2 and BSIMPD. In 
+BSIMSOI4.0, these two noises are separated. 
+
+Chapter 9: Stress Effect Model 
+BSIMSOIv4.4 Manual Copyright © 2010, UC Berkeley 
+Page 54 
+ 
+Chapter 9 
+Stress Effect Model 
+The mechanical stress effect induced by process causes the performance of MOSFET to be 
+function of the active area size (OD: oxide definition) and the location of the device in the active 
+area. The necessity of new models to describe the layout dependence of MOS parameters due to 
+stress effect becomes very urgent in advance CMOS technologies. Influence of stress on mobility 
+has been well known since the 0.13um technology. The stress influence on saturation velocity is 
+also experimentally demonstrated. Stress-induced enhancement or suppression of dopant 
+diffusion during the processing is reported. Since the doping profile may be changed due to 
+different STI sizes and stress, the threshold voltage shift and changes of other second-order 
+effects, such as DIBL and body effect, were shown in process integration. 
+ 
+Experimental analysis shows that there exist at least two different mechanisms within the 
+influence of stress effect on device characteristics. The first one is mobility related which is 
+induced by the band structure modification. The second one is Vth related as a result of doping 
+profile variation. Both of them follow the same 1/LOD trend but reveal different L and W 
+scaling. A BSIM4 compatible phenomenological stress model based on these findings has been 
+developed by modifying some parameters. Note that the following equations have no impact on 
+the iteration time because there are no voltage-controlled components in them. 
+ 
+9.1  
+Mobility Related Equations 
+Mobility changes induced by stress effect is modeled by adjusting 
+0
+U and 
+sat
+V
+ according to 
+different W, L and OD shapes. The relative change of mobility is defined as follows: 
+0
+0
+0
+eff
+eff
+eff
+eff
+eff
+eff
+
+
+
+
+
+
+
+
+
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+(9.1) 
+So we have 
+
+Chapter 9: Stress Effect Model 
+BSIMSOIv4.4 Manual Copyright © 2010, UC Berkeley 
+Page 55 
+ 
+eff
+eff
+eff
+
+
+
+
+
+1
+0
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+(9.2) 
+ 
+Figure (9.1) shows the typical layout of a MOSFET on active layout surrounded by STI 
+isolation. SA, SB are the distances between isolation edge to Poly from one and the other side, 
+respectively [27]. 2D simulation shows that stress distribution can be expressed by a simple 
+function of SA and SB. Figure (9.2) shows the schematic stress distribution in the OD region 
+[29]. 
+ 
+ 
+ 
+Fig. 9.1 shows the typical layout of a MOSFET [27] 
+ 
+ 
+ 
+Fig. 9.2 Schematic stress distribution in the OD region [29] 
+
+Chapter 9: Stress Effect Model 
+BSIMSOIv4.4 Manual Copyright © 2010, UC Berkeley 
+Page 56 
+ 
+ 
+Assuming that mobility relative change is proportional to stress distribution. It can be described 
+as function of SA, SB(LOD effect), L, W, and T dependence. 
+ 
+
+
+0
+_
+_
+_ 0
+eff
+KU
+Inv
+sa
+Inv
+sb
+Kstress
+u
+
+
+
+
+
+ 
+ 
+(9.3) 
+ 
+where 
+1
+_
+0.5
+drawn
+Inv
+sa
+SA
+L
+
+
+
+, 
+1
+_
+0.5
+drawn
+Inv
+sb
+SB
+L
+
+
+
+,  
+0
+0
+0
+0
+0
+0
+1
+(
+)
+(
+)
+_ 0
+0
+1
+0
+1
+(
+)
+(
+)
+LLODKU
+WLODKU
+drawn
+drawn
+LLODKU
+WLODKU
+drawn
+drawn
+LKU
+WKU
+L
+XL
+W
+XW
+WLOD
+Kstress
+u
+PKU
+Temperature
+TKU
+L
+XL
+W
+XW
+WLOD
+TNOM
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+So that 
+ 
+ 
+0
+1
+(
+,
+)
+1
+(
+,
+)
+eff
+eff
+eff
+eff
+ref
+ref
+SA SB
+SA
+SB
+
+
+
+
+
+
+
+
+ 
+ 
+(9.4) 
+0
+1
+(
+,
+)
+1
+(
+,
+)
+eff
+eff
+sattemp
+sattemp
+ref
+ref
+KVSAT
+SA SB
+v
+v
+KVSAT
+SA
+SB
+
+
+
+
+
+
+
+
+ 
+ 
+(9.5) 
+where 
+0
+eff
+
+, 
+0
+sattemp
+v
+ are low field mobility and low field saturation velocity at 
+ref
+SA
+, 
+ref
+SB
+. 
+ref
+SA
+, 
+ref
+SB
+are reference distances between OD edge to poly from one and the other side. 
+ 
+ 
+9.2  
+Vth-related Equations 
+Vth0, K2 and ETA0 are modified to cover the doping profile change in the devices with 
+different LOD. They use the same 1/LOD formulas as shown in section(13.1.1), but different 
+equations for W and L scaling: 
+ 
+
+Chapter 9: Stress Effect Model 
+BSIMSOIv4.4 Manual Copyright © 2010, UC Berkeley 
+Page 57 
+ 
+
+
+0
+0
+0
+_
+_
+_
+_
+_
+0
+original
+ref
+ref
+KVTH
+VTH
+VTH
+Inv
+sa
+Inv
+sb
+Inv
+sa
+Inv
+sb
+Kstress
+vth
+
+
+
+
+
+ (9.6) 
+
+
+2
+2
+2
+2
+_
+_
+_
+_
+_
+0
+original
+ref
+ref
+LODK
+STK
+K
+K
+Inv
+sa
+Inv
+sb
+Inv
+sa
+Inv
+sb
+Kstress
+vth
+
+
+
+
+
+
+ (9.7) 
+
+
+0
+0
+0
+0
+_
+_
+_
+_
+_
+0
+original
+ref
+ref
+LODETA
+STETA
+ETA
+ETA
+Inv
+sa
+Inv
+sb
+Inv
+sa
+Inv
+sb
+Kstress
+vth
+
+
+
+
+
+
+ (9.8) 
+where 
+1
+_
+0.5
+ref
+ref
+drawn
+Inv
+sa
+SA
+L
+
+
+
+,  
+1
+_
+0.5
+ref
+ref
+drawn
+Inv
+sb
+SB
+L
+
+
+
+ 
+0
+0
+1
+(
+)
+(
+)
+_
+0
+0
+(
+)
+(
+)
+LLODKVTH
+WLODKVTH
+drawn
+drawn
+LLODKVTH
+WLODKVTH
+drawn
+drawn
+LKVTH
+WKVTH
+L
+XL
+W
+XW
+WLOD
+Kstress
+vth
+PKU
+L
+XL
+W
+XW
+WLOD
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+ 
+ 
+9.3  
+Multiple Finger Device 
+For multiple finger devices, as shown the layout in Fig. 9.3, the total LOD effect is the 
+average of LOD effect to every finger. That is: 
+1
+0
+1
+1
+_
+0.5
+(
+)
+NF
+i
+drawn
+drawn
+Inv
+sa
+NF
+SA
+L
+i
+SD
+L
+
+
+
+
+
+
+
+
+ 
+1
+0
+1
+1
+_
+0.5
+(
+)
+NF
+i
+drawn
+drawn
+Inv
+sb
+NF
+SB
+L
+i
+SD
+L
+
+
+
+
+
+
+
+
+ 
+ 
+ 
+Fig. 9.3 Layout of multiple-finger MOSFET [27]
+
+Chapter 10: New Material Model 
+BSIMSOIv4.4 Manual Copyright © 2010, UC Berkeley 
+Page 58 
+ 
+Chapter 10 New Material Model 
+In BSIMSOI4.1, a new global selector is introduced to turn on or of the new material models, 
+which are important for the advanced CMOS technology. When users select mtrlMod = 1, the 
+new materials (such as high k/metal gate) could be modeled. The default value (mtrlMod = 0) 
+maintains the backward compatibility. 
+10.1  Non-Silicon Channel 
+    With the three new parameters, the temperature-dependent band gap and 
+intrinsic carriers in non-silicon channel are described as follow: 
+2
+0
+0
+TBGASUB Tnom
+Eg
+BG SUB
+Tnom
+TBGBSUB
+
+
+
+
+ 
+(10.1) 
+2
+300.15
+(300.15)
+0
+300.15
+TBGASUB
+Eg
+BG SUB
+TBGBSUB
+
+
+
+
+ 
+(10.2) 
+3/2
+(300.15)
+0
+0
+exp
+300.15
+2
+i
+t
+Tnom
+Eg
+Eg
+n
+NI SUB
+v
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+(10.3) 
+2
+0
+TBGASUB Temp
+Eg
+BG SUB
+Temp
+TBGBSUB
+
+
+
+
+ 
+(10.4) 
+Here, BG0SUB is the band-gap of substrate at T=0K; TBGASUB and TBGBSUB are the first and 
+second parameters of band-gap change due to temperature, respectively. 
+When capMod=3, the inversion charge layer thickness (XDC) is also modified as follows: 
+9
+0.7
+1.9 10
+(
+0
+)
+1
+2
+DC
+BDOS
+gsteff
+s
+ADOS
+X
+V
+VTH
+VFB
+TOXP
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+(10.5) 
+Here, the density of states parameters ADOS and BDOS are introduced to control the charge 
+centroid. 
+
+Chapter 10: New Material Model 
+BSIMSOIv4.4 Manual Copyright © 2010, UC Berkeley 
+Page 59 
+ 
+10.2   Non-SiO2 Gate insulator 
+For Non-SiO2 gate insulator, the equivalent SiO2 thickness (EOT) is a new input parameter, 
+which is measured at VDDEOT. Given these new parameters (EOT and VDDEOT), the physical 
+gate oxide thickness TOXP could be calculated as follows: 
+,
+0
+3.9
+gs
+ds
+bs
+DC V
+VDDEOT V
+V
+TOXP
+EOT
+X
+EPSRSUB
+
+
+
+
+
+
+ 
+(10.6) 
+Here, EPSRSUB is the dielectric constant of substrate relative to vacuum. 
+ 
+10.3   Non-Poly Silicon Gate Material 
+Two new parameters are introduced to describe the non-poly silicon gate material. One is PHIG, 
+which is the gate work function. Another is EPSRGATE, the dielectric constant of gate relative to 
+vacuum. It is worth pointing out that EPSRGATE=0 represents the metal gate and deactivates the 
+ploy depletion effect. 
+When the gate dielectric and channel are different materials, the flat band voltage at 
+Source/Drain is calculated using the following: 
+0
+0
+(
+4
+,
+ln
+2
+2
+fbsd
+t
+i
+Eg
+Eg
+NSD
+V
+PHIG
+EASUB
+B SOItype MIN
+v
+n
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+(10.7) 
+Here B4SOItype is defined as +1 for nMOS and -1 for pMOS. 
+This new flat band equation improves the GIDL/GISL models as following: 
+3
+3
+3.9
+3.9
+                                   exp
+ds
+gse
+fbsd
+GIDL
+effCJ
+db
+ds
+gse
+fbsd
+db
+V
+V
+EGIDL
+V
+I
+AGIDL W
+Nf
+EPSRSUB
+EOT
+EPSRSUB
+EOT
+BGIDL
+V
+V
+V
+EGIDL
+V
+CGIDL
+V
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+(10.8) 
+
+Chapter 10: New Material Model 
+BSIMSOIv4.4 Manual Copyright © 2010, UC Berkeley 
+Page 60 
+ 
+3
+3
+3.9
+3.9
+                                   exp
+ds
+gse
+fbsd
+GIDS
+effCJ
+db
+ds
+gse
+fbsd
+db
+V
+V
+EGISL
+V
+I
+AGISL W
+Nf
+EPSRSUB
+EOT
+EPSRSUB
+EOT
+BGISL
+V
+V
+V
+EGISL
+V
+CGISL
+V
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+(10.9) 
+ 
+Furthermore, for mtrlMod=1 the mobility degradation uses the new expression of the vertical 
+field in channel as following: 
+ 
+(10.10) 
+2
+2
+4
+(
+/ 2
+0.45)
+3.9
+gsteff
+th
+eff
+V
+V
+B SOItype
+PHIG
+EASUB
+Eg
+E
+EOT
+EPSRSUB
+
+
+
+
+
+
+
+
+ 
+ 
+Consequently, when mtrlMod=1, mobMod=1, 2 and 3 are changed, respectively: 
+ mobMod=1 
+2
+1 (
+)
+o
+eff
+a
+c
+bseff
+eff
+b
+eff
+U
+U V
+E
+U E
+
+
+
+
+
+ 
+(10.11) 
+       
+mobMod=2 
+2
+1 (
+)(
+)
+(
+)
+2
+4
+(
+/ 2
+0.45)
+o
+eff
+gsteff
+d
+gsteff
+d
+a
+c
+bseff
+b
+ox
+ox
+d
+V
+U
+V
+U
+U
+U V
+U
+T
+T
+U
+B SOItype
+PHIG
+EASUB
+Eg
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+(10.12) 
+ 
+mobMod=3 
+0
+2
+1 [
+](1
+)
+eff
+a
+eff
+b
+eff
+c
+bseff
+U E
+U E
+U V
+
+
+
+
+
+ 
+(10.13) 
+ 
+
+Appendix A: Model Instance Syntax 
+BSIMSOIv4.4 Manual Copyright © 2010, UC Berkeley 
+Page 61 
+ 
+ 
+Appendix A: Model Instance Syntax 
+ 
+Mname <D node> <G node> <S node> <E node> [P node]  
+      [B node] [T node] <model>   
+ [L=<val>] [W=<val>]  
+ [AD=<val>] [AS=<val>] [PD=<val>] [PS=<val>]  
+ [NRS=<val>] [NRD=<val>] [NRB=<val>]  
+ [OFF][BJTOFF=<val>] 
+ [IC=<val>,<val>,<val>,<val>,<val>]  
+ [RTH0=<val>] [CTH0=<val>]  
+ [DEBUG=<val>] 
+ [DELVTO=<val>] 
+ [SA=<val>][SB=<val>][SD=<val>] 
+ [NF=<val>] 
+ [NBC=<val>] [NSEG=<val>] [PDBCP=<val>] [PSBCP=<val>] 
+ [AGBCP=<val>][AEBCP=<val>][VBSUSR=<val>][TNODEOUT] 
+ [FRBODY=<val>][AGBCPD=<val>] 
+Description 
+<D node> 
+ 
+Drain node 
+<G node> 
+ 
+Gate node 
+<S node> 
+ 
+Source node 
+<E node> 
+ 
+Substrate node 
+[P node] 
+ 
+(Optional) external body contact node 
+[B node]           
+(Optional) internal body node 
+[T node]           
+(Optional) temperature node 
+<model> 
+ 
+Level 9 BSIM3SOI model name 
+[L] 
+ 
+ 
+Channel length 
+[W] 
+ 
+ 
+Channel width 
+
+Appendix A: Model Instance Syntax 
+BSIMSOIv4.4 Manual Copyright © 2010, UC Berkeley 
+Page 62 
+ 
+[AD]  
+ 
+Drain diffusion area 
+[AS] 
+ 
+ 
+Source diffusion area 
+[PD] 
+ 
+ 
+Drain diffusion perimeter length 
+[PS] 
+ 
+ 
+Source diffusion perimeter length 
+[NRS]  
+ 
+Number of squares in source series resistance 
+[NRD]  
+ 
+Number of squares in drain series resistance 
+[NRB]  
+ 
+Number of squares in body series resistance 
+[OFF]  
+ 
+Device simulation off 
+[BJTOFF] 
+ 
+Turn off BJT current if equal to 1 
+[IC] 
+Initial guess in the order of (Vds, Vgs, Vbs, Ves, Vps).  (Vps will be 
+ignored in the case of 4-terminal device) 
+[RTH0] 
+ 
+Thermal resistance per unit width 
+ if not specified, RTH0 is extracted from model card.  
+ if specified, it will override the one in model card. 
+[CTH0] 
+ 
+Thermal capacitance per unit width 
+ if not specified, CTH0 is extracted from model card.  
+ if specified, it will over-ride the one in model card. 
+[DEBUG] 
+ 
+Please see the debugging notes 
+[DELVTO] 
+ 
+Zero bias threshold voltage variation 
+[SA] 
+ 
+Stress effect parameter 
+[SB] 
+ 
+Stress effect parameter 
+[SD] 
+ 
+Stress effect parameter 
+[NF] 
+ 
+Number of fingers 
+[NBC] 
+ 
+Number of body contact isolation edge 
+[NSEG] 
+ 
+Number of segments for channel width partitioning [17] 
+[PDBCP] 
+ 
+Parasitic perimeter length for body contact at drain side 
+[PSBCP] 
+ 
+Parasitic perimeter length for body contact at source side 
+[AGBCP] 
+ 
+Parasitic gate-to-body overlap area for body contact (n+-p) 
+[AGBCP2]                 Parasitic gate-to-body overlap area for body contact (p+-p) 
+                                   For details of AGBCP and AGBCP2, please check Fig.4.4 
+[AEBCP] 
+ 
+Parasitic body-to-substate overlap area for body contact  
+
+Appendix A: Model Instance Syntax 
+BSIMSOIv4.4 Manual Copyright © 2010, UC Berkeley 
+Page 63 
+ 
+[VBSUSR] 
+ 
+Optional initial value of Vbs specified by user for transient analysis 
+[TNODEOUT]   
+Temperature node flag indicating the usage of T node  
+[FRBODY]                Layout-dependent body resistance coefficient 
+[AGBCPD] 
+ 
+Parasitic gate-to-body overlap area for body contact in DC  
+[RBDB]                       Resistance between bNode and dbNode 
+[RBSB]                        Resistance between bNode and sbNode 
+ 
+A.2.  About Optional Nodes 
+There are three optional nodes, P, B and T nodes.  P and B nodes are used for body contact 
+devices.  Let us consider the case when TNODEOUT is not set.  If user specifies four nodes, this 
+element is a 4-terminal device, i.e., floating body.  If user specifies five nodes, the fifth node 
+represents the external body contact node (P). There is a body resistance between internal body 
+node and P node.  In these two cases, an internal body node is created but it is not accessible in 
+the circuit deck.  If user specifies six nodes, the fifth node represents the P node and the sixth 
+node represents the internal body node (B).  This configuration is useful for distributed body 
+resistance simulation. 
+If TNODEOUT flag is set, the last node is interpreted as the temperature node.  In this case, 
+if user specifies five nodes, it is a floating body case.  If user specifies six nodes, it is a body-
+contacted case. Finally, if user specifies seven nodes, it is a body-contacted case with an 
+accessible internal body node.  The temperature node is useful for thermal coupling simulation. 
+A.3.  Notes on Debugging 
+The instance parameter <DEBUG> allows users to turn on debugging information 
+selectively.  Internal parameters (e.g. par) for an instance (e.g. m1) can be plotted by this 
+command: 
+plot m1#par 
+ 
+  
+By default, <DEBUG> is set to zero and two internal parameters will be available for 
+plotting: 
+
+Appendix A: Model Instance Syntax 
+BSIMSOIv4.4 Manual Copyright © 2010, UC Berkeley 
+Page 64 
+ 
+#body  
+Vb value iterated by SPICE 
+#temp  
+Device temperature with self-heating mode turned on  
+ 
+If <DEBUG> is set to one or minus one, more internal parameters are available for 
+plotting.  This serves debugging purposes when there is a convergence problem.  This can also 
+help the user to understand the model more.  For <DEBUG> set to minus one, there will be 
+charge calculation even if the user is running DC simulation. Here is the list of internal 
+parameters: 
+#Vbs  
+Real Vbs value used by the IV calculation 
+#Vgsteff          Effective gate-overdrive voltage 
+#Vth               Threshold voltage 
+#Ids 
+ 
+MOS drain current 
+#Ic 
+ 
+BJT current 
+#Ibs 
+ 
+Body to source diode current 
+#Ibd 
+ 
+Body to drain diode current 
+#Iii 
+ 
+Impact ionization current 
+#Igidl  
+GIDL current  
+#Itun  
+Tunneling current  
+#Ibp 
+ 
+Body contact current  
+#Gds                Output conductance 
+#Gm                 Transconductance 
+#Gmb               Drain current derivative wrt Vbs 
+ 
+These parameters are valid only if charge computation is required 
+#Cbb  
+Body charge derivative wrt Vbs 
+#Cbd  
+Body charge derivative wrt Vds 
+#Cbe  
+Body charge derivative wrt Ves 
+#Cbg  
+Body charge derivative wrt Vgs 
+#Qbody 
+Total body charge 
+#Qgate            Gate charge 
+#Qac0             Accumulation charge 
+
+Appendix A: Model Instance Syntax 
+BSIMSOIv4.4 Manual Copyright © 2010, UC Berkeley 
+Page 65 
+ 
+#Qsub             Bulk charge 
+#Qsub0           Bulk charge at zero drain bias 
+#Qbf  
+Channel depletion charge 
+#Qjd  
+Parasitic drain junction charge 
+#Qjs 
+ 
+Parasitic source junction charge 
+ 
+ 
+ 
+ 
+
+Appendix B: Model Parameter List 
+BSIMSOIv4.4 Manual Copyright © 2010, UC Berkeley 
+Page 66 
+ 
+ 
+Appendix B: Model Parameter List 
+ 
+All model parameters additional to BSIM3v3/BSIM4 will be shown with bold cases. 
+ 
+B.1.  BSIMSOI Model Control Parameters 
+Symbol 
+used in 
+equation 
+Symbol 
+used in 
+SPICE 
+ 
+Description 
+ 
+Unit 
+ 
+Default 
+ 
+Notes (below  
+the table) 
+None 
+level 
+Level 10 for BSIMSOI4.1 
+- 
+10 
+- 
+SoiMod 
+soiMod 
+SOI model selector (instance) 
+SoiMod=0: BSIMPD 
+SoiMod=1: unified model for PD&FD. 
+SoiMod=2: ideal FD. 
+SoiMod=3: auto selection by BSIMSOI 
+- 
+0 
+ 
+Shmod 
+shMod 
+Flag for self-heating  
+0 - no self-heating,  
+1 - self-heating 
+- 
+0 
+ 
+Mobmod 
+mobmod 
+Mobility model selector 
+- 
+1 
+- 
+Capmod 
+capmod 
+Flag for the short channel capacitance model 
+- 
+2 
+ 
+Noimod 
+noimod 
+Flag for Noise model 
+- 
+1 
+- 
+IgcMod 
+IgcMod 
+Gate-to-channel tunneling current model selector  
+- 
+0 
+ 
+IgbMod 
+IgbMod 
+Gate-to-body tunneling current model selector 
+- 
+0 
+ 
+RdsMod 
+rdsMod 
+Bias-dependent source/drain resistance 
+model selector 
+- 
+0 
+ 
+RgateMod rgateMod 
+Flag for gate resistance model 
+- 
+0 
+- 
+RbodyMod rbodyMod 
+Flag for body resistance model 
+- 
+0 
+- 
+
+Appendix B: Model Parameter List 
+BSIMSOIv4.4 Manual Copyright © 2010, UC Berkeley 
+Page 67 
+ 
+FnoiMod 
+fnoiMod 
+Flicker noise model selector 
+- 
+1 
+ 
+TnoiMod 
+TnoiMod 
+Thermal noise model selector 
+- 
+0 
+ 
+MtrlMod 
+mtrlMod 
+New material model selector 
+- 
+0 
+ 
+VgstcvMod VgstcvMod VgsteffCV model selector 
+- 
+0 
+ 
+IiiMod 
+IiiMod 
+Impact ionization current model selector 
+- 
+0 
+ 
+gidlMod 
+gidlMod 
+New GIDL/GISL model selector 
+- 
+0 
+ 
+fdMod 
+fdMod 
+New ∆Vbi model selector 
+- 
+0 
+ 
+ 
+B.2.  Process Parameters 
+Symbol 
+used in 
+equation 
+Symbol 
+used in 
+SPICE 
+ 
+Description 
+ 
+Unit 
+ 
+Default 
+ 
+Notes 
+(below the table) 
+tsi 
+Tsi 
+Silicon film thickness 
+m 
+10-7 
+- 
+tbox 
+Tbox 
+Buried oxide thickness 
+m 
+3x10-7 
+- 
+tox 
+tox 
+Gate oxide thickness 
+m 
+1x10-8 
+- 
+Toxm 
+toxm 
+Gate oxide thickness used in extraction 
+m 
+tox 
+ 
+Xj 
+Xj 
+S/D junction depth 
+m 
+Tsi 
+- 
+nch 
+Nch 
+Channel doping concentration 
+1/cm3 1.7x1017 
+- 
+nsub 
+Nsub 
+Substrate doping concentration 
+1/cm3 
+6x1016 
+- 
+Ngate 
+ngate 
+poly gate doping concentration 
+1/cm3 
+0 
+- 
+Eot 
+eot 
+Effective SiO2 thickness 
+nm 
+10 
+ 
+Leffeot 
+leffeot 
+Effective length for extraction of EOT 
+um 
+1 
+- 
+Weffeot 
+weffeot 
+Effective width for extraction of EOT 
+um 
+10 
+- 
+Tempeot 
+tempeot 
+Temperature for extraction of EOT 
+K 
+300.15 
+- 
+ 
+Note: Leffeot, Weffeot, Tempeot and Vddeot are the parameters in EOT extraction and used in 
+Toxp calculation (i.e., Eq. (10.6)). 
+ 
+
+Appendix B: Model Parameter List 
+BSIMSOIv4.4 Manual Copyright © 2010, UC Berkeley 
+Page 68 
+ 
+B.3.  DC Parameters 
+Symbol 
+used in 
+equation 
+Symbol 
+used in 
+SPICE 
+ 
+Description 
+ 
+Unit 
+ 
+Default 
+ 
+Notes (below the 
+table) 
+Vth0 
+vth0 
+Threshold voltage @Vbs=0 for long and 
+wide device 
+- 
+0.7 
+- 
+K1 
+k1 
+First order body effect coefficient 
+V1/2 
+0.6 
+- 
+K1w1 
+k1w1 
+First body effect width dependent 
+parameter 
+m 
+0 
+- 
+K1w2 
+k1w2 
+Second body effect width dependent 
+parameter 
+m 
+0 
+- 
+K2 
+k2 
+Second order body effect coefficient 
+- 
+0 
+- 
+K3 
+k3 
+Narrow width coefficient 
+- 
+0 
+- 
+K3b 
+k3b 
+Body effect coefficient of k3 
+1/V 
+0 
+- 
+Kb1 
+Kb1 
+Backgate body charge coefficient 
+- 
+1 
+- 
+W0 
+w0 
+Narrow width parameter 
+m 
+0 
+- 
+Lpe0 
+LPE0/ 
+NLX 
+Lateral non-uniform doping parameter 
+m 
+1.74e-7 
+If Lpe0 not given, 
+lpe0=nlx if nlx given,; 
+Else take the default 
+Lpe0 was called nlx in 
+BSIMSOI3 
+Lpeb 
+LPEB 
+Lateral non-uniform doping effect on K1 
+m 
+0.0 
+- 
+Dvt0 
+Dvt0 
+first coefficient of short-channel effect 
+on Vth 
+- 
+2.2 
+- 
+Dvt1 
+dvt1 
+Second coefficient of short-channel 
+effect on Vth 
+- 
+0.53 
+- 
+Dvt2 
+dvt2 
+Body-bias coefficient of short-channel 
+effect on Vth 
+1/V 
+-0.032 
+- 
+Dvt0w 
+dvt0w 
+first coefficient of narrow width effect 
+on Vth for small channel length 
+- 
+0 
+- 
+Dvt1w 
+dvt1w 
+Second coefficient of narrow width 
+- 
+5.3e6 
+- 
+
+Appendix B: Model Parameter List 
+BSIMSOIv4.4 Manual Copyright © 2010, UC Berkeley 
+Page 69 
+ 
+effect on Vth for small channel length 
+Dvt2w 
+dvt2w 
+Body-bias coefficient of narrow width 
+effect on Vth for small channel length 
+1/V 
+-0.032 
+- 
+0 
+u0 
+Mobility at Temp = Tnom 
+NMOSFET 
+PMOSFET 
+cm2/(
+V-sec) 
+ 
+670 
+250 
+- 
+Ua 
+ua 
+First-order mobility degradation 
+coefficient 
+m/V 
+2.25e-9 
+- 
+Ub 
+ub 
+Second-order mobility degradation 
+coefficient 
+(m/V)
+2 
+5.9e-19 
+- 
+Uc 
+uc 
+Body-effect of mobility degradation 
+coefficient 
+1/V 
+-.0465 
+- 
+Ud 
+ud 
+Coulomb scattering factor of mobility 
+- 
+0 
+ 
+Ucs 
+ucs 
+Mobility exponent factor in mobMod=4 
+- 
+0 
+ 
+Eu 
+eu 
+Mobility exponent factor in mobMod=4 
+- 
+0 
+ 
+vsat 
+vsat 
+Saturation velocity at Temp=Tnom 
+m/sec 
+8e4 
+- 
+A0 
+a0 
+Bulk charge effect coefficient for 
+channel length 
+- 
+1.0 
+- 
+Ags 
+ags 
+Gate bias coefficient of Abulk 
+1/V 
+0.0 
+- 
+B0 
+b0 
+Bulk charge effect coefficient for 
+channel width 
+m 
+0.0 
+- 
+B1 
+b1 
+Bulk charge effect width offset 
+m 
+0.0 
+- 
+Keta 
+keta 
+Body-bias coefficient of bulk charge 
+effect 
+V-1 
+0 
+- 
+Ketas 
+Ketas 
+Surface potential adjustment for bulk 
+charge effect 
+V 
+0 
+- 
+A1 
+A1 
+First non-saturation effect parameter 
+1/V 
+0.0 
+- 
+A2 
+A2 
+Second non-saturation effect parameter 
+0 
+1.0 
+- 
+Rdsw 
+rdsw 
+Parasitic resistance per unit width 
+-
+100 
+- 
+
+Appendix B: Model Parameter List 
+BSIMSOIv4.4 Manual Copyright © 2010, UC Berkeley 
+Page 70 
+ 
+mWr 
+Prwb 
+prwb 
+Body effect coefficient of Rdsw 
+1/V 
+0 
+- 
+Prwg 
+prwg 
+Gate bias effect coefficient of Rdsw 
+1/V1/2 
+0 
+- 
+Wr 
+wr 
+Width offset from Weff for Rds 
+calculation 
+- 
+1 
+- 
+Nfactor 
+nfactor 
+Subthreshold swing factor 
+- 
+1 
+- 
+Wint 
+wint 
+Width offset fitting parameter from I-V 
+without bias 
+m 
+0.0 
+- 
+Lint 
+lint 
+Length offset fitting parameter from I-V 
+without bias 
+m 
+0.0 
+- 
+DWg 
+dwg 
+Coefficient of Weff’s gate dependence 
+m/V 
+0.0 
+ 
+DWb 
+dwb 
+Coefficient of Weff’s substrate body bias 
+dependence 
+m/V1/2 
+0.0 
+ 
+DWbc 
+Dwbc 
+Width offset for body contact isolation 
+edge 
+m 
+0.0 
+ 
+Voff 
+voff 
+Offset voltage in the subthreshold region 
+for large W and L 
+V 
+-0.08 
+- 
+Eta0 
+eta0 
+DIBL coefficient in subthreshold region 
+- 
+0.08 
+- 
+Etab 
+etab 
+Body-bias coefficient for the 
+subthreshold DIBL effect 
+1/V 
+-0.07 
+- 
+Dsub 
+dsub 
+DIBL coefficient exponent 
+- 
+0.56 
+- 
+Cit 
+cit 
+Interface trap capacitance 
+F/m2 
+0.0 
+- 
+Cdsc 
+cdsc 
+Drain/Source to channel coupling 
+capacitance 
+F/m2 
+2.4e-4 
+- 
+Cdscb 
+cdscb 
+Body-bias sensitivty of Cdsc 
+F/m2 
+0 
+- 
+Cdscd 
+cdscd 
+Drain-bias sensitivty of Cdsc 
+F/m2 
+0 
+- 
+Pclm 
+pclm 
+Channel length modulation parameter 
+- 
+1.3 
+- 
+Pdibl1 
+pdibl1 
+First output resistance DIBL effect 
+correction parameter 
+- 
+.39 
+- 
+
+Appendix B: Model Parameter List 
+BSIMSOIv4.4 Manual Copyright © 2010, UC Berkeley 
+Page 71 
+ 
+Pdibl2 
+pdibl2 
+Second output resistance DIBL effect 
+correction parameter 
+- 
+0.086 
+- 
+Drout 
+drout 
+L dependence coefficient of the DIBL 
+correction parameter in Rout 
+- 
+0.56 
+- 
+Pvag 
+pvag 
+Gate dependence of Early voltage 
+- 
+0.0 
+- 
+ 
+delta 
+Effective Vds parameter 
+- 
+0.01 
+- 
+0 
+alpha0 
+The first parameter of impact ionization 
+current 
+m/V 
+0.0 
+- 
+Fbjtii 
+fbjtii 
+Fraction of bipolar current affecting the 
+impact ionization 
+- 
+0.0 
+- 
+0 
+beta0 
+First Vds dependent parameter of impact 
+ionization current 
+V-1 
+0 
+- 
+1 
+beta1 
+Second Vds dependent parameter of 
+impact ionization current 
+- 
+0 
+- 
+2 
+beta2 
+Third Vds dependent parameter of impact 
+ionization current 
+V 
+0.1 
+- 
+Vdsatii0 
+vdsatii0 
+Nominal drain saturation voltage at 
+threshold for impact ionization current 
+V 
+0.9 
+- 
+Tii 
+tii 
+Temperature dependent parameter for 
+impact ionization current 
+- 
+0 
+- 
+Lii 
+lii 
+Channel length dependent parameter at 
+threshold for impact ionization current 
+- 
+0 
+- 
+Esatii 
+esatii 
+Saturation channel electric field for 
+impact ionization current 
+V/m 
+1e7 
+- 
+Sii0 
+sii0 
+First Vgs dependent parameter for impact 
+ionization current 
+V-1 
+0.5 
+- 
+Sii1 
+sii1 
+Second Vgs dependent parameter for 
+impact ionization current 
+V-1 
+0.1 
+- 
+Sii2 
+sii2 
+Third Vgs dependent parameter for 
+impact ionization current 
+-  
+0 
+- 
+
+Appendix B: Model Parameter List 
+BSIMSOIv4.4 Manual Copyright © 2010, UC Berkeley 
+Page 72 
+ 
+Siid 
+siid 
+Vds dependent parameter of drain 
+saturation voltage for impact ionization 
+current 
+V-1 
+0 
+- 
+Abjtii 
+abjtii 
+Exponent factor for avalanche current 
+V-1 
+0 
+ 
+Cbjtii 
+cbjtii 
+Length scaling parameter for II BJT part 
+m 
+0 
+ 
+Ebjtii 
+ebjtii 
+Impact ionization parameter for BJT part 
+- 
+0 
+ 
+Mbjtii 
+mbjtii 
+Internal B-C grading coefficient 
+- 
+0.4 
+ 
+Vbci 
+vbci 
+Internal B-C built-in potential 
+V 
+0 
+ 
+Agidl 
+Agidl 
+Pre-exponential GIDL constant 
+1
+
+
+ 
+0.0 
+- 
+Bgidl 
+Bgidl 
+GIDL exponential coefficient 
+V/m 
+2.3e9 
+- 
+Cgidl 
+Cgidl 
+Parameter for body bias effect on GIDL 
+V3 
+0.5 
+ 
+Egidl 
+Egidl/ 
+Ngidl 
+Fitting parameter for band bending for 
+GIDL 
+V 
+1.2 
+If Egidl not 
+given, 
+Egidl=Ngidl if 
+Ngidl given,; 
+Else take the 
+default 
+Egidl was called 
+Ngidl in 
+BSIMSOI3 
+Agisl 
+Agisl 
+Pre-exponential GISL constant 
+1
+
+
+ 
+0.0 
+- 
+Bgisl 
+Bgisl 
+GISL exponential coefficient 
+V/m 
+2.3e9 
+- 
+Cgisl 
+Cgisl 
+Parameter for body bias effect on GISL 
+V3 
+0.5 
+ 
+Egisl 
+Egisl 
+Fitting parameter for band bending for 
+GISL 
+V 
+1.2 
+ 
+Rgidl 
+rgidl 
+Vgs-dependent parameter for GIDL 
+when gidlMod = 1 
+- 
+1.0 
+ 
+Kgidl 
+kgidl 
+Vds-dependent parameter for GIDL 
+when gidlMod = 1 
+V 
+0.0 
+ 
+Fgidl 
+fgidl 
+Vds-dependent parameter for GIDL 
+when gidlMod = 1 
+ 
+ 
+ 
+
+Appendix B: Model Parameter List 
+BSIMSOIv4.4 Manual Copyright © 2010, UC Berkeley 
+Page 73 
+ 
+Rgisl 
+rgisl 
+Vgs-dependent parameter for GISL 
+when gidlMod = 1 
+- 
+1.0 
+ 
+Kgisl 
+kgisl 
+Vbs-dependent parameter for GISL 
+when gidlMod = 1 
+V 
+0.0 
+ 
+Fgisl 
+fgisl 
+Vbs-dependent parameter for GISL 
+when gildMod = 1 
+V 
+0.0 
+ 
+ndiodes 
+Ndiode 
+Diode non-ideality factor for source 
+- 
+1.0 
+- 
+ndioded 
+Ndioded 
+Diode non-ideality factor for drain 
+- 
+Default 
+to its 
+source 
+value 
+- 
+nrecf0s 
+Nrecf0 
+Recombination non-ideality factor at 
+forward bias for source 
+- 
+2.0 
+- 
+nrecf0d 
+Nrecf0d 
+Recombination non-ideality factor at 
+forward bias for drain 
+- 
+Default 
+to its 
+source 
+value 
+- 
+nrecr0s 
+Nrecr0 
+Recombination non-ideality factor at 
+reversed bias for source 
+- 
+10 
+- 
+nrecr0d 
+Nrecr0d 
+Recombination non-ideality factor at 
+reversed bias for drain 
+- 
+Default 
+to its 
+source 
+value 
+- 
+isbjt 
+Isbjt 
+BJT injection saturation current 
+A/m2 
+1e-6 
+- 
+Idbjt 
+Idbjt 
+BJT injection saturation current 
+A/m2 
+1e-6 
+- 
+isdif 
+Isdif 
+Body to source/drain injection saturation 
+current 
+A/m2 
+1e-7 
+- 
+Iddif 
+Iddif 
+Body to source/drain injection saturation 
+current 
+A/m2 
+1e-7 
+- 
+isrec 
+Isrec 
+Recombination in depletion saturation 
+A/m2 
+1e-5 
+- 
+
+Appendix B: Model Parameter List 
+BSIMSOIv4.4 Manual Copyright © 2010, UC Berkeley 
+Page 74 
+ 
+current 
+Idrec 
+Idrec 
+Recombination in depletion saturation 
+current 
+A/m2 
+1e-5 
+- 
+istun 
+Istun 
+Reverse tunneling saturation current 
+A/m2 
+0.0 
+- 
+Idtun 
+Idtun 
+Reverse tunneling saturation current 
+A/m2 
+0.0 
+- 
+Ln 
+Ln 
+Electron/hole diffusion length 
+m 
+2e-6 
+- 
+Vrec0s 
+Vrec0 
+Voltage dependent parameter for 
+recombination current for source 
+V 
+0 
+- 
+Vrec0d 
+Vrec0d 
+Voltage dependent parameter for 
+recombination current for drain 
+V 
+Default 
+to its 
+source 
+value 
+- 
+Vtun0s 
+Vtun0 
+Voltage dependent parameter for 
+tunneling current for source 
+V 
+0 
+- 
+Vtun0d 
+Vtun0d 
+Voltage dependent parameter for 
+tunneling current for drain 
+V 
+Default 
+to its 
+source 
+value 
+- 
+Nbjt 
+Nbjt 
+Power coefficient of channel length 
+dependency for bipolar current 
+- 
+1 
+- 
+Lbjt0 
+Lbjt0 
+Reference channel length for bipolar 
+current 
+m 
+0.20e-6 
+- 
+Vabjt 
+Vabjt 
+Early voltage for bipolar current 
+V 
+10 
+- 
+Aely 
+Aely 
+Channel length dependency of early 
+voltage for bipolar current 
+V/m 
+0 
+- 
+Ahlis 
+Ahli 
+High level injection parameter for 
+bipolar current for source 
+- 
+0 
+- 
+Ahlid 
+Ahlid 
+High level injection parameter for 
+bipolar current for drain 
+- 
+Default 
+to its 
+source 
+- 
+
+Appendix B: Model Parameter List 
+BSIMSOIv4.4 Manual Copyright © 2010, UC Berkeley 
+Page 75 
+ 
+value 
+Rbody 
+Rbody 
+Intrinsic body contact sheet resistance 
+ohm/s
+quare 
+0.0 
+- 
+Rbsh 
+Rbsh 
+Extrinsic body contact sheet resistance 
+ohm/s
+quare 
+0.0 
+- 
+Rsh 
+rsh 
+Source drain sheet resistance in ohm per 
+square 
+ohm/s
+quare 
+0.0 
+- 
+ 
+Rhalo 
+rhalo 
+Body halo sheet resistance 
+ohm/
+m 
+1e15 
+- 
+ 
+Rsw 
+Rsw 
+Zero bias lightly-doped source resistance per 
+unit width for RDSMOD=1 
+Ohm(u
+m)WR 
+50 
+ 
+Rdw 
+Rdw 
+Zero bias lightly-doped drain resistance per 
+unit width for RDSMOD=1 
+Ohm(u
+m)WR 
+50 
+ 
+Rswmin 
+Rswmin 
+Lightly-doped source resistance per unit 
+width at high Vgs and zero Vbs for 
+RDSMOD=1 
+Ohm(u
+m)WR 
+0 
+ 
+Rdwmin 
+Rdwmin 
+Lightly-doped source resistance per unit 
+width at high Vgs and zero Vbs for 
+RDSMOD=1 
+Ohm(u
+m)WR 
+0 
+ 
+Dvtp0 
+Dvtp0 
+First parameter for Vth shift due to p 
+ocket 
+m 
+0.0 
+ 
+Dvtp1 
+Dvtp1 
+Second parameter for Vth shift due to p 
+ocket 
+v-1 
+0.0 
+ 
+Dvtp2 
+Dvtp2 
+Third parameter for Vth shift due to pocket 
+v-1 
+0.0 
+ 
+Dvtp3 
+Dvtp3 
+Forth parameter for Vth shift due to pocket 
+v-1 
+0.0 
+ 
+Dvtp4 
+Dvtp4 
+Fifth parameter for Vth shift due to pocket 
+v-1 
+0.0 
+ 
+Pdits 
+Pdits 
+Coefficient for drain-induced Vth shifts 
+v-1 
+1e-20 
+ 
+Pditsl 
+Pditsl 
+Length dependence of drain-induced Vt 
+h shifts 
+m-1 
+0 
+ 
+Pditsd 
+Pditsd  
+Vds dependence of drain-induced Vth shifts 
+v-1 
+0 
+ 
+Fprout 
+Fprout 
+Effect of pocket implant on rout degradation 
+V/m0.5 
+0.0 
+ 
+
+Appendix B: Model Parameter List 
+BSIMSOIv4.4 Manual Copyright © 2010, UC Berkeley 
+Page 76 
+ 
+Minv 
+Minv 
+Vgsteff fitting parameter for moderate 
+inversion 
+ 
+0.0 
+ 
+ 
+B.4. Gate-to-body tunneling parameters 
+ 
+B.4. Gate-to-body tunneling parameters 
+ 
+Symbol 
+used in 
+equation 
+Symbol used 
+in SPICE 
+Description 
+Unit 
+Default 
+IgMod 
+igMod 
+Gate current model selector 
+- 
+0 
+Toxqm 
+toxqm 
+Oxide thickness for Igb calculation  
+m 
+Tox 
+Ntox 
+ntox 
+Power term of gate current 
+- 
+1 
+Toxref 
+toxref 
+Target oxide thickness 
+m 
+2.5e-9 
+g 
+ebg 
+Effective bandgap in gate current 
+calculation 
+V 
+1.2 
+gb1 
+alphaGB1 
+First Vox dependent parameter for gate 
+current in inversion 
+1/V 
+.35 
+gb1 
+betaGB1 
+Second Vox dependent parameter for 
+gate current in inversion 
+1/V2 
+.03 
+Vgb1 
+vgb1 
+Third Vox dependent parameter for 
+gate current in inversion 
+V 
+300 
+VEVB 
+vevb 
+Vaux parameter for valence band 
+electron tunneling 
+- 
+0.075 
+gb2 
+alphaGB2 
+First Vox dependent parameter for gate 
+current in accumulation 
+1/V 
+.43 
+gb2 
+betaGB2 
+Second Vox dependent parameter for 
+gate current in accumulation 
+1/V2 
+.05 
+Vgb2 
+vgb2 
+ThirdVox dependent parameter for gate 
+current in accumulation 
+V 
+17 
+VECB 
+vecb 
+Vaux parameter for conduction band 
+electron tunneling 
+- 
+.026 
+AIGBCP2 
+aigbcp2 
+First Vgp dependent parameter for gate 
+current in accumulation in AGBCP2 
+region 
+1/V2 
+0.043 
+BIGBCP2 
+bigbcp2 
+Second Vgp dependent parameter for 
+gate current in accumulation in 
+AGBCP2 region 
+1/V2 
+0.0054 
+CIGBCP2 
+cigbcp2 
+Third Vgp dependent parameter for 
+gate current in accumulation in 
+AGBCP2 region 
+1/V2 
+0.0075 
+ 
+
+Appendix B: Model Parameter List 
+BSIMSOIv4.4 Manual Copyright © 2010, UC Berkeley 
+Page 77 
+ 
+B.5.  AC and Capacitance Parameters 
+Symbol 
+used in 
+equation 
+Symbol 
+used in 
+SPICE 
+ 
+Description 
+ 
+Unit 
+ 
+Default 
+ 
+Notes (below 
+the table) 
+Xpart 
+xpart 
+Charge partitioning rate flag 
+- 
+0 
+ 
+CGS0 
+cgso 
+Non LDD region source-gate overlap 
+capacitance per channel length 
+F/m 
+calcu-
+lated 
+nC-1 
+CGD0 
+cgdo 
+Non LDD region drain-gate overlap 
+capacitance per channel length 
+F/m 
+calcu-
+lated 
+nC-2 
+CGEO 
+cgeo 
+Gate substrate overlap capacitance per unit 
+channel length 
+F/m 
+0.0 
+- 
+Cjswgs 
+cjswg 
+Source (gate side) sidewall junction 
+capacitance per unit width (normalized to 
+100nm Tsi) 
+ 
+F/m2 
+ 
+1e-10 
+- 
+Cjswgd 
+cjswgd 
+Drain (gate side) sidewall junction 
+capacitance per unit width (normalized to 
+100nm Tsi) 
+ 
+F/m2 
+ 
+Default 
+to its 
+source 
+value 
+- 
+Pbswgs 
+pbswg 
+Source (gate side) sidewall junction 
+capacitance buit in potential 
+V 
+.7 
+- 
+Pbswgd 
+pbswgd 
+Drain (gate side) sidewall junction 
+capacitance buit in potential 
+V 
+Default 
+to its 
+source 
+value 
+- 
+Mjswgs 
+mjswg 
+Source (gate side) sidewall junction 
+capacitance grading coefficient 
+V 
+0.5 
+- 
+Mjswgd 
+mjswgd 
+Drain (gate side) sidewall junction 
+capacitance grading coefficient 
+V 
+Default 
+to its 
+- 
+
+Appendix B: Model Parameter List 
+BSIMSOIv4.4 Manual Copyright © 2010, UC Berkeley 
+Page 78 
+ 
+source 
+value 
+tt 
+tt 
+Diffusion capacitance transit time 
+coefficient 
+second 
+1e-12 
+- 
+Ndif 
+Ndif 
+Power coefficient of channel length 
+dependency for diffusion capacitance 
+- 
+-1 
+- 
+Ldif0 
+Ldif0 
+Channel-length dependency coefficient of 
+diffusion cap. 
+- 
+1 
+- 
+Vsdfb 
+vsdfb 
+Source/drain bottom diffusion capacitance 
+flatband voltage 
+V 
+calcu-
+lated 
+nC-3 
+Vsdth 
+vsdth 
+Source/drain bottom diffusion capacitance 
+threshold voltage 
+V 
+calcu-
+lated 
+nC-4 
+Csdmin 
+csdmin 
+Source/drain bottom diffusion minimum 
+capacitance 
+V 
+calcu-
+lated 
+nC-5 
+Asd 
+asd 
+Source/drain bottom diffusion smoothing 
+parameter 
+- 
+0.3 
+- 
+Csdesw 
+csdesw 
+Source/drain sidewall fringing capacitance 
+per unit length 
+F/m 
+0.0 
+- 
+CGSl 
+cgsl 
+Light doped source-gate region overlap 
+capacitance 
+F/m 
+0.0 
+- 
+CGDl 
+cgdl 
+Light doped drain-gate region overlap 
+capacitance 
+F/m 
+0.0 
+- 
+CKAPPA 
+ckappa 
+Coefficient for lightly doped region 
+overlap capacitance fringing field 
+capacitance 
+F/m 
+0.6 
+- 
+Cf 
+cf 
+Gate to source/drain fringing field 
+capacitance 
+F/m 
+calcu-
+lated 
+nC-6 
+CLC 
+clc 
+Constant term for the short channel model 
+m 
+0.1x10-7 
+- 
+CLE 
+cle 
+Exponential term for the short channel 
+model 
+none 
+0.0 
+- 
+
+Appendix B: Model Parameter List 
+BSIMSOIv4.4 Manual Copyright © 2010, UC Berkeley 
+Page 79 
+ 
+DLC 
+dlc 
+Length offset fitting parameter for gate 
+charge 
+m 
+lint 
+- 
+DLCB 
+dlcb 
+Length offset fitting parameter for body 
+charge 
+m 
+0 
+- 
+DLBG 
+dlbg 
+Length offset fitting parameter for 
+backgate charge 
+m 
+0.0 
+- 
+DWC 
+dwc 
+Width offset fitting parameter from C-V 
+m 
+wint 
+- 
+DelVt 
+delvt 
+Threshold voltage adjust for C-V 
+V 
+0.0 
+- 
+Fbody 
+fbody 
+Scaling factor for body charge 
+- 
+1.0 
+- 
+acde 
+acde 
+Exponential coefficient for charge 
+thickness in capMod=3 for accumulation 
+and depletion regions. 
+m/V 
+1.0 
+- 
+moin 
+moin 
+Coefficient for the gate-bias dependent 
+surface potential. 
+V1/2 
+15.0 
+- 
+CfrCoeff 
+cfrcoeff 
+Sidewall fringe capacitance coefficient 
+- 
+1 
+Max limit = 2 
+ 
+B.6.  Temperature Parameters 
+Symbol 
+used in 
+equation 
+Symbol 
+used in 
+SPICE 
+ 
+Description 
+ 
+Unit 
+ 
+Default 
+ 
+Note 
+Tnom 
+tnom 
+Temperature at which parameters are 
+expected 
+ºC 
+27 
+- 
+te 
+ute 
+Mobility temperature exponent 
+none 
+-1.5 
+- 
+Kt1 
+kt1 
+Temperature coefficient for threshold 
+voltage 
+V 
+-0.11 
+- 
+Kt11 
+kt11 
+Channel length dependence of the 
+temperature coefficient for threshold 
+voltage 
+V*m 
+0.0 
+ 
+Kt2 
+kt2 
+Body-bias coefficient of the Vth 
+none 
+0.022 
+- 
+
+Appendix B: Model Parameter List 
+BSIMSOIv4.4 Manual Copyright © 2010, UC Berkeley 
+Page 80 
+ 
+temperature effect 
+Ua1 
+ua1 
+Temperature coefficient for Ua 
+m/V 
+4.31e-9 
+- 
+Ub2 
+ub1 
+Temperature coefficient for Ub 
+(m/V)2 
+-7.61e-18 
+- 
+Uc1 
+uc1 
+Temperature coefficient for Uc 
+1/V 
+-.056 
+nT-1 
+At 
+at 
+Temperature coefficient for saturation 
+velocity 
+m/sec 
+3.3e4 
+- 
+Tcijswgs 
+tcjswg 
+Temperature coefficient of Cjswgs 
+1/K 
+0 
+- 
+Tpbswgs 
+tpbswg 
+Temperature coefficient of Pbswgs 
+V/K 
+0 
+- 
+Tcijswgd 
+tcjswgd 
+Temperature coefficient of Cjswgd 
+1/K 
+Default to its 
+source value 
+- 
+Tpbswgd 
+tpbswgd 
+Temperature coefficient of Pbswgd 
+V/K 
+Default to its 
+source value 
+- 
+Cth0 
+cth0 
+Normalized thermal capacity 
+(W*sec)
+/ mºC 
+1e-5 
+- 
+Prt 
+prt 
+Temperature coefficient for Rdsw 
+-m 
+0 
+- 
+Rth0 
+rth0 
+Normalized thermal resistance 
+mºC/W 
+0 
+- 
+Ntrecf 
+Ntrecf 
+Temperature coefficient for Nrecf 
+- 
+0 
+- 
+Ntrecr 
+Ntrecr 
+Temperature coefficient for Nrecr 
+- 
+0 
+- 
+Xbjt 
+xbjt 
+Power dependence of jbjt on temperature 
+- 
+1 
+- 
+Xdifs 
+xdifs 
+Power dependence of jdifs on temperature 
+- 
+Xbjt 
+- 
+Xrecs 
+xrecs 
+Power dependence of jrecs on temperature 
+- 
+1 
+- 
+Xtuns 
+xtuns 
+Power dependence of jtuns on temperature 
+- 
+0 
+- 
+Xdifd 
+xdifd 
+Power dependence of jdifd on temperature 
+- 
+Xbjt 
+- 
+Xrecd 
+xrecd 
+Power dependence of jrecd on temperature 
+- 
+1 
+- 
+Xtund 
+xtund 
+Power dependence of jtund on temperature 
+- 
+0 
+- 
+Wth0 
+Wth0 
+Minimum width for thermal resistance 
+calculation 
+m 
+0 
+- 
+Tvbci 
+tvbci 
+Temperature coefficient for Vbci 
+- 
+0 
+ 
+
+Appendix B: Model Parameter List 
+BSIMSOIv4.4 Manual Copyright © 2010, UC Berkeley 
+Page 81 
+ 
+ 
+B.7.  BSIMSOI Built-In Potential Lowering (Vbi) Model Parameters 
+Symbol 
+used in 
+equation 
+Symbol used 
+in SPICE 
+Description 
+Unit 
+Default 
+SoiMod 
+soiMod 
+SOI model selector.  
+SoiMod=0: BSIMPD.  
+SoiMod=1: unified model for PD&FD. 
+SoiMod=2: ideal FD. 
+SoiMod=3: auto selection by BSIMSOI 
+- 
+0 
+Vnonideal 
+vbsa 
+Offset voltage due to non-idealities  
+V 
+0 
+NOFF,FD 
+nofffd 
+Smoothing parameter in FD module 
+- 
+1 
+VOFF,FD 
+vofffd 
+Smoothing parameter in FD module 
+V 
+0 
+K1b 
+K1b 
+First backgate body effect parameter 
+- 
+1 
+K2b 
+K2b 
+Second backgate body effect parameter 
+for short channel effect 
+- 
+0 
+Dk2b 
+dk2b 
+Third backgate body effect parameter 
+for short channel effect 
+- 
+0 
+Dvbd0 
+dvbd0 
+First short channel effect parameter in 
+FD module 
+- 
+0 
+Dvbd1 
+dvbd1 
+Second short channel effect parameter 
+in FD module 
+- 
+0 
+MoinFD 
+moinfd 
+Gate bias dependence coefficient of 
+surface potential in FD module 
+- 
+1e3 
+Vbs0pd 
+vbs0pd 
+Upper bound of built-in potential 
+lowering for BSIMPD operation 
+V 
+0.0 
+Vbs0fd 
+vbs0fd 
+Lowering bound of built-in potential 
+lowering for ideal FD operation 
+V 
+0.5 
+ 
+ 
+
+Appendix B: Model Parameter List 
+BSIMSOIv4.4 Manual Copyright © 2010, UC Berkeley 
+Page 82 
+ 
+B.8.  BSIMSOI RF Model Parameters 
+RgateMod 
+rgateMod 
+Gate resistance model selector 
+rgateMod = 0 No gate resistance 
+rgateMod = 1 Constant gate resistance 
+rgateMod = 2 Rii model with 
+variable  resistance 
+rgateMod = 3 Rii model with two 
+nodes 
+- 
+0 
+RbodyMod 
+RbodyMod 
+RbodyMod=0 No body resistance 
+model 
+RbodyMod=1 Two-resistor body 
+resistance model 
+- 
+0 
+Rshg 
+Rshg 
+Gate electrode sheet resistance 
+Ohm/s
+quare 
+0.1 
+XRCRG1 
+xrcrg1 
+Parameter for distributed channel-
+resistance effect for intrinsic input 
+resistance 
+- 
+12.0 
+XRCRG2 
+xrcrg2 
+Parameter to account for the excess 
+channel diffusion resistance for 
+intrinsic input resistance 
+- 
+1.0 
+NGCON 
+ngcon 
+Number of gate contacts 
+- 
+1 
+XGW 
+xgw 
+Distance from the gate contact to the 
+channel edge 
+m 
+0.0 
+XGL 
+xgl 
+Offset of the gate length due to 
+variations in patterning 
+m 
+0.0 
+RBSB 
+rbsb 
+Resistance between sbNode and bNode 
+Ohm 
+50.0 
+RBDB 
+rbdb 
+Resistance between dbNode and bNode 
+Ohm 
+50.0 
+GBMIN 
+gbmin  
+Conductance parallel with RBSB/RBDB 
+mho 
+1e-12 
+ 
+ 
+
+Appendix B: Model Parameter List 
+BSIMSOIv4.4 Manual Copyright © 2010, UC Berkeley 
+Page 83 
+ 
+B.9.  BSIMSOI Noise Model Parameters 
+ 
+FnoiMod fnoiMod Flicker noise model selector 
+- 
+1 
+TnoiMod TnoiMod Thermal noise model selector 
+- 
+0 
+NTNOI 
+ntnoi 
+Noise factor for short-channel devices for 
+TNOIMOD=0 or 2 
+- 
+1.0 
+TNOIA 
+Tnoia 
+Coefficient of channel length dependence of 
+total channel thermal noise 
+- 
+1.5 
+TNOIB 
+Tnoib 
+Channel length dependence parameter for 
+channel thermal noise partitioning 
+- 
+3.5 
+RNOIA 
+rnoia 
+Thermal noise parameter 
+- 
+0.577 
+RNOIB 
+rnoib 
+Thermal noise parameter 
+- 
+0.37 
+W0FLK 
+W0flk 
+Flicker noise width dependence parameter 
+- 
+-1 
+BF 
+bf 
+Flicker noise length dependence exponent 
+- 
+2.0 
+ 
+ 
+B.10.  BSIMSOI Stress Model Parameters 
+ 
+SA 
+(instance 
+parameter) 
+sa 
+Distance between OD edge to poly from one side 
+m 
+0.0 
+SB (instance 
+parameter) 
+sb 
+Distance between OD edge to poly from another side 
+m 
+0.0 
+SD 
+(instance 
+parameter) 
+sd 
+Distance between neighbouring fingers 
+m 
+0.0 
+SAREF 
+saref 
+Reference distance between OD and edge to poly of 
+one side 
+m 
+1e-6 
+
+Appendix B: Model Parameter List 
+BSIMSOIv4.4 Manual Copyright © 2010, UC Berkeley 
+Page 84 
+ 
+SBREF 
+sbref 
+Reference distance between OD and edge to poly of 
+another side 
+m 
+1e-6 
+WLOD 
+Wlod 
+Width parameter for stress effect 
+M 
+0.0 
+KU0 
+Ku0 
+Mobility degradation/enhancement 
+M 
+0.0 
+KVSAT 
+Kvsat 
+Saturation velocity degradation/enhancement 
+parameter for stress effect 
+M 
+0.0 
+TKU0 
+TKU0 
+Temperature coefficient of KU0 
+ 
+0.0 
+LKU0 
+LKU0 
+Length dependence of KU0 
+ 
+0.0 
+WKU0 
+WKU0 
+width dependence of KU0 
+ 
+0.0 
+PKU0 
+PKU0 
+Cross-term dependence of KU0 
+ 
+0.0 
+LLODKU0 
+LLODKU0 Length parameter for u0 stress effect 
+ 
+0.0 
+WLODKU0 WLODKU
+0 
+Width parameter for u0 stress effect 
+ 
+0.0 
+KVTH0 
+KVTH0 
+Threshold shift parameter for stress effect 
+Vm 
+0.0 
+LKVTH0 
+LKVTH0 
+Length dependence of KVHT0 
+ 
+0.0 
+WKVTH0 
+WKVTH0 Width dependence of KVHT0 
+ 
+0.0 
+PKVTH0 
+PKVTH0 
+Cross term dependence of KVHT0 
+ 
+0.0 
+LLODVTH 
+Llodvth 
+Length parameter for Vth stress effect 
+ 
+0.0 
+WLODVT
+H 
+Wlodvth 
+Width parameter for Vth stress effect 
+ 
+0.0 
+STK2 
+Stk2 
+K2 shift factor related to Vth0 change 
+M 
+0.0 
+LODK2 
+LODk2 
+K2 shift modification factor for stress effect  
+ 
+1.0 
+STETA0 
+Steta0 
+Eta0 shift factor related to vth0 change 
+M 
+0.0 
+LODETA0 
+Lodeta0 
+Eta0 shift modification factor for stress effect 
+ 
+1.0 
+ 
+ 
+B.11.  Model Parameter Notes 
+nI-1. BSIMPD supports capmod=2 and 3 only. Capmod=0 and 1 are not supported.  
+nI-2. In modern SOI technology, source/drain extension or LDD are commonly used.  
+As a result, the source/drain junction depth (Xj) can be different from the silicon 
+
+Appendix B: Model Parameter List 
+BSIMSOIv4.4 Manual Copyright © 2010, UC Berkeley 
+Page 85 
+ 
+film thickness (Tsi).  By default, if Xj is not given, it is set to Tsi.  Xj is not allowed 
+to be greater than Tsi. 
+nI-3. BSIMPD refers substrate to the silicon below buried oxide, not the well region in 
+BSIM3.  It is used to calculate backgate flatband voltage (Vfbb) and parameters 
+related to source/drain diffusion bottom capacitance (Vsdth, Vsdfb, Csdmin).  Positive 
+nsub means the same type of doping as the body and negative nsub means opposite 
+type of doping. 
+ 
+nC-1. If cgso is not given then it is calculated using: 
+if (dlc is given and is greater 0) then, 
+ 
+cgso = p1 = (dlc*cox) - cgs1 
+if (the previously calculated cgso <0), then 
+ 
+cgso = 0 
+else cgso = 0.6 * Tsi * cox 
+nC-2. Cgdo is calculated in a way similar to Csdo 
+nC-3. If (nsub is positive) 
+ 
+V
+kT
+q
+n
+n
+n
+sdfb
+sub
+i
+i
+
+
+
+
+
+
+
+
+
+log
+.
+10
+03
+20
+ 
+else 
+ 
+V
+kT
+q
+n
+sdfb
+sub
+
+
+
+
+
+
+
+log
+.
+10
+03
+20
+ 
+nC-4. If (nsub is positive) 
+ 
+sd
+sub
+i
+kT
+q
+n
+n
+
+
+
+
+
+2
+log
+, sd
+sub
+box
+n
+C
+
+
+
+5753 10 12
+.
+ 
+ 
+V
+V
+sdth
+sdfb
+sd
+sd
+sd
+
+
+
+
+
+
+ 
+else 
+ 
+sd
+sub
+i
+kT
+q
+n
+n
+
+
+
+
+
+
+2
+log
+, sd
+sub
+box
+n
+C
+
+
+
+
+5753 10 12
+.
+ 
+ 
+V
+V
+sdth
+sdfb
+sd
+sd
+sd
+
+
+
+
+
+
+ 
+
+Appendix B: Model Parameter List 
+BSIMSOIv4.4 Manual Copyright © 2010, UC Berkeley 
+Page 86 
+ 
+nC-5. X
+q n
+sddep
+si sd
+sub
+
+
+2
+106
+
+, C
+X
+sddep
+si
+sddep
+
+
+, C
+C
+C
+C
+C
+sd
+sddep
+box
+sddep
+box
+min 
+
+ 
+nC-6. If cf is not given then it is calculated using 
+ 
+CF
+T
+ox
+ox
+
+
+
+
+
+
+
+
+
+
+2
+1
+4
+10 7
+
+
+ln
+ 
+ 
+nT-1. For mobmod=1 and 2, the unit is m/V2.  Default is -5.6E-11.  For mobmod=3, 
+unit is 1/V and default is -0.056. 
+ 
+ 
+
+Appendix C: Equation List 
+BSIMSOIv4.4 Manual Copyright © 2010, UC Berkeley 
+Page 87 
+ 
+ 
+ 
+Appendix C: Equation List 
+                    
+ 
+C1:  Equation List for BSIMSOI Built-In Potential Lowering Calculation 
+If SoiMod=0 (default), the model equation is identical to BSIMPD equation. 
+ 
+If SoiMod=1 (unified model for PD&FD) or SoiMod=2 (ideal FD), the following equations (FD 
+module) are added on top of BSIMPD. 
+ 
+        fdMod = 0 
+ 
+
+
+
+
+2
+0
+1
+1
+  
+2
+ where  
+,
+,
+exp
+2exp
+2
+2
+Si
+ch
+BOX
+bi
+Si
+nonideal
+DIBL
+e
+es
+FBb
+Si
+BOX
+Si
+Si
+BOX
+Si
+OX
+OX
+Si
+BOX
+OX
+Si
+BOX
+OX
+eff
+eff
+DIBL
+vbd
+vbd
+vbd
+bi
+B
+C
+qN
+C
+V
+phi
+T
+V
+V
+V
+V
+C
+C
+C
+C
+C
+C
+C
+T
+T
+T
+L
+L
+V
+D
+D
+D
+V
+l
+l
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+l
+L
+D
+exp
+l
+L
+D
+exp
+K
+K
+eff
+b
+k
+eff
+b
+k
+b
+b
+e
+2
+2
+2
+1
+2
+2
+
+ 
+        fdMod = 1 
+         
+ 
+
+
+0
+2
+(1
+/
+)
+2
+          
+ 
+ch
+pe
+eff
+si
+bi
+si
+nonideal
+si
+BOX
+Si
+BOX
+bGS
+FBb
+SCE
+si
+BOX
+si
+BOX
+qN
+L
+L
+C
+V
+T
+V
+C
+C
+CDSBS
+C
+CDSBS
+V
+V
+V
+C
+C
+CDSBS
+C
+C
+CDSBS
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+ 
+
+Appendix C: Equation List 
+BSIMSOIv4.4 Manual Copyright © 2010, UC Berkeley 
+Page 88 
+ 
+
+
+0
+exp
+1
+2exp
+1
+2
+eff
+eff
+SCE
+ds
+L
+L
+V
+DVBD
+DVBD
+DVBD
+V
+VSCE
+l
+l
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+ 
+ 
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+t
+FD
+,
+OFF
+FD
+,
+OFF
+eff
+_
+gs
+FD
+,
+th
+t
+FD
+,
+OFF
+BOX
+Si
+OX
+OX
+ON
+V
+N
+V
+V
+V
+exp
+ln
+V
+N
+C
+C
+C
+C
+phi
+phi
+1
+1
+1
+1
+ 
+ 
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+2
+1
+2
+1
+2
+1
+2
+t
+B
+FD
+,
+gsteff
+FD
+.
+gsteff
+t
+B
+ON
+V
+K
+MoinFD
+K
+V
+V
+ln
+V
+phi
+,  
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+t
+FD
+,
+OFF
+FD
+,
+OFF
+FD
+,
+th
+eff
+_
+gs
+t
+FD
+,
+OFF
+FD
+,
+gsteff
+V
+N
+V
+V
+V
+exp
+ln
+V
+N
+V
+1
+ 
+ 
+Here Nch is the channel doping concentration. VFBb is the backgate flatband voltage.  
+Vth,FD is the threshold voltage at Vbs=Vbs0(phi=2B). Vt is thermal voltage. K1 is the body effect 
+coefficient. 
+ 
+ 
+If SoiMod=1, the lower bound of Vbs (SPICE solution) is set to Vbs0. If SoiMod=2, Vbs is pinned 
+at Vbs0. Notice that there is no body node and body leakage/charge calculation in SoiMod=2.  
+ 
+The zero field body potential that will determine the transistor threshold voltage, Vbsmos, is then 
+calculated by 
+ 
+
+Appendix C: Equation List 
+BSIMSOIv4.4 Manual Copyright © 2010, UC Berkeley 
+Page 89 
+ 
+                                     
+
+
+
+
+
+
+0
+2
+0
+if 
+ 
+   
+2
+else
+ 
+ 
+  
+bs
+bs
+OX
+Si
+bsmos
+bs
+bs
+OX
+bs
+ch
+Si
+bsmos
+bs
+V
+V
+T
+C
+V
+V
+V
+T
+V
+qN T
+V
+V
+
+
+
+
+
+
+ 
+ 
+The subsequent clamping of Vbsmos will use the same equation that utilized in BSIMPD.  
+ 
+If SoiMod=3 is specified, BSIMSOI will select the operation mode for the user based on the 
+estimated value of Vbs0 at phi=2B (bias independent), Vbs0t: 
+  
+If Vbs0t > Vbs0fd, BSIMSOI will be in the ideal FD mode (SoiMod=2). 
+If Vbs0t < Vbs0pd, BSIMSOI will be in the BSIMPD mode (SoiMod=0).  
+Otherwise, BSIMSOI will be operated under SoiMod=1.  
+Notice that both Vbs0fd and Vbs0pd are model parameters. 
+ 
+ 
+ 
+ 
+
+Appendix C: Equation List 
+BSIMSOIv4.4 Manual Copyright © 2010, UC Berkeley 
+Page 90 
+ 
+C2: Equation List for BSIMPD IV 
+ 
+Body Voltages 
+Vbsh is equal to the Vbs bounded between (Vbsc, s1 ).  Vbsh is used in Vth and Abulk calculation 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+bsc
+bsc
+bs
+bsc
+bs
+bsc
+V
+V
+V
+V
+V
+.
+V
+T
+
+
+
+4
+5
+0
+2
+1
+, V
+V
+bsc 5
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1
+2
+1
+1
+1
+1
+1
+4
+5
+0
+T
+T
+T
+.
+V
+s
+s
+s
+bsh
+
+
+
+
+
+
+, s
+V
+1
+15
+.
+ 
+Vbsh is further limited to 0 95
+.
+s  to give Vbseff.  
+
+
+V
+V
+V
+V
+bseff
+s
+s
+bsh
+s
+bsh
+bsh
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+0
+0
+0
+2
+0 5
+4
+.
+, 
+
+s
+s
+0
+0 95
+.
+ 
+ 
+Effective Channel Length and Width 
+ 
+
+
+dW
+W
+W
+L
+W
+W
+W
+L W
+dW
+dW
+dW V
+dW
+V
+l
+W
+w
+W
+wl
+W
+W
+g
+gsteff
+b
+s
+bseff
+s
+wn
+wn
+'
+int
+'
+ln
+ln
+
+
+
+
+
+
+
+
+
+
+
+ 
+ 
+dL
+L
+L
+L
+L
+W
+L
+L W
+l
+L
+w
+L
+wl
+L
+L
+wn
+wn
+
+
+
+
+int
+ln
+ln
+ 
+ 
+L
+L
+dL
+eff
+drawn
+
+2
+ 
+W
+W
+N dW
+N
+dW
+W
+W
+N dW
+N
+dW
+W
+W
+N
+P
+W
+W
+N
+P
+eff
+drawn
+bc
+bc
+bc
+eff
+drawn
+bc
+bc
+bc
+diod
+eff
+seg
+dbcp
+dios
+eff
+seg
+sbcp
+
+
+
+
+
+
+
+
+
+
+
+
+(
+)
+(
+)
+'
+'
+'
+'
+2
+2
+ 
+Threshold Voltage 
+
+Appendix C: Equation List 
+BSIMSOIv4.4 Manual Copyright © 2010, UC Berkeley 
+Page 91 
+ 
+1
+1
+2
+1
+3
+3
+'
+'
+'
+0
+1
+1
+0
+1
+(
+) 1
+0
+( 1
+1)
+(
+)
+(exp(
+)
+2exp(
+))(
+)
+2
+(exp(
+)
+2exp(
+2
+th
+tho
+ox
+eff
+s
+ox
+bseff
+eff
+ox
+ox
+s
+b
+bseff
+s
+eff
+eff
+o
+eff
+eff
+eff
+eff
+VT w
+VT w
+VT w
+bi
+s
+tw
+tw
+eff
+VT
+VT
+t
+LPEB
+V
+V
+K
+sqrtPhisExt
+K
+K
+V
+L
+T
+LPE
+K
+K
+K V
+L
+W
+W
+W L
+W L
+D
+D
+D
+V
+l
+l
+L
+D
+D
+D
+l
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1
+1
+3
+))(
+)
+(exp(
+)
+2exp(
+))(
+)
+2
+ln
+0 (1
+)
+2 tanh(
+4
+)
+DS
+eff
+VT
+bi
+s
+t
+eff
+eff
+sub
+sub
+tao
+tab
+bseff
+ds
+to
+to
+eff
+t
+DVTP V
+eff
+ds
+DVTP
+eff
+L
+V
+l
+L
+L
+D
+D
+E
+E V
+V
+l
+l
+L
+nv
+L
+DVTP
+e
+DVTP
+DVTP
+V
+L
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+Note: The last term (DVTP2, DVTP3 and DVTP4) introduces the flexibility to capture DIBL 
+variation in longer channel. Considering backward compatibility, the old term (DVTP1 and 
+DVTP2) is kept. 
+2
+/
+(1
+)
+t
+si
+dep
+ox
+VT
+bseff
+l
+X
+C
+D
+V
+
+
+
+  
+
+
+sqrtPhisExt
+V
+s V
+V
+s
+bseff
+bsh
+bseff
+
+
+
+
+
+, s
+s
+s
+
+
+1
+2
+0
+
+
+ 
+K
+K
+K
+W
+K
+eff
+w
+w
+eff
+1
+1
+1 1
+1 2
+1
+
+
+
+
+
+
+
+
+
+'
+ 
+1
+1
+ox
+eff
+TOX
+K
+K
+TOXM
+
+ 
+2
+2
+ox
+TOX
+K
+K TOXM
+
+ 
+ 
+l
+X
+C
+D
+V
+tw
+si
+dep
+ox
+VT w
+bseff
+
+
+
+(
+)
+1
+2
+         l
+X
+C
+to
+si
+dep
+ox
+
+
+0 /
+ 
+
+Appendix C: Equation List 
+BSIMSOIv4.4 Manual Copyright © 2010, UC Berkeley 
+Page 92 
+ 
+X
+V
+qN
+dep
+si
+s
+bseff
+ch
+
+
+2(
+)
+
+                  X
+qN
+dep
+si
+s
+ch
+0
+2
+
+
+ 
+V
+v
+N N
+n
+bi
+t
+ch
+DS
+i
+
+ln(
+)
+2
+ 
+ 
+ 
+Poly depletion effect 
+poly
+gate
+si
+poly
+si
+ox
+ox
+V
+N
+q
+E
+E
+
+
+
+2
+
+
+ 
+ 
+si
+poly
+gate
+poly
+poly
+poly
+X
+qN
+E
+X
+V
+
+2
+2
+1
+2
+
+
+ 
+V
+V
+V
+V
+gs
+FB
+x
+poly
+ox
+
+
+
+
+
+ 
+a V
+V
+V
+V
+gs
+FB
+s
+poly
+poly
+(
+)
+
+
+
+
+
+
+2
+0 
+a
+q
+N
+T
+ox
+si
+gate
+ox
+
+
+
+2
+2
+2
+ 
+V
+V
+q
+N
+T
+V
+V
+q
+N
+T
+gs eff
+FB
+s
+si
+gate
+ox
+ox
+ox
+gs
+FB
+s
+si
+gate
+ox
+_
+(
+)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+2
+2
+2
+2
+1
+2
+1  
+ 
+Effective Vgst for all region (with Polysilicon Depletion Effect) 
+_
+_
+*(
+)
+ln[1 exp(
+)]
+(1
+*)(
+)
+2
+*
+exp(
+)
+gs eff
+t
+t
+gsteff
+gs eff
+s
+si
+dep
+t
+m
+V
+Vth
+nv
+nv
+V
+m
+V
+Vth
+Voff
+m
+nCox q
+N
+nv
+
+
+
+
+
+
+
+
+
+
+ 
+
+arctan(MINV)
+m*
+0.5
+π
+ 
+n
+N
+X
+C
+C
+C
+V
+C
+V
+D
+L
+l
+D
+L
+l
+C
+C
+C
+factor
+si
+dep
+ox
+dsc
+dscd
+ds
+dscb
+bseff
+VT
+eff
+t
+VT
+eff
+t
+ox
+it
+ox
+
+
+
+
+
+
+
+
+
+
+
+
+1
+2
+2
+1
+1
+
+/
+(
+) exp(
+)
+exp(
+)
+ 
+ 
+ 
+ 
+ 
+
+Appendix C: Equation List 
+BSIMSOIv4.4 Manual Copyright © 2010, UC Berkeley 
+Page 93 
+ 
+Effective Bulk Charge Factor 
+2
+1
+0
+0
+'
+1
+1
+/
+1
+1
+2
+2
+2 (
+)
+1
+ox
+eff
+eff
+eff
+bulk
+gs
+gsteff
+eff
+bsh
+eff
+si
+dep
+eff
+si
+dep
+s
+bsh
+K
+LPEB L
+A L
+L
+B
+A
+A V
+W
+B
+V
+L
+T X
+L
+T X
+Ketas
+Keta V
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+0
+0
+bulk
+bulk
+gsteff
+A
+A
+V
+
+
+ 
+Mobility and Saturation Velocity 
+mtrlMod = 0 
+For Mobmod=1 
+
+
+eff
+o
+a
+c
+bseff
+gsteff
+th
+ox
+b
+gsteff
+th
+ox
+U
+U V
+V
+V
+T
+U
+V
+V
+T
+
+
+
+
+
+
+1
+2
+2
+2
+(
+)(
+)
+(
+)
+ 
+For Mobmod=2 
+ 
+
+
+eff
+o
+a
+c
+bseff
+gsteff
+ox
+b
+gsteff
+ox
+U
+U V
+V
+T
+U
+V
+T
+
+
+
+
+1
+2
+(
+)(
+)
+(
+)
+ 
+For Mobmod=3 
+ 
+
+
+eff
+a
+gstef
+th
+ox
+b
+gsteff
+th
+ox
+c
+bseff
+U
+V
+V
+T
+U
+V
+V
+T
+U V
+
+
+
+
+
+
+0
+2
+1
+2
+2
+1
+[
+(
+)
+(
+) ](
+)
+ 
+              
+ 
+ 
+For Mobmod=4 
+
+
+
+
+
+
+0
+,
+,
+0
+0
+1
+1
+,
+0
+eff
+EU
+gsteff
+s
+bseff
+UCS
+gsteff
+gsteff Vth
+gsteff Vth
+gsteff
+gse
+th
+ds
+bs
+U
+V
+C
+VTH
+VFB
+UD
+UA UC V
+TOXE
+V
+V
+V
+V
+V
+V V
+V
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+Appendix C: Equation List 
+BSIMSOIv4.4 Manual Copyright © 2010, UC Berkeley 
+Page 94 
+ 
+mtrlMod = 1 
+ 
+ 
+2
+2
+4
+(
+/ 2
+0.45)
+3.9
+gsteff
+th
+eff
+V
+V
+BSIM type
+PHIG
+EASUB
+Eg
+E
+EOT
+EPSRSUB
+
+
+
+
+
+
+
+
+ 
+ 
+            For MobMod = 1 
+2
+1 (
+)
+o
+eff
+a
+c
+bseff
+eff
+b
+eff
+U
+U V
+E
+U E
+
+
+
+
+
+ 
+           For MobMod = 2 
+2
+1 (
+)(
+)
+(
+)
+2
+4
+(
+/ 2
+0.45)
+o
+eff
+gsteff
+d
+gsteff
+d
+a
+c
+bseff
+b
+ox
+ox
+d
+V
+U
+V
+U
+U
+U V
+U
+T
+T
+U
+BSIM type
+PHIG
+EASUB
+Eg
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+For MobMod = 3 
+0
+2
+1 [
+](1
+)
+eff
+a
+eff
+b
+eff
+c
+bseff
+U E
+U E
+U V
+
+
+
+
+
+ 
+For MobMod = 4 
+
+
+
+
+
+
+0
+,
+,
+0
+0
+1
+1
+,
+0
+eff
+EU
+gsteff
+s
+bseff
+UCS
+gsteff
+gsteff Vth
+gsteff Vth
+gsteff
+gse
+th
+ds
+bs
+U
+V
+C
+VTH
+VFB
+UD
+UA UC V
+TOXE
+V
+V
+V
+V
+V
+V V
+V
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+Drain Saturation Voltage 
+For Rds0 or 1: 
+V
+b
+b
+ac
+a
+dsat 
+
+
+2
+4
+2
+  
+ 
+a
+A
+W
+C R
+A
+bulk
+eff
+sat
+ox
+ds
+bulk
+
+
+
+2
+1
+1
+
+
+(
+)
+b
+V
+A
+E
+L
+A
+V
+W
+C R
+gsteff
+t
+bulk
+sat
+eff
+bulk
+gsteff
+t
+eff
+sat
+ox
+ds
+
+
+
+
+
+
+
+
+
+
+(
+)(
+)
+(
+)
+2
+2
+1
+3
+2
+
+
+
+
+ 
+
+Appendix C: Equation List 
+BSIMSOIv4.4 Manual Copyright © 2010, UC Berkeley 
+Page 95 
+ 
+c
+V
+E L
+V
+W
+C R
+gsteff
+t
+sat
+eff
+gsteff
+t
+eff
+sat
+ox
+ds
+
+
+
+
+(
+)
+(
+)
+2
+2
+2
+2
+
+
+
+ 
+ 
+ 
+
+
+AV
+A
+gsteff
+1
+2 
+For Rds=0, =1: 
+V
+E
+L
+V
+A
+E
+L
+V
+dsat
+sat
+eff
+gsteff
+t
+bulk
+sat
+eff
+gsteff
+t
+
+
+
+
+(
+)
+(
+)
+2
+2
+
+
+ 
+Esat
+sat
+eff
+2
+
+ 
+ Vdseff 
+
+
+V
+V
+V
+V
+V
+V
+V
+dseff
+dsat
+dsat
+ds
+dsat
+ds
+dsat
+
+
+
+
+
+
+
+
+1
+2
+4
+2
+
+
+
+(
+)
+  
+ 
+Drain current expression 
+I
+N
+I
+V
+R I
+V
+V
+V
+V
+V
+ds MOSFET
+seg
+ds
+dseff
+ds
+dso
+dseff
+dseff
+ds
+dseff
+A
+,
+(
+)
+(
+) (
+)
+
+
+
+
+1
+1
+1
+0
+ 
+ 
+ 
+
+
+
+eff
+ox
+eff
+eff
+C
+W
+L
+ 
+
+
+I
+V
+A
+V
+V
+v
+V
+V
+E
+L
+dso
+gsteff
+bulk
+dseff
+gsteff
+t
+dseff
+dseff
+sat
+eff
+
+
+
+
+
+
+
+
+
+
+
+1
+2
+2
+1
+ 
+ 
+V
+V
+P V
+E
+L
+V
+V
+A
+Asat
+vag
+gsteff
+sat
+eff
+ACLM
+ADIBLC
+
+
+
+
+
+
+
+
+
+
+
+1
+1
+1
+1
+(
+)
+ 
+V
+A
+E
+L
+V
+P
+A
+E litl
+V
+V
+V
+V
+P
+V
+A
+V
+A
+V
+P
+D
+L
+l
+D
+L
+l
+P
+ACLM
+bulk
+sat
+eff
+gsteff
+clm
+bulk
+sat
+ds
+dseff
+ADIBLC
+gsteff
+t
+rout
+DIBLCB
+bseff
+bulk
+dsat
+bulk
+dsat
+t
+rout
+DIBLC
+ROUT
+eff
+t
+ROUT
+eff
+t
+DIBLC
+
+
+
+
+
+
+
+
+
+
+
+
+
+(
+)
+(
+)
+(
+) (
+)
+[exp(
+exp(
+)]
+2
+1
+1
+2
+2
+2
+1
+0
+0
+2
+
+
+
+
+ 
+
+Appendix C: Equation List 
+BSIMSOIv4.4 Manual Copyright © 2010, UC Berkeley 
+Page 96 
+ 
+V
+E
+L
+V
+R
+C W V
+A
+V
+V
+R
+C W A
+Asat
+sat
+eff
+dsat
+ds
+sat
+ox
+eff
+gsteff
+bulk
+dsat
+gsteff
+t
+ds
+sat
+ox
+eff
+bulk
+
+
+
+
+
+
+2
+1
+2
+2
+2
+1
+
+
+
+
+[
+(
+)]
+/
+ 
+ 
+litl
+T T
+si
+ox
+Si
+ox
+
+
+
+ 
+ 
+Drain/Source Resistance 
+ 
+• rdsMod = 0 (Internal Rds(V)) 
+
+
+
+
+Wr
+eff
+s
+bseff
+s
+rwb
+gsteff
+rwg
+dsw
+ds
+W
+V
+P
+V
+P
+R
+R
+'
+6
+10
+1
+
+
+
+
+
+
+
+ 
+ 
+• rdsMod = 1 (External Rd(V) and Rs(V)) 
+
+
+1
+1
+(
+)
+( )
+1 6
+bd
+gd
+fbsd
+d
+WR
+eff
+RDWMIN
+RDW
+PRWB V
+PRWG V
+V
+R V
+e
+W
+NF
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+1
+1
+(
+)
+( )
+1 6
+bs
+gs
+fbsd
+s
+WR
+eff
+RSWMIN
+RSW
+PRWB V
+PRWG V
+V
+R V
+e
+W
+NF
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+where 
+20
+ln 10
+gate
+B
+fbsd
+N
+k T
+V
+q
+
+
+
+
+
+
+
+ for NGATE larger than 0, otherwise 
+0
+fbsd
+V
+
+. 
+ 
+Impact Ionization Current 
+I
+I
+F
+I
+V
+V
+V
+ii
+ds MOSFET
+bjtii c
+diff
+diff
+diff
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+0
+2
+1
+0
+2
+(
+)exp
+,
+ 
+V
+V
+V
+diff
+ds
+dsatii
+
+
+ 
+
+Appendix C: Equation List 
+BSIMSOIv4.4 Manual Copyright © 2010, UC Berkeley 
+Page 97 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ds
+iid
+gst
+ii
+ii
+gsteff
+ii
+eff
+satii
+eff
+satii
+eff
+ii
+nom
+ii
+dsatii
+dsatii
+V
+S
+V
+S
+S
+V
+S
+L
+E
+L
+E
+VgsStep
+L
+L
+T
+T
+T
+V
+VgsStep
+V
+1
+1
+1
+1
+1
+1
+0
+2
+1
+0
+ 
+ 
+Gate-Induced-Drain-Leakage (GIDL) 
+            gidlMod = 0 
+ 
+3
+3
+3
+exp
+3
+ds
+gse
+fbsd
+oxe
+db
+GIDL
+diod
+oxe
+ds
+gse
+db
+V
+V
+EGIDL V
+T
+BGIDL
+V
+I
+AGIDL W
+Nf
+T
+V
+V
+EGIDL
+CGIDL V
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+              
+3
+3
+3
+exp
+3
+ds
+gse
+fbsd
+oxe
+sb
+GISL
+dios
+oxe
+ds
+gse
+sb
+V
+V
+EGISL V
+T
+BGISL
+V
+I
+AGISL W
+Nf
+T
+V
+V
+EGISL
+CGISL V
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+              gidlMod = 1 
+           
+3
+exp
+exp
+3
+ds
+gse
+fbsd
+oxe
+gidl
+diod
+oxe
+ds
+gse
+bd
+V
+RGIDL V
+EGIDL V
+T
+BGIDL
+KGIDL
+I
+AGIDL W
+Nf
+T
+V
+V
+EGIDL
+V
+FGIDL
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+             
+3
+exp
+exp
+3
+ds
+gse
+fbsd
+oxe
+gisl
+dios
+oxe
+ds
+gse
+bs
+V
+RGISL V
+EGISL V
+T
+BGISL
+KGISL
+I
+AGISL W
+Nf
+T
+V
+V
+EGISL
+V
+FGISL
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+             Here Vfbsd  = 0 when mtrlMod = 0. 
+ 
+Oxide tunneling current 
+In inversion, 
+
+
+0
+2
+3
+3
+EVB
+g
+EVB
+gb1
+gb1
+gb1
+N
+oxref
+2
+3
+0
+2
+4
+3
+2
+8
+8
+V
+1
+V
+V
+1
+T
+tox
+m
+.
+m
+eV
+.
+hq
+m
+B
+h
+q
+A
+V
+exp
+ln
+V
+V
+T
+V
+B
+exp
+T
+T
+V
+V
+A
+J
+ox
+b
+b
+ox
+b
+ox
+aux
+ox
+ox
+ox
+oxqm
+ox
+aux
+gb
+gb
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+φ
+β
+α
+  
+ 
+ 
+ 
+In accumulation, 
+
+Appendix C: Equation List 
+BSIMSOIv4.4 Manual Copyright © 2010, UC Berkeley 
+Page 98 
+ 
+
+
+0
+2
+3
+3
+ECB
+ECB
+gb2
+gb2
+gb2
+N
+oxref
+2
+4
+0
+1
+3
+3
+2
+8
+8
+V
+1
+V
+V
+1
+T
+tox
+m
+.
+m
+eV
+.
+hq
+m
+B
+h
+q
+A
+V
+V
+exp
+ln
+V
+V
+V
+T
+V
+B
+exp
+T
+T
+V
+V
+A
+J
+ox
+b
+b
+ox
+b
+fb
+gb
+t
+aux
+ox
+ox
+ox
+oxqm
+ox
+aux
+gb
+gb
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+β
+α
+ 
+ 
+
+
+
+
+
+
+
+_
+2
+2
+2
+_
+_
+_
+2
+2
+_
+2
+2
+min(
+,0)
+                exp
+2
+2
+1
+2
+0.5
+0.01
+g
+agbcp
+agbcp
+gp
+fb
+gp
+eff
+oxRatio
+oxqm
+gp
+eff
+gp
+eff
+gp
+eff
+gp
+fb
+gp
+fb
+I
+A
+A
+V
+V
+V
+T
+B T
+AIGBCP
+BIGBCP
+V
+CIGBCP
+V
+V
+V
+V
+V
+V
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+Body contact current 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+2
+seg
+'
+eff
+halo
+eff
+seg
+'
+eff
+body
+bp
+N
+W
+R
+||
+L
+N
+W
+R
+R
+, R
+R
+N
+bodyext
+bsh
+rb
+
+ 
+For 4-T device, Ibp 0  
+For 5-T device, 
+  I
+V
+R
+R
+bp
+bp
+bp
+bodyext
+
+
+ 
+ 
+Diode and BJT currents 
+Bipolar Transport Factor 
+ 
+bjt
+eff
+n
+L
+L
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+exp
+.0 5
+2
+  
+Body-to-Source/drain diffusion 
+
+Appendix C: Equation List 
+BSIMSOIv4.4 Manual Copyright © 2010, UC Berkeley 
+Page 99 
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1
+1
+1
+1
+t
+dioded
+bd
+difd
+si
+diod
+bd
+t
+diode
+bs
+difs
+si
+dios
+bs
+V
+n
+V
+j
+T
+W
+I
+V
+n
+V
+j
+T
+W
+I
+exp
+exp
+  
+Recombination/trap-assisted tunneling current in depletion region 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+db
+d
+rec
+d
+rec
+recrd
+db
+recfd
+bd
+recd
+si
+diod
+bd
+sb
+rec
+rec
+recr
+sb
+recf
+bs
+recs
+si
+dios
+bs
+V
+V
+V
+n
+V
+n
+V
+j
+T
+W
+I
+V
+V
+V
+n
+V
+n
+V
+j
+T
+W
+I
+0
+0
+2
+0
+0
+2
+026
+0
+026
+0
+026
+0
+026
+0
+.
+exp
+.
+exp
+.
+exp
+.
+exp
+ 
+Reversed bias tunneling leakage 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+db
+d
+tun
+d
+tun
+tund
+db
+tund
+si
+diod
+bd
+sb
+tun
+tun
+tun
+sb
+tuns
+si
+dios
+bs
+V
+V
+V
+n
+V
+j
+T
+W
+I
+V
+V
+V
+n
+V
+j
+T
+W
+I
+0
+0
+4
+0
+0
+4
+026
+0
+1
+026
+0
+1
+.
+exp
+.
+exp
+ 
+ 
+Recombination current in neutral body 
+
+
+
+
+1
+1
+1
+1
+1
+1
+1
+1
+3
+3
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+hlid
+t
+dioded
+bd
+en
+bjt
+bd
+hli
+t
+diode
+bs
+en
+bjt
+bs
+E
+V
+n
+V
+I
+I
+E
+V
+n
+V
+I
+I
+exp
+exp
+
+
+ 
+
+Appendix C: Equation List 
+BSIMSOIv4.4 Manual Copyright © 2010, UC Berkeley 
+Page 100 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+nom
+bjt
+t
+dioded
+g
+hlid
+eff
+hlid
+nom
+bjt
+t
+diode
+g
+hli
+eff
+hlis
+t
+dioded
+bd
+eff
+hli
+hlid
+t
+diode
+bs
+eff
+hli
+hlis
+N
+n
+eff
+bjt
+dbjt
+si
+seg
+eff
+end
+N
+n
+eff
+bjt
+sbjt
+si
+seg
+eff
+ens
+T
+T
+X
+V
+n
+K
+E
+A
+A
+T
+T
+X
+V
+n
+K
+E
+A
+A
+V
+n
+V
+A
+E
+V
+n
+V
+A
+E
+L
+L
+L
+j
+T
+N
+W
+I
+L
+L
+L
+j
+T
+N
+W
+I
+bjt
+bjt
+1
+300
+1
+300
+1
+1
+1
+1
+1
+1
+0
+0
+exp
+exp
+exp
+exp
+_
+_
+_
+_
+'
+'
+ 
+BJT collector current 
+2
+2
+2
+1
+exp
+exp
+4
+2
+1
+bs
+bd
+c
+bjt
+en
+diodes
+t
+dioded
+t
+nd
+ely
+ely
+hli
+nd
+bs
+bd
+ely
+Abjt
+ely
+eff
+hli
+hlis
+hlid
+V
+V
+I
+I
+n
+V
+n
+V
+E
+E
+E
+E
+E
+V
+V
+E
+V
+A L
+E
+E
+E
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+ 
+ 
+Total body-source/drain current 
+I
+I
+I
+I
+I
+bs
+bs
+bs
+bs
+bs
+
+
+
+
+1
+2
+3
+4  
+I
+I
+I
+I
+I
+bd
+bd
+bd
+bd
+bd
+
+
+
+
+1
+2
+3
+4  
+ 
+ 
+ 
+Total body current 
+ Iii + Idgidl + Isgisl + Igb  - Ibs - Ibd - Ibp = 0 
+ 
+Temperature effects 
+
+Appendix C: Equation List 
+BSIMSOIv4.4 Manual Copyright © 2010, UC Berkeley 
+Page 101 
+ 
+ 
+V
+V
+K
+K
+L
+K V
+T T
+th T
+th Tnom
+T
+t l
+eff
+T
+bseff
+nom
+( )
+(
+)
+(
+/
+)(
+/
+)
+
+
+
+
+
+1
+1
+2
+1  
+ 
+
+
+
+o T
+o Tnom
+nom
+te
+T
+T
+( )
+(
+)(
+)
+
+, 
+
+
+sat T
+sat Tnom
+T
+nom
+A T T
+( )
+(
+)
+(
+/
+)
+
+
+1  
+ 
+R
+R
+T
+P
+T
+T
+dsw T
+dsw
+nom
+rt
+nom
+( )
+(
+)
+(
+)
+
+
+1  
+ 
+U
+U
+U
+T T
+a T
+a Tnom
+a
+nom
+( )
+(
+)
+(
+/
+)
+
+
+
+1
+1  
+ 
+U
+U
+U
+T
+T
+b T
+b Tnom
+b
+nom
+( )
+(
+)
+(
+/
+)
+
+
+
+1
+1  
+ 
+U
+U
+U
+T T
+c T
+c Tnom
+c
+nom
+( )
+(
+)
+(
+/
+)
+
+
+
+1
+1  
+ 
+
+
+seg
+th
+'
+eff
+th
+th
+N
+W
+W
+R
+R
+0
+0
+
+
+, 
+seg
+th
+'
+eff
+th
+th
+N
+W
+W
+C
+C
+0
+0
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+nom
+bjt
+t
+diode
+g
+sbjt
+sbjt
+T
+T
+X
+V
+n
+K
+E
+i
+j
+1
+300
+)
+(
+exp
+ 
+(300
+)
+exp
+1
+g
+dbjt
+dbjt
+bjt
+dioded
+t
+nom
+E
+K
+T
+j
+i
+X
+n
+V
+T
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+nom
+dif
+t
+diode
+g
+sdif
+sdif
+T
+T
+X
+V
+n
+K
+E
+i
+j
+1
+300
+)
+(
+exp
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+nom
+difd
+t
+dioded
+g
+ddif
+ddif
+T
+T
+X
+V
+n
+K
+E
+i
+j
+1
+300
+)
+(
+exp
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+nom
+rec
+t
+recf
+g
+srec
+srec
+T
+T
+X
+V
+n
+K
+E
+i
+j
+1
+300
+0
+)
+(
+exp
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+nom
+recd
+t
+d
+recf
+g
+drec
+drec
+T
+T
+X
+V
+n
+K
+E
+i
+j
+1
+300
+0
+)
+(
+exp
+ 
+
+Appendix C: Equation List 
+BSIMSOIv4.4 Manual Copyright © 2010, UC Berkeley 
+Page 102 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1
+nom
+tun
+stun
+stun
+T
+T
+X
+i
+j
+exp
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1
+nom
+tund
+dtun
+dtun
+T
+T
+X
+i
+j
+exp
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1
+1
+1
+1
+1
+1
+1
+1
+0
+0
+0
+0
+nom
+recr
+d
+recr
+recrd
+nom
+recr
+recr
+recrs
+nom
+recf
+d
+recf
+recfd
+nom
+recf
+recf
+recfs
+T
+T
+nt
+n
+n
+T
+T
+nt
+n
+n
+T
+T
+nt
+n
+n
+T
+T
+nt
+n
+n
+ 
+Eg is the energy gap energy. 
+ 
+ 
+ 
+ 
+ 
+Equation List for BSIMPD CV 
+ 
+Dimension Dependence 
+W
+DWC
+W
+L
+W
+W
+W
+L W
+eff
+lc
+W
+wc
+W
+wlc
+W
+W
+wn
+wn
+
+
+
+
+ln
+ln
+ 
+L
+DLC
+L
+L
+L
+W
+L
+L W
+eff
+lc
+L
+wc
+L
+wlc
+L
+L
+wn
+wn
+
+
+
+
+ln
+ln
+ 
+bg
+activeB
+activeBG
+active
+activeB
+eff
+drawn
+active
+L
+L
+L
+DLCB
+L
+L
+L
+L
+L
+
+
+2
+2
+
+
+
+
+
+
+ 
+
+Appendix C: Equation List 
+BSIMSOIv4.4 Manual Copyright © 2010, UC Berkeley 
+Page 103 
+ 
+dbcp
+seg
+active
+diodCV
+sbcp
+seg
+active
+diosCV
+eff
+bc
+bc
+bc
+drawn
+active
+P
+N
+W
+W
+P
+N
+W
+W
+W
+N
+dW
+N
+W
+W
+
+
+
+
+
+
+
+
+)
+2
+(
+ 
+ 
+Charge Conservation 
+Q
+Q
+Q
+Q
+Bf
+acc
+sub
+subs
+
+
+
+0
+ 
+Q
+Q
+Q
+inv
+inv s
+inv d
+
+
+,
+,  
+
+
+Q
+Q
+Q
+g
+inv
+Bf
+
+
+ 
+Q
+Q
+Q
+Q
+Q
+b
+Bf
+e
+js
+jd
+
+
+
+
+ 
+Q
+Q
+Q
+s
+inv s
+js
+
+
+,
+ 
+Q
+Q
+Q
+d
+inv d
+jd
+
+
+,
+ 
+Q
+Q
+Q
+Q
+Q
+g
+e
+b
+s
+d
+
+
+
+
+0 
+ 
+Intrinsic Charges 
+ 
+(1) capMod = 2 
+Front Gate Body Charge 
+Accumulation Charge 
+
+
+
+
+V
+V
+V
+V
+V
+V
+FBeff
+fb
+fb
+gb
+fb
+gb
+
+
+
+
+
+
+
+
+
+
+
+
+05
+2
+2
+.
+
+
+
+ 
+ 
+ 
+where V
+V
+V
+gb
+gs
+bseff
+
+
+ 
+ 
+ 
+ 
+delvt
+V
+K
+V
+V
+bseff
+s
+eff
+s
+th
+fb
+
+
+
+
+
+
+
+1
+ 
+ 
+ 
+ 
+Q
+F
+W
+L
+N
+A
+C
+V
+V
+acc
+body
+active
+activeB
+seg
+gbcp
+ox
+FBeff
+fb
+
+
+
+
+
+
+
+
+
+(
+) 
+                     vgstcvMod = 0 and 1 
+                                         
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+t
+t
+th
+gs
+t
+gsteffCV
+nv
+delvt
+nv
+V
+V
+nv
+V
+exp
+exp
+1
+ln
+ 
+
+Appendix C: Equation List 
+BSIMSOIv4.4 Manual Copyright © 2010, UC Berkeley 
+Page 104 
+ 
+                     vgstcvMod = 2 
+                                         
+*
+_
+*
+_
+*
+*
+(
+)
+ln 1 exp(
+)
+(1
+)(
+)
+2
+exp(
+)
+arctan(
+)
+0.5
+CV
+gs eff
+th
+t
+t
+gsteffCV
+gs eff
+th
+offCV
+CV
+s
+ox
+si
+dep
+t
+CV
+m
+V
+V
+delvt
+nv
+nv
+V
+m
+V
+V
+delvt
+V
+m
+nC
+q
+N
+nv
+MINVCV
+m
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+ 
+Gate Induced Depletion Charge 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+2
+1
+2
+1
+0
+)
+(
+4
+1
+1
+2
+eff
+bseff
+gsteffCV
+FBeff
+gs
+eff
+ox
+gbcp
+seg
+activeB
+active
+body
+sub
+K
+V
+V
+V
+V
+K
+C
+A
+N
+L
+W
+F
+Q
+  
+Drain Induced Depletion Charge 
+ 
+V
+V
+A
+dsatCV
+gsteffCV
+bulkCV
+
+/
+, A
+A
+CLC
+L
+bulkCV
+bulk
+activeB
+CLE
+
+
+
+
+
+
+
+
+
+
+
+
+
+0 1
+ 
+ 
+V
+V
+V
+V
+V
+V
+V
+dsCV
+dsatCV
+dsatCV
+ds
+dsatCV
+ds
+dsatCV
+
+
+
+
+
+
+
+
+1
+2
+4
+2
+(
+(
+)
+)
+
+
+
+ 
+
+
+
+
+Q
+F
+W
+L
+N
+A
+K
+C
+A
+V
+A
+V
+V
+A
+V
+subs
+body
+active
+activeB
+seg
+gbcp
+eff
+ox
+bulkCV
+dsCV
+bulkCV
+dsCV
+gsteffCV
+bulkCV
+dsCV
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1
+2
+1
+2
+12
+2
+ 
+ 
+Back Gate Body Charge 
+ 
+ 
+ 
+
+
+bseff
+fbb
+es
+box
+ebcp
+seg
+activeBG
+active
+body
+b
+e
+V
+V
+V
+C
+A
+N
+L
+W
+F
+k
+Q
+
+
+
+
+
+
+
+
+
+
+1
+ 
+ 
+Inversion Charge 
+
+
+V
+V
+V
+V
+V
+whereV
+V
+V
+Q
+W
+L
+N
+A
+C
+V
+A
+V
+A
+V
+V
+A
+V
+cveff
+dsat CV
+dsat CV
+dsat CV
+ds
+inv
+active
+active
+seg
+gbcp
+ox
+gsteffCV
+bulkCV
+cveff
+bulkCV
+cveff
+gsteffCV
+bulkCV
+cveff
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+,
+,
+,
+.
+;
+.
+0 5
+4
+0 02
+2
+12
+2
+4
+4
+2
+4
+4
+4
+4
+2
+2
+2
+
+
+
+ 
+
+Appendix C: Equation List 
+BSIMSOIv4.4 Manual Copyright © 2010, UC Berkeley 
+Page 105 
+ 
+ 
+50/50 Charge Partition 
+Q
+Q
+Q
+inv s
+inv d
+inv
+,
+,.
+.
+
+0 5
+ 
+ 
+40/60 Charge Partition
+ 
+
+
+
+
+
+
+Q
+W
+L
+N
+A
+C
+V
+A
+V
+V
+V
+A
+V
+V
+A
+V
+A
+V
+inv s
+active
+active
+seg
+gbcp
+ox
+gsteffCV
+bulkCV
+cvefff
+gsteffCV
+gsteffCV
+bulkCV
+cveff
+gsteff
+bulkCV
+cveff
+bulkCV
+cveff
+, 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+2
+2
+4
+3
+2
+3
+2
+15
+2
+3
+2
+2
+3
+ 
+
+
+
+
+
+
+Q
+W
+L
+N
+A
+C
+V
+A
+V
+V
+V
+A
+V
+V
+A
+V
+A
+V
+inv d
+active
+active
+seg
+gbcp
+ox
+gsteffCV
+bulkCV
+cvefff
+gsteffCV
+gsteffCV
+bulkCV
+cveff
+gsteff
+bulkCV
+cveff
+bulkCV
+cveff
+, 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+2
+2
+5
+3
+1
+5
+2
+3
+2
+2
+3  
+0/100 Charge Partition 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+cveff
+bulkCV
+gsteffCV
+cveff
+bulkCV
+cveff
+bulkCV
+gsteffCV
+ox
+seg
+gbcp
+active
+active
+s
+inv
+V
+A
+V
+V
+A
+V
+A
+V
+C
+N
+A
+L
+W
+Q
+2
+24
+4
+2
+2
+,
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+cveff
+bulkCV
+gsteffCV
+cveff
+bulkCV
+cveff
+bulkCV
+gsteffCV
+ox
+seg
+gbcp
+active
+active
+d
+inv
+V
+A
+V
+V
+A
+V
+A
+V
+C
+N
+A
+L
+W
+Q
+2
+8
+4
+3
+2
+2
+,
+ 
+ 
+(2) capMod = 3 (Charge-Thickness Model)  
+ 
+capMod = 3 only supports zero-bias flat band voltage, which is calculated from bias-independent 
+threshold voltage. This is different from capMod = 2. For the finite thickness (
+DC
+X
+) formulation, 
+refer to Chapter 4 of BSIM3v3.2 Users’s Manual.  
+ 
+Front Gate Body Charge 
+Accumulation Charge 
+
+
+
+
+V
+V
+V
+V
+V
+V
+FBeff
+fb
+fb
+gb
+fb
+gb
+
+
+
+
+
+
+
+
+
+
+
+
+05
+2
+2
+.
+
+
+
+ 
+
+Appendix C: Equation List 
+BSIMSOIv4.4 Manual Copyright © 2010, UC Berkeley 
+Page 106 
+ 
+ 
+ 
+where V
+V
+V
+gb
+gs
+bseff
+
+
+ 
+ 
+ 
+ 
+V
+V
+K
+V
+fb
+th
+s
+eff
+s
+bseff
+
+
+
+
+
+
+1
+ 
+ 
+ 
+
+
+DC
+Si
+cen
+cen
+ox
+cen
+ox
+oxeff
+gs
+bseff
+fb
+fb
+gbacc
+gbacc
+oxeff
+gbcp
+seg
+activeB
+active
+body
+acc
+X
+C
+C
+C
+C
+C
+C
+V
+V
+V
+V
+V
+V
+V
+V
+V
+C
+A
+N
+L
+W
+F
+Q
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+0
+2
+0
+0
+4
+5.0
+ 
+ 
+Gate Induced Depletion Charge 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+2
+1
+2
+1
+0
+)
+(
+4
+1
+1
+2
+eff
+bseff
+gsteffCV
+FBeff
+gs
+eff
+oxeff
+gbcp
+seg
+activeB
+active
+body
+sub
+K
+V
+V
+V
+V
+K
+C
+A
+N
+L
+W
+F
+Q
+ 
+ 
+Drain Induced Depletion Charge 
+ 
+
+
+bulkCV
+gsteffCV
+dsatCV
+A
+V
+V
+/
+
+
+
+
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+2
+1
+1
+2
+2
+1
+ln
+2
+t
+eff
+B
+eff
+gstefCV
+gsteffCV
+t
+B
+s
+v
+moinK
+K
+V
+V
+v
+
+ 
+ 
+V
+V
+V
+V
+V
+V
+V
+dsCV
+dsatCV
+dsatCV
+ds
+dsatCV
+ds
+dsatCV
+
+
+
+
+
+
+
+
+1
+2
+4
+2
+(
+(
+)
+)
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+2
+12
+2
+1
+2
+1
+dsCV
+bulkCV
+gsteffCV
+dsCV
+bulkCV
+dsCV
+bulkCV
+oxeff
+eff
+gbcp
+seg
+activeB
+active
+body
+subs
+V
+A
+V
+V
+A
+V
+A
+C
+K
+A
+N
+L
+W
+F
+Q
+
+ 
+ 
+Back Gate Body Charge 
+ 
+ 
+ 
+
+
+bseff
+fbb
+es
+box
+ebcp
+seg
+activeBG
+active
+body
+b
+e
+V
+V
+V
+C
+A
+N
+L
+W
+F
+k
+Q
+
+
+
+
+
+
+
+
+
+
+1
+ 
+ 
+Inversion Charge 
+
+Appendix C: Equation List 
+BSIMSOIv4.4 Manual Copyright © 2010, UC Berkeley 
+Page 107 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+cveff
+bulkCV
+gsteffCV
+cveff
+bulkCV
+cveff
+bulkCV
+gsteffCV
+oxeff
+gbcp
+seg
+active
+active
+inv
+ds
+CV
+dsat
+CV
+dsat
+CV
+dsat
+cveff
+V
+A
+V
+V
+A
+V
+A
+V
+C
+A
+N
+L
+W
+Q
+V
+V
+whereV
+V
+V
+V
+V
+V
+2
+12
+2
+02
+.0
+;
+4
+5.0
+2
+2
+2
+4
+4
+,
+4
+,
+4
+2
+4
+4
+,
+
+
+
+
+
+ 
+ 
+50/50 Charge Partition 
+Q
+Q
+Q
+inv s
+inv d
+inv
+,
+,.
+.
+
+0 5
+ 
+ 
+40/60 Charge Partition
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+3
+2
+2
+3
+2
+,
+15
+2
+3
+2
+3
+4
+2
+2
+cveff
+bulkCV
+cveff
+bulkCV
+gsteff
+cveff
+bulkCV
+gsteffCV
+gsteffCV
+cvefff
+bulkCV
+gsteffCV
+oxeff
+gbcp
+seg
+active
+active
+s
+inv
+V
+A
+V
+A
+V
+V
+A
+V
+V
+V
+A
+V
+C
+A
+N
+L
+W
+Q
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+3
+2
+2
+3
+2
+,
+5
+1
+3
+5
+2
+2
+cveff
+bulkCV
+cveff
+bulkCV
+gstefCVf
+cveff
+bulkCV
+gsteffCV
+gsteffCV
+cvefff
+bulkCV
+gsteffCV
+oxef
+gbcp
+seg
+active
+active
+d
+inv
+V
+A
+V
+A
+V
+V
+A
+V
+V
+V
+A
+V
+C
+A
+N
+L
+W
+Q
+
+
+
+
+ 
+0/100 Charge Partition 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+cveff
+bulkCV
+gsteffCV
+cveff
+bulkCV
+cveff
+bulkCV
+gsteffCV
+oxeff
+seg
+gbcp
+active
+active
+s
+inv
+V
+A
+V
+V
+A
+V
+A
+V
+C
+N
+A
+L
+W
+Q
+2
+24
+4
+2
+2
+,
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+cveff
+bulkCV
+gsteffCV
+cveff
+bulkCV
+cveff
+bulkCV
+gsteffCV
+oxeff
+seg
+gbcp
+active
+active
+d
+inv
+V
+A
+V
+V
+A
+V
+A
+V
+C
+N
+A
+L
+W
+Q
+2
+8
+4
+3
+2
+2
+,
+
+
+ 
+ 
+Overlap Capacitance 
+Source Overlap Charge 
+ 
+ 
+
+
+
+
+V
+V
+V
+gs overlap
+gs
+gs
+_
+
+
+
+
+
+
+
+1
+2
+4
+2
+
+
+
+ 
+
+Appendix C: Equation List 
+BSIMSOIv4.4 Manual Copyright © 2010, UC Berkeley 
+Page 108 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+CKAPPA
+V
+CKAPPA
+V
+V
+CGS
+V
+CGS
+W
+Q
+overlap
+gs
+overlap
+gs
+gs
+gs
+diosCV
+s
+overlap
+_
+_
+,
+4
+1
+1
+2
+1
+0
+ 
+Drain Overlap Charge 
+ 
+
+
+
+
+V
+V
+V
+gd overlap
+gd
+gd
+_
+
+
+
+
+
+
+
+
+
+
+
+1
+2
+4
+2
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+CKAPPA
+V
+CKAPPA
+V
+V
+CGD
+V
+CGD
+W
+Q
+overlap
+gd
+overlap
+gd
+gd
+gd
+diodCV
+d
+overlap
+_
+_
+,
+4
+1
+1
+2
+1
+0
+ 
+Gate Overlap Charge 
+ 
+
+
+Q
+Q
+Q
+overlap g
+overlap s
+overlap d
+,
+,
+,
+
+
+ 
+ 
+Source/Drain Junction Charge 
+For Vbs < 
+s
+95
+.0
+ 
+ 
+ 
+ 
+ 
+else 
+
+
+bsdif
+s
+bs
+s
+bsdep
+jswg
+Q
+V
+C
+Q
+
+
+
+
+
+95
+.0
+)
+95
+.0
+(
+ 
+For Vbd < 
+s
+95
+.0
+ 
+ 
+ 
+ 
+ 
+else 
+ 
+ 
+ 
+
+
+
+bddif
+s
+bd
+s
+bddep
+jdwg
+Q
+V
+C
+Q
+
+
+
+
+
+95
+.0
+95
+.0
+ 
+ 
+ 
+where 
+
+Appendix C: Equation List 
+BSIMSOIv4.4 Manual Copyright © 2010, UC Berkeley 
+Page 109 
+ 
+1
+7
+1
+1
+10
+1
+jswgs
+M
+bswgs
+si
+bs
+bsdep
+dioCV
+jswgs
+jswgs
+bswgs
+P
+T
+V
+Q
+W
+C
+M
+P
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+1
+7
+1
+1
+10
+1
+jswgd
+M
+bswgd
+si
+bd
+bddep
+dioCV
+jswgd
+jswgd
+bswgd
+P
+T
+V
+Q
+W
+C
+M
+P
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+nom
+pbswgd
+bswgd
+bswgd
+nom
+pbswgs
+bswgs
+bswgs
+nom
+cjswgd
+jswgd
+jswgd
+nom
+cjswgs
+jswgs
+jswgs
+T
+T
+t
+P
+P
+T
+T
+t
+P
+P
+T
+T
+t
+C
+C
+T
+T
+t
+C
+C
+
+
+
+
+
+
+
+
+
+
+
+
+0
+0
+0
+0
+1
+1
+ 
+0
+0
+0
+0
+'
+1
+1
+1
+1
+exp
+1
+1
+'
+1
+1
+1
+exp
+dif
+dif
+N
+eff
+bs
+bsdif
+si
+sbjt
+dif
+bj
+seg
+eff
+n
+dios
+t
+hlis
+N
+eff
+bd
+bddif
+si
+dbjt
+dif
+bj
+seg
+eff
+n
+diod
+t
+W
+V
+Q
+T J
+L
+L
+N
+L
+L
+n
+V
+E
+W
+V
+Q
+T J
+L
+L
+N
+L
+L
+n
+V
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1
+1
+1
+hlid
+E
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+Extrinsic Capacitance 
+Bottom S/D to Substrate Capacitance (per unit area)  
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+else
+C
+V
+V
+elseif
+V
+V
+V
+V
+C
+C
+A
+C
+V
+V
+A
+V
+V
+elseif
+V
+V
+V
+V
+C
+C
+A
+C
+V
+V
+if
+C
+C
+min
+sdth
+e,
+d
+/
+s
+sdfb
+sdth
+sdth
+e,
+d
+/
+s
+min
+box
+sd
+min
+sdfb
+sdth
+sd
+sdfb
+e,
+d
+/
+s
+sdfb
+sdth
+sdfb
+e,
+d
+/
+s
+min
+box
+sd
+box
+sdfb
+e,
+d
+/
+s
+box
+esb
+2
+2
+1
+1
+1
+ 
+Sidewall S/D to Substrate Capacitance (per unit length) 
+ 
+
+
+
+
+
+
+
+box
+si
+sdesw
+esw
+d
+s
+T
+T
+C
+C
+1
+log
+,
+/
+ 
+ 
+ 
+Finite Thickness Formulation 
+           When capMod = 3, the finite thickness model is selected. 
+            mtrlMod = 0 
+
+Appendix C: Equation List 
+BSIMSOIv4.4 Manual Copyright © 2010, UC Berkeley 
+Page 110 
+ 
+            
+oxp
+cen
+oxeff
+oxp
+cen
+C
+C
+C
+C
+C
+
+
+
+ 
+            
+/
+cen
+si
+DC
+C
+X
+
+
+ 
+          (i) XDC for accumulation and depletion 
+            
+0.25
+16
+1
+exp
+3
+2 10
+gse
+bseff
+FBeff
+DC
+debye
+V
+V
+V
+NDEP
+X
+L
+ACDE
+TOXP
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+         For numerical stability, 
+         
+
+
+2
+max
+0
+0
+max
+1
+4
+2
+DC
+x
+X
+X
+X
+X
+X
+
+
+
+
+
+ 
+         
+0
+max
+DC
+x
+X
+X
+X
+
+
+
+
+ 
+       (ii) XDC of inversion charge 
+        
+
+
+9
+0.7
+1.9 10
+m
+4
+0
+1
+2
+DC
+BDOS
+gsteff
+s
+ADOS
+X
+V
+VTH
+VFB
+TOXP
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+      (iii) Body charge thickness in inversion 
+          
+1
+2
+1
+(
+2
+2
+2
+ln 1
+gsteffCV
+gsteffCV
+ox
+B
+s
+B
+t
+ox
+t
+V
+V
+K
+MOIN K
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+,
+inv
+oxeff
+gsteff CV
+eff
+q
+C
+V
+
+
+
+
+
+ 
+ 
+mtrlMod = 1 
+In this case, TOXP has to be calculated first: 
+,
+0
+3.9
+gs
+ds
+bs
+DC V
+VDDEOT V
+V
+TOXP
+EOT
+X
+EPSRSUB
+
+
+
+
+
+
+ 
+Then, other procedures are same in mtrlMod = 0. 
+ 
+
+Appendix D: Parameter Extraction 
+BSIMSOIv4.4 Manual Copyright © 2010, UC Berkeley 
+Page 111 
+ 
+ 
+Appendix D: Parameter Extraction  
+D.1. Extraction Strategy 
+The complicated physics in SOI MOSFETs makes parameter extraction quite involved [20]. 
+It is always preferable to have more measurements so that the parameters extracted can have 
+more valid physical meaning.  Similar to conventional bulk devices, two basic extraction 
+strategies can be used: single device extraction, and group device extraction. The group device 
+extraction is more popular because of several reasons.  In analog circuit, channel length and 
+width scalability is very important. In digital circuit, statistical modeling is often used to predict 
+the circuit performance due to process variation. Hence channel length scalability is also 
+important.  Besides, model parameters extracted from group device extraction have better 
+physical meaning than that from single device extraction. In this work, we shall emphasize on 
+group device extraction. 
+Parameter extraction using body contact devices is highly recommended because parameters 
+related to body effect, impact ionization and leakage currents can be directly extracted [18, 19]. 
+This yields less ambiguity in extracting technology parameters for I-V fitting purposes. In the 
+followings, we suggest a set of measurement suitable for PD devices. 
+ 
+D.2. Suggested I-V Measurement 
+Measurement set A is used to extract basic MOS I-V parameters.  For each body-contacted 
+device : 
+(A1) 
+Ids vs. Vgs @ small Vds with different Vbs, Ves=0V. 
+(A2) 
+Ids vs. Vgs @ Vds=Vdd with different Vbs, Ves=0V. 
+(A3) 
+Ids vs. Vds with different Vgs and different Vbs, Ves=0V. 
+Parameters extracted include threshold voltage, body coefficient, delta L and W, series 
+resistance, mobility, short channel effect, and subthreshold swing.  (A2) is used to extract DIBL 
+
+Appendix D: Parameter Extraction 
+BSIMSOIv4.4 Manual Copyright © 2010, UC Berkeley 
+Page 112 
+ 
+parameters at subthreshold.  (A3) is used to extract saturation velocity, body charge effect, output 
+resistance, body contact resistance and self-heating parameters.   
+Measurement set C is used to extract impact ionization current parameters.  For each body-
+contacted device : 
+(C1) 
+Ib vs. Vgs @ different Vds, Vbs=0V, Ves=0V. 
+(C2) 
+Ib vs. Vds @ different Vgs, Vbs=0V, Ves=0V. 
+Measurement set D is used to extract MOS temperature dependent parameter.  For a long 
+channel body-contacted device: 
+(D1) 
+Ids vs. Vgs @ small Vds, Vbs=0V, Ves=0V, repeat with several temperatures. 
+(D2) 
+Ids vs. Vds @ different Vgs, Vbs=0V, Ves=0V, repeat with several temperatures. 
+Notice that the self-heating parameters have to be extracted from set A.  
+Measurement set E is used to extract diode parameters.  For a long channel body-contacted 
+device or gated diode : 
+(E1) 
+Idiode vs. Vbs @ Vgs=-1V, Ves=0V, repeat with several temperature 
+Measurement set F is used to extract BJT parameters.  For each body-contacted device: 
+(F1) 
+Ids vs. Ib @ Vgs=-1V, Ves=0V, Vds=1V. 
+Measurement set G is used to verify the floating body device data.  For each floating-body 
+device : 
+(G1) 
+Ids vs. Vgs @ small Vds. 
+(G2) 
+Ids vs. Vgs @ Vds=Vdd. 
+(G3) 
+Ids vs. Vds @ different Vgs. 
+ 
+
+Appendix E: Model Parameter Binning 
+BSIMSOIv4.4 Manual Copyright © 2010, UC Berkeley 
+Page 113 
+ 
+Appendix E: Model Parameter Binning 
+ 
+Below is the information on parameter binning regarding which model parameters can or cannot 
+be binned. All those parameters which can be binned follow this implementation: 
+eff
+eff
+P
+eff
+W
+eff
+L
+W
+L
+P
+W
+P
+L
+P
+P
+P
+
+
+
+
+
+0
+ 
+For example, for the parameter k1: P0 = k1, PL = lk1, PW = wk1, PP = pk1. binUnit is a bining unit 
+selector. If binUnit = 1, the units of Leff and Weff used in the binning equation above have the units 
+of microns; otherwise in meters. 
+For example, for a device with Leff = 0.5m and Weff = 10m. If binUnit = 1, the parameter values 
+for vsat are 1e5, 1e4, 2e4, and 3e4 for vsat, lvsat, wvsat, and pvsat, respectively. Therefore, the 
+effective value of vsat for this device is 
+vsat = 1e5 + 1e4/0.5 + 2e4/10 + 3e4/(0.5*10) = 1.28e5 
+To get the same effective value of vsat for binUnit = 0, the values of vsat, lvsat, wvsat, and pvsat 
+would be 1e5, 1e-2, 2e-2, 3e-8, respectively. Thus, 
+vsat = 1e5 + 1e-2/0.5e-6 + 2e-2/10e-6 + 3e-8/(0.5e-6 * 10e-6) = 1.28e5 
+
+Appendix E: Model Parameter Binning 
+BSIMSOIv4.4 Manual Copyright © 2010, UC Berkeley 
+Page 114 
+ 
+Model parameters that have been binned in B4SOI are listed as follows: 
+E.1.  DC Parameters 
+Symbol 
+used in 
+equation 
+Symbol 
+used in 
+SPICE 
+ 
+Description 
+Vth0 
+vth0 
+Threshold voltage @Vbs=0 for long and wide device 
+K1 
+k1 
+First order body effect coefficient 
+K1w1 
+k1w1 
+First body effect width dependent parameter 
+K1w2 
+k1w2 
+Second body effect width dependent parameter 
+K2 
+k2 
+Second order body effect coefficient 
+K3 
+k3 
+Narrow width coefficient 
+K3b 
+k3b 
+Body effect coefficient of k3 
+Kb1 
+Kb1 
+Backgate body charge coefficient 
+W0 
+w0 
+Narrow width parameter 
+NLX 
+nlx 
+Lateral non-uniform doping parameter 
+Dvt0 
+Dvt0 
+first coefficient of short-channel effect on Vth 
+Dvt1 
+dvt1 
+Second coefficient of short-channel effect on Vth 
+Dvt2 
+dvt2 
+Body-bias coefficient of short-channel effect on Vth 
+Dvt0w 
+dvt0w 
+first coefficient of narrow width effect on Vth for small channel length 
+Dvt1w 
+dvt1w 
+Second coefficient of narrow width effect on Vth for small channel 
+length 
+Dvt2w 
+dvt2w 
+Body-bias coefficient of narrow width effect on Vth for small channel 
+length 
+0 
+u0 
+Mobility at Temp = Tnom 
+Ua 
+ua 
+First-order mobility degradation coefficient 
+Ub 
+ub 
+Second-order mobility degradation coefficient 
+Uc 
+uc 
+Body-effect of mobility degradation coefficient 
+vsat 
+vsat 
+Saturation velocity at Temp=Tnom 
+A0 
+a0 
+Bulk charge effect coefficient for channel length 
+
+Appendix E: Model Parameter Binning 
+BSIMSOIv4.4 Manual Copyright © 2010, UC Berkeley 
+Page 115 
+ 
+Ags 
+ags 
+Gate bias coefficient of Abulk 
+B0 
+b0 
+Bulk charge effect coefficient for channel width 
+B1 
+b1 
+Bulk charge effect width offset 
+Keta 
+keta 
+Body-bias coefficient of bulk charge effect 
+Ketas 
+Ketas 
+Surface potential adjustment for bulk charge effect 
+A1 
+A1 
+First non-saturation effect parameter 
+A2 
+A2 
+Second non-saturation effect parameter 
+Rdsw 
+rdsw 
+Parasitic resistance per unit width 
+Prwb 
+prwb 
+Body effect coefficient of Rdsw 
+Prwg 
+prwg 
+Gate bias effect coefficient of Rdsw 
+Wr 
+wr 
+Width offset from Weff for Rds calculation 
+Nfactor 
+nfactor 
+Subthreshold swing factor 
+Wint 
+wint 
+Width offset fitting parameter from I-V without bias 
+Lint 
+lint 
+Length offset fitting parameter from I-V without bias 
+DWg 
+dwg 
+Coefficient of Weff’s gate dependence 
+DWb 
+dwb 
+Coefficient of Weff’s substrate body bias dependence 
+Voff 
+voff 
+Offset voltage in the subthreshold region for large W and L 
+Eta0 
+eta0 
+DIBL coefficient in subthreshold region 
+Etab 
+etab 
+Body-bias coefficient for the subthreshold DIBL effect 
+Dsub 
+dsub 
+DIBL coefficient exponent 
+Cit 
+cit 
+Interface trap capacitance 
+Cdsc 
+cdsc 
+Drain/Source to channel coupling capacitance 
+Cdscb 
+cdscb 
+Body-bias sensitivty of Cdsc 
+Cdscd 
+cdscd 
+Drain-bias sensitivty of Cdsc 
+Pclm 
+pclm 
+Channel length modulation parameter 
+Pdibl1 
+pdibl1 
+First output resistance DIBL effect correction parameter 
+Pdibl2 
+pdibl2 
+Second output resistance DIBL effect correction parameter 
+Drout 
+drout 
+L dependence coefficient of the DIBL correction parameter in Rout 
+Pvag 
+pvag 
+Gate dependence of Early voltage 
+
+Appendix E: Model Parameter Binning 
+BSIMSOIv4.4 Manual Copyright © 2010, UC Berkeley 
+Page 116 
+ 
+ 
+delta 
+Effective Vds parameter 
+0 
+alpha0 
+The first parameter of impact ionization current 
+Fbjtii 
+fbjtii 
+Fraction of bipolar current affecting the impact ionization 
+0 
+beta0 
+First Vds dependent parameter of impact ionization current 
+1 
+beta1 
+Second Vds dependent parameter of impact ionization current 
+2 
+beta2 
+Third Vds dependent parameter of impact ionization current 
+Vdsatii0 
+vdsatii0 Nominal drain saturation voltage at threshold for impact ionization 
+current 
+Tii 
+tii 
+Temperature dependent parameter for impact ionization current 
+Lii 
+lii 
+Channel length dependent parameter at threshold for impact ionization 
+current 
+Esatii 
+esatii 
+Saturation channel electric field for impact ionization current 
+Sii0 
+sii0 
+First Vgs dependent parameter for impact ionization current 
+Sii1 
+sii1 
+Second Vgs dependent parameter for impact ionization current 
+Sii2 
+sii2 
+Third Vgs dependent parameter for impact ionization current 
+Siid 
+siid 
+Vds dependent parameter of drain saturation voltage for impact 
+ionization current 
+gidl 
+Agidl 
+GIDL constant 
+gidl 
+Bgidl 
+GIDL exponential coefficient 
+ 
+Ngidl 
+GIDL Vds enhancement coefficient 
+ntun 
+Ntun 
+Reverse tunneling non-ideality factor 
+ndiode 
+Ndiode 
+Diode non-ideality factor 
+nrecf0 
+Nrecf0 
+Recombination non-ideality factor at forward bias 
+nrecr0 
+Nrecr0 
+Recombination non-ideality factor at reversed bias 
+isbjt 
+Isbjt 
+BJT injection saturation current 
+isdif 
+Isdif 
+Body to source/drain injection saturation current 
+isrec 
+Isrec 
+Recombination in depletion saturation current 
+istun 
+Istun 
+Reverse tunneling saturation current 
+Vrec0 
+Vrec0 
+Voltage dependent parameter for recombination current 
+
+Appendix E: Model Parameter Binning 
+BSIMSOIv4.4 Manual Copyright © 2010, UC Berkeley 
+Page 117 
+ 
+Vtun0 
+Vtun0 
+Voltage dependent parameter for tunneling current 
+Nbjt 
+Nbjt 
+Power coefficient of channel length dependency for bipolar current 
+Lbjt0 
+Lbjt0 
+Reference channel length for bipolar current 
+Vabjt 
+Vabjt 
+Early voltage for bipolar current 
+Aely 
+Aely 
+Channel length dependency of early voltage for bipolar current 
+Ahli 
+Ahli 
+High level injection parameter for bipolar current 
+ 
+E.2.  AC and Capacitance Parameters 
+Symbol 
+used in 
+equation 
+Symbol 
+used in 
+SPICE 
+ 
+Description 
+Vsdfb 
+vsdfb 
+Source/drain bottom diffusion capacitance flatband voltage 
+Vsdth 
+vsdth 
+Source/drain bottom diffusion capacitance threshold voltage 
+DelVt 
+delvt 
+Threshold voltage adjust for C-V 
+acde 
+acde 
+Exponential coefficient for charge thickness in capMod=3 for 
+accumulation and depletion regions. 
+moin 
+moin 
+Coefficient for the gate-bias dependent surface potential. 
+ 
+
+References 
+BSIMSOIv4.4 Manual Copyright © 2010, UC Berkeley 
+Page 118 
+ 
+References 
+[1] 
+Y. Cheng, M. C. Jeng, Z. H. Liu, J. Huang M. Chan, P. K. Ko, and C. Hu, “A Physical     and 
+Scalable I-V Model in BSIM3v3 for Analog/Digital Circuit Simulation”, IEEE Trans. On Elec. 
+Dev., vol. 42, p. 2, Feb 1997. 
+ 
+[2] 
+BSIM3SOIv1.3 Users’ Manual, UC Berkeley, Department of EECS. 
+ 
+[3] 
+W. Jin, P. C. H. Chan, S. K. H. Fung, P. K. Ko, “A Physically-Based Low-Frequency Noise Model 
+for NFD SOI MOSFET’s”, IEEE Intl. SOI conf., pp. 23-24, 1998. 
+ 
+[4] 
+BSIM3v3.2 Users’ Manual, UC Berkeley, Department of EECS.  
+ 
+[5] 
+D. Suh, J. G. Fossum, “A physical charge-based model for non-fully depleted SOI MOSFET’s and 
+its use in assessing floating-body effects in SOI CMOS circuits”, IEEE Tran. on Electron Devices, 
+vol. 42, no. 4, pp. 728-37, April 1995. 
+ 
+[6] 
+M. S. L. Lee, W. Redman-White, B. M. Tenbroek, M. Robinson, “Modelling of thin film SOI 
+devices for circuit simulation including per-instance dynamic self-heating effects”, IEEE Intl. SOI 
+conf., pp. 150-151, 1993. 
+ 
+[7] 
+D. Sinitsky, S. Tang, A. Jangity, F. Assaderaghi, G. Shahidi, C. Hu, “Simulation of SOI Devices 
+and Circuits using BSIM3SOI”, IEEE Electron Device Letters, vol. 19, no. 9, pp. 323-325, 
+September 1998. 
+ 
+[8] 
+G. S. Gildenblat, VLSI Electronics: Microstructure Science, p. 11, vol. 18, 1989. 
+ 
+[9] 
+M. C. Jeng, “Design and Modeling of Deep-Submicrometer MOSFETs”, Ph. D. Dissertation, UC 
+Berkeley. 
+ 
+
+References 
+BSIMSOIv4.4 Manual Copyright © 2010, UC Berkeley 
+Page 119 
+ 
+[10] D. Sinitsky, S. Fung, S. Tang, P. Su, M. Chan, P. Ko, C. Hu, “A Dynamic Depletion SOI MOSFET 
+Model for SPICE”, in Dig. Tech. Papers, Symp. VLSI Technology, 1998.  
+ 
+[11] D. Sinitsky, R. Tu, C. Liang, M. Chan, J. Bokor and C. Hu, “AC output conductance of SOI 
+MOSFETs and impact on analog applications”, IEEE Electron Device Letters, vol.18, no.2, pp. 36-
+38, Feb 1997. 
+ 
+[12] T. Y. Chan, P. K. Ko and C. Hu, “A Simple Method to Characterize Substrate Current in 
+MOSFETs”, IEEE Electron Dev. Letts., EDL-5, Dec 1984, p. 505. 
+ 
+[13] S. A. Parke, J. E. Moon, H. C. Wann, P. K. Ko and C. Hu, “Design for suppression of gate-induced 
+drain leakage in LDD MOSFETs using a quasi-two-dimensional analytical model”, IEEE Trans. 
+On Electron Device, vol. 39, no. 7, pp. 1697-703, July 1992. 
+ 
+[14] J. Gautier and J. Y.-C. Sun, “On the transient operation of partially depleted SOI NMOSFET’s”, 
+IEEE Electron device letters, vol.16, no.11, pp. 497-499, Nov 1995. 
+ 
+[15] L. T. Su, D. A. Antoniadis, M. I. Flik, J. E. Chung, “Measurement and modeling of self-  heating 
+effects in SOI nMOSFETs”, IEDM tech. Digest, pp. 357-360, 1994. 
+ 
+[16] R. H. Tu, C. Wann, J. C. King, P. K. Ko, C. Hu, “An AC Conductance Technique for Measuring 
+Self-Heating in SOI MOSFET’s”, IEEE Electron device letters, vol.16, no.2, pp. 67-69, Feb. 1995. 
+ 
+[17]  P. Su, S. K. H. Fung, F. Assaderaghi, C. Hu, “A Body-Contact SOI MOSFET Model for Circuit 
+Simulation”, Proceedings of the 1999 IEEE Intl. SOI Conference, pp.50-51.  
+ 
+[18]  P. Su, S. K. H. Fung, S. Tang, F. Assaderaghi and C. Hu, "BSIMPD: A Partial-Depletion SOI 
+MOSFET Model for Deep-Submicron CMOS Designs", Proceedings of the IEEE 2000 Custom 
+Integrated Circuits Conference, pp.197-200. 
+ 
+
+References 
+BSIMSOIv4.4 Manual Copyright © 2010, UC Berkeley 
+Page 120 
+ 
+[19] H. Nakayama, P. Su , C. Hu, M. Nakamura, H. Komatsu, K. Takeshita, Y. Komatsu, “Methodology 
+of Self-Heating Free Parameter Extraction and Circuit Simulation for SOI CMOS”, Proceedings of 
+the IEEE 2001 Custom Integrated Circuits Conference, pp.381-384. 
+ 
+[20] P. Su, “An International Standard Model for SOI Circuit Design,” Ph. D. Dissertation, Department 
+of EECS, University of California at Berkeley, December 2002.  
+(http://www.eecs.berkeley.edu/~pinsu) 
+ 
+[21] http://www.eigroup.org/cmc 
+ 
+[22] 
+P. Su, S. Fung, H. Wan, A. Niknejad, M. Chan and C. Hu, "An impact ionization model for SOI 
+circuit simulation," 2002 IEEE International SOI Conference Proceedings, Williamsburg, VA, 
+Oct. 2002, pp. 201-202.  
+ 
+[23] 
+P. Su, K. Goto, T. Sugii and C. Hu, "A thermal activation view of low voltage impact ionization 
+in MOSFETs," IEEE Electron Device Letters, vol. 23, no. 9, September 2002. 
+ 
+[24] 
+P. Su, K. Goto, T. Sugii and C. Hu, "Enhanced substrate current in SOI MOSFETs," IEEE 
+Electron Device Letters, vol. 23, no. 5, pp. 282-284, May 2002. 
+ 
+[25]  
+P. Su et al., “On the body-source built-in potential lowering of SOI MOSFETs,” IEEE Electron 
+Device Letters, February 2003. 
+ 
+ 
+[26] BSIMSOI3.2 Users’ Manual, UC Berkeley, Department of EECS. 
+
+References 
+BSIMSOIv4.4 Manual Copyright © 2010, UC Berkeley 
+Page 121 
+ 
+[27] BSIM4.5.0 Users’ Manual, UC Berkeley, Department of EECS. 
+ 
+[28] 
+H. Wan, P. Su, S.K.H. Fung, C.L. Chen, P.W. Wyatt, A.M. Niknejad, C. Hu, “RF Modeling for 
+FDSOI MOSFET and Self Heating Effect on RF Parameter Extraction”, Eighth International Conference 
+on Modeling and Simulation of Microsystems, May 2005. 
+ 
+[29] 
+K.W. Su, K.H. Chen, T.X. Chung, et. al, “Modeling Isolation-induced Mechanical Stress 
+Effect on SO1 MOS Devices”, IEEE International SOI conference Proceedings, pp 80-82, 2003. 
+ 
+[30]      Xuemei Xi, Fei Li, Bogdan Tudor, Wenyuan Wang, Weidong Liu, Frank Lee, Ping Wang, Niraj 
+Subba, Jung-Suk Goo, “An Improved Impact Ionization Model for SOI Circuit Simulation”, Eleventh 
+International Conference on Modeling and Simulation of Microsystems, June 2008. 
+ 
+ 
+ 
+

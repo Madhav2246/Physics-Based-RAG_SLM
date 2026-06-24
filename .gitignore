@@ -2,7 +2,7 @@
 venv/
 env/
 .venv/
-
+env_slm/
 # Python cache
 __pycache__/
 *.py[cod]

@@ -1,0 +1,47 @@
+{
+  "n": 20,
+  "aggregate_70b": {
+    "n": 20,
+    "parseable": 11,
+    "dimensional": 5,
+    "numerical": 1,
+    "coverage": 1,
+    "avg_score": 0.9
+  },
+  "aggregate_rag": {
+    "n": 20,
+    "parseable": 7,
+    "dimensional": 4,
+    "numerical": 1,
+    "coverage": 2,
+    "avg_score": 0.7
+  },
+  "by_difficulty": {
+    "easy": {
+      "70b": {
+        "n": 20,
+        "parseable": 11,
+        "dimensional": 5,
+        "numerical": 1,
+        "coverage": 1,
+        "avg_score": 0.9
+      },
+      "rag": {
+        "n": 20,
+        "parseable": 7,
+        "dimensional": 4,
+        "numerical": 1,
+        "coverage": 2,
+        "avg_score": 0.7
+      }
+    },
+    "medium": {
+      "70b": null,
+      "rag": null
+    },
+    "hard": {
+      "70b": null,
+      "rag": null
+    }
+  }
+}

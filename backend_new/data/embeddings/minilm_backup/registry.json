@@ -1,0 +1,296 @@
+{
+  "2022irds_es.pdf": {
+    "original_name": "2022IRDS_ES.pdf",
+    "chunk_count": 59,
+    "ingested_at": "2026-06-03T07:25:18.391273Z",
+    "chunk_start": 5
+  },
+  "2022irds_wp-mtm.pdf": {
+    "original_name": "2022IRDS_WP-MtM.pdf",
+    "chunk_count": 60,
+    "ingested_at": "2026-06-03T07:25:19.920056Z",
+    "chunk_start": 64
+  },
+  "bsim470_manual.pdf": {
+    "original_name": "BSIM470_Manual.pdf",
+    "chunk_count": 62,
+    "ingested_at": "2026-06-03T07:25:21.527445Z",
+    "chunk_start": 124
+  },
+  "bsim480_manual.pdf": {
+    "original_name": "BSIM480_Manual.pdf",
+    "chunk_count": 63,
+    "ingested_at": "2026-06-03T07:25:23.195279Z",
+    "chunk_start": 186
+  },
+  "2022irds_sa.pdf": {
+    "original_name": "2022IRDS_SA.pdf",
+    "chunk_count": 32,
+    "ingested_at": "2026-06-03T07:25:24.095280Z",
+    "chunk_start": 249
+  },
+  "2022irds_ye.pdf": {
+    "original_name": "2022IRDS_YE.pdf",
+    "chunk_count": 50,
+    "ingested_at": "2026-06-03T07:25:25.374699Z",
+    "chunk_start": 281
+  },
+  "2023irds_litho (1).pdf": {
+    "original_name": "2023IRDS_Litho (1).pdf",
+    "chunk_count": 15,
+    "ingested_at": "2026-06-03T07:25:25.899913Z",
+    "chunk_start": 331
+  },
+  "2023irds_litho.pdf": {
+    "original_name": "2023IRDS_Litho.pdf",
+    "chunk_count": 15,
+    "ingested_at": "2026-06-03T07:25:26.415571Z",
+    "chunk_start": 346
+  },
+  "09f3656e11af75e5691e8a081225b70d_mit6_012f09_lec20.pdf": {
+    "original_name": "09f3656e11af75e5691e8a081225b70d_MIT6_012F09_lec20.pdf",
+    "chunk_count": 5,
+    "ingested_at": "2026-06-03T07:25:26.722560Z",
+    "chunk_start": 361
+  },
+  "0eddab43e246fc2d62368fe37516020c_mit6_012f09_lec14_inverter.pdf": {
+    "original_name": "0eddab43e246fc2d62368fe37516020c_MIT6_012F09_lec14_inverter.pdf",
+    "chunk_count": 4,
+    "ingested_at": "2026-06-03T07:25:26.884653Z",
+    "chunk_start": 366
+  },
+  "0fdcac2122e7e8dd1ff0427fd0cee502_mit6_012f09_lec23.pdf": {
+    "original_name": "0fdcac2122e7e8dd1ff0427fd0cee502_MIT6_012F09_lec23.pdf",
+    "chunk_count": 6,
+    "ingested_at": "2026-06-03T07:25:27.197962Z",
+    "chunk_start": 370
+  },
+  "17a1e469f49296aa07998fe76877de2c_mit6_012f09_lec13.pdf": {
+    "original_name": "17a1e469f49296aa07998fe76877de2c_MIT6_012F09_lec13.pdf",
+    "chunk_count": 8,
+    "ingested_at": "2026-06-03T07:25:27.707459Z",
+    "chunk_start": 376
+  },
+  "18a2d9a52234f9e962d74b5599759767_mit6_012f09_lec18.pdf": {
+    "original_name": "18a2d9a52234f9e962d74b5599759767_MIT6_012F09_lec18.pdf",
+    "chunk_count": 6,
+    "ingested_at": "2026-06-03T07:25:28.080645Z",
+    "chunk_start": 384
+  },
+  "1c4e27fee9fa66aa718087229b2868fa_mit6_012f09_lec24.pdf": {
+    "original_name": "1c4e27fee9fa66aa718087229b2868fa_MIT6_012F09_lec24.pdf",
+    "chunk_count": 5,
+    "ingested_at": "2026-06-03T07:25:28.435164Z",
+    "chunk_start": 390
+  },
+  "233ad45634556a336043aafac36b0880_mit6_012f09_lec14.pdf": {
+    "original_name": "233ad45634556a336043aafac36b0880_MIT6_012F09_lec14.pdf",
+    "chunk_count": 6,
+    "ingested_at": "2026-06-03T07:25:28.743897Z",
+    "chunk_start": 395
+  },
+  "2609ddcd6251a7d22face815c591baf7_mit6_012f09_lec05.pdf": {
+    "original_name": "2609ddcd6251a7d22face815c591baf7_MIT6_012F09_lec05.pdf",
+    "chunk_count": 6,
+    "ingested_at": "2026-06-03T07:25:29.088159Z",
+    "chunk_start": 401
+  },
+  "27dce54a63b9a793be542cb457d1c865_mit6_012f09_lec20_loads.pdf": {
+    "original_name": "27dce54a63b9a793be542cb457d1c865_MIT6_012F09_lec20_loads.pdf",
+    "chunk_count": 2,
+    "ingested_at": "2026-06-03T07:25:29.223392Z",
+    "chunk_start": 407
+  },
+  "282ca336565ffdd1aeda1c212c3b0696_mit6_012f09_lec12.pdf": {
+    "original_name": "282ca336565ffdd1aeda1c212c3b0696_MIT6_012F09_lec12.pdf",
+    "chunk_count": 7,
+    "ingested_at": "2026-06-03T07:25:29.603296Z",
+    "chunk_start": 409
+  },
+  "2a94c4436b68993a04ad47bda22eb067_mit6_012f09_lec10.pdf": {
+    "original_name": "2a94c4436b68993a04ad47bda22eb067_MIT6_012F09_lec10.pdf",
+    "chunk_count": 6,
+    "ingested_at": "2026-06-03T07:25:29.951291Z",
+    "chunk_start": 416
+  },
+  "33eea31f564b67fc47cd9c2796500669_mit6_012f09_lec11.pdf": {
+    "original_name": "33eea31f564b67fc47cd9c2796500669_MIT6_012F09_lec11.pdf",
+    "chunk_count": 7,
+    "ingested_at": "2026-06-03T07:25:30.366653Z",
+    "chunk_start": 422
+  },
+  "3aee9b962bb492fc3e5210be8e279b98_mit6_012f09_lec25.pdf": {
+    "original_name": "3aee9b962bb492fc3e5210be8e279b98_MIT6_012F09_lec25.pdf",
+    "chunk_count": 5,
+    "ingested_at": "2026-06-03T07:25:30.606301Z",
+    "chunk_start": 429
+  },
+  "401826ae17776d01e400599e2e5328f4_mit6_012f09_lec16.pdf": {
+    "original_name": "401826ae17776d01e400599e2e5328f4_MIT6_012F09_lec16.pdf",
+    "chunk_count": 5,
+    "ingested_at": "2026-06-03T07:25:30.899104Z",
+    "chunk_start": 434
+  },
+  "42c863e2e1e9744ce6b797646a30e463_mit6_012f09_lec09.pdf": {
+    "original_name": "42c863e2e1e9744ce6b797646a30e463_MIT6_012F09_lec09.pdf",
+    "chunk_count": 3,
+    "ingested_at": "2026-06-03T07:25:31.063870Z",
+    "chunk_start": 439
+  },
+  "585bb75af34ebaad61ffa16a3b972718_mit6_012f09_lec15.pdf": {
+    "original_name": "585bb75af34ebaad61ffa16a3b972718_MIT6_012F09_lec15.pdf",
+    "chunk_count": 6,
+    "ingested_at": "2026-06-03T07:25:31.381259Z",
+    "chunk_start": 442
+  },
+  "5c58a51e629ef0505139e7a4cf72f2fd_mit6_012f09_lec03_photo.pdf": {
+    "original_name": "5c58a51e629ef0505139e7a4cf72f2fd_MIT6_012F09_lec03_photo.pdf",
+    "chunk_count": 2,
+    "ingested_at": "2026-06-03T07:25:31.481323Z",
+    "chunk_start": 448
+  },
+  "60837c7a6e29ecfcfd19c07688159d28_mit6_012f09_lec22.pdf": {
+    "original_name": "60837c7a6e29ecfcfd19c07688159d28_MIT6_012F09_lec22.pdf",
+    "chunk_count": 6,
+    "ingested_at": "2026-06-03T07:25:31.781985Z",
+    "chunk_start": 450
+  },
+  "719d22a15339646b0c9429ee6d5d6318_mit6_012f09_lec16_compare.pdf": {
+    "original_name": "719d22a15339646b0c9429ee6d5d6318_MIT6_012F09_lec16_compare.pdf",
+    "chunk_count": 1,
+    "ingested_at": "2026-06-03T07:25:31.847388Z",
+    "chunk_start": 456
+  },
+  "9181057dd1fc814055e9f56f32d91cfa_mit6_012f09_lec16_scaling.pdf": {
+    "original_name": "9181057dd1fc814055e9f56f32d91cfa_MIT6_012F09_lec16_scaling.pdf",
+    "chunk_count": 3,
+    "ingested_at": "2026-06-03T07:25:31.956604Z",
+    "chunk_start": 457
+  },
+  "9316abd63cab09e54a7ace6606466725_mit6_012f09_lec14_delays.pdf": {
+    "original_name": "9316abd63cab09e54a7ace6606466725_MIT6_012F09_lec14_delays.pdf",
+    "chunk_count": 1,
+    "ingested_at": "2026-06-03T07:25:32.045665Z",
+    "chunk_start": 460
+  },
+  "957237bfedb8d19d114d3214336fb2a8_mit6_012f09_lec08.pdf": {
+    "original_name": "957237bfedb8d19d114d3214336fb2a8_MIT6_012F09_lec08.pdf",
+    "chunk_count": 5,
+    "ingested_at": "2026-06-03T07:25:32.308537Z",
+    "chunk_start": 461
+  },
+  "9932f87a7b5ec3d088d0e0836a05c622_mit6_012f09_lec19.pdf": {
+    "original_name": "9932f87a7b5ec3d088d0e0836a05c622_MIT6_012F09_lec19.pdf",
+    "chunk_count": 6,
+    "ingested_at": "2026-06-03T07:25:32.629331Z",
+    "chunk_start": 466
+  },
+  "9fce7430fe6c477c2f619ddac1e7eb1a_mit6_012f09_lec21_cascode.pdf": {
+    "original_name": "9fce7430fe6c477c2f619ddac1e7eb1a_MIT6_012F09_lec21_cascode.pdf",
+    "chunk_count": 2,
+    "ingested_at": "2026-06-03T07:25:32.733580Z",
+    "chunk_start": 472
+  },
+  "a342ce0afb84bfa8e5b7dc819ff3e9bc_mit6_012f09_lec06.pdf": {
+    "original_name": "a342ce0afb84bfa8e5b7dc819ff3e9bc_MIT6_012F09_lec06.pdf",
+    "chunk_count": 6,
+    "ingested_at": "2026-06-03T07:25:33.072651Z",
+    "chunk_start": 474
+  },
+  "a37c73e7fcff4bcb5c5f1177e12d0891_mit6_012f09_lec01.pdf": {
+    "original_name": "a37c73e7fcff4bcb5c5f1177e12d0891_MIT6_012F09_lec01.pdf",
+    "chunk_count": 5,
+    "ingested_at": "2026-06-03T07:25:33.378648Z",
+    "chunk_start": 480
+  },
+  "b6db5daeb4828c8e6c375aaaf6fa0d41_mit6_012f09_lec02.pdf": {
+    "original_name": "b6db5daeb4828c8e6c375aaaf6fa0d41_MIT6_012F09_lec02.pdf",
+    "chunk_count": 6,
+    "ingested_at": "2026-06-03T07:25:33.711537Z",
+    "chunk_start": 485
+  },
+  "bd04edbae425cb5a7032e858364c4350_mit6_012f09_lec21.pdf": {
+    "original_name": "bd04edbae425cb5a7032e858364c4350_MIT6_012F09_lec21.pdf",
+    "chunk_count": 7,
+    "ingested_at": "2026-06-03T07:25:34.116022Z",
+    "chunk_start": 491
+  },
+  "bde60d83e3f4efc09c880c343def3131_mit6_012f09_lec07.pdf": {
+    "original_name": "bde60d83e3f4efc09c880c343def3131_MIT6_012F09_lec07.pdf",
+    "chunk_count": 8,
+    "ingested_at": "2026-06-03T07:25:34.681444Z",
+    "chunk_start": 498
+  },
+  "c053714447998e522f02db0776987091_mit6_012f09_lec04.pdf": {
+    "original_name": "c053714447998e522f02db0776987091_MIT6_012F09_lec04.pdf",
+    "chunk_count": 6,
+    "ingested_at": "2026-06-03T07:25:35.031281Z",
+    "chunk_start": 506
+  },
+  "c5d77f1bbdd91687cf4173d3de2c6574_mit6_012f09_lec15_cmos.pdf": {
+    "original_name": "c5d77f1bbdd91687cf4173d3de2c6574_MIT6_012F09_lec15_cmos.pdf",
+    "chunk_count": 1,
+    "ingested_at": "2026-06-03T07:25:35.131289Z",
+    "chunk_start": 512
+  },
+  "d1575750e6746e5bccb23f27b5908322_mit6_012f09_lec12_sub.pdf": {
+    "original_name": "d1575750e6746e5bccb23f27b5908322_MIT6_012F09_lec12_sub.pdf",
+    "chunk_count": 10,
+    "ingested_at": "2026-06-03T07:25:35.797385Z",
+    "chunk_start": 513
+  },
+  "d65b60631ae1d84dce7c0051412f0b7a_mit6_012f09_lec03_five_eqn.pdf": {
+    "original_name": "d65b60631ae1d84dce7c0051412f0b7a_MIT6_012F09_lec03_five_eqn.pdf",
+    "chunk_count": 5,
+    "ingested_at": "2026-06-03T07:25:35.997781Z",
+    "chunk_start": 523
+  },
+  "d73e9baf5e8da993b7956eab4adcf04a_mit6_012f09_lec11_drain.pdf": {
+    "original_name": "d73e9baf5e8da993b7956eab4adcf04a_MIT6_012F09_lec11_drain.pdf",
+    "chunk_count": 2,
+    "ingested_at": "2026-06-03T07:25:36.107265Z",
+    "chunk_start": 528
+  },
+  "df03c0cc8618b09b87121b6ee9f0eddb_mit6_012f09_lec10_ccd.pdf": {
+    "original_name": "df03c0cc8618b09b87121b6ee9f0eddb_MIT6_012F09_lec10_ccd.pdf",
+    "chunk_count": 2,
+    "ingested_at": "2026-06-03T07:25:36.254974Z",
+    "chunk_start": 530
+  },
+  "e99a2858fa78c976288c042e10b9a06c_mit6_012f09_lec17.pdf": {
+    "original_name": "e99a2858fa78c976288c042e10b9a06c_MIT6_012F09_lec17.pdf",
+    "chunk_count": 5,
+    "ingested_at": "2026-06-03T07:25:36.640088Z",
+    "chunk_start": 532
+  },
+  "eba3aa6bfb6bc14b799f354d6448958c_mit6_012f09_lec03.pdf": {
+    "original_name": "eba3aa6bfb6bc14b799f354d6448958c_MIT6_012F09_lec03.pdf",
+    "chunk_count": 6,
+    "ingested_at": "2026-06-03T07:25:36.997767Z",
+    "chunk_start": 537
+  },
+  "eeb94eab00ebb62a3fde0eec1484bc08_mit6_012f09_lec11_gradual.pdf": {
+    "original_name": "eeb94eab00ebb62a3fde0eec1484bc08_MIT6_012F09_lec11_gradual.pdf",
+    "chunk_count": 3,
+    "ingested_at": "2026-06-03T07:25:37.128654Z",
+    "chunk_start": 543
+  },
+  "bsimsoiv4.4_usersmanual.pdf": {
+    "original_name": "BSIMSOIv4.4_UsersManual.pdf",
+    "chunk_count": 52,
+    "ingested_at": "2026-06-03T07:25:38.717414Z",
+    "chunk_start": 546
+  },
+  "chchoi.pdf": {
+    "original_name": "chchoi.pdf",
+    "chunk_count": 79,
+    "ingested_at": "2026-06-03T07:25:40.995426Z",
+    "chunk_start": 598
+  },
+  "physics of semiconductor devices -- s. m. sze, kwok k. ng -- 3, 2007 -- wiley -- 6010706028c34879055bcc44e5b7b108 -- anna’s archive.pdf": {
+    "original_name": "Physics of Semiconductor Devices -- S. M. Sze, Kwok K. Ng -- 3, 2007 -- Wiley -- 6010706028c34879055bcc44e5b7b108 -- Anna’s Archive.pdf",
+    "chunk_count": 459,
+    "ingested_at": "2026-06-03T07:25:53.593134Z",
+    "chunk_start": 677
+  }
+}

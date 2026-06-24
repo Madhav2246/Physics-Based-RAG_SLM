@@ -1,0 +1,49 @@
+{
+  "sys_best": {
+    "avg_score": 1.973,
+    "parseable": 90.0,
+    "coverage": 42.3,
+    "nvr_cond": 100.0,
+    "dcr_cond": 60.0
+  },
+  "sys_first": {
+    "avg_score": 1.467,
+    "parseable": 65.0,
+    "coverage": 31.7,
+    "nvr_cond": 100.0,
+    "dcr_cond": 60.0
+  },
+  "sys_rand": {
+    "avg_score": 1.367,
+    "parseable": 65.0,
+    "coverage": 26.7,
+    "nvr_cond": 100.0,
+    "dcr_cond": 50.0
+  },
+  "raw_best": {
+    "avg_score": 1.34,
+    "parseable": 60.0,
+    "coverage": 24.0,
+    "nvr_cond": 100.0,
+    "dcr_cond": 33.3
+  },
+  "raw_first": {
+    "avg_score": 0.45,
+    "parseable": 15.0,
+    "coverage": 10.0,
+    "nvr_cond": 100.0,
+    "dcr_cond": 50.0
+  },
+  "_analysis": {
+    "validator_gap_SYS": 0.606,
+    "validator_gap_RAW": 0.89,
+    "bestofN_gain": 0.506
+  },
+  "_sampling": {
+    "temperature": 0.9,
+    "top_p": 0.95,
+    "top_k": 50,
+    "repetition_penalty": 1.05,
+    "max_new_tokens": 512
+  }
+}
