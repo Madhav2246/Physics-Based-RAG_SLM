@@ -20,7 +20,9 @@ OUTPUT_FILE   = OUTPUT_DIR / "nvidia_golden_qa.jsonl"
 PROGRESS_FILE = OUTPUT_DIR / "live.json"
 
 # -- NVIDIA NIM config ---------------------------------------------------------
-NVIDIA_API_KEY  = os.environ.get("NVIDIA_API_KEY", "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")
+NVIDIA_API_KEY  = os.environ.get("NVIDIA_API_KEY", "")
+if not NVIDIA_API_KEY:
+    raise RuntimeError("NVIDIA_API_KEY environment variable not set")
 NVIDIA_BASE_URL = "https://integrate.api.nvidia.com/v1"
 MODEL           = "meta/llama-3.1-70b-instruct"
 
