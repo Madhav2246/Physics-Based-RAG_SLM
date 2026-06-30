@@ -1,0 +1,1659 @@
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+  
+  
+ 
+  
+ 
+  
+ 
+   
+  
+ 
+  
+  
+  
+ 
+ 
+  
+  
+  
+ 
+ 
+        
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+6.012 - Microelectronic Devices and Circuits 
+Lecture 15 - Digital Circuits: CMOS - Outline  
+• Announcements 
+One supplemental reading on Stellar  
+Exam 2 - Thursday night, Nov. 5, 7:30-9:30  
+• Review - Inverter performance metrics 
+Transfer characteristic: logic levels and noise margins  
+2 ) 
+Power: Pave, static + Pave, dynamic (= IONVDD/2 + f CLVDD 
+Switching speed: charge thru pull-up, discharge thru pull-down 
+If can model load as linear C:  dvOUT/dt = iCH(vOUT)/CL; = iDCH(vOUT)/CL 
+If can say iCH, iDCH constant:  τHI-LO = CL(VHI-VLO)/ICH ; τHI-LO = CL(VHI-VLO)/IDCH 
+Fan-out, fan-in 
+(often only 10 to 90% swings) 
+Manufacturability 
+• CMOS 
+Transfer characteristic  
+Gate delay expressions 
+Power and speed-power product  
+• Velocity Saturation
+General comments  
+Impact on MOSFET and Inverter Characteristics  
+Clif Fonstad, 11/3/09 
+Lecture 15 - Slide 1 
+
+  
+  
+  
+ 
+   
+ 
+ 
+  
+ 
+ 
+  
+ 
+ 
+ 
+  
+   
+ 
+ 
+ 
+ 
+  
+ 
+ 
+   
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+  
+ 
+ 
+  
+ 
+ 
+ 
+           
+  
+ 
+ 
+     
+ 
+ 
+ 
+Transfer characteristic 
+Node equation: iPD = iPU 
+0 
+for vIN < V
+Pull-
+Up
+VDD
++
++
+–
+–
+iPU
+vOUT
+vIN
+iPD
+T,PD 
+iPD = KPD(vIN-VT,PD)2/2 
+for vIN-VT,PD < vOUT  
+KPD(vIN-VT,PD -vOUT/2) vOUT  
+forvIN-VT,PD > vOUT  
+iPU: Depends on the device used 
+Gives us: VHI and VLO  
+NML and NMH  
+Switching transients 
+Pull-
+Up
+VDD
+HI to LO
++
++
+–
+–
+CL
+LO 
+to 
+HI
+OFF
+iPU
+General approach: 
+The load, CL, is a non­
+linear charge store, but  
+for MOSFETs it is fairly  
+linear and it is useful to  
+think linear:  
+dvout/dt ≈ iCL/CL 
+Bigger current 
+Clif Fonstad, 11/3/09 
+Lecture 15 - Slide 2 
+→ faster vOUT change 
+Charging cycle:
+Discharging cycle:
+iCharge = iPU 
+iDischarge = iPD – iPU 
+V LO V 1L
+V 1H
+V HI
+V HI
+V LO
+V M
+V M
+V IN
+V OUT
+NML
+NMH
+Pull-
+Up
+VDD
++
++
+–
+–
+CL
+HI 
+to 
+LO
+LO to HI
+ON
+iPU
+iPD
+iDischarge
+
+ 
+ 
+ 
+ 
+ 
+                 
+ 
+ 
+ 
+ 
+ 
+Pull-
+Up
+VDD
+vOUT
+vIN
++
++
+–
+–
+CL
+VDD
+vOUT
+vIN
++
++
+–
+–
+VDD
+vOUT
+vIN
++
++
+–
+–
+VGG
+(>>VDD)
+VDD
+vOUT
+vIN
++
++
+–
+–
+VDD
+vOUT
+vIN
++
++
+–
+–
+VDD
+vOUT
+vIN
++
++
+–
+–
+RL
+MOS  
+inverters:  
+5 pull-up 
+Resistor  
+pull-up  
+choices 
+Generic 
+inverter 
+n-channel, e-mode pull-up 
+n-channel, d-mode 
+Active p-channel 
+VDD on gate 
+VGG on gate 
+pull-up (NMOS) 
+pull-up (CMOS)** 
+Clif Fonstad, 11/3/09 
+Lecture 15 - Slide 3 
+* Known as PMOS when made with p-channel. 
+** Notice that CMOS has a larger (~3x) input capacitance. 
+
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Switching transients: summary of charge/discharge currents 
+VDD
+vOUT
+vIN
++
++
+–
+–
+VGG
+(>>VDD)
+VDD
+vOUT
+vIN
++
++
+–
+–
+RL
+Resistor and E-
+mode pull-up 
+(VGG on gate) 
+E-mode pull-up  
+(VDD on gate)  
+D-mode pull-up  
+(called "NMOS")  
+VDD
+vOUT
+vIN
++
++
+–
+–
+VDD
+vOUT
+vIN
++
++
+–
+–
+CMOS 
+Clif Fonstad, 11/3/09 
+VDD
+vOUT
+vIN
++
++
+–
+–
+Lecture 15 - Slide 4 
+vOUT
+VDD
+ION
+iDischarge
+iPD = iDischarge + iPU
+vOUT
+VDD
+ION
+iDischarge
+iPD = iDischarge + iPU
+vOUT
+VDD
+ION
+iDischarge
+iPD = iDischarge + iPU
+vOUT
+VDD
+ION
+iDischarge
+iPD = iDischarge + iPU
+ION = 0
+vOUT
+VDD
+ION
+iCharge
+iPU = iCharge
+vOUT
+VDD
+ION
+iCharge
+iPU = iCharge
+iPU = iCharge
+vOUT
+VDD
+ION
+iCharge
+vOUT
+VDD
+ION
+iCharge
+iPU = iCharge
+• Comparisons made with same pull-down MOSFET, VHI, and ION. 
+
+ 
+ 
+ 
+CMOS: transfer characteristic calculation  
+V Tn
+V DD
+V DD
+vIN
+vOUT
+Qn
+off
+Qn sat.
+Qn lin.
+vGSn= VTn
+vDSn = vGSn -VTn
+Qn: 
+VDD
+vOUT
+vIN
++
++
+–
+–
+Qn 
+Qp 
+Qp
+off
+Qp sat.
+Qp lin.
+V DD
+V DD
+|VTp|
+vIN
+vOUT
+(V DD+VTp)
+vSGp = vSDp-|VTp|
+vSGp =|VTp|
+Qp: 
+V Tn
+V DD
+V DD
+-V Tp
+vIN
+vOUT
+(V DD+VTp)
+I
+II
+III
+IV
+V
+vGSn =VTn
+vDSn = vGSn -VTn
+vSGp =|VTp|
+vSDp = vSGp-|VTp|
+Transistor operating condition 
+in each region: 
+Region 
+Qn 
+Qp 
+I 
+cut-off 
+linear 
+II 
+saturation 
+linear 
+III 
+saturation 
+saturation 
+IV 
+linear 
+saturation 
+V 
+linear 
+cut-off 
+Clif Fonstad, 11/3/09 
+Lecture 15 - Slide 5 
+
+ 
+ 
+ 
+ 
+CMOS: transfer characteristic calculation, cont.  
+Clif Fonstad, 11/3/09 
+Lecture 15 - Slide 6 
+Region I: 
+Region II: 
+VDD
+vOUT
+vIN
++
++
+–
+–
+Qn 
+Qp 
+V Tn
+V DD
+V DD
+vIN
+vOUT
+I
+II
+III
+IV
+V
+vGSn =VTn
+vDSn = vGSn -VTn
+vSGp =|VTp|
+vSDp = vSGp-|VTp|
+|VTp|
+(V DD-|VTp|)
+iDn = 0    and    iDp = K p VDD " vIN " VTp " VDD " vOUT
+(
+)
+2
+# 
+$ % 
+& 
+' ( VDD " vOUT
+(
+)
+so    iDn = iDp
+)
+vOUT = VDD
+iDn = Kn vIN "VTn " vOUT
+2
+# 
+$ % 
+& 
+' ( vOUT    and    iDp = 0
+so    iDn = iDp
+)
+vOUT = 0
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+CMOS: transfer characteristic calculation, cont. 
+Region III: 
+VDD
+vOUT
+vIN
++
++
+–
+–
+Qp 
+iDn = Kn
+2
+vIN "VTn
+[
+]
+2    and    iDp == K p
+2
+VDD-vIN " VTp
+[
+]
+2
+so    iDn = iDp
+#
+vIN =
+VDD " VTp + VTn
+Kn K p
+1+
+Kn K p
+.      To achieve symmetry we make
+Kn = K p, and  VTp = VTn.    With this:    vIN = VDD
+2  and  VDD
+2 "VTn $ vOUT $ VDD
+2 + VTp
+Qn 
+Regions II and IV:
+Parabolic segments connecting 
+the three straight segments.  
+Clif Fonstad, 11/3/09 
+Lecture 15 - Slide 7 
+V Tn
+V DD
+V DD
+|VTp|
+vIN
+vOUT
+(V DD-
+  |VTp|)
+I
+II
+III
+IV
+V
+vGSn =VTn
+vDSn = vGSn -VTn
+vSGp =|VTp|
+vSDp = vSGp-|VTp|
+V DD/2
+V DD/2-V Tn
+V DD/2+|VTp|
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+  
+ 
+ 
+CMOS: transfer characteristic calculation, cont.  
+Complete characteristic so far: 
+VDD
+vOUT
+vIN
++
++
+–
+–
+Kp
+VTp
+Kn
+VTn
+V Tn
+V DD
+V DD
+-V Tp
+V DD/2
+V IN
+V OUT
+(V DD+
+   V Tp)
+(V DD/2-V Tp)
+(V DD/2-V Tn)
+V DD/2
+NOTE: We design CMOS inverters to have  Kn = Kp and VTn = -VTp 
+to obtain the optimum symmetrical characteristic. 
+Clif Fonstad, 11/3/09 
+Lecture 15 - Slide 8 
+
+ 
+ 
+ 
+ 
+ 
+ 
+  
+  
+Clif Fonstad, 11/3/09 
+Lecture 15 - Slide 9 
+CMOS: transfer characteristic calculation, cont.
+V Tn
+V DD
+V DD
+-V Tp
+V DD/2
+vIN
+vOUT
+(V DD-
+  |VTp|)
+ Our calculation says that the 
+transfer characteristic is 
+vertical in Region III. 
+We know it must have some 
+slope, but what is it? 
+To see, calculate the small 
+signal gain about the bias 
+point: VIN = VOUT = VDD/2 
+Begin with the small signal model: 
+gon
+sn
+gmnvgsn
++
+-
+vgsn = v in
++
+-
+vout
+dn
+gn
+sn
++
+-
+vin
+gop
+sp
+gmpvgsp
++
+-
+dp
+gp
+vgsp = v in
+sp
+VDD
+VDD/2+vin
++
++
+–
+–
+Kp !p
+  V Tp
+VDD/2+vout
+Kn !n
+  V Tn
+Qp
+Qn
+
+ 
+ 
+ 
+ 
+ 
+  
+ 
+CMOS: transfer characteristic calculation, cont.  
+Redrawing the circuit we get
+ from which we see immediately 
+Av " #vOUT
+#vIN
+Q
+= vout
+vin
+= $
+gmn + gmp
+[
+]
+gon + gop
+[
+]
+gmpvin
+gon
+sn,sp
+gmnvin
++
+-
+vgsn =vgsp
++
+-
+vout
+dn,dp
+gop
+gn,gp
+sn,sp
++
+-
+vin
+In Lecture 13 we learned how to write the conductances in terms 
+of the bias point as
+gmn =
+2KnIDn ,     gmp =
+2K p IDp = gmn,     gon = "nIDn,     gop = "p IDp = "pIDn
+ which will enable us to express the gain in terms of the bias 
+Clif Fonstad, 11/3/09 
+Lecture 15 - Slide 10 
+point, IDn (= |IDp|), and MOSFET parameters 
+Av " #vOUT
+#vIN
+Q
+= $ 2 2KnIDn
+%n + %p
+[
+]IDn
+= $
+2 2Kn
+%n + %p
+[
+] IDn
+
+ 
+ 
+ 
+ 
+ 
+CMOS: transfer characteristic calculation, cont. 
+Returning to the transfer characteristic, 
+we see that the slope in Region III is 
+not infinite, but is instead: 
+Lecture 15 - Slide 11 
+V DD
+V DD
+V DD/2
+vIN
+vOUT
+V DD/2
+Av
+V Tn
+V DD
+V DD
+-V Tp
+V DD/2
+vIN
+vOUT
+(V DD-
+  |VTp|)
+V DD/2
+Av
+Av " #vOUT
+#vIN
+Q
+= $
+gmn + gmp
+[
+]
+gon + gop
+[
+]
+Final comment:  A quick and 
+easy way to approximate the 
+transfer characteristic of a 
+CMOS gate is to simply draw 
+the three straight line portions 
+in Regions I, III, and V: 
+Clif Fonstad, 11/3/09 
+
+  
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+  
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+  
+    
+ 
+  
+  
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+  
+  
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+CMOS: switching speed; minimum cycle time 
+The load capacitance: CL 
+• Assume to be linear 
+• Is proportional to MOSFET gate area 
+•  In channel: µe = 2µh so to have Kn = Kp we must have Wp/Lp = 2Wn/Ln 
+Typically Ln = Lp = Lmin and Wn = Wmin, so we also have Wp = 2Wmin 
+CL " n WnLn + W pLp
+[
+]Cox
+* = n WminLmin + 2WminLmin
+[
+]Cox
+* = 3nWminLminCox
+*
+Charging cycle: vIN: HI to LO; Qn off, Qp on; vOUT: LO to HI 
+• Assume charged by constant iD,sat 
+VDD
+vOUT
+vIN
++
++
+–
+–
+CL
+Qp
+Qn
+Clif Fonstad, 11/3/09  
+Lecture 15 - Slide 12 
+iCh arg e = "iDp # K p
+2 VDD " VTp
+[
+]
+2 = Kn
+2 VDD "VTn
+[
+]
+2
+qCh arge = CLVDD
+$Ch arge = qCh arg e
+iCh arge
+=
+2CLVDD
+Kn VDD "VTn
+[
+]
+2
+           =
+6nWminLminCox
+* VDD
+Wmin
+Lmin
+µeCox
+* VDD "VTn
+[
+]
+2 =
+6nLmin
+2 VDD
+µe VDD "VTn
+[
+]
+2
+
+  
+  
+ 
+ 
+ 
+ 
+ 
+ 
+  
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+    
+  
+ 
+ 
+ 
+ 
+    
+  
+ 
+ 
+ 
+ 
+CMOS: switching speed; minimum cycle time, cont.  
+Discharging cycle: vIN: LO to HI; Qn on, Qp off; vOUT: HI to LO 
+• Assume discharged by constant iD,sat 
+VDD
+vOUT
+vIN
++
++
+–
+–
+CL
+Qp
+Qn
+iDisch arg e = iDn " Kn
+2 VDD #VTn
+[
+]
+2
+qDisch arge = CLVDD
+$ Disch arge = qDisch arg e
+iDisch arge
+=
+2CLVDD
+Kn VDD #VTn
+[
+]
+2
+           =
+6nWminLminCox
+* VDD
+Wmin
+Lmin
+µeCox
+* VDD #VTn
+[
+]
+2 =
+6nLmin
+2 VDD
+µe VDD #VTn
+[
+]
+2
+Minimum cycle time: 
+vIN: LO to HI to LO; 
+vOUT: HI to LO to HI  
+" Min.Cycle = "Ch arge + " Disch arge = 12nLmin
+2 VDD
+µe VDD #VTn
+[
+]
+2
+Clif Fonstad, 11/3/09 
+Lecture 15 - Slide 13 
+
+  
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+CMOS: switching speed; minimum cycle time, cont.  
+Discharging and Charging times:  
+What do the expressions tell us?  We have 
+" MinCycle = 12nLmin
+2 VDD
+µe VDD #VTn
+[
+]
+2
+This can be written as:  
+" MinCycle =
+12nVDD
+VDD #VTn
+(
+)
+$
+Lmin
+µe VDD #VTn
+(
+) Lmin
+The last term is the channel transit time:  
+Lmin
+µe VDD "VTn
+(
+) Lmin
+=
+Lmin
+µe#Ch
+= Lmin
+s e,Ch
+= $Ch Transit
+Thus the gate delay is a multiple of the channel transit time:  
+" MinCycle =
+12nVDD
+VDD #VTn
+(
+)
+"ChannelTransit = n' "ChannelTransit
+Clif Fonstad, 11/3/09 
+Lecture 15 - Slide 14 
+
+  
+  
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+CMOS: power dissipation - total and per unit area 
+Average power dissipation
+ All dynamic 
+Pdyn,ave = EDissipated per cycle f = CLVDD
+2 = 3nWminLminCox
+* VDD
+2 f
+Power at maximum data rate
+ Maximum f will be 1/τGate Delay Min. 
+Pdyn@ fmax = 3nWminLminCox
+* VDD
+2
+" Min.Cycle
+= 3nWminLminCox
+* VDD
+2 # µe VDD $VTn
+[
+]
+2
+12nLmin
+2 VDD
+                = 1
+4
+Wmin
+Lmin
+µeCox
+* VDD VDD $VTn
+[
+]
+2
+Power density at maximum data rate
+ Assume that the area per inverter is proportional to WminLmin 
+PDdyn@ fmax =
+Pdyn@ fmax
+InverterArea " Pdyn@ fmax
+WminLmin
+= µeCox
+* VDD VDD #VTn
+[
+]
+2
+Lmin
+2
+Clif Fonstad, 11/3/09 
+Lecture 15 - Slide 15 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+    
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+  
+  
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+  
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+    
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+CMOS: design for high speed  
+Maximum data rate
+ Proportional to 1/τMin Cycle 
+" Min.Cycle = "Ch arge + " Disch arge = 12nLmin
+2 VDD
+µe VDD #VTn
+[
+]
+2
+Implies we should reduce Lmin and increase VDD. 
+Note: As we reduce Lmin we must also reduce tox, but tox doesn't 
+enter directly in fmax so it doesn't impact us here 
+Power density at maximum data rate
+ Assume that the area per inverter is proportional to WminLmin 
+PDdyn@ fmax " Pdyn@ fmax
+WminLmin
+= µe#oxVDD VDD $VTn
+[
+]
+2
+toxLmin
+2
+Shows us that PD increases very quickly as we reduce Lmin 
+unless we also reduce VDD (which will also reduce fmax). 
+Note:  Now tox does appear in the expression, so the rate of increase 
+with decreasing Lmin is even greater because tox must be reduced 
+along with L. 
+How do we make fmax larger without melting the silicon? 
+Clif Fonstad, 11/3/09 
+By following CMOS scaling rules - the topic of Lecture 16. 
+Lecture 15 - Slide 16 
+
+   
+ 
+  
+  
+ 
+ 
+   
+  
+ 
+  
+CMOS: velocity saturation 
+Sanity check 
+CMOS gate lengths are now under 0.1 µm (100 nm). The electric field 
+in the channel can be very high: Ey ≥ 104 V/cm when vDS ≥ 0.1 V. 
+Clearly the velocity of the electrons and holes in the channel will 
+be saturated at even low values of vDS! 
+What does this mean for the device and inverter characteristics? 
+Clif Fonstad, 11/3/09 
+Lecture 15 - Slide 17 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+  
+ 
+ 
+ 
+ 
+ 
+CMOS: velocity saturation, cont.  
+Model A 
+Model B 
+sy(Ey) = µeEy if
+Ey " Ecrit
+= µeEcrit # ssat if
+Ey $ Ecrit
+Model A 
+Model B 
+sy(Ey) =
+µeEy
+1+ Ey
+Ecrit
+Models for velocity saturation*
+ Two useful models are illustrated below. We'll use Model A today. 
+Clif Fonstad, 11/3/09 
+Lecture 15 - Slide 18  
+* See pp 281ff and 307ff in course text. 
+
+  
+  
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+CMOS: velocity saturation, cont. 
+Drain current: iD(vGS,vDS,vBS)
+ With Model A*, the low field iD model, s = µE, holds for increasing vDS 
+until the velocity of the electrons at some point in the channel 
+reaches ssat (this will happen at the drain end).  When this happens 
+the current saturates, and does not increase further for larger vDS. 
+Clif Fonstad, 11/3/09 
+Lecture 15 - Slide 19 
+sy(Ey) = µeEy              if    Ey " Ecrit
+= µeEcrit # ssat    if    Ey $ Ecrit
+* Model A: 
+iD 
+vDS 
+EcrL 
+
+    
+ 
+ 
+  
+ 
+  
+  
+ 
+ 
+    
+ 
+CMOS: velocity saturation, cont. 
+If the channel length, L, is sufficiently small we can simplify the 
+model even further because the carrier velocity will saturate at 
+such a small vDS that for vDS ≥ EcritL the inversion layer will be 
+uniform and all the carriers will be drifting at their saturation 
+velocity. In this situation (the saturation region) we will have: 
+iD(vGS,vDS,vBS) " #W qN(vGS,vBS) ssat = W ssat Cox
+* vGS #VT (vBS)
+[
+]
+For smaller vDS, prior to the onset of velocity saturation, the linear 
+region model we had earlier will hold. The entire characteristic, 
+neglecting the vDS/2 factor in the linear region expression, is 
+iD(vGS,vDS,vBS) "
+0
+for
+vGS #VT
+(
+) < 0 < vDS
+W ssat Cox
+* vGS #VT (vBS)
+[
+]
+for
+0 < vGS #VT
+(
+), $critL < vDS
+W
+L µe Cox
+* vGS #VT (vBS)
+[
+]vDS
+for
+0 < vGS #VT
+(
+), vDS < $critL
+% 
+& 
+' ' 
+( 
+' 
+' 
+Note that the current in saturation increases linearly with (vGS - VT), 
+rather than as its square like it did then the gate was longer. 
+Clif Fonstad, 11/3/09 
+Lecture 15 - Slide 20 
+
+ 
+ 
+  
+  
+  
+ 
+ 
+CMOS: velocity saturation, cont. 
+This simple model for the output characteristics of a very short 
+channel MOSFET (plotted below) provides us an easy way to 
+understand the impact of velocity saturation on MOSFET and 
+CMOS inverter performance. 
+iD 
+vDS 
+EcritL 
+Note first that in the forward active region where vDS ≥ EcritL, 
+the curves in the output family are evenly spaced, indicating 
+a constant gm: 
+gm " #iD #vGS Q = W ssat Cox
+*
+Clif Fonstad, 11/3/09 
+Lecture 15 - Slide 21 
+
+ 
+ 
+ 
+ 
+  
+  
+ 
+ 
+CMOS: velocity saturation, cont.  
+Charge/discharge cycle and gate delay:
+The charge and discharge currents, charges, and times are now: 
+iDisch arg e = iCh arg e = Wmin ssat Cox
+* VDD "VTn
+(
+)
+qDisch arge = qCh arg e = CLVDD = 3WminLminCox
+* VDD
+# Disch arge = #Ch arg e = qDisch arge
+iDisch arge
+=
+3WminLminCox
+* VDD
+Wmin ssat Cox
+* VDD "VTn
+(
+)
+=
+3nLminVDD
+ssat VDD "VTn
+(
+)
+CMOS minimum cycle time and power density at fmax: 
+" Min.Cycle #
+LminVDD
+ssat VDD $VTn
+[
+]
+= n'"ChanTransit
+PDdyn@ fmax " ssat #oxVDD VDD $VTn
+[
+]
+toxLmin
+" Min.Cycle = "Ch arge + " Disch arge =
+6n LminVDD
+ssat VDD #VTn
+[
+]
+"ChanTransit = L
+ssat
+Note:  
+Lessons: Still gain by reducing L, but not as quickly.
+Scaling of both dimensions and voltage is still required.
+Channel transit time, Lmin/ssat, still rules! 
+Clif Fonstad, 11/3/09 
+Lecture 15 - Slide 22 
+
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+  
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+MOSFETs: LEC w. velocity saturation  
+Small signal linear equivalent circuit: gm and Cgs change 
+gm " #iD
+#vGS Q
+= W ssat Cox
+*
+Cgs = W LCox
+*
++
+-
+vgs
+gmvgs
+go
+Cgs
+Cgd
+d
+s,b
+s,b
+g
+One final model observation: Insight on gm 
+We in general want gm as large as possible.  To see another way 
+to think about this is to note that gm can be related to τCh-Transit: 
+gm =
+W
+L µe Cox
+* vGS "VT
+(
+) =
+W LCox
+*
+L2 µe vGS "VT
+(
+)
+   W ssat Cox
+*
+=
+W LCox
+*
+L ssat
+# 
+$ 
+% % 
+& 
+% 
+% 
+' 
+( 
+% % 
+) 
+% 
+% 
+*
+Cgs
++ChTransit
+No velocity
+saturation 
+Full velocity
+saturation 
+Cgs is a measure of how much channel charge we are controlling, 
+and 1/τCh-tr is a measure of how fast it moves through the device. 
+We'd like both to be large numbers. 
+Clif Fonstad, 11/3/09 
+Lecture 15 - Slide 23 
+
+  
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+             
+ 
+  
+        
+ 
+ 
+ 
+             
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+   
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+6.012 - Microelectronic Devices and Circuits 
+τLO-HI = τHI-LO = 2VDDCL/Kn
+Gate delay (GD) = τLO-HI + τHI-LO = 4VDDCL/Kn(VDD - VT)2 
+If CL = n(WnLn + WpLp)Cox 
+* = 3n WnLminCox 
+* 
+(Assumes µe = 2µh) 
+then GD = 12 n Lmin 
+(VDD - VT)2 
+(Motivation for reducing Lmin) 
+Lecture 15 - Digital Circuits: CMOS - Summary  
+VDD
+vOUT
+vIN
++
++
+–
+–
+• CMOS 
+Transfer characteristic: symmetric  
+VLO = 0, VHI = VDD, ION = 0  
+NML = NMH implies Kn = Kp, |VTp| = VTn ≡VT  
+Ln = Lp = Lmin, Wp = (µe/µh)Wn  
+Gate delay expressions 
+(VDD - VT)2 
+2 VDD/ µn
+Power and speed-power product 
+Pave = f CLVDD 
+2  
+Pdyn@ fmax ∝ CLVDD 
+2/GD = KnVDD (VDD - VT)2/4 (Motivation for reducing VDD)  
+• Velocity Saturation 
+Gate delay; Power and speed-power product: 
+Scales as 1/Lmin, rather than (1/Lmin)2 
+Clif Fonstad, 11/3/09 
+Lecture 15 - Slide 24 
+
+ 
+ 
+MIT OpenCourseWare
+http://ocw.mit.edu 
+6.012 Microelectronic Devices and Circuits 
+Fall 2009 
+For information about citing these materials or our Terms of Use, visit: http://ocw.mit.edu/terms. 
+

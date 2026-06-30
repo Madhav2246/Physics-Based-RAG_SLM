@@ -1,0 +1,1913 @@
+{
+  "completed": 100,
+  "summary": {
+    "n": 100,
+    "avg_score": 1.8,
+    "parseable": 82.0,
+    "dimensional": 32.0,
+    "numerical": 27.0,
+    "coverage": 39.0
+  },
+  "per_question": [
+    {
+      "id": "E001",
+      "difficulty": "easy",
+      "question": "What is the equation for the current density in Fowler-Nordheim tunneling?",
+      "corpus_eq": "I = N*d*e*i**2*j*r*t - 1",
+      "answer": "The equation for the current density in Fowler-Nordheim tunneling is:\n\nI = N * d * e * i**2 * j*r*t - 1",
+      "sys": {
+        "parseable": true,
+        "dimensional": false,
+        "numerical": false,
+        "coverage": false,
+        "coverage_frac": 0.1429,
+        "total": 1.1429,
+        "equation": "I = N*d*e*i**2*j*r*t - 1",
+        "sym_msg": "[OK] Equation parsed successfully",
+        "dim_msg": "[FAIL] Dimension mismatch:\n  LHS {'I': 1}\n  RHS {'DIMENSION_MISMATCH': 1}",
+        "num_msg": "[WARN] Unresolved symbols remain: {d, t, j, e, i, r}"
+      }
+    },
+    {
+      "id": "E002",
+      "difficulty": "easy",
+      "question": "What is the equation for the current density in a metal-semiconductor contact?",
+      "corpus_eq": "E*o = E**2*c*h*o**3*t",
+      "answer": "The equation for the current density in a metal-semiconductor contact is given by:\n\nE*o = E**2*c*h*o**3*t",
+      "sys": {
+        "parseable": true,
+        "dimensional": false,
+        "numerical": false,
+        "coverage": false,
+        "coverage_frac": 0.2,
+        "total": 1.2,
+        "equation": "E*o = E**2*c*h*o**3*t",
+        "sym_msg": "[OK] Equation parsed successfully",
+        "dim_msg": "[FAIL] Dimension mismatch:\n  LHS {'V': 1, 'L': -1}\n  RHS {'V': 2.0, 'L': -2.0}",
+        "num_msg": "[WARN] Unresolved symbols remain: {t, h, c, o}"
+      }
+    },
+    {
+      "id": "E003",
+      "difficulty": "easy",
+      "question": "What is the equation for the threshold voltage controllability in Double-Diffused MOS Transistors?",
+      "corpus_eq": "a*c*i*l**2*p*t*y**2 = 8*O*c*m/V - s",
+      "answer": "- Id = drain current in Amperes",
+      "sys": {
+        "parseable": true,
+        "dimensional": false,
+        "numerical": false,
+        "coverage": false,
+        "coverage_frac": 0.2,
+        "total": 1.2,
+        "equation": "a*c*i*l**2*p*t*y**2 = 8*O*c*m/V - s",
+        "sym_msg": "[OK] Equation parsed successfully",
+        "dim_msg": "[FAIL] Dimension mismatch:\n  LHS {}\n  RHS {'DIMENSION_MISMATCH': 1}",
+        "num_msg": "[WARN] Unresolved symbols remain: {V, c, m, s}"
+      }
+    },
+    {
+      "id": "E004",
+      "difficulty": "easy",
+      "question": "What is the equation for the maximum electric field at x = 0 in a linearly graded junction?",
+      "corpus_eq": "l**2*n*w = -10*’",
+      "answer": "The equation for the maximum electric field at x = 0 in a linearly graded junction is:\n\n-",
+      "sys": {
+        "parseable": true,
+        "dimensional": true,
+        "numerical": false,
+        "coverage": false,
+        "coverage_frac": 0.0,
+        "total": 2.0,
+        "equation": "l**2*n*w = -10*’",
+        "sym_msg": "[OK] Equation parsed successfully",
+        "dim_msg": "[OK] Dimensionally consistent: {}",
+        "num_msg": "[WARN] Unresolved symbols remain: {’}"
+      }
+    },
+    {
+      "id": "E005",
+      "difficulty": "easy",
+      "question": "What is the equation for the differential voltage gain of the differential amplifier?",
+      "corpus_eq": "o*v = c*o*v + d*o*v",
+      "answer": "- Id = Drain current in Amperes",
+      "sys": {
+        "parseable": true,
+        "dimensional": true,
+        "numerical": false,
+        "coverage": false,
+        "coverage_frac": 0.0,
+        "total": 2.0,
+        "equation": "o*v = c*o*v + d*o*v",
+        "sym_msg": "[OK] Equation parsed successfully",
+        "dim_msg": "[OK] Dimensionally consistent: {}",
+        "num_msg": "[WARN] Unresolved symbols remain: {d, v, o, c}"
+      }
+    },
+    {
+      "id": "E006",
+      "difficulty": "easy",
+      "question": "What is the equation for the equivalent oxide thickness (EOT) in terms of the actual thickness and dielectric constants?",
+      "corpus_eq": "A*E**2*G*P*R*S*T = 0",
+      "answer": "-",
+      "sys": {
+        "parseable": true,
+        "dimensional": false,
+        "numerical": true,
+        "coverage": true,
+        "coverage_frac": 1.0,
+        "total": 3.0,
+        "equation": "A*E**2*G*P*R*S*T = 0",
+        "sym_msg": "[OK] Equation parsed successfully",
+        "dim_msg": "[FAIL] Dimension mismatch:\n  LHS {'V': 3.0, 'K': 1, 'L': -2.0}\n  RHS {}",
+        "num_msg": "[OK] Numerically plausible: 0.000000e+00"
+      }
+    },
+    {
+      "id": "E007",
+      "difficulty": "easy",
+      "question": "What is the equation for the effective transverse field in the inversion layer?",
+      "corpus_eq": "d = O**2*l*m*n",
+      "answer": "-",
+      "sys": {
+        "parseable": true,
+        "dimensional": true,
+        "numerical": false,
+        "coverage": false,
+        "coverage_frac": 0.5,
+        "total": 2.5,
+        "equation": "d = O**2*l*m*n",
+        "sym_msg": "[OK] Equation parsed successfully",
+        "dim_msg": "[OK] Dimensionally consistent: {}",
+        "num_msg": "[WARN] Unresolved symbols remain: {m, l}"
+      }
+    },
+    {
+      "id": "E008",
+      "difficulty": "easy",
+      "question": "What is the eigenvalue equation for the separation constant p in a guided mode?",
+      "corpus_eq": "a**2*l*y = 0",
+      "answer": "- Id = Drain current in Amperes",
+      "sys": {
+        "parseable": true,
+        "dimensional": true,
+        "numerical": true,
+        "coverage": true,
+        "coverage_frac": 1.0,
+        "total": 4.0,
+        "equation": "a**2*l*y = 0",
+        "sym_msg": "[OK] Equation parsed successfully",
+        "dim_msg": "[OK] Dimensionally consistent: {}",
+        "num_msg": "[OK] Numerically plausible: 0.000000e+00"
+      }
+    },
+    {
+      "id": "E009",
+      "difficulty": "easy",
+      "question": "What is the equation for the current density in trap-assisted tunneling and recombination current?",
+      "corpus_eq": null,
+      "answer": "The equation for the trap-assisted tunneling current is:\n\nJt = Jd + Jdexp(C4(V - Vv))",
+      "sys": {
+        "parseable": true,
+        "dimensional": false,
+        "numerical": false,
+        "coverage": false,
+        "coverage_frac": 0.125,
+        "total": 1.125,
+        "equation": "J*t = 4*C*J*d*e*p*x*(-V*v + V) + J*d",
+        "sym_msg": "[OK] Equation parsed successfully",
+        "dim_msg": "[FAIL] Dimension mismatch:\n  LHS {'I': 1, 'L': -2}\n  RHS {'DIMENSION_MISMATCH': 1}",
+        "num_msg": "[WARN] Unresolved symbols remain: {d, V, v, p, x, e, J}"
+      }
+    },
+    {
+      "id": "E010",
+      "difficulty": "easy",
+      "question": "What is the drain current equation for a MOSFET in the linear region?",
+      "corpus_eq": null,
+      "answer": "The drain current equation for a MOSFET in the linear region is:\n\niD(vGS,vDS,vBS) = 0",
+      "sys": {
+        "parseable": false,
+        "dimensional": false,
+        "numerical": false,
+        "coverage": false,
+        "coverage_frac": 0.0,
+        "total": 0.0,
+        "equation": "",
+        "sym_msg": "[WARN] Parsing failed: TypeError: can't multiply sequence by non-int of type 'Mul'",
+        "dim_msg": "[WARN] Dimensional check skipped.",
+        "num_msg": "[WARN] Numerical check skipped."
+      }
+    },
+    {
+      "id": "E011",
+      "difficulty": "easy",
+      "question": "What is the equation for GIDL current in the BSIM4v4.8.0 model?",
+      "corpus_eq": "V*b*d*f*s = 0",
+      "answer": "-",
+      "sys": {
+        "parseable": true,
+        "dimensional": false,
+        "numerical": true,
+        "coverage": true,
+        "coverage_frac": 1.0,
+        "total": 3.0,
+        "equation": "V*b*d*f*s = 0",
+        "sym_msg": "[OK] Equation parsed successfully",
+        "dim_msg": "[FAIL] Dimension mismatch:\n  LHS {'V': 1}\n  RHS {}",
+        "num_msg": "[OK] Numerically plausible: 0.000000e+00"
+      }
+    },
+    {
+      "id": "E012",
+      "difficulty": "easy",
+      "question": "What is the equation for the effective mobility in the stress effect model?",
+      "corpus_eq": null,
+      "answer": "The key equation for the effective mobility in the stress effect model is:",
+      "sys": {
+        "parseable": false,
+        "dimensional": false,
+        "numerical": false,
+        "coverage": false,
+        "coverage_frac": 0.0,
+        "total": 0.0,
+        "equation": "",
+        "sym_msg": "[WARN] No equation detected.",
+        "dim_msg": "[WARN] Dimensional check skipped.",
+        "num_msg": "[WARN] Numerical check skipped."
+      }
+    },
+    {
+      "id": "E013",
+      "difficulty": "easy",
+      "question": "What is the current between the source and drain used for in the recessed-channel process?",
+      "corpus_eq": null,
+      "answer": "The current between the source and drain used for in the recessed-channel process is",
+      "sys": {
+        "parseable": false,
+        "dimensional": false,
+        "numerical": false,
+        "coverage": false,
+        "coverage_frac": 0.0,
+        "total": 0.0,
+        "equation": "",
+        "sym_msg": "[WARN] No equation detected.",
+        "dim_msg": "[WARN] Dimensional check skipped.",
+        "num_msg": "[WARN] Numerical check skipped."
+      }
+    },
+    {
+      "id": "E014",
+      "difficulty": "easy",
+      "question": "What is the equation for the channel transit time in a MOSFET operating in strong inversion with no velocity saturation?",
+      "corpus_eq": "M*d**2*o*r*s = 0",
+      "answer": "-",
+      "sys": {
+        "parseable": true,
+        "dimensional": true,
+        "numerical": true,
+        "coverage": true,
+        "coverage_frac": 1.0,
+        "total": 4.0,
+        "equation": "M*d**2*o*r*s = 0",
+        "sym_msg": "[OK] Equation parsed successfully",
+        "dim_msg": "[OK] Dimensionally consistent: {}",
+        "num_msg": "[OK] Numerically plausible: 0.000000e+00"
+      }
+    },
+    {
+      "id": "E015",
+      "difficulty": "easy",
+      "question": "What is the equation for the mean-frequency deviation in a TED?",
+      "corpus_eq": "f = d*u/L",
+      "answer": "- Id = Drain current in Ampere-second",
+      "sys": {
+        "parseable": true,
+        "dimensional": false,
+        "numerical": false,
+        "coverage": false,
+        "coverage_frac": 0.3333,
+        "total": 1.3333,
+        "equation": "f = d*u/L",
+        "sym_msg": "[OK] Equation parsed successfully",
+        "dim_msg": "[FAIL] Dimension mismatch:\n  LHS {}\n  RHS {'L': -1.0}",
+        "num_msg": "[WARN] Unresolved symbols remain: {d, u}"
+      }
+    },
+    {
+      "id": "E016",
+      "difficulty": "easy",
+      "question": "What is the equation for Fowler-Nordheim tunneling current in a MOS capacitor?",
+      "corpus_eq": null,
+      "answer": "The equation for Fowler-Nordheim (F-N) tunneling current in a MOS capacitor is:\n\n\\[ J = L I I T l [ F , ( E ) ] \\]\n\nWhere:\n- \\( J \\) is the total current flowing through the gate-electrode system.\n- \\( L \\) is the total length of the gate-electrode system.\n- \\( I \\) is the intensity of the gate-electrode current.\n- \\( T \\) is the total energy carried by the electrons in the gate-electrode system.\n- \\( F , ( E ) \\) is the Fermi-Dirac distribution function in the gate-electrode system.\n- \\(",
+      "sys": {
+        "parseable": false,
+        "dimensional": false,
+        "numerical": false,
+        "coverage": false,
+        "coverage_frac": 0.0,
+        "total": 0.0,
+        "equation": "",
+        "sym_msg": "[WARN] Parsing failed: TokenError: ('unexpected EOF in multi-line statement', (1, 0))",
+        "dim_msg": "[WARN] Dimensional check skipped.",
+        "num_msg": "[WARN] Numerical check skipped."
+      }
+    },
+    {
+      "id": "E017",
+      "difficulty": "easy",
+      "question": "What is the total collector current equation in a phototransistor?",
+      "corpus_eq": "E*I*n = E*I*J*Y",
+      "answer": "- Id = Drain Current in Amperes",
+      "sys": {
+        "parseable": true,
+        "dimensional": false,
+        "numerical": false,
+        "coverage": false,
+        "coverage_frac": 0.5,
+        "total": 1.5,
+        "equation": "E*I*n = E*I*J*Y",
+        "sym_msg": "[OK] Equation parsed successfully",
+        "dim_msg": "[FAIL] Dimension mismatch:\n  LHS {'V': 1, 'L': -1, 'I': 1}\n  RHS {'V': 1, 'L': -3, 'I': 2}",
+        "num_msg": "[WARN] Unresolved symbols remain: {Y, J}"
+      }
+    },
+    {
+      "id": "E018",
+      "difficulty": "easy",
+      "question": "What is the equation for the threshold voltage in the long-channel model with uniform doping?",
+      "corpus_eq": "M*S*d*i*o**2 = 2",
+      "answer": "-",
+      "sys": {
+        "parseable": true,
+        "dimensional": false,
+        "numerical": true,
+        "coverage": true,
+        "coverage_frac": 1.0,
+        "total": 3.0,
+        "equation": "M*S*d*i*o**2 = 2",
+        "sym_msg": "[OK] Equation parsed successfully",
+        "dim_msg": "[FAIL] Dimension mismatch:\n  LHS {'V': 1}\n  RHS {}",
+        "num_msg": "[OK] Numerically plausible: 2.000000e+00"
+      }
+    },
+    {
+      "id": "E019",
+      "difficulty": "easy",
+      "question": "What is the drain current equation for a MOSFET in saturation according to the Gradual Channel Approximation?",
+      "corpus_eq": "a*e*l*n*p = W",
+      "answer": "- Id = drain current in Ampere-second",
+      "sys": {
+        "parseable": true,
+        "dimensional": false,
+        "numerical": true,
+        "coverage": true,
+        "coverage_frac": 1.0,
+        "total": 3.0,
+        "equation": "a*e*l*n*p = W",
+        "sym_msg": "[OK] Equation parsed successfully",
+        "dim_msg": "[FAIL] Dimension mismatch:\n  LHS {}\n  RHS {'L': 1}",
+        "num_msg": "[OK] Numerically plausible: 1.000000e-06"
+      }
+    },
+    {
+      "id": "E020",
+      "difficulty": "easy",
+      "question": "What is the effective mobility equation for mobMod=0?",
+      "corpus_eq": "M*b*d*m*o**2 = 3",
+      "answer": "-",
+      "sys": {
+        "parseable": true,
+        "dimensional": true,
+        "numerical": true,
+        "coverage": true,
+        "coverage_frac": 1.0,
+        "total": 4.0,
+        "equation": "M*b*d*m*o**2 = 3",
+        "sym_msg": "[OK] Equation parsed successfully",
+        "dim_msg": "[OK] Dimensionally consistent: {}",
+        "num_msg": "[OK] Numerically plausible: 3.000000e+00"
+      }
+    },
+    {
+      "id": "E021",
+      "difficulty": "easy",
+      "question": "What is the boundary condition at x = 0 when surface recombination is introduced at one end of a semiconductor sample?",
+      "corpus_eq": "x = D*W",
+      "answer": "-",
+      "sys": {
+        "parseable": true,
+        "dimensional": false,
+        "numerical": false,
+        "coverage": false,
+        "coverage_frac": 0.5,
+        "total": 1.5,
+        "equation": "x = D*W",
+        "sym_msg": "[OK] Equation parsed successfully",
+        "dim_msg": "[FAIL] Dimension mismatch:\n  LHS {}\n  RHS {'L': 1}",
+        "num_msg": "[WARN] Unresolved symbols remain: {D}"
+      }
+    },
+    {
+      "id": "E022",
+      "difficulty": "easy",
+      "question": "What is the equation for the channel current at any y-position in an ideal MOSFET?",
+      "corpus_eq": "D*i = -N*W*q*s*y**3",
+      "answer": "- Id = drain current in Ampere-second",
+      "sys": {
+        "parseable": true,
+        "dimensional": false,
+        "numerical": false,
+        "coverage": false,
+        "coverage_frac": 0.6,
+        "total": 1.6,
+        "equation": "D*i = -N*W*q*s*y**3",
+        "sym_msg": "[OK] Equation parsed successfully",
+        "dim_msg": "[FAIL] Dimension mismatch:\n  LHS {}\n  RHS {'L': -2, 'C': 1}",
+        "num_msg": "[WARN] Unresolved symbols remain: {y, s}"
+      }
+    },
+    {
+      "id": "E023",
+      "difficulty": "easy",
+      "question": "What is the equation for polysilicon gate depletion effects on gate capacitance and inversion charge density?",
+      "corpus_eq": "c*m = s",
+      "answer": "-",
+      "sys": {
+        "parseable": true,
+        "dimensional": true,
+        "numerical": false,
+        "coverage": false,
+        "coverage_frac": 0.0,
+        "total": 2.0,
+        "equation": "c*m = s",
+        "sym_msg": "[OK] Equation parsed successfully",
+        "dim_msg": "[OK] Dimensionally consistent: {}",
+        "num_msg": "[WARN] Unresolved symbols remain: {s}"
+      }
+    },
+    {
+      "id": "E024",
+      "difficulty": "easy",
+      "question": "What is the relationship between the electric field distribution and the terminal voltage in the accumulation-layer mode?",
+      "corpus_eq": null,
+      "answer": "The relationship between the electric field distribution and the terminal voltage in the accumulation-layer mode is given by the",
+      "sys": {
+        "parseable": false,
+        "dimensional": false,
+        "numerical": false,
+        "coverage": false,
+        "coverage_frac": 0.0,
+        "total": 0.0,
+        "equation": "",
+        "sym_msg": "[WARN] No equation detected.",
+        "dim_msg": "[WARN] Dimensional check skipped.",
+        "num_msg": "[WARN] Numerical check skipped."
+      }
+    },
+    {
+      "id": "E025",
+      "difficulty": "easy",
+      "question": "What is the equation for equivalent oxide thickness (EOT) in a MOSFET gate stack?",
+      "corpus_eq": "tox = 1.5*m*n",
+      "answer": "-",
+      "sys": {
+        "parseable": true,
+        "dimensional": false,
+        "numerical": false,
+        "coverage": false,
+        "coverage_frac": 0.5,
+        "total": 1.5,
+        "equation": "tox = 1.5*m*n",
+        "sym_msg": "[OK] Equation parsed successfully",
+        "dim_msg": "[FAIL] Dimension mismatch:\n  LHS {'L': 1}\n  RHS {}",
+        "num_msg": "[WARN] Unresolved symbols remain: {m}"
+      }
+    },
+    {
+      "id": "E026",
+      "difficulty": "easy",
+      "question": "What is the equation for the potential in the n-MOS capacitor structure in the depletion approximation?",
+      "corpus_eq": "B*F*V = A*D*N*o*q*t*x**2",
+      "answer": "-",
+      "sys": {
+        "parseable": true,
+        "dimensional": false,
+        "numerical": false,
+        "coverage": false,
+        "coverage_frac": 0.2857,
+        "total": 1.2857,
+        "equation": "B*F*V = A*D*N*o*q*t*x**2",
+        "sym_msg": "[OK] Equation parsed successfully",
+        "dim_msg": "[FAIL] Dimension mismatch:\n  LHS {'V': 1}\n  RHS {'L': -3, 'C': 1}",
+        "num_msg": "[WARN] Unresolved symbols remain: {D, t, o, x, A}"
+      }
+    },
+    {
+      "id": "E027",
+      "difficulty": "easy",
+      "question": "What is the equation for the temperature dependence of the recombination current in the BSIM4v4.8.0 model?",
+      "corpus_eq": "M*d**2*i*o**2 = a*b*d*e*k*n*o*r*w - e**2*f*r",
+      "answer": "- Id = drain current in Amperes",
+      "sys": {
+        "parseable": true,
+        "dimensional": false,
+        "numerical": false,
+        "coverage": false,
+        "coverage_frac": 0.2,
+        "total": 1.2,
+        "equation": "M*d**2*i*o**2 = a*b*d*e*k*n*o*r*w - exp(2*f*r)",
+        "sym_msg": "[OK] Equation parsed successfully",
+        "dim_msg": "[FAIL] Dimension mismatch:\n  LHS {}\n  RHS {'DIMENSION_MISMATCH': 1}",
+        "num_msg": "[WARN] Unresolved symbols remain: {d, f, a, r, o, e, b, w}"
+      }
+    },
+    {
+      "id": "E028",
+      "difficulty": "easy",
+      "question": "What is the relationship between dimensional scaling and the electronics industry ecosystem?",
+      "corpus_eq": null,
+      "answer": "Dimensional scaling in the electronics industry refers to the continuous reduction of physical dimensions such as length, width, and thickness of integrated circuits (ICs), memory chips, and other electronic components over time.",
+      "sys": {
+        "parseable": false,
+        "dimensional": false,
+        "numerical": false,
+        "coverage": false,
+        "coverage_frac": 0.0,
+        "total": 0.0,
+        "equation": "",
+        "sym_msg": "[WARN] No equation detected.",
+        "dim_msg": "[WARN] Dimensional check skipped.",
+        "num_msg": "[WARN] Numerical check skipped."
+      }
+    },
+    {
+      "id": "E029",
+      "difficulty": "easy",
+      "question": "What is the relationship between the mobility and stress effect in a MOSFET?",
+      "corpus_eq": "B*D**2*M*O**2*R*Y = 1",
+      "answer": "-",
+      "sys": {
+        "parseable": true,
+        "dimensional": true,
+        "numerical": true,
+        "coverage": true,
+        "coverage_frac": 1.0,
+        "total": 4.0,
+        "equation": "B*D**2*M*O**2*R*Y = 1",
+        "sym_msg": "[OK] Equation parsed successfully",
+        "dim_msg": "[OK] Dimensionally consistent: {}",
+        "num_msg": "[OK] Numerically plausible: 1.000000e+00"
+      }
+    },
+    {
+      "id": "E030",
+      "difficulty": "easy",
+      "question": "What is the channel current equation for an ideal MESFET structure?",
+      "corpus_eq": "Mod(A, L) = D*V",
+      "answer": "- Id = drain current in Amperes",
+      "sys": {
+        "parseable": false,
+        "dimensional": false,
+        "numerical": false,
+        "coverage": false,
+        "coverage_frac": 0.0,
+        "total": 0.0,
+        "equation": "",
+        "sym_msg": "[WARN] Parsing failed: IndexError: list index out of range",
+        "dim_msg": "[WARN] Dimensional check skipped.",
+        "num_msg": "[WARN] Numerical check skipped."
+      }
+    },
+    {
+      "id": "E031",
+      "difficulty": "easy",
+      "question": "What is the equation for mobility due to interaction with acoustic phonons of the lattice?",
+      "corpus_eq": "o*p**2 = NA",
+      "answer": "-",
+      "sys": {
+        "parseable": true,
+        "dimensional": false,
+        "numerical": false,
+        "coverage": false,
+        "coverage_frac": 0.0,
+        "total": 1.0,
+        "equation": "o*p**2 = NA",
+        "sym_msg": "[OK] Equation parsed successfully",
+        "dim_msg": "[FAIL] Dimension mismatch:\n  LHS {}\n  RHS {'L': -3}",
+        "num_msg": "[WARN] Unresolved symbols remain: {NA}"
+      }
+    },
+    {
+      "id": "E032",
+      "difficulty": "easy",
+      "question": "What is the equation for the mean-frequency deviation in Transferred-Electron Devices (TEDs)?",
+      "corpus_eq": "f = v/L",
+      "answer": "- Id = Drain current in Amperes",
+      "sys": {
+        "parseable": true,
+        "dimensional": false,
+        "numerical": false,
+        "coverage": false,
+        "coverage_frac": 0.5,
+        "total": 1.5,
+        "equation": "f = v/L",
+        "sym_msg": "[OK] Equation parsed successfully",
+        "dim_msg": "[FAIL] Dimension mismatch:\n  LHS {}\n  RHS {'L': -1.0}",
+        "num_msg": "[WARN] Unresolved symbols remain: {v}"
+      }
+    },
+    {
+      "id": "E033",
+      "difficulty": "easy",
+      "question": "What is the subthreshold swing's dependence on channel length?",
+      "corpus_eq": "V*f**2*o*’ = 2*F**2*O*V",
+      "answer": "-",
+      "sys": {
+        "parseable": true,
+        "dimensional": true,
+        "numerical": false,
+        "coverage": false,
+        "coverage_frac": 0.3333,
+        "total": 2.3333,
+        "equation": "V*f**2*o*’ = 2*F**2*O*V",
+        "sym_msg": "[OK] Equation parsed successfully",
+        "dim_msg": "[OK] Dimensionally consistent: {'V': 1}",
+        "num_msg": "[WARN] Unresolved symbols remain: {V, F}"
+      }
+    },
+    {
+      "id": "E034",
+      "difficulty": "easy",
+      "question": "What is the reported loss of inversion charge at 1.5 V gate voltage due to the QM and polysilicon depletion effects for a 2.0 nm oxide?",
+      "corpus_eq": "c*m = s",
+      "answer": "-",
+      "sys": {
+        "parseable": true,
+        "dimensional": true,
+        "numerical": false,
+        "coverage": false,
+        "coverage_frac": 0.0,
+        "total": 2.0,
+        "equation": "c*m = s",
+        "sym_msg": "[OK] Equation parsed successfully",
+        "dim_msg": "[OK] Dimensionally consistent: {}",
+        "num_msg": "[WARN] Unresolved symbols remain: {s}"
+      }
+    },
+    {
+      "id": "E035",
+      "difficulty": "easy",
+      "question": "What is the equation for drain current in a long channel body-contacted MOSFET device at small Vds?",
+      "corpus_eq": "Vds = Vdsat",
+      "answer": "- Id = drain current in Amperes",
+      "sys": {
+        "parseable": true,
+        "dimensional": true,
+        "numerical": true,
+        "coverage": true,
+        "coverage_frac": 1.0,
+        "total": 4.0,
+        "equation": "Vds = Vdsat",
+        "sym_msg": "[OK] Equation parsed successfully",
+        "dim_msg": "[OK] Dimensionally consistent: {'V': 1}",
+        "num_msg": "[OK] Numerically plausible: 6.000000e-01"
+      }
+    },
+    {
+      "id": "E036",
+      "difficulty": "easy",
+      "question": "What is the relationship between the intrinsic carrier concentration and the number of mobile holes and electrons in intrinsic silicon at room temperature?",
+      "corpus_eq": "F*v = 0",
+      "answer": "- `v` represents the mobility parameter, which quantifies how quickly carriers can move through the material.\n- `i` stands for the number of mobile holes, representing the number of electrons that have gained enough energy to jump to the valence band.\n- `e` refers to the number of electrons, representing the number of holes that have lost enough energy to jump back to the conduction band.\n- `n` indicates the number of neutral particles, representing the total number of electrons and neutral particles in the system.\n- `i * e * n` gives the total number of carriers (electrons and neutral particles) in the system, which is constant regardless of the temperature.",
+      "sys": {
+        "parseable": true,
+        "dimensional": true,
+        "numerical": true,
+        "coverage": true,
+        "coverage_frac": 1.0,
+        "total": 4.0,
+        "equation": "F*v = 0",
+        "sym_msg": "[OK] Equation parsed successfully",
+        "dim_msg": "[OK] Dimensionally consistent: {}",
+        "num_msg": "[OK] Numerically plausible: 0.000000e+00"
+      }
+    },
+    {
+      "id": "E037",
+      "difficulty": "easy",
+      "question": "What is the equation for conductivity in a semiconductor material?",
+      "corpus_eq": null,
+      "answer": "The equation for conductivity in a semiconductor material is typically expressed as:\n\n$\\sigma = \\frac{1}{Q} \\left[ \\sum_{k} \\frac{\\epsilon_k}{k!} \\left( \\frac{e^2}{4\\pi\\varepsilon_0} \\right)^{k/2} \\right]$\n\nWhere:\n- $\\sigma$ is the conductivity of the material.\n- $Q$ is the charge transported per unit time.\n- $\\epsilon_k$ is the self-energy of the k-th excited state.\n- $\\varepsilon_0$ is the permittivity of free space.\n- $k$ is the wave number associated with the k-th excited state.\n\nThis equation accounts for the contributions from all excited states in the material, including those with fractional wave numbers.",
+      "sys": {
+        "parseable": false,
+        "dimensional": false,
+        "numerical": false,
+        "coverage": false,
+        "coverage_frac": 0.0,
+        "total": 0.0,
+        "equation": "",
+        "sym_msg": "[WARN] No equation detected.",
+        "dim_msg": "[WARN] Dimensional check skipped.",
+        "num_msg": "[WARN] Numerical check skipped."
+      }
+    },
+    {
+      "id": "E038",
+      "difficulty": "easy",
+      "question": "What is the equation for the reverse saturation current in the collector for the Ebers-Moll model?",
+      "corpus_eq": "C*I*S = A*i*n*q",
+      "answer": "-",
+      "sys": {
+        "parseable": true,
+        "dimensional": false,
+        "numerical": false,
+        "coverage": false,
+        "coverage_frac": 0.5,
+        "total": 1.5,
+        "equation": "C*I*S = A*i*n*q",
+        "sym_msg": "[OK] Equation parsed successfully",
+        "dim_msg": "[FAIL] Dimension mismatch:\n  LHS {'I': 2, 'T': 1}\n  RHS {'C': 1}",
+        "num_msg": "[WARN] Unresolved symbols remain: {i, A}"
+      }
+    },
+    {
+      "id": "E039",
+      "difficulty": "easy",
+      "question": "What is the equation for the total saturation current in the asymmetric MOS junction diode model?",
+      "corpus_eq": "M*d**2*i*o**2 = a*b*d*e*k*n*o*r*w - e**2*f*r",
+      "answer": "- Id = total saturation current in Ampere-second",
+      "sys": {
+        "parseable": true,
+        "dimensional": false,
+        "numerical": false,
+        "coverage": false,
+        "coverage_frac": 0.2,
+        "total": 1.2,
+        "equation": "M*d**2*i*o**2 = a*b*d*e*k*n*o*r*w - exp(2*f*r)",
+        "sym_msg": "[OK] Equation parsed successfully",
+        "dim_msg": "[FAIL] Dimension mismatch:\n  LHS {}\n  RHS {'DIMENSION_MISMATCH': 1}",
+        "num_msg": "[WARN] Unresolved symbols remain: {d, f, a, r, o, e, b, w}"
+      }
+    },
+    {
+      "id": "E040",
+      "difficulty": "easy",
+      "question": "What is the equation for the drain-side saturation current in the BSIM4v4.7 model?",
+      "corpus_eq": "Id = 0.5*Cox*W*mu*(Vgs - Vth)**2/L",
+      "answer": "- Id = drain current in Amperes",
+      "sys": {
+        "parseable": true,
+        "dimensional": true,
+        "numerical": true,
+        "coverage": true,
+        "coverage_frac": 1.0,
+        "total": 4.0,
+        "equation": "Id = 0.5*Cox*W*mu*(Vgs - Vth)**2/L",
+        "sym_msg": "[OK] Equation parsed successfully",
+        "dim_msg": "[OK] Dimensionally consistent: {'I': 1}",
+        "num_msg": "[OK] Numerically plausible: 1.800000e-03"
+      }
+    },
+    {
+      "id": "M001",
+      "difficulty": "medium",
+      "question": "What is the relationship between the distance from S/D contact center to the gate edge (DMCG) and the distance from S/D contact center to the isolation edge in the channel-length direction (DMCI), and what is the governing equation?",
+      "corpus_eq": "J*N*S*T = 20.0000000000000",
+      "answer": "-",
+      "sys": {
+        "parseable": true,
+        "dimensional": false,
+        "numerical": true,
+        "coverage": true,
+        "coverage_frac": 1.0,
+        "total": 3.0,
+        "equation": "J*N*S*T = 20.0000000000000",
+        "sym_msg": "[OK] Equation parsed successfully",
+        "dim_msg": "[FAIL] Dimension mismatch:\n  LHS {'I': 1, 'L': -5, 'V': 1, 'K': 1}\n  RHS {}",
+        "num_msg": "[OK] Numerically plausible: 2.000000e+01"
+      }
+    },
+    {
+      "id": "M002",
+      "difficulty": "medium",
+      "question": "How does substrate bias (VBS) affect the threshold voltage in a MOSFET and what is the governing equation for the capacitance CDT?",
+      "corpus_eq": "B*G*v = B*C*T*V*v",
+      "answer": "-",
+      "sys": {
+        "parseable": true,
+        "dimensional": false,
+        "numerical": false,
+        "coverage": false,
+        "coverage_frac": 0.4,
+        "total": 1.4,
+        "equation": "B*G*v = B*C*T*V*v",
+        "sym_msg": "[OK] Equation parsed successfully",
+        "dim_msg": "[FAIL] Dimension mismatch:\n  LHS {}\n  RHS {'I': 1, 'T': 1, 'K': 1}",
+        "num_msg": "[WARN] Unresolved symbols remain: {V, v, B}"
+      }
+    },
+    {
+      "id": "M003",
+      "difficulty": "medium",
+      "question": "How does the applied reverse bias (v_AB) affect the hole concentration at the edge of the depletion region (xn), and what is the governing equation?",
+      "corpus_eq": "4*c*m = a",
+      "answer": "-",
+      "sys": {
+        "parseable": true,
+        "dimensional": true,
+        "numerical": false,
+        "coverage": false,
+        "coverage_frac": 0.0,
+        "total": 2.0,
+        "equation": "4*c*m = a",
+        "sym_msg": "[OK] Equation parsed successfully",
+        "dim_msg": "[OK] Dimensionally consistent: {}",
+        "num_msg": "[WARN] Unresolved symbols remain: {a}"
+      }
+    },
+    {
+      "id": "M004",
+      "difficulty": "medium",
+      "question": "What is the relationship between the floating-gate potential (VFG) and the control gate voltage (VG) in a floating-gate avalanche-injection MOS (FAMOS) memory, and what is the governing equation?",
+      "corpus_eq": "V*c = 15*V",
+      "answer": "- Id = drain current in Amperes",
+      "sys": {
+        "parseable": true,
+        "dimensional": true,
+        "numerical": false,
+        "coverage": false,
+        "coverage_frac": 0.0,
+        "total": 2.0,
+        "equation": "V*c = 15*V",
+        "sym_msg": "[OK] Equation parsed successfully",
+        "dim_msg": "[OK] Dimensionally consistent: {'V': 1}",
+        "num_msg": "[WARN] Unresolved symbols remain: {V}"
+      }
+    },
+    {
+      "id": "M005",
+      "difficulty": "medium",
+      "question": "How does the charging current affect the rate of change of the output voltage in a MOSFET pull-up circuit, and what is the governing equation?",
+      "corpus_eq": "I*N*v = L*O*V",
+      "answer": "- Id = drain current in Amperes",
+      "sys": {
+        "parseable": true,
+        "dimensional": false,
+        "numerical": false,
+        "coverage": false,
+        "coverage_frac": 0.6667,
+        "total": 1.6667,
+        "equation": "I*N*v = L*O*V",
+        "sym_msg": "[OK] Equation parsed successfully",
+        "dim_msg": "[FAIL] Dimension mismatch:\n  LHS {'I': 1, 'L': -3}\n  RHS {'L': 1, 'V': 1}",
+        "num_msg": "[WARN] Unresolved symbols remain: {V}"
+      }
+    },
+    {
+      "id": "M006",
+      "difficulty": "medium",
+      "question": "How does the gate voltage (V) affect the current in a BSIT, and what is the governing equation for this relationship?",
+      "corpus_eq": "Vgs = 2.0*V",
+      "answer": "Thank you for providing the evidence regarding the gate voltage (V) affecting the current in a BSIT.",
+      "sys": {
+        "parseable": true,
+        "dimensional": true,
+        "numerical": false,
+        "coverage": false,
+        "coverage_frac": 0.0,
+        "total": 2.0,
+        "equation": "Vgs = 2.0*V",
+        "sym_msg": "[OK] Equation parsed successfully",
+        "dim_msg": "[OK] Dimensionally consistent: {'V': 1}",
+        "num_msg": "[WARN] Unresolved symbols remain: {V}"
+      }
+    },
+    {
+      "id": "M007",
+      "difficulty": "medium",
+      "question": "How does the width of the p-side depletion region (xp) affect the width of the n-side depletion region (xn), and what is the governing equation?",
+      "corpus_eq": "l**2*n*w = -10*’",
+      "answer": "-",
+      "sys": {
+        "parseable": true,
+        "dimensional": true,
+        "numerical": false,
+        "coverage": false,
+        "coverage_frac": 0.0,
+        "total": 2.0,
+        "equation": "l**2*n*w = -10*’",
+        "sym_msg": "[OK] Equation parsed successfully",
+        "dim_msg": "[OK] Dimensionally consistent: {}",
+        "num_msg": "[WARN] Unresolved symbols remain: {’}"
+      }
+    },
+    {
+      "id": "M008",
+      "difficulty": "medium",
+      "question": "How does the insertion of a barrier-enhancement layer affect the barrier height of a narrow-energy-gap semiconductor in an MSM photodetector, and what is the governing equation?",
+      "corpus_eq": "40*q = 0.33*V*e",
+      "answer": "- Id = Drain current in Ampere",
+      "sys": {
+        "parseable": true,
+        "dimensional": false,
+        "numerical": false,
+        "coverage": false,
+        "coverage_frac": 0.0,
+        "total": 1.0,
+        "equation": "40*q = 0.33*V*e",
+        "sym_msg": "[OK] Equation parsed successfully",
+        "dim_msg": "[FAIL] Dimension mismatch:\n  LHS {'C': 1}\n  RHS {'V': 1}",
+        "num_msg": "[WARN] Unresolved symbols remain: {V, e}"
+      }
+    },
+    {
+      "id": "M009",
+      "difficulty": "medium",
+      "question": "For an MOSFET in saturation, how does the drain current (ID) depend on the gate voltage (VG), and what is the governing equation? What is the physical origin of this relationship?",
+      "corpus_eq": null,
+      "answer": "For an MOSFET in saturation, the drain current (ID) depends on the gate voltage (VG) as follows:",
+      "sys": {
+        "parseable": false,
+        "dimensional": false,
+        "numerical": false,
+        "coverage": false,
+        "coverage_frac": 0.0,
+        "total": 0.0,
+        "equation": "",
+        "sym_msg": "[WARN] No equation detected.",
+        "dim_msg": "[WARN] Dimensional check skipped.",
+        "num_msg": "[WARN] Numerical check skipped."
+      }
+    },
+    {
+      "id": "M010",
+      "difficulty": "medium",
+      "question": "What is the relationship between the total capacitance (Ct) of the single-electron island and its required size for experimental observation at room temperature, and what is the governing equation?",
+      "corpus_eq": null,
+      "answer": "The relationship between the total capacitance (Ct) of the single-electon island and its required size for experimental observation at room temperature is given by:\n\nCt = 2 * (C1 + C2 + C3)\n\nWhere:\n- C1 represents the total capacitance of the single-electon island in Farads (F).\n- C2 is the capacitance of the source and drain capacitors in Farads (F).\n- C3 is the capacitance of the gate capacitor in Farads (F).\n\nThe governing equation for the",
+      "sys": {
+        "parseable": true,
+        "dimensional": true,
+        "numerical": true,
+        "coverage": true,
+        "coverage_frac": 1.0,
+        "total": 4.0,
+        "equation": "C*t = 12*C",
+        "sym_msg": "[OK] Equation parsed successfully",
+        "dim_msg": "[OK] Dimensionally consistent: {'I': 1, 'T': 1, 'V': -1}",
+        "num_msg": "[OK] Numerically plausible: 1.200000e-11"
+      }
+    },
+    {
+      "id": "M011",
+      "difficulty": "medium",
+      "question": "How does the width of the p-substrate neutral region (H') affect the photocurrent generated in the p-side neutral region, and what is the governing equation?",
+      "corpus_eq": "-n*o*p + n*p = O",
+      "answer": "-",
+      "sys": {
+        "parseable": true,
+        "dimensional": true,
+        "numerical": true,
+        "coverage": true,
+        "coverage_frac": 1.0,
+        "total": 4.0,
+        "equation": "n*p = O",
+        "sym_msg": "[OK] Equation parsed successfully",
+        "dim_msg": "[OK] Dimensionally consistent: {}",
+        "num_msg": "[OK] Numerically plausible: 1.000000e+00"
+      }
+    },
+    {
+      "id": "M012",
+      "difficulty": "medium",
+      "question": "What is the relationship between the recombination current (Jr) and the depletion region width (W), and what is the governing equation? Physically, what is the origin of this relationship?",
+      "corpus_eq": "D*Z*i*l*n = G*i*(-i*q + 1)",
+      "answer": "Here is the explanation of each symbol in the equation:\n\n1. **I** - Current, typically measured in Amperes (A).\n\n2. **D** - Depletion region, defined as the area where the channel is completely depleted, usually modeled as a flat region.\n\n3. **C** - Channel capacitance, given by Coulomb's law: \n\n   C = Qn / (2 * pi * epsilon * L), where Qn is the charge on the channel surface, epsilon is the permittivity of free space, and L is the length of the channel.\n\n4. **L** - Length of the channel, typically measured in meters (m).\n\n5. **W** - Width of the depletion region, typically measured in meters (m).\n\n6. **G** - Gradient, representing the gradient of the channel charge density with respect to the channel length.",
+      "sys": {
+        "parseable": true,
+        "dimensional": false,
+        "numerical": false,
+        "coverage": false,
+        "coverage_frac": 0.75,
+        "total": 1.75,
+        "equation": "C = Q*n/(2*pi*L*eps)",
+        "sym_msg": "[OK] Equation parsed successfully",
+        "dim_msg": "[FAIL] Dimension mismatch:\n  LHS {'I': 1, 'T': 1, 'V': -1}\n  RHS {'C': 1, 'I': -1.0, 'T': -1.0, 'V': 1.0}",
+        "num_msg": "[WARN] Unresolved symbols remain: {eps}"
+      }
+    },
+    {
+      "id": "M013",
+      "difficulty": "medium",
+      "question": "How does the drain voltage (Vds) affect the drain-induced threshold shift (DITS) in a long-channel device with pocket implant, and what is the governing equation?",
+      "corpus_eq": "Vds = Vdsat",
+      "answer": "- Id = drain current in Amperes",
+      "sys": {
+        "parseable": true,
+        "dimensional": true,
+        "numerical": true,
+        "coverage": true,
+        "coverage_frac": 1.0,
+        "total": 4.0,
+        "equation": "Vds = Vdsat",
+        "sym_msg": "[OK] Equation parsed successfully",
+        "dim_msg": "[OK] Dimensionally consistent: {'V': 1}",
+        "num_msg": "[OK] Numerically plausible: 6.000000e-01"
+      }
+    },
+    {
+      "id": "M014",
+      "difficulty": "medium",
+      "question": "How does the gate-source voltage (Vgs) affect the effective mobility (μeff) in a MOSFET when Mobmod=1, and what is the governing equation? Physically, what is the origin of this relationship?",
+      "corpus_eq": null,
+      "answer": "To determine how the gate-source voltage (Vgs) affects the effective mobility (μeff) in a MOSFET when Mobmod=1, we need to consider the",
+      "sys": {
+        "parseable": false,
+        "dimensional": false,
+        "numerical": false,
+        "coverage": false,
+        "coverage_frac": 0.0,
+        "total": 0.0,
+        "equation": "",
+        "sym_msg": "[WARN] No equation detected.",
+        "dim_msg": "[WARN] Dimensional check skipped.",
+        "num_msg": "[WARN] Numerical check skipped."
+      }
+    },
+    {
+      "id": "M015",
+      "difficulty": "medium",
+      "question": "How does the number of quantum wells (Nw) affect the quantum efficiency in a QWIP, and what is the governing equation?",
+      "corpus_eq": "c = P",
+      "answer": "- Id = drain current in Amperes",
+      "sys": {
+        "parseable": true,
+        "dimensional": true,
+        "numerical": false,
+        "coverage": false,
+        "coverage_frac": 0.0,
+        "total": 2.0,
+        "equation": "c = P",
+        "sym_msg": "[OK] Equation parsed successfully",
+        "dim_msg": "[OK] Dimensionally consistent: {}",
+        "num_msg": "[WARN] Unresolved symbols remain: {P}"
+      }
+    },
+    {
+      "id": "M016",
+      "difficulty": "medium",
+      "question": "How does the interface trap density (Dit) relate to the capacitance-voltage relationship in a metal-insulator-semiconductor capacitor, and what is the governing equation?",
+      "corpus_eq": "D*i*t = 22.0*x*(1 - 2*c)/c",
+      "answer": "Here's a breakdown of the key symbols and their meanings according to the evidence provided:\n\n### Symbols and Their Meanings:\n\n1. **C** - Coulomb (inferred from the",
+      "sys": {
+        "parseable": true,
+        "dimensional": true,
+        "numerical": false,
+        "coverage": false,
+        "coverage_frac": 0.0,
+        "total": 2.0,
+        "equation": "D*i*t = 22.0*x*(1 - 2*c)/c",
+        "sym_msg": "[OK] Equation parsed successfully",
+        "dim_msg": "[OK] Dimensionally consistent: {}",
+        "num_msg": "[WARN] Unresolved symbols remain: {x, c}"
+      }
+    },
+    {
+      "id": "M017",
+      "difficulty": "medium",
+      "question": "How does the doping concentration affect the total depletion width in the Type-I heterojunction between GaAs and Al0.4Ga0.6As, and what is the governing equation?",
+      "corpus_eq": "n*x = p*x",
+      "answer": "-",
+      "sys": {
+        "parseable": true,
+        "dimensional": true,
+        "numerical": false,
+        "coverage": false,
+        "coverage_frac": 0.0,
+        "total": 2.0,
+        "equation": "n*x = p*x",
+        "sym_msg": "[OK] Equation parsed successfully",
+        "dim_msg": "[OK] Dimensionally consistent: {}",
+        "num_msg": "[WARN] Unresolved symbols remain: {x, p}"
+      }
+    },
+    {
+      "id": "M018",
+      "difficulty": "medium",
+      "question": "How do the electron and hole populations at a point with electrostatic potential φ relate to those at a point with zero potential, and what are the governing equations?",
+      "corpus_eq": "106*l*n = T*k",
+      "answer": "- No(x) = nieq\"(x) kT",
+      "sys": {
+        "parseable": true,
+        "dimensional": false,
+        "numerical": true,
+        "coverage": true,
+        "coverage_frac": 1.0,
+        "total": 3.0,
+        "equation": "106*l*n = T*k",
+        "sym_msg": "[OK] Equation parsed successfully",
+        "dim_msg": "[FAIL] Dimension mismatch:\n  LHS {}\n  RHS {'V': 1, 'C': 1}",
+        "num_msg": "[OK] Numerically plausible: 4.140000e-21"
+      }
+    },
+    {
+      "id": "M019",
+      "difficulty": "medium",
+      "question": "How does the IIR model account for the first-order NQS effect, and what is the governing equation?",
+      "corpus_eq": "M*a*d*e*g*o*r*t = -a*c*e**2*i*n*r*s**2*t + a*c*n**2*o*s*t**2",
+      "answer": "-",
+      "sys": {
+        "parseable": true,
+        "dimensional": true,
+        "numerical": false,
+        "coverage": false,
+        "coverage_frac": 0.125,
+        "total": 2.125,
+        "equation": "M*a*d*e*g*o*r*t = a*c*n**2*o*s*t**2 - a*c*exp(2*i*n*r*s**2*t)",
+        "sym_msg": "[OK] Equation parsed successfully",
+        "dim_msg": "[OK] Dimensionally consistent: {}",
+        "num_msg": "[WARN] Unresolved symbols remain: {t, s, a, c, r, o, i}"
+      }
+    },
+    {
+      "id": "M020",
+      "difficulty": "medium",
+      "question": "What is the relationship between the optimum avalanche multiplication (Mop) and the excess noise factor (F(M)), and what is the governing equation? Physically, what is the origin of this relationship?",
+      "corpus_eq": "M*N*S*l = 0",
+      "answer": "- Id = Drain current in Ampere",
+      "sys": {
+        "parseable": true,
+        "dimensional": false,
+        "numerical": true,
+        "coverage": true,
+        "coverage_frac": 1.0,
+        "total": 3.0,
+        "equation": "M*N*S*l = 0",
+        "sym_msg": "[OK] Equation parsed successfully",
+        "dim_msg": "[FAIL] Dimension mismatch:\n  LHS {'L': -3, 'V': 1}\n  RHS {}",
+        "num_msg": "[OK] Numerically plausible: 0.000000e+00"
+      }
+    },
+    {
+      "id": "M021",
+      "difficulty": "medium",
+      "question": "How does the signal-to-noise ratio affect the detection of multiple killer defects in semiconductor inspection, and what is the governing equation?",
+      "corpus_eq": null,
+      "answer": "Key Equation: \n\nThe signal-to-noise ratio (SNR) is a measure of the ability of a detector to distinguish between different types of signals produced by a system. For multiple killer defects detection, the SNR is crucial because it determines the effectiveness of distinguishing between different types of defects, such as those caused by mechanical damage, chemical degradation, or biological contaminants.\n\nExplanation:\n\n1. **Definition of Signal**: A signal is any measurable quantity that varies over time. In the context of defects detection, a signal might include changes in brightness, color, intensity, or other characteristics of the inspected sample.\n\n2. **Definition of Noise**: Noise is any random fluctuation or disturbance in the measured signal. In the context of defects detection, noise could include artifacts from the measurement equipment, environmental factors, or inherent variability in the sample being inspected.\n\n3. **Signal-to-Noise Ratio (SNR)**: The SNR quantifies the ability of a system to distinguish between different types of signals. It is calculated as the ratio of the signal strength to the noise level. A higher SNR indicates better discrimination between different types of defects.\n\n4. **Impact on Defect Identification**: By improving the SNR, we aim to make it easier to identify multiple killer defects. This is achieved through various means such as:\n\n   - **Enhanced Signal Detection Techniques**: Using more sophisticated sensors or imaging techniques to locate and quantify the presence of defects.\n   \n   - **Noise Reduction Methods**: Implementing advanced filtering or thresholding techniques to reduce noise while still detecting significant differences in the signal.\n   \n   - **Systematic Sampling**: Ensuring that samples are collected in a way that reduces the likelihood of bias towards particular types of defects.\n   \n   - **Automated Analysis Tools**: Utilizing AI-powered systems that can automatically identify and classify multiple killer defects without manual intervention.\n\n5. **Challenges and Future Directions**",
+      "sys": {
+        "parseable": false,
+        "dimensional": false,
+        "numerical": false,
+        "coverage": false,
+        "coverage_frac": 0.0,
+        "total": 0.0,
+        "equation": "",
+        "sym_msg": "[WARN] No equation detected.",
+        "dim_msg": "[WARN] Dimensional check skipped.",
+        "num_msg": "[WARN] Numerical check skipped."
+      }
+    },
+    {
+      "id": "M022",
+      "difficulty": "medium",
+      "question": "What is the relationship between the scaling of devices and the transition from 2D to 3D device architecture in NAND and Logic, and what is the governing equation for the scaling of devices?",
+      "corpus_eq": null,
+      "answer": "The relationship between the scaling of devices and the transition from 2D to 3D device architecture in NAND and Logic is described by the following equation:\n\n\\[ \\text{Scaling Factor} = \\left( \\frac{\\text{Number of Layers}}{\\text{Number of 2D Gates}} \\right)^2 \\]\n\nThis scaling factor represents the ratio of the number of 3D Gates to the number of 2D Gates in a given device.",
+      "sys": {
+        "parseable": false,
+        "dimensional": false,
+        "numerical": false,
+        "coverage": false,
+        "coverage_frac": 0.0,
+        "total": 0.0,
+        "equation": "",
+        "sym_msg": "[WARN] No equation detected.",
+        "dim_msg": "[WARN] Dimensional check skipped.",
+        "num_msg": "[WARN] Numerical check skipped."
+      }
+    },
+    {
+      "id": "M023",
+      "difficulty": "medium",
+      "question": "How does the depletion-layer width (WD) affect the avalanche gain (M) in an APD with position-independent ionization coefficients, and what is the governing equation?",
+      "corpus_eq": "M = a**2*l*n*p",
+      "answer": "- Id = Drain Current in Ampere-second",
+      "sys": {
+        "parseable": true,
+        "dimensional": true,
+        "numerical": false,
+        "coverage": false,
+        "coverage_frac": 0.25,
+        "total": 2.25,
+        "equation": "M = a**2*l*n*p",
+        "sym_msg": "[OK] Equation parsed successfully",
+        "dim_msg": "[OK] Dimensionally consistent: {}",
+        "num_msg": "[WARN] Unresolved symbols remain: {p, a, l}"
+      }
+    },
+    {
+      "id": "M024",
+      "difficulty": "medium",
+      "question": "What is the relationship between the requirements for smart sensor systems and the role of edge analytics and AI, and what is the governing equation for power consumption reduction?",
+      "corpus_eq": null,
+      "answer": "The relationship between the requirements for smart sensor systems and the role of edge analytics and AI, along with their governing equations for power consumption reduction, is as follows:\n\n1. **Edge Analytics and AI Role**: The role of edge analytics and AI in smart sensor systems is crucial. They are responsible for reducing power consumption through various means such as optimizing data aggregation, handling large volumes of data efficiently, and enhancing the performance of sensors and data analytics platforms. \n\n2. **Equation for Power Consumption Reduction**: The governing equation for power consumption reduction in smart sensor systems involves integrating edge analytics and AI techniques. These methods typically involve reducing the number of cores and processors in edge devices, which significantly lowers the overall power consumption compared to traditional central processing units (CPUs).",
+      "sys": {
+        "parseable": false,
+        "dimensional": false,
+        "numerical": false,
+        "coverage": false,
+        "coverage_frac": 0.0,
+        "total": 0.0,
+        "equation": "",
+        "sym_msg": "[WARN] No equation detected.",
+        "dim_msg": "[WARN] Dimensional check skipped.",
+        "num_msg": "[WARN] Numerical check skipped."
+      }
+    },
+    {
+      "id": "M025",
+      "difficulty": "medium",
+      "question": "How do the minority carrier populations at the quasi-neutral region (QNR) edges relate to the applied voltage V_AB, and what is the governing equation? Physically, what is the origin of this relationship?",
+      "corpus_eq": "L*g = 0",
+      "answer": "- Id = drain current in Amperes",
+      "sys": {
+        "parseable": true,
+        "dimensional": false,
+        "numerical": true,
+        "coverage": true,
+        "coverage_frac": 1.0,
+        "total": 3.0,
+        "equation": "L*g = 0",
+        "sym_msg": "[OK] Equation parsed successfully",
+        "dim_msg": "[FAIL] Dimension mismatch:\n  LHS {'L': 1}\n  RHS {}",
+        "num_msg": "[OK] Numerically plausible: 0.000000e+00"
+      }
+    },
+    {
+      "id": "M026",
+      "difficulty": "medium",
+      "question": "How does the tunneling current component dominate the total current in a tunnel diode, and what is the governing equation? Physically, what is the origin of this dominance?",
+      "corpus_eq": null,
+      "answer": "Key Equations:\n\n1.",
+      "sys": {
+        "parseable": false,
+        "dimensional": false,
+        "numerical": false,
+        "coverage": false,
+        "coverage_frac": 0.0,
+        "total": 0.0,
+        "equation": "",
+        "sym_msg": "[WARN] No equation detected.",
+        "dim_msg": "[WARN] Dimensional check skipped.",
+        "num_msg": "[WARN] Numerical check skipped."
+      }
+    },
+    {
+      "id": "M027",
+      "difficulty": "medium",
+      "question": "What is the relationship between the inversion capacitance (Cinv) and the gate length (Lg), and what is the governing equation?",
+      "corpus_eq": "C*i*n*v/Cox = 0.206*log(tox)/log(h*p*y) + 0.017",
+      "answer": "- Id = drain current in Amperes",
+      "sys": {
+        "parseable": true,
+        "dimensional": false,
+        "numerical": false,
+        "coverage": false,
+        "coverage_frac": 0.25,
+        "total": 1.25,
+        "equation": "C*i*n*v/Cox = 0.206*log(tox)/log(h*p*y) + 0.017",
+        "sym_msg": "[OK] Equation parsed successfully",
+        "dim_msg": "[FAIL] Dimension mismatch:\n  LHS {'L': 2.0}\n  RHS {}",
+        "num_msg": "[WARN] Unresolved symbols remain: {y, h, p}"
+      }
+    },
+    {
+      "id": "M028",
+      "difficulty": "medium",
+      "question": "How does the metal half-pitch affect the scaling of devices, and what is the governing equation?",
+      "corpus_eq": null,
+      "answer": "The governing equation for scaling devices involves the metal half-pitch, which is a critical dimension affecting the scalability of integrated circuits.",
+      "sys": {
+        "parseable": false,
+        "dimensional": false,
+        "numerical": false,
+        "coverage": false,
+        "coverage_frac": 0.0,
+        "total": 0.0,
+        "equation": "",
+        "sym_msg": "[WARN] No equation detected.",
+        "dim_msg": "[WARN] Dimensional check skipped.",
+        "num_msg": "[WARN] Numerical check skipped."
+      }
+    },
+    {
+      "id": "M029",
+      "difficulty": "medium",
+      "question": "What is the relationship between the gate voltage (vGB) and the depletion region width (x) in the n-MOS capacitor, and what is the governing equation?",
+      "corpus_eq": "B*F*V = tox",
+      "answer": "-",
+      "sys": {
+        "parseable": true,
+        "dimensional": false,
+        "numerical": true,
+        "coverage": true,
+        "coverage_frac": 1.0,
+        "total": 3.0,
+        "equation": "B*F*V = tox",
+        "sym_msg": "[OK] Equation parsed successfully",
+        "dim_msg": "[FAIL] Dimension mismatch:\n  LHS {'V': 1}\n  RHS {'L': 1}",
+        "num_msg": "[OK] Numerically plausible: 2.000000e-09"
+      }
+    },
+    {
+      "id": "M030",
+      "difficulty": "medium",
+      "question": "What is the relationship between the noise figure (F) and the resonant frequency (ωr) in a high-gain avalanche diode amplifier, and what is the governing equation?",
+      "corpus_eq": null,
+      "answer": "The relationship between the noise figure (F) and the resonant frequency (ωr) in a high-gain avalanche diode amplifier is given by:\n\nF = 10^(n * ωr) \n\nWhere:\n- F is the noise figure (measured in dB).\n- ωr is the resonance frequency (expressed in Hz).\n\nThe governing equation for the noise measure (N) in a high-gain avalanche diode is:\n\nN = 10^(n * ωr) \n\nHere, N represents the noise measure (measured in dB), and ωr is the resonance frequency (expressed in Hz).",
+      "sys": {
+        "parseable": true,
+        "dimensional": false,
+        "numerical": false,
+        "coverage": false,
+        "coverage_frac": 0.3333,
+        "total": 1.3333,
+        "equation": "N = 10**(n*r*ω)",
+        "sym_msg": "[OK] Equation parsed successfully",
+        "dim_msg": "[FAIL] Dimension mismatch:\n  LHS {'L': -3}\n  RHS {}",
+        "num_msg": "[WARN] Unresolved symbols remain: {ω, r}"
+      }
+    },
+    {
+      "id": "M031",
+      "difficulty": "medium",
+      "question": "What is the relationship between the common mode voltage gain (Avc) and the difference mode voltage gain (Avd) in a differential amplifier, and what is the governing equation?",
+      "corpus_eq": "A*d*v = 5*g*m/(G*L + 7*g*o)",
+      "answer": "- Common Mode Voltage Gain (Avc):",
+      "sys": {
+        "parseable": true,
+        "dimensional": false,
+        "numerical": false,
+        "coverage": false,
+        "coverage_frac": 0.2,
+        "total": 1.2,
+        "equation": "A*d*v = 5*g*m/(G*L + 7*g*o)",
+        "sym_msg": "[OK] Equation parsed successfully",
+        "dim_msg": "[FAIL] Dimension mismatch:\n  LHS {}\n  RHS {'DIMENSION_MISMATCH': -1.0}",
+        "num_msg": "[WARN] Unresolved symbols remain: {G, o, m, g}"
+      }
+    },
+    {
+      "id": "M032",
+      "difficulty": "medium",
+      "question": "How does the transconductance in the saturation region relate to the drain-source voltage and gate voltage, and what is the governing equation? Physically, what is the significance of this relationship?",
+      "corpus_eq": "G*V = 0",
+      "answer": "- Id = drain current in Amperes",
+      "sys": {
+        "parseable": true,
+        "dimensional": false,
+        "numerical": true,
+        "coverage": true,
+        "coverage_frac": 1.0,
+        "total": 3.0,
+        "equation": "G*V = 0",
+        "sym_msg": "[OK] Equation parsed successfully",
+        "dim_msg": "[FAIL] Dimension mismatch:\n  LHS {'V': 1}\n  RHS {}",
+        "num_msg": "[OK] Numerically plausible: 0.000000e+00"
+      }
+    },
+    {
+      "id": "M033",
+      "difficulty": "medium",
+      "question": "How does the energy of the photon (hv) affect the process of carrier excitation in a p-i-n photodiode, and what is the governing equation?",
+      "corpus_eq": "E*g = 1.424*V*e",
+      "answer": "- Id = Drain Current in Amperes",
+      "sys": {
+        "parseable": true,
+        "dimensional": false,
+        "numerical": false,
+        "coverage": false,
+        "coverage_frac": 0.0,
+        "total": 1.0,
+        "equation": "E*g = 1.424*V*e",
+        "sym_msg": "[OK] Equation parsed successfully",
+        "dim_msg": "[FAIL] Dimension mismatch:\n  LHS {'V': 1, 'L': -1}\n  RHS {'V': 1}",
+        "num_msg": "[WARN] Unresolved symbols remain: {V, e}"
+      }
+    },
+    {
+      "id": "M034",
+      "difficulty": "medium",
+      "question": "How does the channel length (L) affect the drain-induced barrier lowering (DIBL) effect in the strong inversion region, and what is the governing equation? Physically, what is the significance of this relationship?",
+      "corpus_eq": null,
+      "answer": "Key equation:",
+      "sys": {
+        "parseable": false,
+        "dimensional": false,
+        "numerical": false,
+        "coverage": false,
+        "coverage_frac": 0.0,
+        "total": 0.0,
+        "equation": "",
+        "sym_msg": "[WARN] No equation detected.",
+        "dim_msg": "[WARN] Dimensional check skipped.",
+        "num_msg": "[WARN] Numerical check skipped."
+      }
+    },
+    {
+      "id": "M035",
+      "difficulty": "medium",
+      "question": "How does the avalanche gain M affect the noise equivalent power NEP in an avalanche photodiode, and what is the governing equation?",
+      "corpus_eq": "M*N*S*l = 0",
+      "answer": "- Id = drain current in Ampere-second",
+      "sys": {
+        "parseable": true,
+        "dimensional": false,
+        "numerical": true,
+        "coverage": true,
+        "coverage_frac": 1.0,
+        "total": 3.0,
+        "equation": "M*N*S*l = 0",
+        "sym_msg": "[OK] Equation parsed successfully",
+        "dim_msg": "[FAIL] Dimension mismatch:\n  LHS {'L': -3, 'V': 1}\n  RHS {}",
+        "num_msg": "[OK] Numerically plausible: 0.000000e+00"
+      }
+    },
+    {
+      "id": "M036",
+      "difficulty": "medium",
+      "question": "What is the relationship between the electron and hole concentrations in thermal equilibrium for a non-uniformly doped material, and what is the governing equation?",
+      "corpus_eq": "0 = D*e*q + E*e*n*o*q*x**2*µ",
+      "answer": "- No(x) = No(xo): The number of electrons in the region x, where no(x) is not equal to no(xo).\n- No(xo) = No(x): The total number of electrons in the region x, including those already in the region xo.\n- No(x) = No(xo)e**(-x/2): The number of electrons in the region x, assuming they come from the region xo.",
+      "sys": {
+        "parseable": true,
+        "dimensional": false,
+        "numerical": false,
+        "coverage": false,
+        "coverage_frac": 0.375,
+        "total": 1.375,
+        "equation": "0 = D*e*q + E*e*n*o*q*x**2*µ",
+        "sym_msg": "[OK] Equation parsed successfully",
+        "dim_msg": "[FAIL] Dimension mismatch:\n  LHS {}\n  RHS {'DIMENSION_MISMATCH': 1}",
+        "num_msg": "[WARN] Unresolved symbols remain: {µ, D, o, e, x}"
+      }
+    },
+    {
+      "id": "M037",
+      "difficulty": "medium",
+      "question": "How does the channel doping concentration at the depletion edge (NDEP) affect the body-effect coefficient near the surface (GAMMA1), and what is the governing equation?",
+      "corpus_eq": "o*p*x = i*n",
+      "answer": "-",
+      "sys": {
+        "parseable": true,
+        "dimensional": true,
+        "numerical": false,
+        "coverage": false,
+        "coverage_frac": 0.5,
+        "total": 2.5,
+        "equation": "o*p*x = i*n",
+        "sym_msg": "[OK] Equation parsed successfully",
+        "dim_msg": "[OK] Dimensionally consistent: {}",
+        "num_msg": "[WARN] Unresolved symbols remain: {i}"
+      }
+    },
+    {
+      "id": "M038",
+      "difficulty": "medium",
+      "question": "What is the relationship between the output voltage/power and the electromagnetic coupling per unit volume, and what is the governing equation?",
+      "corpus_eq": null,
+      "answer": "To determine the relationship between the output voltage/power and the electromagnetic coupling per unit volume, we need to consider the",
+      "sys": {
+        "parseable": false,
+        "dimensional": false,
+        "numerical": false,
+        "coverage": false,
+        "coverage_frac": 0.0,
+        "total": 0.0,
+        "equation": "",
+        "sym_msg": "[WARN] No equation detected.",
+        "dim_msg": "[WARN] Dimensional check skipped.",
+        "num_msg": "[WARN] Numerical check skipped."
+      }
+    },
+    {
+      "id": "M039",
+      "difficulty": "medium",
+      "question": "How does the semiconductor material affect the wavelength detectable by a CCD image sensor, and what is the governing equation?",
+      "corpus_eq": "E*N = 10",
+      "answer": "- Id = Drain Current in Amperes",
+      "sys": {
+        "parseable": true,
+        "dimensional": false,
+        "numerical": true,
+        "coverage": true,
+        "coverage_frac": 1.0,
+        "total": 3.0,
+        "equation": "E*N = 10",
+        "sym_msg": "[OK] Equation parsed successfully",
+        "dim_msg": "[FAIL] Dimension mismatch:\n  LHS {'V': 1, 'L': -4}\n  RHS {}",
+        "num_msg": "[OK] Numerically plausible: 1.000000e+01"
+      }
+    },
+    {
+      "id": "M040",
+      "difficulty": "medium",
+      "question": "What is the relationship between the drain current (Ids) and the source end velocity (vsHD), and what is the governing equation? Physically, what is the significance of this relationship in the context of carrier transport in nanoscale MOSFETs?",
+      "corpus_eq": null,
+      "answer": "The relationship between the drain current (Ids) and the source end velocity (vsHD) in nanoscale MOSFETs is given by:\n\n\\[ Ids = v_{HD} \\]\n\nWhere:\n- \\( Ids \\): Drain current in Amperes.\n- \\( v_{HD} \\): Source end velocity in meters per second.\n\nPhysically, this relationship indicates that the drain current is directly proportional to the source end velocity. This means that as the source end velocity increases, the drain current also increases proportionally. \n\nThe significant importance of this relationship lies in understanding how the source end velocity affects the overall performance of the device. By knowing the source end velocity, engineers can predict the drain current more accurately, which is crucial for optimizing circuit design and improving the efficiency of the MOSFET.",
+      "sys": {
+        "parseable": true,
+        "dimensional": false,
+        "numerical": false,
+        "coverage": false,
+        "coverage_frac": 0.0,
+        "total": 1.0,
+        "equation": "Ids = v_HD",
+        "sym_msg": "[OK] Equation parsed successfully",
+        "dim_msg": "[FAIL] Dimension mismatch:\n  LHS {'I': 1}\n  RHS {}",
+        "num_msg": "[WARN] Unresolved symbols remain: {v_HD}"
+      }
+    },
+    {
+      "id": "H001",
+      "difficulty": "hard",
+      "question": "Derive the gain of the common gate stage with substrate grounded and explain how the Miller effect impacts the gain, assuming Cgd << Cgs and Cbd << Cgs. Provide the governing equations and define the symbols used.",
+      "corpus_eq": "Av = o*t*u*v",
+      "answer": "### Equations and Symbols Explanation",
+      "sys": {
+        "parseable": true,
+        "dimensional": true,
+        "numerical": false,
+        "coverage": false,
+        "coverage_frac": 0.0,
+        "total": 2.0,
+        "equation": "Av = o*t*u*v",
+        "sym_msg": "[OK] Equation parsed successfully",
+        "dim_msg": "[OK] Dimensionally consistent: {}",
+        "num_msg": "[WARN] Unresolved symbols remain: {v, o, t, u}"
+      }
+    },
+    {
+      "id": "H002",
+      "difficulty": "hard",
+      "question": "Derive the total current density Jtot in the depletion region of a photodiode, and explain how the transit-time effect impacts the high-frequency response. Provide the governing equations and define the symbols used.",
+      "corpus_eq": "J*d*r = -l*q",
+      "answer": "- Id = Drain Current in Amperes",
+      "sys": {
+        "parseable": true,
+        "dimensional": false,
+        "numerical": false,
+        "coverage": false,
+        "coverage_frac": 0.5,
+        "total": 1.5,
+        "equation": "J*d*r = -l*q",
+        "sym_msg": "[OK] Equation parsed successfully",
+        "dim_msg": "[FAIL] Dimension mismatch:\n  LHS {'I': 1, 'L': -2}\n  RHS {'C': 1}",
+        "num_msg": "[WARN] Unresolved symbols remain: {l}"
+      }
+    },
+    {
+      "id": "H003",
+      "difficulty": "hard",
+      "question": "Derive the threshold voltage change due to the narrow-width effect, and explain the significance of the fringing fields in this context. Provide the governing equations and define the symbols used.",
+      "corpus_eq": "M*a*c*d*o*p = -a*d*e**2*i*l*m*n*o**2*q*t*u + e*g*i*l*n*s",
+      "answer": "###",
+      "sys": {
+        "parseable": true,
+        "dimensional": true,
+        "numerical": false,
+        "coverage": false,
+        "coverage_frac": 0.1538,
+        "total": 2.1538,
+        "equation": "M*a*c*d*o*p = -a*d*exp(2*i*l*m*n*o**2*q*t*u) + e*g*i*l*n*s",
+        "sym_msg": "[OK] Equation parsed successfully",
+        "dim_msg": "[OK] Dimensionally consistent: {}",
+        "num_msg": "[WARN] Unresolved symbols remain: {d, t, s, g, a, l, o, m, e, i, u}"
+      }
+    },
+    {
+      "id": "H004",
+      "difficulty": "hard",
+      "question": "Derive the input resistance of the cascode current source and explain how it improves the output resistance. Assume the cascode transistor (Q2) is in saturation and neglect body effect and channel length modulation. Provide the governing equations and define the symbols used.",
+      "corpus_eq": "I*N*V = O*T*U*V",
+      "answer": "The input resistance of the cascode current source is given by:\n\nI * N * V = O * T * U * V",
+      "sys": {
+        "parseable": true,
+        "dimensional": false,
+        "numerical": false,
+        "coverage": false,
+        "coverage_frac": 0.5,
+        "total": 1.5,
+        "equation": "I*N*V = O*T*U*V",
+        "sym_msg": "[OK] Equation parsed successfully",
+        "dim_msg": "[FAIL] Dimension mismatch:\n  LHS {'I': 1, 'L': -3, 'V': 1}\n  RHS {'K': 1, 'V': 1}",
+        "num_msg": "[WARN] Unresolved symbols remain: {V, U}"
+      }
+    },
+    {
+      "id": "H005",
+      "difficulty": "hard",
+      "question": "Derive the base transport factor α+ in terms of the hole diffusion length Lp and the neutral n1-region width W. Explain how the ratio W/Wn1 affects the base transport factor as the reverse voltage increases. Provide the governing equations and define the symbols used.",
+      "corpus_eq": null,
+      "answer": "Deriving the Base Transport Factor α+:",
+      "sys": {
+        "parseable": false,
+        "dimensional": false,
+        "numerical": false,
+        "coverage": false,
+        "coverage_frac": 0.0,
+        "total": 0.0,
+        "equation": "",
+        "sym_msg": "[WARN] No equation detected.",
+        "dim_msg": "[WARN] Dimensional check skipped.",
+        "num_msg": "[WARN] Numerical check skipped."
+      }
+    },
+    {
+      "id": "H006",
+      "difficulty": "hard",
+      "question": "Derive the drain current Id as a function of the net channel opening, assuming a constant mobility model, and explain how the channel pinch-off affects the current saturation. Provide the governing equations and define the symbols used.",
+      "corpus_eq": "D*Z*i*l*n = G*i*(-i*q + 1)",
+      "answer": "To derive the drain current \\( Id \\) as a function of the net channel opening \\( W \\) assuming a constant mobility model, we start with the fact that the current is proportional to the gradient of the channel length. The gradient of the channel length with respect to the gate voltage is given by:\n\n\\[ \\frac{\\partial W}{\\partial V} = - \\frac{1}{2} \\frac{q}{m} \\]\n\nAssuming a constant mobility \\( m \\), we can express the gradient of the channel length as:\n\n\\[ \\frac{\\partial W}{\\partial V} = - \\frac{1}{2} \\frac{q}{m} \\]\n\nSubstituting this into the original equation for the drain current, we get:\n\n\\[ Id = - \\frac{1}{2} \\frac{q}{m} * Z * i*(-i*q + 1) \\]\n\nSimplifying, we have:\n\n\\[ Id = - \\frac{1}{2} \\frac{q}{m} * Z * i*(-i*q + 1) \\]\n\nExpanding the product inside the parentheses:\n\n\\[ Id = - \\frac{1}{2} \\frac{q}{m} * Z * i*(-i*q) + - \\frac{1}{2} \\frac{q}{m} * Z * i*(-i*q + 1) \\]\n\n\\[ Id = - \\frac{1}{2} \\frac{q}{m} * Z * i*(-i*q) + - \\frac{1}{2} \\frac{q}{m} * Z * i*(-i*q + 1) \\]\n\n\\[ Id = - \\frac{1}{2} \\frac{q}{m} * Z * i*(-i*q) + - \\frac{1}{2} \\frac{q}{m}",
+      "sys": {
+        "parseable": true,
+        "dimensional": false,
+        "numerical": false,
+        "coverage": false,
+        "coverage_frac": 0.3333,
+        "total": 1.3333,
+        "equation": "D*Z*i*l*n = G*i*(-i*q + 1)",
+        "sym_msg": "[OK] Equation parsed successfully",
+        "dim_msg": "[FAIL] Dimension mismatch:\n  LHS {}\n  RHS {'DIMENSION_MISMATCH': 1}",
+        "num_msg": "[WARN] Unresolved symbols remain: {i, G}"
+      }
+    },
+    {
+      "id": "H007",
+      "difficulty": "hard",
+      "question": "Derive the lightly-doped source and drain resistance as a function of Vgs and Vbs, assuming RDSMOD=1, and explain how the pocket implant affects the threshold voltage shift. Provide the governing equations and define the symbols used.",
+      "corpus_eq": "Vds = Vdsat",
+      "answer": "- Id = drain current in Amperes",
+      "sys": {
+        "parseable": true,
+        "dimensional": true,
+        "numerical": true,
+        "coverage": true,
+        "coverage_frac": 1.0,
+        "total": 4.0,
+        "equation": "Vds = Vdsat",
+        "sym_msg": "[OK] Equation parsed successfully",
+        "dim_msg": "[OK] Dimensionally consistent: {'V': 1}",
+        "num_msg": "[OK] Numerically plausible: 6.000000e-01"
+      }
+    },
+    {
+      "id": "H008",
+      "difficulty": "hard",
+      "question": "Derive the effective gate oxide capacitance Coxeff in terms of the electrical gate oxide thickness TOXE, the physical gate oxide thickness TOXP, and the difference DTOX = TOXE – TOXP. Explain how the finite charge-layer thickness affects the Coxeff. Provide the governing equations and define the symbols used.",
+      "corpus_eq": "C*i*n*v/Cox = 0.206*log(tox)/log(h*p*y) + 0.017",
+      "answer": "To derive the effective gate oxide capacitance Coxeff, we need to consider the contributions from both the",
+      "sys": {
+        "parseable": true,
+        "dimensional": false,
+        "numerical": false,
+        "coverage": false,
+        "coverage_frac": 0.25,
+        "total": 1.25,
+        "equation": "C*i*n*v/Cox = 0.206*log(tox)/log(h*p*y) + 0.017",
+        "sym_msg": "[OK] Equation parsed successfully",
+        "dim_msg": "[FAIL] Dimension mismatch:\n  LHS {'L': 2.0}\n  RHS {}",
+        "num_msg": "[WARN] Unresolved symbols remain: {y, h, p}"
+      }
+    },
+    {
+      "id": "H009",
+      "difficulty": "hard",
+      "question": "Derive the relationship between the barrier height qφb and the interfacial properties c2 and Dit, and explain how the surface states affect the barrier height. Provide the governing equations and define the symbols used.",
+      "corpus_eq": "40*q = 0.33*V*e",
+      "answer": "To derive the relationship between the barrier height \\( q \\phi b \\) and the interfacial properties \\( c_{2} \\) and \\( Dit \\), we need to follow these steps:\n\n### Step 1: Express \\( c_{2} \\) in terms of \\( Dit \\)\n\nGiven that \\( c_{2} = 0.27 \\cdot Dit \\):\n\n\\[ q \\phi b = 0.33 \\cdot V \\cdot e \\]\n\n### Step 2: Substitute \\( c_{2} \\) into the barrier height equation\n\nSubstitute \\( c_{2} = 0.27 \\cdot Dit \\) into the equation derived in Step 1:\n\n\\[ q \\phi b = 0.33 \\cdot V \\cdot e \\]\n\n### Step 3: Simplify the equation\n\nSince \\( V \\cdot e \\) is a constant, we can factor it out:\n\n\\[ q \\phi b = 0.33 \\cdot V \\]\n\n### Step 4: Rearrange to express \\( q \\phi b \\) in terms of \\( V \\) and \\(",
+      "sys": {
+        "parseable": true,
+        "dimensional": false,
+        "numerical": false,
+        "coverage": false,
+        "coverage_frac": 0.0,
+        "total": 1.0,
+        "equation": "40*q = 0.33*V*e",
+        "sym_msg": "[OK] Equation parsed successfully",
+        "dim_msg": "[FAIL] Dimension mismatch:\n  LHS {'C': 1}\n  RHS {'V': 1}",
+        "num_msg": "[WARN] Unresolved symbols remain: {V, e}"
+      }
+    },
+    {
+      "id": "H010",
+      "difficulty": "hard",
+      "question": "Assuming the lithography and patterning techniques in the International Roadmap for Devices and Systems (IRDSTM) are used to fabricate a gate stack, derive the relationship between the electrical gate oxide thickness TOXE, the physical gate oxide thickness TOXP, and the difference DTOX = TOXE – TOXP, and explain how the finite charge-layer thickness affects the effective gate oxide capacitance Coxeff.",
+      "corpus_eq": "C*i*n*v/Cox = 0.206*log(tox)/log(h*p*y) + 0.017",
+      "answer": "-",
+      "sys": {
+        "parseable": true,
+        "dimensional": false,
+        "numerical": false,
+        "coverage": false,
+        "coverage_frac": 0.25,
+        "total": 1.25,
+        "equation": "C*i*n*v/Cox = 0.206*log(tox)/log(h*p*y) + 0.017",
+        "sym_msg": "[OK] Equation parsed successfully",
+        "dim_msg": "[FAIL] Dimension mismatch:\n  LHS {'L': 2.0}\n  RHS {}",
+        "num_msg": "[WARN] Unresolved symbols remain: {y, h, p}"
+      }
+    },
+    {
+      "id": "H011",
+      "difficulty": "hard",
+      "question": "Derive the relationship between the intrinsic carrier concentration ni(T) and the bandgap energy Eg, and explain how the temperature affects the carrier concentration. Provide the governing equation and define the symbols used.",
+      "corpus_eq": "o*p**2 = NA",
+      "answer": "To derive the relationship between the intrinsic carrier concentration `n` (in units of electrons) and the bandgap energy `E`, we start with the fact that the Fermi level `EF` is given by:\n\n\\[ EF = kT \\ln \\left( \\frac{y}{2m h} \\right) \\]\n\nwhere `y` is the Fermi offset, `m` is the mobility, and `h` is the plasma frequency. \n\nSince `EF` is a function of temperature, we can express `EF` as a function of `T` and `n`. To do this, we need to differentiate `EF` with respect to `T` and then solve for `n`.\n\nFirst, let's find `EF` explicitly:\n\n\\[ EF = kT \\ln \\left( \\frac{y}{2m h} \\right) \\]\n\nDifferentiating both sides with respect to `T`, we get:\n\n\\[ \\frac{\\partial EF}{ \\partial T} = kT \\cdot \\frac{1}{2m h} \\cdot \\frac{y}{2m h} \\]\n\nSimplifying this derivative, we have:\n\n\\[ \\frac{\\partial EF}{ \\partial T} = \\frac{kT y}{4m h^2} \\]\n\nNow, we can substitute this derivative into the original equation to eliminate `EF` and express `n` in terms of `T` and `n`:\n\n\\[ kT \\ln \\left( \\frac{y}{2m h} \\right) = \\frac{kT y}{4m h^2} \\]\n\nDividing both sides by `kT` gives us:\n\n\\[ \\ln \\left( \\frac{y}{2m h} \\right) = \\frac{y}{4m h^2} \\]\n\nExpanding the natural logarithm on the",
+      "sys": {
+        "parseable": true,
+        "dimensional": false,
+        "numerical": false,
+        "coverage": false,
+        "coverage_frac": 0.0,
+        "total": 1.0,
+        "equation": "o*p**2 = NA",
+        "sym_msg": "[OK] Equation parsed successfully",
+        "dim_msg": "[FAIL] Dimension mismatch:\n  LHS {}\n  RHS {'L': -3}",
+        "num_msg": "[WARN] Unresolved symbols remain: {NA}"
+      }
+    },
+    {
+      "id": "H012",
+      "difficulty": "hard",
+      "question": "Derive the relationship between the effective channel length Leff and the active drawn length L, and explain how the source/drain to gate overlap length and the difference between drawn and actual POLY CD affect Leff. Provide the governing equations and define the symbols used.",
+      "corpus_eq": "D*V = 0",
+      "answer": "-",
+      "sys": {
+        "parseable": true,
+        "dimensional": false,
+        "numerical": true,
+        "coverage": true,
+        "coverage_frac": 1.0,
+        "total": 3.0,
+        "equation": "D*V = 0",
+        "sym_msg": "[OK] Equation parsed successfully",
+        "dim_msg": "[FAIL] Dimension mismatch:\n  LHS {'V': 1}\n  RHS {}",
+        "num_msg": "[OK] Numerically plausible: 0.000000e+00"
+      }
+    },
+    {
+      "id": "H013",
+      "difficulty": "hard",
+      "question": "Derive the relationship between the threshold current density Jth and the operating temperature T, and explain why the threshold current increases exponentially with temperature in DH lasers. Provide the governing equation and define the symbols used.",
+      "corpus_eq": "x = 0.25*I",
+      "answer": "### Relationship Between Threshold Current Density \\( Jth \\) and Operating Temperature \\( T \\)\n\nThe threshold current density \\( Jth \\) is directly proportional to the operating temperature \\( T \\) in a double-heterostructure (DH) laser. This relationship can be derived from the following equations:\n\n1. **Growth Rate of Threshold Current**:\n   - The growth rate of the threshold current \\( Jth \\) is given by:\n     \\[\n     Jth = Jod - (1 - gth)\n     \\]\n   - Here, \\( Jod \\) represents the original threshold current density, and \\( gth \\) is the enhancement factor, which depends on the doping concentration and the structure parameters such as the doping gradient and the Fermi level offset.\n\n2. **Expanding Equation**:\n   - Expanding the previous equation to include the effect of the doping gradient and Fermi level offset, we get:\n     \\[\n     Jth = Jod - (1 - gth) = Jod - Jod + gth = Jth + gth - Jod\n     \\]\n\n3. **Substitute \\( Jth \\)**:\n   - Substituting \\( Jth = Jod - gth \\) into the expanded equation, we obtain:\n     \\[\n     Jth = Jod - Jod + gth - Jod = gth\n     \\]\n\nTherefore, the threshold current density \\( Jth \\) is directly proportional to the operating temperature \\( T \\):\n\n\\[ Jth = gth \\]\n\n### Explanation of the Proportional Relationship:\n\n- **Doping Gradient**: The doping gradient affects the mobility of electrons and holes, leading to variations in the threshold current. If the doping gradient is larger, the threshold current will be higher, assuming all other factors remain constant.\n  \n- **Fermi Level Offset**: The Fermi",
+      "sys": {
+        "parseable": true,
+        "dimensional": false,
+        "numerical": true,
+        "coverage": true,
+        "coverage_frac": 1.0,
+        "total": 3.0,
+        "equation": "x = 0.25*I",
+        "sym_msg": "[OK] Equation parsed successfully",
+        "dim_msg": "[FAIL] Dimension mismatch:\n  LHS {}\n  RHS {'I': 1}",
+        "num_msg": "[OK] Numerically plausible: 2.500000e-04"
+      }
+    },
+    {
+      "id": "H014",
+      "difficulty": "hard",
+      "question": "Derive the subthreshold current in a p-channel MOSFET and explain how the body effect affects the threshold voltage shift. Provide the governing equations and define the symbols used.",
+      "corpus_eq": "d = O**2*l*m*n",
+      "answer": "The subthreshold current in a p-channel MOSFET is derived from the following equation:\n\n\\[ d = O^2 * L * N * I * W \\]\n\nWhere:\n- \\( d \\) is the sub-threshold current,\n- \\( L \\) is the depletion layer capacitance per unit area,\n- \\( N \\) is the number of electrons in the depletion layer,\n- \\( I \\) is the intensity of the gate bias,\n- \\( W \\) is the width of the depletion layer.\n\n### Explanation of Symbols:\n\n1. **\\( d = O^2 * L * N * I * W \\)**:\n   - \\( d \\): Sub-threshold current, typically in Amperes.\n   - \\( O^2 \\): Power-law exponent indicating the relationship between the sub-threshold current and the gate bias. It's estimated to be around 0.75 for a typical p-channel MOSFET.\n   - \\( L \\): Depletion layer capacitance per unit area, typically in Farads.\n   - \\( N \\): Number of electrons in the depletion layer, typically in Coulombs.\n   - \\( I \\): Gate bias intensity, typically in Volts.\n   - \\( W \\): Width of the depletion layer, typically in Millimeters.\n\n2. **\\(",
+      "sys": {
+        "parseable": true,
+        "dimensional": false,
+        "numerical": true,
+        "coverage": true,
+        "coverage_frac": 1.0,
+        "total": 3.0,
+        "equation": "d = I*L*N*O**2*W",
+        "sym_msg": "[OK] Equation parsed successfully",
+        "dim_msg": "[FAIL] Dimension mismatch:\n  LHS {}\n  RHS {'I': 1, 'L': -1}",
+        "num_msg": "[OK] Numerically plausible: 1.000000e+06"
+      }
+    },
+    {
+      "id": "H015",
+      "difficulty": "hard",
+      "question": "Derive the temporal response of the electron density in a transferred-electron device, assuming a negative differential mobility, and explain the conditions required for the formation of a strong space-charge instability. Provide the governing equations and define the symbols used.",
+      "corpus_eq": "-n*o + n = l*x*(-O*n + n)",
+      "answer": "To derive the temporal response of the electron density in a transferred-electron device, we need to consider the",
+      "sys": {
+        "parseable": true,
+        "dimensional": true,
+        "numerical": true,
+        "coverage": false,
+        "coverage_frac": 0.5,
+        "total": 3.5,
+        "equation": "n = l*x*(-O*n + n)",
+        "sym_msg": "[OK] Equation parsed successfully",
+        "dim_msg": "[OK] Dimensionally consistent: {}",
+        "num_msg": "[OK] Numerically plausible: 0.000000e+00"
+      }
+    },
+    {
+      "id": "H016",
+      "difficulty": "hard",
+      "question": "Derive the relationship between the emission wavelength of a Fabry-Perot laser and the temperature, and explain why the emission wavelength of DFB and DBR lasers is less temperature sensitive. Provide the governing equations and define the symbols used.",
+      "corpus_eq": "r = 1 - exp(-A*C*d*f*i)",
+      "answer": "### Relationship Between Emission Wavelength and Temperature\n\nThe emission wavelength of a Fabry-Perot (FP) laser is influenced by its temperature. The key relationship is given by:\n\n\\[ r = 1 - exp(-A * C * d * f * i) \\]\n\nWhere:\n- \\( r \\) is the emission wavelength in meters.\n- \\( A \\) is a constant related to the laser structure.\n- \\( C \\) is the cavity length in meters.\n- \\( d \\) is the diameter of the laser cavity in meters.\n- \\( f \\) is the frequency of the laser source in Hz.\n- \\( i \\) is the intensity of the laser source in units of W/cm².\n\n### Explanation of Symbols \n\n1. **\\( r \\)**: This is the emission wavelength in meters. It is typically measured in micrometers (um).\n\n2. **\\( A \\)**: This is a constant that depends on the structure of the FP laser. It is usually expressed as a function of the laser parameters such as the cavity length \\( C \\) and the intensity \\( i \\).\n\n3. **\\( C \\)**: This is the dimensionless parameter that determines the emission wavelength. It is related to the laser structure through the following equation:\n\n   \\[ r = 1 - exp(-A * C * d * f * i) \\]\n\n   Here, \\( r \\) is the emission wavelength, \\( A \\) is a constant, \\( C \\) is the dimensionless parameter, \\( d \\) is the diameter of the laser cavity, and \\( f \\) is the frequency of the laser source.\n\n4. **\\( d \\)**: This is the dimensionless parameter that affects the emission wavelength. It is related to the laser structure through the following equation:\n\n   \\[ r = 1 - exp(-A * C * d *",
+      "sys": {
+        "parseable": true,
+        "dimensional": true,
+        "numerical": false,
+        "coverage": false,
+        "coverage_frac": 0.2,
+        "total": 2.2,
+        "equation": "r = 1 - exp(-A*C*d*f*i)",
+        "sym_msg": "[OK] Equation parsed successfully",
+        "dim_msg": "[OK] Dimensionally consistent: {}",
+        "num_msg": "[WARN] Unresolved symbols remain: {d, i, f, A}"
+      }
+    },
+    {
+      "id": "H017",
+      "difficulty": "hard",
+      "question": "Derive the relationship between the drain current ID and the drain-source voltage VDS in the saturation region, and explain how the pinch-off condition affects the transconductance gm. Provide the governing equations and define the symbols used.",
+      "corpus_eq": "a*c*i*l**2*p*t*y**2 = 8*O*c*m/V - s",
+      "answer": "-",
+      "sys": {
+        "parseable": true,
+        "dimensional": false,
+        "numerical": false,
+        "coverage": false,
+        "coverage_frac": 0.2,
+        "total": 1.2,
+        "equation": "a*c*i*l**2*p*t*y**2 = 8*O*c*m/V - s",
+        "sym_msg": "[OK] Equation parsed successfully",
+        "dim_msg": "[FAIL] Dimension mismatch:\n  LHS {}\n  RHS {'DIMENSION_MISMATCH': 1}",
+        "num_msg": "[WARN] Unresolved symbols remain: {V, c, m, s}"
+      }
+    },
+    {
+      "id": "H018",
+      "difficulty": "hard",
+      "question": "Derive the relationship between the gate capacitance Cm and the gate oxide capacitance Cox, and explain how the gate resistance Rg and the source/drain series resistance Rs affect the total gate capacitance. Provide the governing equations and define the symbols used.",
+      "corpus_eq": "tox = 1.5*m*n",
+      "answer": "### Gate Capacitance Relationship and Effects\n\nThe relationship between the gate capacitance \\( C_g \\) and the gate oxide capacitance \\( Cox \\) is derived from the",
+      "sys": {
+        "parseable": true,
+        "dimensional": false,
+        "numerical": false,
+        "coverage": false,
+        "coverage_frac": 0.5,
+        "total": 1.5,
+        "equation": "tox = 1.5*m*n",
+        "sym_msg": "[OK] Equation parsed successfully",
+        "dim_msg": "[FAIL] Dimension mismatch:\n  LHS {'L': 1}\n  RHS {}",
+        "num_msg": "[WARN] Unresolved symbols remain: {m}"
+      }
+    },
+    {
+      "id": "H019",
+      "difficulty": "hard",
+      "question": "Derive the relationship between the depletion-layer width and the maximum field at breakdown for a one-sided abrupt junction, and explain how the background doping concentration affects the breakdown voltage. Provide the governing equations and define the symbols used.",
+      "corpus_eq": "4*c*m = a",
+      "answer": "- Id): Drain current in Amperes",
+      "sys": {
+        "parseable": true,
+        "dimensional": true,
+        "numerical": false,
+        "coverage": false,
+        "coverage_frac": 0.0,
+        "total": 2.0,
+        "equation": "4*c*m = a",
+        "sym_msg": "[OK] Equation parsed successfully",
+        "dim_msg": "[OK] Dimensionally consistent: {}",
+        "num_msg": "[WARN] Unresolved symbols remain: {a}"
+      }
+    },
+    {
+      "id": "H020",
+      "difficulty": "hard",
+      "question": "Derive the relationship between the current through the nitride layer Jn and the oxide field go, and explain why the current conduction is limited by Frenkel-Poole transport through the nitride layer at the beginning of the programming process, and by modified Fowler-Nordheim tunneling later on. Provide the governing equations and define the symbols used.",
+      "corpus_eq": "I = N*d*e*i**2*j*r*t - 1",
+      "answer": "To derive the relationship between the current through the nitride layer \\( J_n \\) and the oxide field \\( go \\), let's start with the basic band diagram for the programmed MOSFET.",
+      "sys": {
+        "parseable": true,
+        "dimensional": false,
+        "numerical": false,
+        "coverage": false,
+        "coverage_frac": 0.1429,
+        "total": 1.1429,
+        "equation": "I = N*d*e*i**2*j*r*t - 1",
+        "sym_msg": "[OK] Equation parsed successfully",
+        "dim_msg": "[FAIL] Dimension mismatch:\n  LHS {'I': 1}\n  RHS {'DIMENSION_MISMATCH': 1}",
+        "num_msg": "[WARN] Unresolved symbols remain: {d, t, j, e, i, r}"
+      }
+    }
+  ]
+}

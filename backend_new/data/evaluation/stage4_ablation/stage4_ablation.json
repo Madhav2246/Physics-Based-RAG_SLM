@@ -1,0 +1,82 @@
+{
+  "full_score": 1.214,
+  "ablations": {
+    "full": {
+      "n": 100,
+      "avg_score": 1.214,
+      "parseable": 52.0,
+      "coverage": 23.4,
+      "nvr_cond": 100.0,
+      "dcr_cond": 42.1,
+      "selection": "best",
+      "retrieval": "full",
+      "delta_vs_full": 0.0
+    },
+    "-reranker": {
+      "n": 100,
+      "avg_score": 1.288,
+      "parseable": 51.0,
+      "coverage": 26.8,
+      "nvr_cond": 100.0,
+      "dcr_cond": 39.1,
+      "selection": "best",
+      "retrieval": "-reranker",
+      "delta_vs_full": 0.074
+    },
+    "-sparse": {
+      "n": 100,
+      "avg_score": 1.411,
+      "parseable": 53.0,
+      "coverage": 29.1,
+      "nvr_cond": 100.0,
+      "dcr_cond": 64.0,
+      "selection": "best",
+      "retrieval": "-sparse",
+      "delta_vs_full": 0.197
+    },
+    "-dense": {
+      "n": 100,
+      "avg_score": 1.173,
+      "parseable": 52.0,
+      "coverage": 24.3,
+      "nvr_cond": 100.0,
+      "dcr_cond": 27.8,
+      "selection": "best",
+      "retrieval": "-dense",
+      "delta_vs_full": -0.041
+    },
+    "-bestofN": {
+      "n": 100,
+      "avg_score": 1.104,
+      "parseable": 48.0,
+      "coverage": 22.4,
+      "nvr_cond": 100.0,
+      "dcr_cond": 38.9,
+      "selection": "first",
+      "retrieval": "-bestofN",
+      "delta_vs_full": -0.11
+    },
+    "-validator": {
+      "n": 100,
+      "avg_score": 1.091,
+      "parseable": 47.0,
+      "coverage": 22.1,
+      "nvr_cond": 100.0,
+      "dcr_cond": 38.9,
+      "selection": "random",
+      "retrieval": "-validator",
+      "delta_vs_full": -0.123
+    },
+    "raw_0.5b": {
+      "n": 100,
+      "avg_score": 0.433,
+      "parseable": 20.0,
+      "coverage": 6.3,
+      "nvr_cond": 100.0,
+      "dcr_cond": 50.0,
+      "selection": "best",
+      "retrieval": "raw_0.5b",
+      "delta_vs_full": -0.781
+    }
+  }
+}

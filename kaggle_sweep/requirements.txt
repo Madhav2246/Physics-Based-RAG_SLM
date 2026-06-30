@@ -1,0 +1,11 @@
+# Kaggle P100 retrieval sweep deps.
+# Kaggle base image already has torch+cuda — do NOT reinstall torch.
+sentence-transformers>=2.7.0
+transformers>=4.40.0
+numpy>=1.24
+# bge-m3 / some models need these:
+einops>=0.7.0
+# for rebuild_index_gpu.py (writing the FAISS index):
+faiss-cpu>=1.7.4
+# for confirm_live_gpu.py (BM25 sparse retrieval):
+rank-bm25>=0.2.2

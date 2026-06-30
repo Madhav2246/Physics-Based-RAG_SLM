@@ -1,0 +1,7 @@
+{
+  "corpus_txt": {
+    "original_name": "data/corpus/*.txt",
+    "chunk_count": 1539,
+    "chunk_start": 0
+  }
+}

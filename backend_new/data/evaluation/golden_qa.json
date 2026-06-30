@@ -1,0 +1,1665 @@
+[
+  {
+    "id": "E001",
+    "difficulty": "easy",
+    "topic": "MOSFET drain current — saturation",
+    "question": "What is the drain current equation for a MOSFET operating in saturation?",
+    "answer": "Id = (1/2) * mu_n * Cox * (W/L) * (Vgs - Vth)^2",
+    "equation": "Id = 0.5 * mu_n * Cox * (W/L) * (Vgs - Vth)^2",
+    "symbols": {
+      "Id": "drain current (A)",
+      "mu_n": "electron mobility (m^2/Vs)",
+      "Cox": "gate oxide capacitance per unit area (F/m^2)",
+      "W": "channel width (m)",
+      "L": "channel length (m)",
+      "Vgs": "gate-to-source voltage (V)",
+      "Vth": "threshold voltage (V)"
+    },
+    "expected_confidence": "high",
+    "notes": "Valid when Vds >= Vgs - Vth (saturation condition)"
+  },
+  {
+    "id": "E002",
+    "difficulty": "easy",
+    "topic": "MOSFET drain current — linear",
+    "question": "Write the drain current equation for a MOSFET in the linear (triode) region.",
+    "answer": "Id = mu_n * Cox * (W/L) * [(Vgs - Vth)*Vds - Vds^2/2]",
+    "equation": "Id = mu_n * Cox * (W/L) * ((Vgs - Vth)*Vds - Vds^2/2)",
+    "symbols": {
+      "Id": "drain current (A)",
+      "mu_n": "electron mobility (m^2/Vs)",
+      "Cox": "gate oxide capacitance per unit area (F/m^2)",
+      "W": "channel width (m)",
+      "L": "channel length (m)",
+      "Vgs": "gate-to-source voltage (V)",
+      "Vth": "threshold voltage (V)",
+      "Vds": "drain-to-source voltage (V)"
+    },
+    "expected_confidence": "high",
+    "notes": "Valid when Vds < Vgs - Vth"
+  },
+  {
+    "id": "E003",
+    "difficulty": "easy",
+    "topic": "Saturation condition",
+    "question": "What is the condition for a MOSFET to enter saturation?",
+    "answer": "Vds >= Vgs - Vth, which means Vds >= Vdsat where Vdsat = Vgs - Vth",
+    "equation": "Vds >= Vgs - Vth",
+    "symbols": {
+      "Vds": "drain-to-source voltage (V)",
+      "Vgs": "gate-to-source voltage (V)",
+      "Vth": "threshold voltage (V)",
+      "Vdsat": "saturation voltage (V)"
+    },
+    "expected_confidence": "high",
+    "notes": "At pinch-off the channel charge at drain end goes to zero"
+  },
+  {
+    "id": "E004",
+    "difficulty": "easy",
+    "topic": "Threshold voltage definition",
+    "question": "How is threshold voltage Vth defined for an n-channel MOSFET?",
+    "answer": "Vth is the gate voltage at which strong inversion begins at the semiconductor surface, typically defined as Vgs where the surface potential phi_s = 2*phi_f",
+    "equation": "phi_s = 2 * phi_f",
+    "symbols": {
+      "Vth": "threshold voltage (V)",
+      "phi_s": "surface potential (V)",
+      "phi_f": "Fermi potential = (kT/q)*ln(Na/ni) (V)"
+    },
+    "expected_confidence": "high",
+    "notes": "Strong inversion criterion"
+  },
+  {
+    "id": "E005",
+    "difficulty": "easy",
+    "topic": "Transconductance",
+    "question": "What is the transconductance gm of a MOSFET in saturation and what does it represent?",
+    "answer": "gm = dId/dVgs = mu_n * Cox * (W/L) * (Vgs - Vth). It represents the gain from gate voltage to drain current.",
+    "equation": "gm = mu_n * Cox * (W/L) * (Vgs - Vth)",
+    "symbols": {
+      "gm": "transconductance (A/V or S)",
+      "Id": "drain current (A)",
+      "Vgs": "gate-to-source voltage (V)",
+      "mu_n": "electron mobility (m^2/Vs)",
+      "Cox": "gate oxide capacitance per unit area (F/m^2)",
+      "W": "channel width (m)",
+      "L": "channel length (m)",
+      "Vth": "threshold voltage (V)"
+    },
+    "expected_confidence": "high",
+    "notes": "Can also be expressed as gm = 2*Id/(Vgs-Vth) or gm = sqrt(2*mu_n*Cox*(W/L)*Id)"
+  },
+  {
+    "id": "E006",
+    "difficulty": "easy",
+    "topic": "Output resistance",
+    "question": "What is the small-signal output resistance ro of a MOSFET and how is it related to the channel-length modulation parameter lambda?",
+    "answer": "ro = 1 / (lambda * Id) approximately equal to Va / Id, where Va = 1/lambda is the Early voltage",
+    "equation": "ro = 1 / (lambda * Id)",
+    "symbols": {
+      "ro": "small-signal output resistance (Ohm)",
+      "lambda": "channel-length modulation parameter (V^-1)",
+      "Id": "DC drain current (A)",
+      "Va": "Early voltage = 1/lambda (V)"
+    },
+    "expected_confidence": "high",
+    "notes": "Finite ro causes non-ideal current saturation"
+  },
+  {
+    "id": "E007",
+    "difficulty": "easy",
+    "topic": "Gate oxide capacitance",
+    "question": "How is the gate oxide capacitance per unit area Cox calculated?",
+    "answer": "Cox = epsilon_ox / tox, where epsilon_ox = epsilon_0 * k_ox is the permittivity of SiO2 (k_ox ≈ 3.9)",
+    "equation": "Cox = epsilon_ox / tox",
+    "symbols": {
+      "Cox": "gate oxide capacitance per unit area (F/m^2)",
+      "epsilon_ox": "permittivity of gate oxide (F/m)",
+      "tox": "gate oxide thickness (m)",
+      "epsilon_0": "permittivity of free space = 8.854e-12 F/m",
+      "k_ox": "relative permittivity of SiO2 ≈ 3.9"
+    },
+    "expected_confidence": "high",
+    "notes": "For high-k dielectrics, k_ox is replaced by a larger value"
+  },
+  {
+    "id": "E008",
+    "difficulty": "easy",
+    "topic": "Thermal voltage",
+    "question": "What is the thermal voltage Vt and what is its value at room temperature?",
+    "answer": "Vt = kT/q ≈ 26 mV at T = 300 K",
+    "equation": "Vt = k * T / q",
+    "symbols": {
+      "Vt": "thermal voltage (V)",
+      "k": "Boltzmann constant = 1.381e-23 J/K",
+      "T": "absolute temperature (K)",
+      "q": "electron charge = 1.602e-19 C"
+    },
+    "expected_confidence": "high",
+    "notes": "Fundamental in subthreshold and junction analysis"
+  },
+  {
+    "id": "E009",
+    "difficulty": "easy",
+    "topic": "MOSFET inversion condition",
+    "question": "What is the condition for a MOSFET to be in the subthreshold (weak inversion) regime?",
+    "answer": "Vgs < Vth. In this regime the channel charge is exponentially dependent on Vgs and the drain current is Id = I0 * exp(Vgs / (n * Vt))",
+    "equation": "Vgs < Vth",
+    "symbols": {
+      "Vgs": "gate-to-source voltage (V)",
+      "Vth": "threshold voltage (V)",
+      "I0": "pre-exponential current (A)",
+      "n": "subthreshold ideality factor (typically 1.0–1.5)",
+      "Vt": "thermal voltage kT/q (V)"
+    },
+    "expected_confidence": "high",
+    "notes": "Relevant for ultra-low-power and near-threshold circuits"
+  },
+  {
+    "id": "E010",
+    "difficulty": "easy",
+    "topic": "Depletion width",
+    "question": "What is the maximum depletion width Wdm in an MOS capacitor at strong inversion?",
+    "answer": "Wdm = sqrt(4 * epsilon_s * phi_f / (q * Na))",
+    "equation": "Wdm = sqrt(4 * epsilon_s * phi_f / (q * Na))",
+    "symbols": {
+      "Wdm": "maximum depletion width (m)",
+      "epsilon_s": "permittivity of silicon = 11.7 * epsilon_0 (F/m)",
+      "phi_f": "Fermi potential (V)",
+      "q": "electron charge = 1.602e-19 C",
+      "Na": "acceptor doping concentration (m^-3)"
+    },
+    "expected_confidence": "high",
+    "notes": "Beyond Wdm, additional gate charge is supplied by inversion layer"
+  },
+  {
+    "id": "E011",
+    "difficulty": "easy",
+    "topic": "Flat-band voltage",
+    "question": "What is the flat-band voltage Vfb and how is it expressed?",
+    "answer": "Vfb = phi_ms - Qf/Cox, where phi_ms is the metal-semiconductor work function difference and Qf is the fixed oxide charge density",
+    "equation": "Vfb = phi_ms - Qf / Cox",
+    "symbols": {
+      "Vfb": "flat-band voltage (V)",
+      "phi_ms": "work function difference between gate and semiconductor (V)",
+      "Qf": "fixed oxide charge per unit area (C/m^2)",
+      "Cox": "gate oxide capacitance per unit area (F/m^2)"
+    },
+    "expected_confidence": "high",
+    "notes": "Vfb shifts Vth and must be accounted for in device design"
+  },
+  {
+    "id": "E012",
+    "difficulty": "easy",
+    "topic": "Unity-gain frequency",
+    "question": "What is the unity-gain frequency fT of a MOSFET and how is it expressed in terms of device parameters?",
+    "answer": "fT = gm / (2 * pi * (Cgs + Cgd)) ≈ mu_n * (Vgs - Vth) / (2 * pi * L^2)",
+    "equation": "fT = gm / (2 * pi * (Cgs + Cgd))",
+    "symbols": {
+      "fT": "unity current-gain frequency (Hz)",
+      "gm": "transconductance (S)",
+      "Cgs": "gate-to-source capacitance (F)",
+      "Cgd": "gate-to-drain capacitance (F)",
+      "mu_n": "electron mobility (m^2/Vs)",
+      "Vgs": "gate-to-source voltage (V)",
+      "Vth": "threshold voltage (V)",
+      "L": "channel length (m)"
+    },
+    "expected_confidence": "high",
+    "notes": "Key RF figure of merit; scales as 1/L^2"
+  },
+  {
+    "id": "E013",
+    "difficulty": "easy",
+    "topic": "Intrinsic carrier concentration",
+    "question": "Write the expression for the intrinsic carrier concentration ni of silicon.",
+    "answer": "ni = sqrt(Nc * Nv) * exp(-Eg / (2*k*T)), approximately 1.5e10 cm^-3 at 300 K for silicon",
+    "equation": "ni = sqrt(Nc * Nv) * exp(-Eg / (2 * k * T))",
+    "symbols": {
+      "ni": "intrinsic carrier concentration (m^-3)",
+      "Nc": "effective density of states in conduction band (m^-3)",
+      "Nv": "effective density of states in valence band (m^-3)",
+      "Eg": "bandgap energy (J)",
+      "k": "Boltzmann constant (J/K)",
+      "T": "temperature (K)"
+    },
+    "expected_confidence": "high",
+    "notes": "For Si: Eg ≈ 1.12 eV at 300 K"
+  },
+  {
+    "id": "E014",
+    "difficulty": "easy",
+    "topic": "Fermi potential",
+    "question": "Write the expression for the Fermi potential phi_f in a p-type semiconductor.",
+    "answer": "phi_f = (kT/q) * ln(Na / ni)",
+    "equation": "phi_f = (k * T / q) * ln(Na / ni)",
+    "symbols": {
+      "phi_f": "Fermi potential (V)",
+      "k": "Boltzmann constant (J/K)",
+      "T": "temperature (K)",
+      "q": "electron charge (C)",
+      "Na": "acceptor doping concentration (m^-3)",
+      "ni": "intrinsic carrier concentration (m^-3)"
+    },
+    "expected_confidence": "high",
+    "notes": "Determines strong inversion condition phi_s = 2*phi_f"
+  },
+  {
+    "id": "E015",
+    "difficulty": "easy",
+    "topic": "MOSFET aspect ratio",
+    "question": "What role does the W/L ratio (aspect ratio) play in MOSFET performance?",
+    "answer": "W/L directly multiplies the drive current and transconductance. Doubling W/L doubles Id and gm, but also doubles all gate capacitances Cgs and Cgd.",
+    "equation": "Id ∝ W/L",
+    "symbols": {
+      "W": "channel width (m)",
+      "L": "channel length (m)",
+      "Id": "drain current (A)",
+      "gm": "transconductance (S)"
+    },
+    "expected_confidence": "high",
+    "notes": "Speed-power tradeoff controlled by W/L"
+  },
+  {
+    "id": "E016",
+    "difficulty": "easy",
+    "topic": "Channel-length modulation",
+    "question": "How does channel-length modulation modify the saturation drain current?",
+    "answer": "Id = (1/2) * mu_n * Cox * (W/L) * (Vgs-Vth)^2 * (1 + lambda*Vds). The term (1+lambda*Vds) models the increase in Id with Vds in saturation.",
+    "equation": "Id = 0.5 * mu_n * Cox * (W/L) * (Vgs - Vth)^2 * (1 + lambda * Vds)",
+    "symbols": {
+      "lambda": "channel-length modulation parameter (V^-1)",
+      "Vds": "drain-to-source voltage (V)",
+      "Id": "drain current (A)"
+    },
+    "expected_confidence": "high",
+    "notes": "lambda is smaller for longer channels; lambda ≈ 1/(Va*L)"
+  },
+  {
+    "id": "E017",
+    "difficulty": "easy",
+    "topic": "Depletion capacitance",
+    "question": "Write the expression for the depletion capacitance per unit area Cd in an MOS structure.",
+    "answer": "Cd = epsilon_s / Wd, where Wd is the depletion width",
+    "equation": "Cd = epsilon_s / Wd",
+    "symbols": {
+      "Cd": "depletion capacitance per unit area (F/m^2)",
+      "epsilon_s": "permittivity of silicon (F/m)",
+      "Wd": "depletion width (m)"
+    },
+    "expected_confidence": "high",
+    "notes": "Cd is in series with Cox in the gate capacitance stack"
+  },
+  {
+    "id": "E018",
+    "difficulty": "easy",
+    "topic": "Built-in potential",
+    "question": "What is the built-in potential Vbi of a p-n junction?",
+    "answer": "Vbi = (kT/q) * ln(Na * Nd / ni^2)",
+    "equation": "Vbi = (k * T / q) * ln(Na * Nd / ni^2)",
+    "symbols": {
+      "Vbi": "built-in potential (V)",
+      "k": "Boltzmann constant (J/K)",
+      "T": "temperature (K)",
+      "q": "electron charge (C)",
+      "Na": "acceptor doping (m^-3)",
+      "Nd": "donor doping (m^-3)",
+      "ni": "intrinsic carrier concentration (m^-3)"
+    },
+    "expected_confidence": "high",
+    "notes": "Typically 0.6–0.8 V for silicon junctions at room temperature"
+  },
+  {
+    "id": "E019",
+    "difficulty": "easy",
+    "topic": "MOSFET overdrive voltage",
+    "question": "What is the overdrive voltage Vov and how is it defined?",
+    "answer": "Vov = Vgs - Vth. It represents the excess gate voltage above threshold that drives the device into inversion.",
+    "equation": "Vov = Vgs - Vth",
+    "symbols": {
+      "Vov": "overdrive voltage (V)",
+      "Vgs": "gate-to-source voltage (V)",
+      "Vth": "threshold voltage (V)"
+    },
+    "expected_confidence": "high",
+    "notes": "In saturation: Id = (1/2)*mu_n*Cox*(W/L)*Vov^2 and gm = mu_n*Cox*(W/L)*Vov"
+  },
+  {
+    "id": "E020",
+    "difficulty": "easy",
+    "topic": "Velocity saturation",
+    "question": "What is the saturation velocity vsat of carriers in silicon and at what field does velocity saturation become significant?",
+    "answer": "vsat ≈ 1e5 m/s (1e7 cm/s) for electrons in silicon. Velocity saturation becomes significant when the lateral field E ≈ vsat/mu_n ≈ 5e6 V/m (50 kV/cm).",
+    "equation": "v_sat = mu_n * E_sat / 2",
+    "symbols": {
+      "vsat": "saturation velocity (m/s)",
+      "mu_n": "low-field electron mobility (m^2/Vs)",
+      "E_sat": "electric field at velocity saturation onset (V/m)"
+    },
+    "expected_confidence": "high",
+    "notes": "Critical for sub-100 nm devices where L is short enough that E = Vds/L exceeds E_sat"
+  },
+  {
+    "id": "E021",
+    "difficulty": "easy",
+    "topic": "Oxide thickness scaling",
+    "question": "How does the gate oxide capacitance Cox change as tox is scaled down, and what is the implication for drive current?",
+    "answer": "Cox = epsilon_ox/tox increases as tox decreases. Higher Cox means more inversion charge Qi = Cox*(Vgs-Vth) for a given overdrive, thus higher Id.",
+    "equation": "Cox = epsilon_ox / tox",
+    "symbols": {
+      "Cox": "gate oxide capacitance per unit area (F/m^2)",
+      "epsilon_ox": "oxide permittivity (F/m)",
+      "tox": "oxide thickness (m)"
+    },
+    "expected_confidence": "high",
+    "notes": "Physical limit ~1 nm SiO2 before direct tunneling dominates; high-k dielectrics used below this"
+  },
+  {
+    "id": "E022",
+    "difficulty": "easy",
+    "topic": "Inversion charge",
+    "question": "Write the expression for the inversion charge density Qi in a MOSFET channel.",
+    "answer": "Qi = -Cox * (Vgs - Vth) for Vgs > Vth (strong inversion)",
+    "equation": "Qi = -Cox * (Vgs - Vth)",
+    "symbols": {
+      "Qi": "inversion charge per unit area (C/m^2)",
+      "Cox": "gate oxide capacitance per unit area (F/m^2)",
+      "Vgs": "gate-to-source voltage (V)",
+      "Vth": "threshold voltage (V)"
+    },
+    "expected_confidence": "high",
+    "notes": "Negative sign because inversion electrons are minority carriers in p-type body"
+  },
+  {
+    "id": "E023",
+    "difficulty": "easy",
+    "topic": "Carrier drift velocity",
+    "question": "Write the low-field expression for carrier drift velocity in a semiconductor.",
+    "answer": "v = mu * E, where mu is the carrier mobility and E is the electric field",
+    "equation": "v = mu * E",
+    "symbols": {
+      "v": "drift velocity (m/s)",
+      "mu": "carrier mobility (m^2/Vs)",
+      "E": "electric field (V/m)"
+    },
+    "expected_confidence": "high",
+    "notes": "Valid only at low fields; breaks down as E approaches E_sat"
+  },
+  {
+    "id": "E024",
+    "difficulty": "easy",
+    "topic": "pMOS threshold voltage sign",
+    "question": "What is the sign convention for threshold voltage in a p-channel MOSFET and in what direction is Vgs applied?",
+    "answer": "For a pMOS, Vth is negative and Vgs must be more negative than Vth (i.e., |Vgs| > |Vth|) to turn the device on. Current flows from source to drain when Vgs < Vth < 0.",
+    "equation": "Vgs < Vth < 0  (for pMOS)",
+    "symbols": {
+      "Vgs": "gate-to-source voltage (V), negative for pMOS on",
+      "Vth": "threshold voltage (V), negative for pMOS"
+    },
+    "expected_confidence": "high",
+    "notes": "pMOS uses holes as carriers; equations are symmetric with nMOS when using |Vgs-Vth|"
+  },
+  {
+    "id": "E025",
+    "difficulty": "easy",
+    "topic": "Boltzmann constant value",
+    "question": "State the values of Boltzmann's constant k and electron charge q used in semiconductor physics.",
+    "answer": "k = 1.381e-23 J/K, q = 1.602e-19 C. Their ratio gives the thermal voltage Vt = kT/q = 26 mV at 300 K.",
+    "equation": "Vt = k * T / q = 0.02585 V at T = 300 K",
+    "symbols": {
+      "k": "Boltzmann constant = 1.381e-23 J/K",
+      "q": "electron charge = 1.602e-19 C",
+      "Vt": "thermal voltage (V)",
+      "T": "temperature in Kelvin"
+    },
+    "expected_confidence": "high",
+    "notes": "kT/q = 25.85 mV at exactly 300 K"
+  },
+  {
+    "id": "E026",
+    "difficulty": "easy",
+    "topic": "Current density",
+    "question": "Write the total current density J in a semiconductor accounting for both drift and diffusion.",
+    "answer": "J = q * n * mu_n * E + q * Dn * dn/dx  (electrons only). For holes: J = q * p * mu_p * E - q * Dp * dp/dx",
+    "equation": "J_n = q * n * mu_n * E + q * Dn * dn/dx",
+    "symbols": {
+      "J_n": "electron current density (A/m^2)",
+      "q": "electron charge (C)",
+      "n": "electron concentration (m^-3)",
+      "mu_n": "electron mobility (m^2/Vs)",
+      "E": "electric field (V/m)",
+      "Dn": "electron diffusion coefficient (m^2/s)",
+      "dn/dx": "electron concentration gradient (m^-4)"
+    },
+    "expected_confidence": "high",
+    "notes": "Einstein relation: Dn = mu_n * kT/q"
+  },
+  {
+    "id": "E027",
+    "difficulty": "easy",
+    "topic": "Einstein relation",
+    "question": "State the Einstein relation between diffusivity and mobility.",
+    "answer": "D = mu * kT/q = mu * Vt",
+    "equation": "D = mu * k * T / q",
+    "symbols": {
+      "D": "diffusion coefficient (m^2/s)",
+      "mu": "carrier mobility (m^2/Vs)",
+      "k": "Boltzmann constant (J/K)",
+      "T": "temperature (K)",
+      "q": "electron charge (C)"
+    },
+    "expected_confidence": "high",
+    "notes": "Links the two transport mechanisms; holds in non-degenerate semiconductors"
+  },
+  {
+    "id": "E028",
+    "difficulty": "easy",
+    "topic": "Threshold voltage formula",
+    "question": "Write the complete threshold voltage expression for an n-channel MOSFET.",
+    "answer": "Vth = Vfb + 2*phi_f + sqrt(2*epsilon_s*q*Na*2*phi_f) / Cox",
+    "equation": "Vth = Vfb + 2*phi_f + (1/Cox)*sqrt(2*epsilon_s*q*Na*2*phi_f)",
+    "symbols": {
+      "Vth": "threshold voltage (V)",
+      "Vfb": "flat-band voltage (V)",
+      "phi_f": "Fermi potential (V)",
+      "epsilon_s": "silicon permittivity (F/m)",
+      "q": "electron charge (C)",
+      "Na": "p-type body doping (m^-3)",
+      "Cox": "gate oxide capacitance per unit area (F/m^2)"
+    },
+    "expected_confidence": "high",
+    "notes": "The sqrt term is the depletion charge contribution to Vth"
+  },
+  {
+    "id": "E029",
+    "difficulty": "easy",
+    "topic": "Drain current alternate forms",
+    "question": "Express the saturation drain current in terms of gm and overdrive voltage Vov.",
+    "answer": "Id = (1/2) * gm * Vov, since gm = mu_n*Cox*(W/L)*Vov and Id = (1/2)*mu_n*Cox*(W/L)*Vov^2",
+    "equation": "Id = 0.5 * gm * Vov",
+    "symbols": {
+      "Id": "drain current (A)",
+      "gm": "transconductance (S)",
+      "Vov": "overdrive voltage Vgs - Vth (V)"
+    },
+    "expected_confidence": "high",
+    "notes": "Also: gm = 2*Id/Vov and gm = sqrt(2*mu_n*Cox*(W/L)*Id)"
+  },
+  {
+    "id": "E030",
+    "difficulty": "easy",
+    "topic": "Gate capacitance",
+    "question": "What is the total gate capacitance Cg of a MOSFET in strong inversion?",
+    "answer": "Cg = Cox * W * L. In strong inversion Cox dominates over Cd so the total MOS capacitance ≈ Cox.",
+    "equation": "Cg = Cox * W * L",
+    "symbols": {
+      "Cg": "total gate capacitance (F)",
+      "Cox": "oxide capacitance per unit area (F/m^2)",
+      "W": "channel width (m)",
+      "L": "channel length (m)"
+    },
+    "expected_confidence": "high",
+    "notes": "Cgs ≈ (2/3)*Cg and Cgd ≈ 0 in saturation (charge-sharing approximation)"
+  },
+  {
+    "id": "E031",
+    "difficulty": "easy",
+    "topic": "Sheet resistance",
+    "question": "Define sheet resistance Rs and give its units.",
+    "answer": "Rs = rho / t = 1 / (q * n * mu * t), measured in Ohms per square (Ω/□). For a rectangular conductor of length L and width W: R = Rs * L/W.",
+    "equation": "Rs = rho / t",
+    "symbols": {
+      "Rs": "sheet resistance (Ω/□)",
+      "rho": "bulk resistivity (Ω·m)",
+      "t": "layer thickness (m)"
+    },
+    "expected_confidence": "high",
+    "notes": "Used to characterize interconnect and diffusion layers in CMOS"
+  },
+  {
+    "id": "E032",
+    "difficulty": "easy",
+    "topic": "Transit time",
+    "question": "What is the carrier transit time tau across a MOSFET channel of length L?",
+    "answer": "tau = L / v_drift = L^2 / (mu_n * Vds) in the linear region",
+    "equation": "tau = L^2 / (mu_n * Vds)",
+    "symbols": {
+      "tau": "carrier transit time (s)",
+      "L": "channel length (m)",
+      "mu_n": "electron mobility (m^2/Vs)",
+      "Vds": "drain-to-source voltage (V)"
+    },
+    "expected_confidence": "high",
+    "notes": "fT ≈ 1/(2*pi*tau) links transit time to bandwidth"
+  },
+  {
+    "id": "E033",
+    "difficulty": "easy",
+    "topic": "Depletion approximation",
+    "question": "What assumption does the depletion approximation make, and write the resulting Poisson equation solution for charge density in the depletion region.",
+    "answer": "The depletion approximation assumes rho = -q*Na (constant) for 0 < x < Wd and rho = 0 outside. This gives a parabolic potential: phi(x) = (q*Na/(2*epsilon_s))*(Wd-x)^2",
+    "equation": "phi(x) = (q * Na / (2 * epsilon_s)) * (Wd - x)^2",
+    "symbols": {
+      "phi": "electrostatic potential (V)",
+      "q": "electron charge (C)",
+      "Na": "acceptor doping (m^-3)",
+      "epsilon_s": "silicon permittivity (F/m)",
+      "Wd": "depletion width (m)",
+      "x": "distance from oxide-silicon interface (m)"
+    },
+    "expected_confidence": "high",
+    "notes": "Parabolic potential leads to linear electric field"
+  },
+  {
+    "id": "E034",
+    "difficulty": "easy",
+    "topic": "CMOS inverter switching threshold",
+    "question": "What is the ideal switching threshold voltage VM of a CMOS inverter?",
+    "answer": "VM = VDD/2 when the nMOS and pMOS are sized so that their drive strengths are equal (kn = kp). In general, VM = (Vtn + (VDD+Vtp)*sqrt(kp/kn)) / (1 + sqrt(kp/kn))",
+    "equation": "VM = VDD / 2  (ideal, symmetric case)",
+    "symbols": {
+      "VM": "switching threshold (V)",
+      "VDD": "supply voltage (V)",
+      "Vtn": "nMOS threshold voltage (V)",
+      "Vtp": "pMOS threshold voltage (V)",
+      "kn": "nMOS process transconductance parameter (A/V^2)",
+      "kp": "pMOS process transconductance parameter (A/V^2)"
+    },
+    "expected_confidence": "high",
+    "notes": "Noise margins NMH = NML = VDD/2 - VM for symmetric inverter"
+  },
+  {
+    "id": "E035",
+    "difficulty": "easy",
+    "topic": "MOSFET on-resistance",
+    "question": "Write the on-resistance Ron of a MOSFET in the deep linear region (Vds → 0).",
+    "answer": "Ron = 1 / (mu_n * Cox * (W/L) * (Vgs - Vth)) = Vds/Id for small Vds",
+    "equation": "Ron = 1 / (mu_n * Cox * (W/L) * (Vgs - Vth))",
+    "symbols": {
+      "Ron": "on-resistance (Ω)",
+      "mu_n": "electron mobility (m^2/Vs)",
+      "Cox": "gate oxide capacitance per unit area (F/m^2)",
+      "W": "channel width (m)",
+      "L": "channel length (m)",
+      "Vgs": "gate-to-source voltage (V)",
+      "Vth": "threshold voltage (V)"
+    },
+    "expected_confidence": "high",
+    "notes": "Ron = 1/gds where gds is the output conductance"
+  },
+  {
+    "id": "E036",
+    "difficulty": "easy",
+    "topic": "Intrinsic gain",
+    "question": "What is the intrinsic voltage gain A0 of a common-source MOSFET amplifier?",
+    "answer": "A0 = -gm * ro = -gm / (lambda * Id) = -2 / (lambda * Vov)",
+    "equation": "A0 = -gm * ro",
+    "symbols": {
+      "A0": "intrinsic voltage gain (V/V)",
+      "gm": "transconductance (S)",
+      "ro": "output resistance (Ω)",
+      "lambda": "channel-length modulation parameter (V^-1)",
+      "Id": "drain current (A)",
+      "Vov": "overdrive voltage (V)"
+    },
+    "expected_confidence": "high",
+    "notes": "A0 improves with longer L (smaller lambda) and lower bias current"
+  },
+  {
+    "id": "E037",
+    "difficulty": "easy",
+    "topic": "Diffusion coefficient",
+    "question": "What is the electron diffusion coefficient Dn in silicon at room temperature, and how is it related to mobility?",
+    "answer": "Dn = mu_n * Vt = mu_n * kT/q ≈ 0.038 * 0.026 ≈ 0.001 m^2/s (10 cm^2/s) for mu_n ≈ 0.04 m^2/Vs",
+    "equation": "Dn = mu_n * k * T / q",
+    "symbols": {
+      "Dn": "electron diffusion coefficient (m^2/s)",
+      "mu_n": "electron mobility (m^2/Vs)",
+      "k": "Boltzmann constant (J/K)",
+      "T": "temperature (K)",
+      "q": "electron charge (C)"
+    },
+    "expected_confidence": "high",
+    "notes": "Einstein relation; Dp ≈ 0.0013 m^2/s for holes"
+  },
+  {
+    "id": "E038",
+    "difficulty": "easy",
+    "topic": "Short-channel effect — threshold shift",
+    "question": "In what direction does Vth shift due to the drain-induced barrier lowering (DIBL) effect, and why?",
+    "answer": "DIBL causes Vth to decrease (roll off) as Vds increases. The drain depletion region assists the gate in depleting the channel, lowering the potential barrier for source injection.",
+    "equation": "delta_Vth = -sigma_DIBL * Vds",
+    "symbols": {
+      "delta_Vth": "threshold voltage shift (V)",
+      "sigma_DIBL": "DIBL coefficient (V/V), typically 20–100 mV/V for short channels",
+      "Vds": "drain-to-source voltage (V)"
+    },
+    "expected_confidence": "high",
+    "notes": "DIBL is more severe for shorter L and thicker tox"
+  },
+  {
+    "id": "E039",
+    "difficulty": "easy",
+    "topic": "Ohm's law in semiconductor",
+    "question": "State Ohm's law for a semiconductor resistor in terms of resistivity rho.",
+    "answer": "R = rho * L / A, where L is the length and A is the cross-sectional area. J = sigma * E = E / rho.",
+    "equation": "R = rho * L / A",
+    "symbols": {
+      "R": "resistance (Ω)",
+      "rho": "resistivity (Ω·m)",
+      "L": "length (m)",
+      "A": "cross-sectional area (m^2)",
+      "sigma": "conductivity = 1/rho (S/m)"
+    },
+    "expected_confidence": "high",
+    "notes": "rho = 1/(q*n*mu_n + q*p*mu_p) for a general semiconductor"
+  },
+  {
+    "id": "E040",
+    "difficulty": "easy",
+    "topic": "Propagation delay",
+    "question": "Write the propagation delay tp of a CMOS inverter driving a load capacitance CL.",
+    "answer": "tp = (tpHL + tpLH) / 2, where tpHL ≈ CL*VDD / (2*Id_sat_n) and tpLH ≈ CL*VDD / (2*Id_sat_p)",
+    "equation": "tp = CL * VDD / (2 * Id_sat)",
+    "symbols": {
+      "tp": "average propagation delay (s)",
+      "tpHL": "high-to-low propagation delay (s)",
+      "tpLH": "low-to-high propagation delay (s)",
+      "CL": "load capacitance (F)",
+      "VDD": "supply voltage (V)",
+      "Id_sat": "saturation drain current (A)"
+    },
+    "expected_confidence": "high",
+    "notes": "Fundamental CMOS speed metric; scales as CL/Id_sat"
+  },
+  {
+    "id": "M001",
+    "difficulty": "medium",
+    "topic": "Body effect",
+    "question": "Derive the threshold voltage under source-body reverse bias (body effect) and explain the physical origin.",
+    "answer": "Vth(Vsb) = Vth0 + gamma*(sqrt(2*phi_f + Vsb) - sqrt(2*phi_f)). The body effect arises because a reverse-biased source-body junction widens the depletion region, requiring extra gate charge to reach inversion.",
+    "equation": "Vth = Vth0 + gamma * (sqrt(2*phi_f + Vsb) - sqrt(2*phi_f))",
+    "symbols": {
+      "Vth": "threshold voltage with body bias (V)",
+      "Vth0": "zero-bias threshold voltage (V)",
+      "gamma": "body effect coefficient = sqrt(2*epsilon_s*q*Na)/Cox (V^0.5)",
+      "phi_f": "Fermi potential (V)",
+      "Vsb": "source-to-body voltage (V)"
+    },
+    "expected_confidence": "high",
+    "notes": "gamma = sqrt(2*epsilon_s*q*Na)/Cox; typical value 0.3–0.5 V^0.5"
+  },
+  {
+    "id": "M002",
+    "difficulty": "medium",
+    "topic": "Subthreshold swing derivation",
+    "question": "Derive the subthreshold swing SS and explain why 60 mV/decade is the room-temperature lower limit.",
+    "answer": "SS = (kT/q)*ln(10)*(1 + Cd/Cox) mV/decade. When Cd << Cox, SS_min = (kT/q)*ln(10) ≈ 60 mV/dec at 300 K. The limit arises from Boltzmann statistics: subthreshold current is Id ∝ exp(q*Vgs/(kT)), so you need 60 mV to change Id by 10x.",
+    "equation": "SS = (k*T/q) * ln(10) * (1 + Cd/Cox)",
+    "symbols": {
+      "SS": "subthreshold swing (mV/decade)",
+      "k": "Boltzmann constant (J/K)",
+      "T": "temperature (K)",
+      "q": "electron charge (C)",
+      "Cd": "depletion capacitance per unit area (F/m^2)",
+      "Cox": "oxide capacitance per unit area (F/m^2)"
+    },
+    "expected_confidence": "high",
+    "notes": "SS > 60 mV/dec in real devices due to Cd/Cox > 0 and interface traps"
+  },
+  {
+    "id": "M003",
+    "difficulty": "medium",
+    "topic": "Small-signal model",
+    "question": "Draw and describe the complete small-signal model of a MOSFET at low frequency, including all elements and their values.",
+    "answer": "The low-frequency small-signal model contains: (1) a voltage-controlled current source gm*vgs from drain to source; (2) output resistance ro = 1/(lambda*Id) from drain to source; (3) gate-source capacitance Cgs ≈ (2/3)*Cox*W*L; (4) gate-drain capacitance Cgd (overlap). No current flows into the gate at low frequency.",
+    "equation": "id = gm * vgs + vds / ro",
+    "symbols": {
+      "gm": "transconductance (S)",
+      "vgs": "small-signal gate-source voltage (V)",
+      "ro": "output resistance = 1/(lambda*Id) (Ω)",
+      "Cgs": "gate-source capacitance ≈ (2/3)*Cox*W*L (F)",
+      "Cgd": "gate-drain (Miller) capacitance (F)"
+    },
+    "expected_confidence": "high",
+    "notes": "At high frequency, add Cgd and Csb, Cdb junction capacitances"
+  },
+  {
+    "id": "M004",
+    "difficulty": "medium",
+    "topic": "Long-channel vs short-channel Id",
+    "question": "How does velocity saturation modify the drain current in a short-channel MOSFET compared to the long-channel model?",
+    "answer": "In a short-channel device, carriers reach vsat before pinch-off. The saturation current becomes Id_sat = Cox*W*(Vgs-Vth)*vsat instead of the square-law Id_sat = (1/2)*mu*Cox*(W/L)*(Vgs-Vth)^2. This makes Id linear in (Vgs-Vth) rather than quadratic.",
+    "equation": "Id_sat = Cox * W * (Vgs - Vth) * v_sat",
+    "symbols": {
+      "Id_sat": "saturation current (A)",
+      "Cox": "oxide capacitance per unit area (F/m^2)",
+      "W": "channel width (m)",
+      "Vgs": "gate-to-source voltage (V)",
+      "Vth": "threshold voltage (V)",
+      "v_sat": "carrier saturation velocity ≈ 1e5 m/s (m/s)"
+    },
+    "expected_confidence": "high",
+    "notes": "gm no longer scales as W/L but as W directly in the velocity-saturated regime"
+  },
+  {
+    "id": "M005",
+    "difficulty": "medium",
+    "topic": "Common-source gain",
+    "question": "Derive the voltage gain of a common-source amplifier with resistive load Rd, including the effect of output resistance ro.",
+    "answer": "Av = -gm * (Rd || ro). When ro >> Rd: Av ≈ -gm*Rd. When ro is significant, it reduces the effective load and lowers gain.",
+    "equation": "Av = -gm * (Rd * ro) / (Rd + ro)",
+    "symbols": {
+      "Av": "voltage gain (V/V)",
+      "gm": "transconductance (S)",
+      "Rd": "drain load resistance (Ω)",
+      "ro": "MOSFET output resistance (Ω)"
+    },
+    "expected_confidence": "high",
+    "notes": "Maximum gain with infinite Rd is A0 = -gm*ro"
+  },
+  {
+    "id": "M006",
+    "difficulty": "medium",
+    "topic": "DIBL quantification",
+    "question": "How is DIBL coefficient measured and what does a value of 50 mV/V mean?",
+    "answer": "DIBL = -(Vth(Vds=Vdd) - Vth(Vds=0.05V)) / (Vdd - 0.05V). A value of 50 mV/V means threshold voltage decreases by 50 mV when Vds increases by 1 V. This degrades subthreshold slope and increases off-state leakage.",
+    "equation": "DIBL = -delta_Vth / delta_Vds",
+    "symbols": {
+      "DIBL": "drain-induced barrier lowering coefficient (mV/V)",
+      "Vth": "threshold voltage (V)",
+      "Vds": "drain-to-source voltage (V)"
+    },
+    "expected_confidence": "high",
+    "notes": "Acceptable DIBL < 100 mV/V for digital logic; worse for very short L"
+  },
+  {
+    "id": "M007",
+    "difficulty": "medium",
+    "topic": "Subthreshold current temperature dependence",
+    "question": "How does the subthreshold current change with temperature, and what is the physical reason?",
+    "answer": "Subthreshold current Id ∝ ni^2 * exp(Vgs/(n*kT/q)). As T increases, both ni and kT/q increase, so: (1) the pre-exponential factor grows as ni^2 ∝ exp(-Eg/kT); (2) the subthreshold swing SS = n*kT/q*ln(10) increases; (3) overall Ioff increases strongly with T. Rule of thumb: Ioff doubles every ~8°C.",
+    "equation": "Id_sub = I0 * exp(q * Vgs / (n * k * T))",
+    "symbols": {
+      "I0": "pre-exponential current factor (A)",
+      "n": "subthreshold ideality factor",
+      "k": "Boltzmann constant (J/K)",
+      "T": "temperature (K)",
+      "q": "electron charge (C)"
+    },
+    "expected_confidence": "high",
+    "notes": "Critical for power management in high-temperature applications"
+  },
+  {
+    "id": "M008",
+    "difficulty": "medium",
+    "topic": "Charge pump / threshold extraction",
+    "question": "Describe the constant-current threshold voltage extraction method and write the resulting equation.",
+    "answer": "Vth is defined as the Vgs at which Id = Id_ref (typically 100 nA * W/L). Extracted from the Id-Vgs curve: Vth = Vgs at Id = I_ref. Alternatively, linear extrapolation: Vth = Vgs_intercept - Vds/2 from the linear Id-Vgs extrapolation method.",
+    "equation": "Vth = Vgs|_{Id = I_ref}",
+    "symbols": {
+      "Vth": "threshold voltage (V)",
+      "Id": "drain current (A)",
+      "I_ref": "reference current = 100 nA * W/L (A)",
+      "Vgs": "gate-to-source voltage (V)"
+    },
+    "expected_confidence": "high",
+    "notes": "Linear extrapolation gives Vth = x-intercept of tangent at peak gm"
+  },
+  {
+    "id": "M009",
+    "difficulty": "medium",
+    "topic": "Mobility degradation",
+    "question": "What is surface mobility degradation and write the effective mobility model with vertical field dependence.",
+    "answer": "mu_eff = mu0 / (1 + theta*(Vgs-Vth)), where theta is the mobility degradation coefficient. High transverse field (proportional to Vgs) causes increased surface scattering, reducing mobility below the bulk value mu0.",
+    "equation": "mu_eff = mu0 / (1 + theta * (Vgs - Vth))",
+    "symbols": {
+      "mu_eff": "effective surface mobility (m^2/Vs)",
+      "mu0": "low-field mobility (m^2/Vs)",
+      "theta": "mobility degradation factor (V^-1)",
+      "Vgs": "gate-to-source voltage (V)",
+      "Vth": "threshold voltage (V)"
+    },
+    "expected_confidence": "high",
+    "notes": "Leads to sublinear Id-Vgs at large Vgs overdrive"
+  },
+  {
+    "id": "M010",
+    "difficulty": "medium",
+    "topic": "Cascode stage gain",
+    "question": "Derive the output resistance and voltage gain of a cascode amplifier.",
+    "answer": "Output resistance of cascode: Rout = ro2 + ro1 + gm2*ro2*ro1 ≈ gm2*ro2*ro1 (much larger than single stage ro). Gain Av = -gm1 * Rout || Rload. The cascode boosts Rout by a factor of approximately gm2*ro2.",
+    "equation": "Rout_cascode = ro2 * (1 + gm2 * ro1) + ro1 ≈ gm2 * ro1 * ro2",
+    "symbols": {
+      "Rout_cascode": "cascode output resistance (Ω)",
+      "ro1": "output resistance of lower FET (Ω)",
+      "ro2": "output resistance of upper cascode FET (Ω)",
+      "gm2": "transconductance of cascode FET (S)"
+    },
+    "expected_confidence": "high",
+    "notes": "Cascode eliminates Miller effect on Cgd and greatly improves A0"
+  },
+  {
+    "id": "M011",
+    "difficulty": "medium",
+    "topic": "Gate tunneling",
+    "question": "At what oxide thickness does direct tunneling become a dominant leakage mechanism, and how does tunneling current scale with tox?",
+    "answer": "Direct tunneling dominates when tox < ~3 nm for SiO2. Tunneling current Jg ∝ exp(-2*tox*sqrt(2*m*phi_b)/hbar), so Jg increases exponentially as tox decreases. For tox = 1 nm, Jg can exceed 100 A/cm^2.",
+    "equation": "Jg ∝ exp(-2 * tox * sqrt(2 * m* * phi_b) / hbar)",
+    "symbols": {
+      "Jg": "gate tunneling current density (A/m^2)",
+      "tox": "oxide thickness (m)",
+      "m*": "effective tunneling mass (kg)",
+      "phi_b": "barrier height ≈ 3.1 eV for SiO2/Si (J)",
+      "hbar": "reduced Planck constant (J·s)"
+    },
+    "expected_confidence": "high",
+    "notes": "Drives adoption of high-k dielectrics (HfO2, Al2O3) in advanced nodes"
+  },
+  {
+    "id": "M012",
+    "difficulty": "medium",
+    "topic": "Scaling rules",
+    "question": "Summarize Dennard's constant-field scaling rules and write the scaling relationships for key parameters.",
+    "answer": "When L, W, tox scale by 1/k and Na scales by k: Vdd → Vdd/k, Id → Id/k, Cox → k*Cox, Cg → Cg/k^2, fT → k*fT, power density stays constant, and circuit density improves by k^2.",
+    "equation": "L' = L/k,  Vdd' = Vdd/k,  Na' = k*Na,  fT' = k*fT",
+    "symbols": {
+      "k": "scaling factor (k > 1)",
+      "L": "channel length",
+      "Vdd": "supply voltage",
+      "Na": "channel doping",
+      "fT": "unity-gain frequency"
+    },
+    "expected_confidence": "high",
+    "notes": "Constant-field scaling broke down around 90 nm node due to Vth constraints"
+  },
+  {
+    "id": "M013",
+    "difficulty": "medium",
+    "topic": "fT calculation",
+    "question": "A MOSFET has gm = 10 mS and Cgs = 50 fF, Cgd = 5 fF. Calculate fT.",
+    "answer": "fT = gm / (2*pi*(Cgs+Cgd)) = 10e-3 / (2*pi*(50e-15 + 5e-15)) = 10e-3 / (2*pi*55e-15) ≈ 28.9 GHz",
+    "equation": "fT = gm / (2 * pi * (Cgs + Cgd))",
+    "symbols": {
+      "fT": "transit frequency (Hz)",
+      "gm": "transconductance = 10 mS",
+      "Cgs": "gate-source capacitance = 50 fF",
+      "Cgd": "gate-drain capacitance = 5 fF"
+    },
+    "expected_confidence": "high",
+    "notes": "Numerical answer: ≈ 28.9 GHz"
+  },
+  {
+    "id": "M014",
+    "difficulty": "medium",
+    "topic": "Overdrive voltage and gm/Id",
+    "question": "Explain the gm/Id efficiency metric and how it varies with operating region.",
+    "answer": "gm/Id = 2/Vov in saturation (strong inversion), reaching a maximum of q/(n*kT) ≈ 38.5 V^-1 in weak inversion. Maximizing gm/Id minimizes power for a given bandwidth. Weak inversion gives highest efficiency at the cost of lower speed.",
+    "equation": "gm/Id = 2/Vov  (strong inversion);  gm/Id = q/(n*k*T)  (weak inversion)",
+    "symbols": {
+      "gm": "transconductance (S)",
+      "Id": "drain current (A)",
+      "Vov": "overdrive voltage (V)",
+      "n": "subthreshold slope factor ≈ 1.2–1.5",
+      "kT/q": "thermal voltage (V)"
+    },
+    "expected_confidence": "high",
+    "notes": "Used extensively in low-power analog design"
+  },
+  {
+    "id": "M015",
+    "difficulty": "medium",
+    "topic": "CMOS dynamic power",
+    "question": "Write and explain the dynamic power dissipation equation for a CMOS circuit.",
+    "answer": "P_dyn = alpha * CL * VDD^2 * f. Alpha is the activity factor (fraction of clock cycles with switching events), CL is total load capacitance, VDD is supply, f is clock frequency. Reducing VDD has the greatest impact (quadratic dependence).",
+    "equation": "P_dyn = alpha * CL * VDD^2 * f",
+    "symbols": {
+      "P_dyn": "dynamic power (W)",
+      "alpha": "switching activity factor (0–1)",
+      "CL": "load capacitance (F)",
+      "VDD": "supply voltage (V)",
+      "f": "clock frequency (Hz)"
+    },
+    "expected_confidence": "high",
+    "notes": "Does not include short-circuit power P_sc or static leakage P_stat"
+  },
+  {
+    "id": "M016",
+    "difficulty": "medium",
+    "topic": "Short-channel threshold roll-off",
+    "question": "Explain geometrically why Vth decreases as channel length L is reduced (the short-channel effect).",
+    "answer": "In a long-channel device, the gate controls all the depletion charge. In a short-channel device, the source and drain depletion regions encroach on the channel, sharing some of the depletion charge that the gate would otherwise control. Less depletion charge to support means the gate needs less voltage to reach inversion, so Vth is lower.",
+    "equation": "delta_Vth ≈ -(q * Na * Wdm / Cox) * (Ld/L)",
+    "symbols": {
+      "delta_Vth": "threshold voltage reduction (V)",
+      "Ld": "lateral extent of source/drain depletion into channel (m)",
+      "L": "channel length (m)",
+      "q": "electron charge (C)",
+      "Na": "channel doping (m^-3)",
+      "Cox": "oxide capacitance (F/m^2)",
+      "Wdm": "max depletion width (m)"
+    },
+    "expected_confidence": "high",
+    "notes": "This is the charge-sharing model; trapezoidal approximation gives a simple delta_Vth"
+  },
+  {
+    "id": "M017",
+    "difficulty": "medium",
+    "topic": "Source degeneration",
+    "question": "A common-source amplifier has gm = 5 mS and a source degeneration resistor Rs = 200 Ω. What is the effective transconductance Gm?",
+    "answer": "Gm = gm / (1 + gm*Rs) = 5e-3 / (1 + 5e-3 * 200) = 5e-3 / 2 = 2.5 mS. Source degeneration trades gain for linearity and bandwidth.",
+    "equation": "Gm = gm / (1 + gm * Rs)",
+    "symbols": {
+      "Gm": "effective transconductance with degeneration (S)",
+      "gm": "intrinsic transconductance = 5 mS (S)",
+      "Rs": "source degeneration resistance = 200 Ω"
+    },
+    "expected_confidence": "high",
+    "notes": "Numerical answer: Gm = 2.5 mS"
+  },
+  {
+    "id": "M018",
+    "difficulty": "medium",
+    "topic": "Poly depletion effect",
+    "question": "What is the poly-silicon gate depletion effect and how does it affect the effective oxide thickness?",
+    "answer": "When a heavily doped poly-Si gate is used, a thin depletion layer forms at the poly/oxide interface under inversion bias. This adds an effective capacitance Cpoly = epsilon_s/Wpoly in series with Cox, increasing the equivalent oxide thickness: Toxeff = Tox + (epsilon_ox/epsilon_s)*Wpoly.",
+    "equation": "Tox_eff = Tox + (epsilon_ox / epsilon_s) * Wpoly",
+    "symbols": {
+      "Tox_eff": "effective electrical oxide thickness (m)",
+      "Tox": "physical oxide thickness (m)",
+      "epsilon_ox": "oxide permittivity (F/m)",
+      "epsilon_s": "silicon permittivity (F/m)",
+      "Wpoly": "poly depletion width (m)"
+    },
+    "expected_confidence": "high",
+    "notes": "Avoided by replacing poly with metal gates in advanced nodes"
+  },
+  {
+    "id": "M019",
+    "difficulty": "medium",
+    "topic": "Diffusion length",
+    "question": "Define minority carrier diffusion length L_n and explain its role in bipolar transistor current gain.",
+    "answer": "L_n = sqrt(D_n * tau_n), where tau_n is the minority carrier lifetime. In a BJT base, minority carriers that diffuse a distance L_n before recombining contribute to collector current. High beta requires L_n >> W_B (base width).",
+    "equation": "L_n = sqrt(Dn * tau_n)",
+    "symbols": {
+      "L_n": "electron diffusion length (m)",
+      "Dn": "electron diffusion coefficient (m^2/s)",
+      "tau_n": "electron minority carrier lifetime (s)"
+    },
+    "expected_confidence": "high",
+    "notes": "Current gain beta ≈ (L_n/W_B)^2 for a narrow base BJT"
+  },
+  {
+    "id": "M020",
+    "difficulty": "medium",
+    "topic": "Equivalent oxide thickness (EOT)",
+    "question": "Define equivalent oxide thickness (EOT) for a high-k dielectric and write the formula.",
+    "answer": "EOT = t_hk * (epsilon_SiO2 / epsilon_hk), where t_hk is the physical thickness and epsilon_hk is the high-k permittivity. EOT gives the SiO2 thickness that would provide the same capacitance density.",
+    "equation": "EOT = t_hk * (epsilon_SiO2 / epsilon_hk)",
+    "symbols": {
+      "EOT": "equivalent oxide thickness (m)",
+      "t_hk": "physical high-k layer thickness (m)",
+      "epsilon_SiO2": "SiO2 permittivity ≈ 3.9 * epsilon_0 (F/m)",
+      "epsilon_hk": "high-k material permittivity (F/m)"
+    },
+    "expected_confidence": "high",
+    "notes": "HfO2 has k ≈ 25; a 5 nm HfO2 layer has EOT ≈ 0.78 nm"
+  },
+  {
+    "id": "M021",
+    "difficulty": "medium",
+    "topic": "Drain current with body effect and CLM",
+    "question": "Write the complete first-order MOSFET drain current model including body effect (through Vth(Vsb)) and channel-length modulation.",
+    "answer": "Id = (1/2)*mu*Cox*(W/L)*(Vgs-Vth(Vsb))^2*(1+lambda*Vds) where Vth(Vsb) = Vth0 + gamma*(sqrt(2*phi_f+Vsb)-sqrt(2*phi_f)). Both second-order effects are multiplicative with the base square-law term.",
+    "equation": "Id = 0.5*mu*Cox*(W/L)*(Vgs - Vth0 - gamma*(sqrt(2*phi_f+Vsb) - sqrt(2*phi_f)))^2 * (1 + lambda*Vds)",
+    "symbols": {
+      "Vth0": "zero-bias threshold (V)",
+      "gamma": "body effect coefficient (V^0.5)",
+      "phi_f": "Fermi potential (V)",
+      "Vsb": "source-body voltage (V)",
+      "lambda": "CLM parameter (V^-1)"
+    },
+    "expected_confidence": "high",
+    "notes": "First-order model used in hand analysis"
+  },
+  {
+    "id": "M022",
+    "difficulty": "medium",
+    "topic": "Miller effect",
+    "question": "Explain the Miller effect on Cgd in a common-source amplifier and derive the effective input capacitance.",
+    "answer": "The Miller effect multiplies Cgd by (1 - Av) at the input: Cin_miller = Cgd*(1+|Av|). For Av = -20 V/V, a 5 fF Cgd appears as 105 fF at the input, severely degrading high-frequency performance.",
+    "equation": "Cin_miller = Cgd * (1 + |Av|)",
+    "symbols": {
+      "Cin_miller": "Miller capacitance seen at gate (F)",
+      "Cgd": "gate-drain capacitance (F)",
+      "Av": "voltage gain of stage (V/V)"
+    },
+    "expected_confidence": "high",
+    "notes": "Cascode topology eliminates Miller effect by keeping drain voltage nearly constant"
+  },
+  {
+    "id": "M023",
+    "difficulty": "medium",
+    "topic": "CMOS static power",
+    "question": "Write the static (leakage) power of a CMOS circuit and identify the dominant leakage components at the 28 nm node.",
+    "answer": "P_static = Vdd * I_leak where I_leak = I_sub + I_gate + I_junc. At 28 nm, subthreshold leakage I_sub = I0*exp(-Vth/(n*Vt)) and gate tunneling I_gate dominate. DIBL increases I_sub further. Total leakage can rival dynamic power at high temperatures.",
+    "equation": "P_static = VDD * (I_sub + I_gate + I_junction)",
+    "symbols": {
+      "P_static": "static leakage power (W)",
+      "I_sub": "subthreshold leakage current (A)",
+      "I_gate": "gate oxide tunneling current (A)",
+      "I_junction": "reverse-biased junction leakage (A)"
+    },
+    "expected_confidence": "high",
+    "notes": "Power gating and multi-Vth techniques used to reduce P_static"
+  },
+  {
+    "id": "M024",
+    "difficulty": "medium",
+    "topic": "Drain induced barrier lowering and Vth",
+    "question": "For a device with DIBL coefficient of 80 mV/V, how much does Vth shift when Vds increases from 0.05 V to 1.0 V?",
+    "answer": "delta_Vth = -DIBL * delta_Vds = -0.080 * (1.0 - 0.05) = -0.080 * 0.95 ≈ -76 mV. So Vth drops by ~76 mV, increasing subthreshold leakage exponentially.",
+    "equation": "delta_Vth = -DIBL * delta_Vds = -0.080 V/V * 0.95 V = -0.076 V",
+    "symbols": {
+      "DIBL": "80 mV/V = 0.080 V/V",
+      "delta_Vds": "Vds change = 0.95 V",
+      "delta_Vth": "threshold shift ≈ -76 mV"
+    },
+    "expected_confidence": "high",
+    "notes": "Numerical answer: -76 mV"
+  },
+  {
+    "id": "M025",
+    "difficulty": "medium",
+    "topic": "Noise — thermal",
+    "question": "Write the drain thermal noise current spectral density for a MOSFET and identify the key parameters.",
+    "answer": "Si_d = 4 * k * T * gamma_n * gm, where gamma_n ≈ 2/3 for long-channel devices and increases to ~1–2 for short-channel devices. Thermal noise originates from random scattering of carriers in the channel.",
+    "equation": "Si_d = 4 * k * T * gamma_n * gm",
+    "symbols": {
+      "Si_d": "drain current noise spectral density (A^2/Hz)",
+      "k": "Boltzmann constant (J/K)",
+      "T": "temperature (K)",
+      "gamma_n": "excess noise factor ≈ 2/3 long-channel",
+      "gm": "transconductance (S)"
+    },
+    "expected_confidence": "high",
+    "notes": "Gate noise and induced gate noise also present at high frequency"
+  },
+  {
+    "id": "M026",
+    "difficulty": "medium",
+    "topic": "Body effect coefficient",
+    "question": "Calculate the body effect coefficient gamma for a MOSFET with Na = 5e17 cm^-3 and tox = 5 nm.",
+    "answer": "Cox = 3.9*8.854e-12 / 5e-9 = 6.9 mF/m^2. gamma = sqrt(2*epsilon_s*q*Na) / Cox = sqrt(2*11.7*8.854e-12*1.6e-19*5e23) / 6.9e-3 ≈ sqrt(1.653e-5) / 6.9e-3 ≈ 4.07e-3 / 6.9e-3 ≈ 0.59 V^0.5",
+    "equation": "gamma = sqrt(2 * epsilon_s * q * Na) / Cox",
+    "symbols": {
+      "gamma": "body effect coefficient (V^0.5)",
+      "epsilon_s": "Si permittivity = 11.7*8.854e-12 F/m",
+      "q": "electron charge = 1.6e-19 C",
+      "Na": "5e17 cm^-3 = 5e23 m^-3",
+      "Cox": "oxide capacitance per unit area (F/m^2)"
+    },
+    "expected_confidence": "high",
+    "notes": "Numerical answer ≈ 0.59 V^0.5"
+  },
+  {
+    "id": "M027",
+    "difficulty": "medium",
+    "topic": "fT vs bias",
+    "question": "How does fT vary with drain current bias, and at what current is fT maximized in a given device?",
+    "answer": "In strong inversion: fT = gm/(2*pi*Cgs) ∝ sqrt(Id), so fT increases with current. In the velocity-saturated regime fT ∝ Id (linear). fT is maximized at the highest practical current density before self-heating or reliability limits are reached. In practice, fT peaks near Id_sat for a given W.",
+    "equation": "fT ∝ sqrt(Id)  (strong inversion),  fT ∝ Id  (velocity saturation)",
+    "symbols": {
+      "fT": "unity-gain frequency (Hz)",
+      "Id": "drain current (A)",
+      "gm": "transconductance (S)",
+      "Cgs": "gate-source capacitance (F)"
+    },
+    "expected_confidence": "high",
+    "notes": "In practice, fT peaks and then rolls off at very high Id due to series resistance"
+  },
+  {
+    "id": "M028",
+    "difficulty": "medium",
+    "topic": "Noise figure minimum",
+    "question": "Write the minimum noise figure NFmin of a MOSFET amplifier and state how to approach it.",
+    "answer": "NFmin = 1 + 2*sqrt(gamma_n*delta)*(Cgs*omega)/(gm), approximately 1 + 2*gamma_n*(f/fT)*sqrt(1+|c|^2). NFmin → 1 (0 dB) as f/fT → 0. To minimize NF: maximize gm/f ratio (bias at high Id, use large W) and minimize parasitics.",
+    "equation": "NFmin ≈ 1 + 2 * gamma_n * (f / fT)",
+    "symbols": {
+      "NFmin": "minimum noise figure (linear)",
+      "gamma_n": "excess noise factor",
+      "f": "operating frequency (Hz)",
+      "fT": "transit frequency (Hz)"
+    },
+    "expected_confidence": "medium",
+    "notes": "Valid for simplified van der Ziel model; full expression includes induced gate noise"
+  },
+  {
+    "id": "M029",
+    "difficulty": "medium",
+    "topic": "Charge sharing in SRAM",
+    "question": "Explain read stability in a 6T SRAM cell and the condition needed to avoid destructive read.",
+    "answer": "During a read, the access transistor (M5) and pull-down (M1) form a voltage divider. To avoid flipping the stored '0': V_internal = VDD * (W/L)_access / ((W/L)_access + (W/L)_pulldown) must remain below Vth_inverter. Requires (W/L)_pulldown > (W/L)_access, i.e., cell ratio CR = (W/L)_M1/(W/L)_M5 > 1. Typical CR = 2.",
+    "equation": "CR = (W/L)_pulldown / (W/L)_access > 1",
+    "symbols": {
+      "CR": "cell ratio",
+      "W/L_pulldown": "aspect ratio of pull-down nMOS",
+      "W/L_access": "aspect ratio of access nMOS"
+    },
+    "expected_confidence": "high",
+    "notes": "Read SNM improves with larger CR at the cost of cell area"
+  },
+  {
+    "id": "M030",
+    "difficulty": "medium",
+    "topic": "Inversion charge gradient",
+    "question": "Write the gradual channel approximation expression for inversion charge as a function of position x along the channel.",
+    "answer": "Qi(x) = -Cox * (Vgs - Vth - V(x)), where V(x) is the channel potential at position x. V(0) = 0 at source, V(L) = Vds at drain. Qi decreases toward the drain because the local overdrive Vgs - Vth - V(x) decreases.",
+    "equation": "Qi(x) = -Cox * (Vgs - Vth - V(x))",
+    "symbols": {
+      "Qi(x)": "inversion charge density at position x (C/m^2)",
+      "Cox": "oxide capacitance per unit area (F/m^2)",
+      "Vgs": "gate-source voltage (V)",
+      "Vth": "threshold voltage (V)",
+      "V(x)": "channel potential at x (V)"
+    },
+    "expected_confidence": "high",
+    "notes": "Integrating Id = -Qi(x)*W*v(x) over channel gives long-channel IV model"
+  },
+  {
+    "id": "M031",
+    "difficulty": "medium",
+    "topic": "Capacitance voltage characteristics",
+    "question": "Describe the three regions of MOS capacitor C-V curve (accumulation, depletion, inversion) and the capacitance value in each region.",
+    "answer": "Accumulation: C = Cox (maximum, holes pile up at surface). Depletion: C = Cox*Cd/(Cox+Cd) < Cox (series combination, decreases as Wd grows). Inversion (low frequency): C returns to Cox (inversion charge responds). Inversion (high frequency): C stays at Cox*Cd/(Cox+Cdm) (inversion charge cannot follow fast signal).",
+    "equation": "C_depletion = Cox * Cd / (Cox + Cd)",
+    "symbols": {
+      "Cox": "oxide capacitance per unit area (F/m^2)",
+      "Cd": "depletion capacitance per unit area (F/m^2)",
+      "Cdm": "minimum depletion capacitance at strong inversion (F/m^2)"
+    },
+    "expected_confidence": "high",
+    "notes": "The HF vs LF difference in inversion region is the classic deep-depletion effect"
+  },
+  {
+    "id": "M032",
+    "difficulty": "medium",
+    "topic": "Noise — flicker (1/f)",
+    "question": "Write the 1/f (flicker) drain current noise model and state what determines the corner frequency.",
+    "answer": "Sid = Kf * Id^af / (Cox * L^2 * f), where Kf is a process-dependent constant and af ≈ 1–2. The 1/f corner frequency fc where flicker noise equals thermal noise: fc = Kf*gm/(4*k*T*gamma*Cox*L^2). Larger L reduces 1/f noise (more oxide area averages trap density).",
+    "equation": "Sid_1f = Kf * Id^af / (Cox * L^2 * f)",
+    "symbols": {
+      "Sid_1f": "1/f drain noise spectral density (A^2/Hz)",
+      "Kf": "flicker noise coefficient (process-dependent)",
+      "Id": "drain current (A)",
+      "af": "current exponent ≈ 1–2",
+      "Cox": "oxide capacitance (F/m^2)",
+      "L": "channel length (m)",
+      "f": "frequency (Hz)"
+    },
+    "expected_confidence": "high",
+    "notes": "Dominant noise source below the corner frequency; PMOS typically has lower Kf"
+  },
+  {
+    "id": "M033",
+    "difficulty": "medium",
+    "topic": "Latch-up",
+    "question": "Explain the latch-up mechanism in CMOS and write the condition for its onset.",
+    "answer": "Latch-up involves the parasitic pnpn thyristor formed by p+/n-well/p-sub/n+ in CMOS. It triggers when: beta_pnp * beta_npn > 1. Once triggered, a low-impedance path forms from VDD to GND, potentially destroying the chip. Prevented by guard rings, deep n-wells, and supply-clamp circuits.",
+    "equation": "beta_pnp * beta_npn > 1  (latch-up condition)",
+    "symbols": {
+      "beta_pnp": "current gain of parasitic pnp BJT",
+      "beta_npn": "current gain of parasitic npn BJT"
+    },
+    "expected_confidence": "high",
+    "notes": "ESD events and supply glitches are common triggers"
+  },
+  {
+    "id": "M034",
+    "difficulty": "medium",
+    "topic": "Transconductance efficiency at different bias points",
+    "question": "A MOSFET is biased at Id = 100 µA with Vov = 200 mV. Calculate gm and gm/Id.",
+    "answer": "gm = 2*Id/Vov = 2*100e-6/0.2 = 1 mA/V. gm/Id = 1e-3/100e-6 = 10 V^-1. This is in the moderate inversion region; weak inversion maximum would give gm/Id ≈ 38 V^-1.",
+    "equation": "gm = 2 * Id / Vov = 2 * 100e-6 / 0.2 = 1 mA/V",
+    "symbols": {
+      "gm": "transconductance (A/V)",
+      "Id": "drain current = 100 µA",
+      "Vov": "overdrive voltage = 200 mV"
+    },
+    "expected_confidence": "high",
+    "notes": "Numerical answers: gm = 1 mA/V, gm/Id = 10 V^-1"
+  },
+  {
+    "id": "M035",
+    "difficulty": "medium",
+    "topic": "Reverse short-channel effect",
+    "question": "What is the reverse short-channel effect (RSCE) and in which channel length regime does Vth peak before rolling off?",
+    "answer": "RSCE is a non-monotonic Vth vs L behavior where Vth first increases with decreasing L (before the normal SCE roll-off dominates). It is caused by non-uniform channel doping: halo/pocket implants near source and drain create a higher local doping that raises Vth for short-L devices before drain-depletion sharing dominates. RSCE peaks around L = 50–200 nm depending on process.",
+    "equation": "Vth(L) has a maximum at L_peak then decreases for L < L_peak",
+    "symbols": {
+      "L_peak": "channel length at Vth maximum (nm)",
+      "Vth": "threshold voltage (V)"
+    },
+    "expected_confidence": "medium",
+    "notes": "Halo implants are intentionally designed to suppress SCE but cause RSCE"
+  },
+  {
+    "id": "M036",
+    "difficulty": "medium",
+    "topic": "Hot carrier injection",
+    "question": "Describe hot carrier injection (HCI) degradation in MOSFETs and the bias condition at which it is worst.",
+    "answer": "HCI occurs when carriers gain energy from the high lateral electric field near the drain (peak at Vds = Vdd, Vgs ≈ Vdd/2 for NMOS). Energetic electrons surmount the Si/SiO2 barrier (3.1 eV) and become trapped in the oxide, causing Vth drift and gm degradation over time. Worst condition: Isub is maximized (impact ionization peak).",
+    "equation": "Rate_HCI ∝ Isub^m * exp(-phi_it / (q * lambda_ii * E_peak))",
+    "symbols": {
+      "Isub": "substrate current (A)",
+      "phi_it": "interface trap generation energy",
+      "lambda_ii": "impact ionization mean free path (m)",
+      "E_peak": "peak lateral electric field (V/m)"
+    },
+    "expected_confidence": "medium",
+    "notes": "Mitigated by lightly-doped drain (LDD) structures"
+  },
+  {
+    "id": "M037",
+    "difficulty": "medium",
+    "topic": "Current mirror accuracy",
+    "question": "Derive the systematic error in a basic current mirror due to finite output resistance ro.",
+    "answer": "Ideal mirror: Iout = Iref. With finite ro: Iout = Iref * (1 + lambda*Vds_out)/(1 + lambda*Vds_ref). The fractional error = lambda*(Vds_out - Vds_ref). To minimize: use long L (small lambda) or cascode mirrors.",
+    "equation": "Iout = Iref * (1 + lambda * Vds_out) / (1 + lambda * Vds_ref)",
+    "symbols": {
+      "Iout": "output current (A)",
+      "Iref": "reference current (A)",
+      "lambda": "CLM parameter (V^-1)",
+      "Vds_out": "output drain-source voltage (V)",
+      "Vds_ref": "reference drain-source voltage (V)"
+    },
+    "expected_confidence": "high",
+    "notes": "Cascode mirror error ∝ lambda^2"
+  },
+  {
+    "id": "M038",
+    "difficulty": "medium",
+    "topic": "Drain-current mismatch",
+    "question": "The drain current of two matched MOSFETs differs due to threshold voltage mismatch. Write the expression relating delta_Id to delta_Vth.",
+    "answer": "delta_Id / Id = (gm/Id) * delta_Vth = (2/Vov) * delta_Vth. For Vov = 200 mV and delta_Vth = 5 mV: delta_Id/Id = (2/0.2)*0.005 = 5%.",
+    "equation": "delta_Id / Id = (2 / Vov) * delta_Vth",
+    "symbols": {
+      "delta_Id": "drain current mismatch (A)",
+      "Id": "nominal drain current (A)",
+      "Vov": "overdrive voltage (V)",
+      "delta_Vth": "threshold voltage mismatch (V)"
+    },
+    "expected_confidence": "high",
+    "notes": "Pelgrom model: sigma_Vth = A_Vth / sqrt(W*L)"
+  },
+  {
+    "id": "M039",
+    "difficulty": "medium",
+    "topic": "Band-to-band tunneling",
+    "question": "What is band-to-band tunneling (BTBT) leakage and in which device bias condition is it most significant?",
+    "answer": "BTBT occurs when the electric field at the reverse-biased drain-body junction is high enough to tunnel electrons from the valence band to the conduction band (Zener-like). Most significant at low Vgs (off state) with high Vds, as the drain-body depletion field is maximum. Generates electron-hole pairs, contributing to off-state leakage especially in heavily-doped junctions at advanced nodes.",
+    "equation": "J_BTBT ∝ E^2 * exp(-4*sqrt(2*m*) * Eg^(3/2) / (3 * q * hbar * E))",
+    "symbols": {
+      "J_BTBT": "BTBT current density (A/m^2)",
+      "E": "electric field at junction (V/m)",
+      "Eg": "bandgap energy (J)",
+      "m*": "effective tunneling mass (kg)"
+    },
+    "expected_confidence": "medium",
+    "notes": "BTBT increases with smaller Eg; critical concern for Ge and III-V devices"
+  },
+  {
+    "id": "M040",
+    "difficulty": "medium",
+    "topic": "Negative bias temperature instability",
+    "question": "Describe NBTI degradation in pMOS transistors and write the power-law time dependence of Vth shift.",
+    "answer": "NBTI occurs in pMOS under negative gate bias at elevated temperature. Si-H bonds at the Si/SiO2 interface break, generating interface traps. Vth shifts as: |delta_Vth| = A * t^n * exp(-Ea/(kT)), where n ≈ 0.25, A depends on oxide field, and Ea ≈ 0.1–0.2 eV. Partially recovers when stress is removed.",
+    "equation": "|delta_Vth| = A * t^n * exp(-Ea / (k * T))",
+    "symbols": {
+      "delta_Vth": "threshold voltage shift (V)",
+      "A": "process-dependent prefactor",
+      "t": "stress time (s)",
+      "n": "time exponent ≈ 0.25",
+      "Ea": "activation energy ≈ 0.1–0.2 eV",
+      "k": "Boltzmann constant (J/K)",
+      "T": "temperature (K)"
+    },
+    "expected_confidence": "medium",
+    "notes": "NBTI is the dominant reliability mechanism in digital CMOS at advanced nodes"
+  },
+  {
+    "id": "H001",
+    "difficulty": "hard",
+    "topic": "Full subthreshold current derivation",
+    "question": "Derive the full subthreshold drain current expression from drift-diffusion theory, including the ideality factor n, and explain each term's physical origin.",
+    "answer": "Starting from Jn = q*Dn*dn/dx - q*n*mu_n*dV/dx and integrating under gradual channel approximation with Boltzmann statistics for n(phi_s): Id = (W/L)*mu_n*(kT/q)^2*(Cox/q)*n_s0 * (1 - exp(-Vds/Vt)) * exp((Vgs-Vth)/(n*Vt)). Here n = 1 + Cd/Cox is the body factor: it accounts for the fact that some gate voltage drops across the depletion region rather than the oxide. The (1 - exp(-Vds/Vt)) term saturates the current at Vds >> Vt (≈ 3-4*kT/q).",
+    "equation": "Id = I0 * (W/L) * exp((Vgs - Vth) / (n * Vt)) * (1 - exp(-Vds / Vt))",
+    "symbols": {
+      "I0": "pre-exponential current scale ∝ mu_n*(kT/q)^2*Cox (A)",
+      "n": "subthreshold ideality factor = 1 + Cd/Cox",
+      "Vt": "thermal voltage kT/q (V)",
+      "Vgs": "gate-source voltage (V)",
+      "Vth": "threshold voltage (V)",
+      "Vds": "drain-source voltage (V)"
+    },
+    "expected_confidence": "high",
+    "notes": "SS = n*Vt*ln(10) = n*60 mV/dec follows directly from the exp(Vgs/(n*Vt)) dependence"
+  },
+  {
+    "id": "H002",
+    "difficulty": "hard",
+    "topic": "BSIM4 charge model — velocity saturation",
+    "question": "In the BSIM4 unified charge model, how is the saturation voltage Vdsat modified from the long-channel value, and what is the physical reason?",
+    "answer": "Long-channel: Vdsat = Vgs - Vth. BSIM4 unified model: Vdsat = (Esat*L*(Vgs-Vth)) / (Esat*L + Vgs-Vth), where Esat = 2*vsat/mu. This harmonic mean interpolates between the long-channel limit (Vdsat = Vov) and the velocity-saturated limit (Vdsat = Esat*L). Physically: when L is short and (Vgs-Vth) > Esat*L, carriers reach vsat before pinch-off, so Vdsat saturates at Esat*L.",
+    "equation": "Vdsat = Esat * L * Vov / (Esat * L + Vov)",
+    "symbols": {
+      "Vdsat": "saturation voltage (V)",
+      "Esat": "saturation field = 2*vsat/mu (V/m)",
+      "L": "channel length (m)",
+      "Vov": "overdrive voltage = Vgs - Vth (V)",
+      "vsat": "carrier saturation velocity (m/s)",
+      "mu": "carrier mobility (m^2/Vs)"
+    },
+    "expected_confidence": "high",
+    "notes": "As L → 0: Vdsat → Esat*L = 2*vsat*L/mu (velocity-saturated limit)"
+  },
+  {
+    "id": "H003",
+    "difficulty": "hard",
+    "topic": "FinFET electrostatics",
+    "question": "Explain why FinFETs have superior short-channel electrostatic control compared to planar MOSFETs, and write the natural length lambda_F that governs SCE immunity.",
+    "answer": "FinFET wraps the gate on three sides, creating two additional gate-to-channel fields that suppress DIBL and SCE. The natural length for a double-gate (equivalent) structure is lambda_F = sqrt(epsilon_si * Tfin^2 / (epsilon_ox * 8)), meaning shorter fins and thinner oxides give smaller lambda_F and better SCE immunity. Rule of thumb: L > 5*lambda_F ensures Vth roll-off < 30 mV.",
+    "equation": "lambda_F = sqrt(epsilon_si * Tfin^2 / (8 * epsilon_ox / tox))",
+    "symbols": {
+      "lambda_F": "natural length of FinFET (m)",
+      "epsilon_si": "silicon permittivity (F/m)",
+      "Tfin": "fin thickness (m)",
+      "epsilon_ox": "oxide permittivity (F/m)",
+      "tox": "gate oxide thickness (m)"
+    },
+    "expected_confidence": "medium",
+    "notes": "3D nature of FinFET makes analytical models approximate; TCAD used for precision"
+  },
+  {
+    "id": "H004",
+    "difficulty": "hard",
+    "topic": "Mismatch and Pelgrom model",
+    "question": "State the Pelgrom mismatch model for threshold voltage, derive the variance for a current mirror, and state the design implication.",
+    "answer": "Pelgrom: sigma^2(Vth) = A_Vth^2 / (W*L). For a current mirror biased in saturation, delta_Id/Id = (2/Vov)*delta_Vth, so sigma^2(Id/Id) = (2/Vov)^2 * A_Vth^2/(W*L). To halve sigma(Id/Id): quadruple WL or double Vov. Larger W*L area and larger overdrive both improve matching.",
+    "equation": "sigma^2(Vth) = A_Vth^2 / (W * L)",
+    "symbols": {
+      "sigma(Vth)": "threshold voltage standard deviation (V)",
+      "A_Vth": "Pelgrom coefficient ≈ 2–5 mV·µm (process-dependent)",
+      "W": "channel width (m)",
+      "L": "channel length (m)"
+    },
+    "expected_confidence": "high",
+    "notes": "Scaling reduces W*L area, worsening mismatch unless A_Vth improves"
+  },
+  {
+    "id": "H005",
+    "difficulty": "hard",
+    "topic": "Ballistic transport limit",
+    "question": "Derive the ballistic drain current limit for a MOSFET and explain how it differs from the drift-diffusion result.",
+    "answer": "In the ballistic limit, no scattering occurs. The maximum current is set by the thermal injection velocity at the source: Id_bal = Cox*(Vgs-Vth)*W*v_inj, where v_inj = sqrt(2*kT/(pi*m*)) is the mean injection velocity of the thermal distribution. Compared to drift-diffusion: Id_dd = Cox*(Vgs-Vth)*mu*Vds/L. At the ballistic limit, Id no longer depends on L, so further scaling gives no drive current gain.",
+    "equation": "Id_ballistic = Cox * (Vgs - Vth) * W * v_inj",
+    "symbols": {
+      "v_inj": "thermal injection velocity = sqrt(2*kT/(pi*m*)) (m/s)",
+      "Cox": "oxide capacitance (F/m^2)",
+      "m*": "effective electron mass (kg)",
+      "W": "channel width (m)"
+    },
+    "expected_confidence": "medium",
+    "notes": "Modern sub-10 nm devices operate at 50–80% of the ballistic limit"
+  },
+  {
+    "id": "H006",
+    "difficulty": "hard",
+    "topic": "DIBL—analytical model",
+    "question": "Using the 2D Poisson solution for a short-channel MOSFET, derive the analytical expression for DIBL and its dependence on channel length.",
+    "answer": "From the 2D solution of Poisson's equation in the depletion region (quasi-2D approach): the minimum channel potential Vmin decreases as Vds increases due to the drain's Coulomb influence penetrating the channel. DIBL ∝ exp(-L / lambda), where lambda = sqrt(epsilon_si * tox * Wdm / epsilon_ox) is the characteristic length. This shows DIBL degrades exponentially as L is reduced, and improves exponentially with thinner tox (smaller lambda).",
+    "equation": "DIBL ∝ Vds * exp(-L / lambda),  lambda = sqrt(epsilon_si * tox * Wdm / epsilon_ox)",
+    "symbols": {
+      "lambda": "characteristic length (m)",
+      "L": "channel length (m)",
+      "Wdm": "maximum depletion width (m)",
+      "tox": "oxide thickness (m)",
+      "epsilon_si": "silicon permittivity (F/m)",
+      "epsilon_ox": "oxide permittivity (F/m)"
+    },
+    "expected_confidence": "medium",
+    "notes": "This is the 1D natural length model; FinFETs replace Wdm with Tfin/2 to suppress lambda"
+  },
+  {
+    "id": "H007",
+    "difficulty": "hard",
+    "topic": "Unified MOSFET model — all regions",
+    "question": "Write a single continuous drain current expression that unifies weak inversion, moderate inversion, and strong inversion without discontinuities.",
+    "answer": "One widely-used form (EKV-inspired): Id = (mu*Cox*W)/(2*n*L) * (2*n*Vt)^2 * [ln(1 + exp((Vgs-Vth)/(2*n*Vt)))^2 - ln(1 + exp((Vgs-Vth-Vds)/(2*n*Vt)))^2]. This smoothly interpolates: at Vgs << Vth it gives the exponential subthreshold current; at Vgs >> Vth it reduces to the square-law. No separate piecewise regions needed.",
+    "equation": "Id = (mu*Cox*W/(2*n*L)) * [2*n*Vt*ln(1+exp((Vgs-Vth)/(2*n*Vt)))]^2 evaluated at source minus drain",
+    "symbols": {
+      "n": "slope factor = 1 + Cd/Cox",
+      "Vt": "thermal voltage kT/q (V)",
+      "Vgs": "gate-source voltage (V)",
+      "Vth": "threshold voltage (V)",
+      "Vds": "drain-source voltage (V)"
+    },
+    "expected_confidence": "medium",
+    "notes": "EKV and PSP models use variants of this formulation for SPICE simulation"
+  },
+  {
+    "id": "H008",
+    "difficulty": "hard",
+    "topic": "Charge-based vs voltage-based model",
+    "question": "Explain why compact models (e.g. PSP, BSIM-CMG) use inversion charge Qi as the primary state variable rather than terminal voltages, and write the resulting surface potential equation.",
+    "answer": "Voltage-based models (like early BSIM) use Vth to partition regions, causing discontinuities in derivatives at region boundaries. Charge-based models use surface potential phi_s or inversion charge density Qi as the primary variable, which varies continuously. The surface potential equation: Vgs = phi_ms + phi_s - Qd/Cox - Qi/Cox, where Qi and Qd are determined self-consistently from phi_s. This ensures smooth gm and gds across all operating regions, critical for RF and analog simulation accuracy.",
+    "equation": "Vgs = phi_ms + phi_s - Qd(phi_s)/Cox - Qi(phi_s)/Cox",
+    "symbols": {
+      "phi_s": "surface potential (V)",
+      "phi_ms": "work function difference (V)",
+      "Qd": "depletion charge per unit area (C/m^2)",
+      "Qi": "inversion charge per unit area (C/m^2)",
+      "Cox": "oxide capacitance per unit area (F/m^2)"
+    },
+    "expected_confidence": "medium",
+    "notes": "PSP model is the industry standard for advanced node analog/RF; BSIM-CMG for FinFETs"
+  },
+  {
+    "id": "H009",
+    "difficulty": "hard",
+    "topic": "Quantum confinement in inversion layer",
+    "question": "How does quantum mechanical confinement of the inversion layer affect the effective threshold voltage compared to the classical model?",
+    "answer": "In a thin inversion layer, carriers are confined in a quantum well formed by the Si/SiO2 barrier and the triangular potential in the depletion region. The first subband energy E1 = (hbar^2/(2*m*))(3*pi*q*E_eff/2*hbar)^(2/3) is above the classical conduction band edge. This shifts the effective 'centroid' of the inversion charge ~1–2 nm from the interface, increasing the effective oxide thickness by delta_Tox = 0.3–0.5 nm (quantum correction). Vth increases by ~50–100 mV compared to classical prediction.",
+    "equation": "E1 = (hbar^2 / (2*m*)) * (3*pi*q*E_eff / (2*hbar))^(2/3)",
+    "symbols": {
+      "E1": "ground state energy of first subband (J)",
+      "hbar": "reduced Planck constant (J·s)",
+      "m*": "effective electron mass in Si (kg)",
+      "E_eff": "effective transverse electric field (V/m)"
+    },
+    "expected_confidence": "medium",
+    "notes": "Quantum correction models (van Dort, Hansch) add delta_Vth to compact models"
+  },
+  {
+    "id": "H010",
+    "difficulty": "hard",
+    "topic": "Drain current noise in short-channel devices",
+    "question": "How does the excess noise factor gamma_n change from long-channel to short-channel MOSFETs, and what is the fundamental reason?",
+    "answer": "Long-channel: gamma_n = 2/3 (derived analytically from thermal noise in a distributed channel resistance). Short-channel: gamma_n increases to 1–3 because: (1) velocity saturation creates a small high-field region near drain with high noise; (2) hot-carrier effects increase carrier temperature above lattice temperature; (3) short-channel resistance fluctuations. In the velocity-saturated limit, gamma_n → 1 by some models. This directly degrades the minimum noise figure NFmin = 1 + 2*sqrt(gamma_n)*f/fT.",
+    "equation": "NFmin ≈ 1 + 2 * sqrt(gamma_n * delta) * f / fT",
+    "symbols": {
+      "gamma_n": "excess noise factor (2/3 long-channel, up to ~2 short-channel)",
+      "delta": "induced gate noise factor ≈ 4/3",
+      "f": "frequency (Hz)",
+      "fT": "unity-gain frequency (Hz)"
+    },
+    "expected_confidence": "medium",
+    "notes": "Controversy exists on exact gamma_n for modern devices; direct noise measurement needed"
+  },
+  {
+    "id": "H011",
+    "difficulty": "hard",
+    "topic": "Threshold voltage for GAA nanosheet",
+    "question": "How is the threshold voltage model modified for a gate-all-around (GAA) nanosheet transistor compared to a planar MOSFET?",
+    "answer": "For a cylindrical GAA device with radius R and oxide thickness tox: Vth_GAA = Vfb + 2*phi_f + (q*Na*R^2)/(4*epsilon_si) * [1 - (2*lambda_D^2/R^2)] - (q*Na*R^2/(2*epsilon_si)) * ln(1 + tox*epsilon_si/(R*epsilon_ox)), where the body charge term is modified by the cylindrical geometry. The key difference: the effective Wdm is now R (fin/wire radius), which is very small, so the depletion charge term is small, Vth is lower, and SCE immunity is excellent.",
+    "equation": "Vth_GAA = Vfb + 2*phi_f + (q*Na*R^2/(4*epsilon_si))*(ln(1 + R*epsilon_ox/(tox*epsilon_si)))",
+    "symbols": {
+      "R": "nanosheet half-thickness or wire radius (m)",
+      "Vfb": "flat-band voltage (V)",
+      "phi_f": "Fermi potential (V)",
+      "Na": "channel doping (m^-3)",
+      "epsilon_si": "silicon permittivity (F/m)",
+      "epsilon_ox": "oxide permittivity (F/m)",
+      "tox": "equivalent oxide thickness (m)"
+    },
+    "expected_confidence": "low",
+    "notes": "GAA (MBCFET) is the device architecture from 3 nm node onward (TSMC, Samsung)"
+  },
+  {
+    "id": "H012",
+    "difficulty": "hard",
+    "topic": "Negative capacitance FET",
+    "question": "Explain the operating principle of a negative capacitance FET (NC-FET) and how it can achieve sub-60 mV/decade subthreshold swing.",
+    "answer": "In an NC-FET, a ferroelectric (FE) layer is inserted in the gate stack. The ferroelectric has a negative capacitance region in its free energy landscape (S-curve in P-E). When the FE capacitance |CFE| is matched to the internal semiconductor capacitance Cs, the series combination yields a gate amplification: dVs/dVg > 1. The surface potential changes more than the gate voltage, giving SS = (kT/q)*ln(10)/(1 + Cs/CFE) < 60 mV/dec. Requires |1/CFE| < 1/Cs for stability.",
+    "equation": "SS = (k*T/q) * ln(10) / (1 + Cs / |CFE|)",
+    "symbols": {
+      "CFE": "ferroelectric capacitance per unit area (F/m^2, negative in amplification regime)",
+      "Cs": "semiconductor (depletion + inversion) capacitance per unit area (F/m^2)",
+      "SS": "subthreshold swing (mV/decade)"
+    },
+    "expected_confidence": "low",
+    "notes": "Active research area; stability and hysteresis challenges remain"
+  },
+  {
+    "id": "H013",
+    "difficulty": "hard",
+    "topic": "Self-consistent Poisson-Schrodinger",
+    "question": "Why must Poisson's equation and Schrödinger's equation be solved self-consistently for ultra-thin body SOI and FinFET devices, and what quantity do they exchange?",
+    "answer": "In thin-body devices (Tbody < 5 nm), the electron wavefunction is confined and the classical charge distribution n(x) = Nc*exp((Ef-Ec(x))/kT) is no longer valid because quantum states are discrete subbands. Schrödinger's equation gives the subband wavefunctions psi_i(x) and energies Ei. Poisson's equation requires the charge density rho(x) = q*sum_i(n_i*|psi_i(x)|^2). These couple because Ec(x) = -q*phi(x) depends on the potential phi(x) which depends on rho(x) which depends on psi_i(x). Must iterate to convergence.",
+    "equation": "[-hbar^2/(2*m*) * d^2/dx^2 + Ec(x)] * psi_i = Ei * psi_i  and  d^2phi/dx^2 = -rho(x)/epsilon_si",
+    "symbols": {
+      "psi_i": "wavefunction of i-th subband",
+      "Ei": "energy of i-th subband (J)",
+      "Ec(x)": "conduction band edge = -q*phi(x) (J)",
+      "phi(x)": "electrostatic potential (V)",
+      "rho(x)": "charge density (C/m^3)"
+    },
+    "expected_confidence": "low",
+    "notes": "Implemented in TCAD tools (Sentaurus, Silvaco Atlas) for advanced node device simulation"
+  },
+  {
+    "id": "H014",
+    "difficulty": "hard",
+    "topic": "Random dopant fluctuation",
+    "question": "Derive the standard deviation of threshold voltage due to random dopant fluctuations (RDF) and explain why it becomes catastrophic below the 20 nm node.",
+    "answer": "The number of dopants in the depletion volume N_dep = Na * W * L * Wdm has Poisson statistics: sigma(N) = sqrt(N_dep). Each dopant fluctuation causes delta_Vth = q/(Cox*W*L). Thus sigma_Vth_RDF = q/(Cox*W*L) * sqrt(Na*W*L*Wdm) = q/(Cox) * sqrt(Na*Wdm/(W*L)). For W = L = 10 nm, Na = 5e18 cm^-3: N_dep ≈ 5 atoms per volume element, so sigma_N/N ≈ 45%! sigma_Vth can exceed 100 mV, making discrete threshold control impossible. This drives the move to undoped-channel FinFETs.",
+    "equation": "sigma_Vth_RDF = (q / Cox) * sqrt(Na * Wdm / (W * L))",
+    "symbols": {
+      "sigma_Vth_RDF": "RDF-induced Vth standard deviation (V)",
+      "q": "electron charge (C)",
+      "Cox": "oxide capacitance per unit area (F/m^2)",
+      "Na": "channel doping (m^-3)",
+      "Wdm": "max depletion width (m)",
+      "W": "channel width (m)",
+      "L": "channel length (m)"
+    },
+    "expected_confidence": "medium",
+    "notes": "FinFETs use intrinsic (undoped) channels; Vth set by metal work function instead"
+  },
+  {
+    "id": "H015",
+    "difficulty": "hard",
+    "topic": "Phonon scattering and low-field mobility",
+    "question": "Describe the temperature dependence of electron mobility in silicon due to acoustic phonon scattering and write the power-law expression.",
+    "answer": "Acoustic phonon scattering dominates at room temperature. Scattering rate ∝ T (phonon occupation ∝ T at kT >> hbar*omega_ph). Mobility mu ∝ T^(-3/2) for acoustic phonon: mu_n = mu_300 * (T/300)^(-3/2). For silicon: mu_n(300K) ≈ 0.04 m^2/Vs → mu_n(400K) ≈ 0.04*(400/300)^(-3/2) ≈ 0.026 m^2/Vs. Optical phonon and ionized impurity scattering modify this at low T.",
+    "equation": "mu_n(T) = mu_300 * (T / 300)^(-3/2)",
+    "symbols": {
+      "mu_n(T)": "electron mobility at temperature T (m^2/Vs)",
+      "mu_300": "electron mobility at 300 K ≈ 0.04 m^2/Vs",
+      "T": "temperature (K)"
+    },
+    "expected_confidence": "high",
+    "notes": "At low T, ionized impurity scattering (mu ∝ T^(3/2)) dominates; total: Matthiessen's rule"
+  },
+  {
+    "id": "H016",
+    "difficulty": "hard",
+    "topic": "Reliability — TDDB",
+    "question": "Describe time-dependent dielectric breakdown (TDDB) of gate oxides and write the E-model and 1/E-model for oxide lifetime.",
+    "answer": "TDDB is the progressive generation of oxide traps under high field stress until a conductive percolation path forms, shorting the gate. E-model (Fowler-Nordheim tunneling dominated): MTTF = A*exp(-B*E_ox), lifetime decreases exponentially with field. 1/E-model (thermochemical): MTTF = C*exp(G/E_ox), predicts lifetime improvement at low field. For SiO2 below 5 nm, 1/E-model is generally accepted. At 10 MV/cm, typical SiO2 lifetime < 1s; at 5 MV/cm, > 10 years.",
+    "equation": "MTTF = A * exp(-B * E_ox)  [E-model]  or  MTTF = C * exp(G / E_ox)  [1/E-model]",
+    "symbols": {
+      "MTTF": "mean time to failure (s)",
+      "E_ox": "oxide electric field = Vgs/tox (V/m)",
+      "A, B, C, G": "empirical fitting parameters",
+      "B": "field acceleration parameter"
+    },
+    "expected_confidence": "medium",
+    "notes": "Operating field ~5 MV/cm gives 10-year lifetime for 5 nm SiO2 per 1/E-model"
+  },
+  {
+    "id": "H017",
+    "difficulty": "hard",
+    "topic": "Threshold voltage with quantum correction",
+    "question": "Write the quantum-corrected threshold voltage including the first-subband energy shift and the charge centroid correction.",
+    "answer": "Vth_QM = Vth_classical + delta_Vth_QM, where delta_Vth_QM = E1/q + delta_Tox_centroid * Cox^(-1) * q * n_inv_centroid_shift. Typically delta_Vth_QM ≈ 50–150 mV, increasing with inversion charge (stronger confinement at higher Vgs). The correction is: delta_Vth_QM ≈ (hbar^2 / (2*m_perp * Cox)) * (3*pi*q*Cox*(Vgs-Vth)/(2*epsilon_si*hbar))^(2/3) / q.",
+    "equation": "delta_Vth_QM = E1(Vgs) / q,  E1 = (hbar^2/2m*)(3*pi*q*Q_inv/(2*epsilon_si*hbar))^(2/3)",
+    "symbols": {
+      "E1": "first subband energy (J)",
+      "m_perp": "transverse effective mass in Si (0.916*m0 for Delta2 valleys) (kg)",
+      "Q_inv": "inversion charge density (C/m^2)",
+      "hbar": "reduced Planck constant (J·s)"
+    },
+    "expected_confidence": "low",
+    "notes": "Typically 50–100 mV correction for tox < 5 nm"
+  },
+  {
+    "id": "H018",
+    "difficulty": "hard",
+    "topic": "Drain current with all second-order effects",
+    "question": "Write the MOSFET drain current including channel-length modulation, velocity saturation, and mobility degradation simultaneously, and state which dominates at what bias.",
+    "answer": "Id = (mu_eff * Cox * W * (Vgs-Vth-Vds/2) * Vds) / (L*(1 + Vds/Esat*L) * (1 + theta*(Vgs-Vth))) for linear region, where Esat = 2*vsat/mu0 captures velocity saturation, theta captures mobility degradation, and (1+lambda*Vds) adds CLM in saturation. At low Vds: CLM negligible, mobility degradation and vsat dominate. At high Vds/short L: velocity saturation sets Idsat. CLM dominates the slope in saturation. Mobility degradation is most visible at high Vgs.",
+    "equation": "Id = mu_eff * Cox * (W/L) * (Vgs-Vth-Vds/2)*Vds / ((1+Vds/(Esat*L))*(1+theta*(Vgs-Vth)))",
+    "symbols": {
+      "Esat": "saturation field = 2*vsat/mu0 (V/m)",
+      "theta": "mobility degradation coefficient (V^-1)",
+      "lambda": "CLM parameter (V^-1)",
+      "mu_eff": "effective mobility with vertical-field degradation (m^2/Vs)"
+    },
+    "expected_confidence": "medium",
+    "notes": "This is a simplified unified expression; BSIM4 uses more sophisticated versions"
+  },
+  {
+    "id": "H019",
+    "difficulty": "hard",
+    "topic": "Strain engineering and mobility enhancement",
+    "question": "Explain how biaxial tensile strain in silicon enhances electron mobility and write the quantitative enhancement factor.",
+    "answer": "Biaxial tensile strain (from Si grown on relaxed SiGe) splits the conduction band 6-fold degeneracy: 2 valleys (Delta_2, lower transverse mass in transport direction) drop in energy relative to 4 (Delta_4, higher mass). Electrons populate predominantly Delta_2 valleys, reducing intervalley scattering and the transport effective mass. Mobility enhancement: mu_strained/mu_bulk = 1 + beta_strain * epsilon, where beta_strain ≈ 2–5 (biaxial), epsilon = (a_SiGe - a_Si)/a_Si is biaxial strain. For 20% Ge: epsilon ≈ 0.008, giving 60–80% mobility enhancement.",
+    "equation": "mu_strained / mu_bulk = 1 + beta_strain * epsilon",
+    "symbols": {
+      "beta_strain": "piezoresistance coefficient (dimensionless, ~2–5 for biaxial)",
+      "epsilon": "biaxial strain = (a_SiGe - a_Si)/a_Si",
+      "a_SiGe": "relaxed SiGe lattice constant (m)",
+      "a_Si": "silicon lattice constant = 0.543 nm (m)"
+    },
+    "expected_confidence": "medium",
+    "notes": "Compressive uniaxial strain (eSiGe source/drain) enhances hole mobility in pMOS"
+  },
+  {
+    "id": "H020",
+    "difficulty": "hard",
+    "topic": "Full SPICE model parameter extraction",
+    "question": "Describe a systematic procedure to extract the key BSIM4 parameters (Vth0, mu0, vsat, lambda, theta) from measured Id-Vgs and Id-Vds curves.",
+    "answer": "Step 1: Extract Vth0 from linear Id-Vgs at Vds=50 mV using peak-gm extrapolation: Vth = Vgs_peak_gm - Vds/2. Step 2: Extract mu0 from slope of Id vs Vgs above Vth at low Vds: mu0 = (dId/dVgs) * L/(W*Cox*Vds). Step 3: Extract theta from curvature of Id vs Vgs (reduces at high Vgs): fit Id = mu0*Cox*(W/L)*(Vgs-Vth)*Vds/(1+theta*(Vgs-Vth)). Step 4: Extract lambda from slope of Id vs Vds in saturation: lambda = (dId/dVds) / Id. Step 5: Extract vsat from Idsat vs Vgs at multiple L using Vdsat = Esat*L*Vov/(Esat*L+Vov).",
+    "equation": "Vth = Vgs|_{peak gm} - Vds/2  (linear extrapolation method)",
+    "symbols": {
+      "Vth0": "threshold at Vds=50 mV, Vsb=0 (V)",
+      "mu0": "low-field mobility (m^2/Vs)",
+      "theta": "mobility degradation (V^-1)",
+      "lambda": "CLM parameter (V^-1)",
+      "vsat": "saturation velocity (m/s)"
+    },
+    "expected_confidence": "medium",
+    "notes": "In practice, all parameters are extracted simultaneously using optimization (least squares) in tools like ICCAP or BSIMProPlus"
+  }
+]

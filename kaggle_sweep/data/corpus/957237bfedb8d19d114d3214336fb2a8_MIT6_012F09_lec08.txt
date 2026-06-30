@@ -1,0 +1,1235 @@
+  
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+  
+ 
+ 
+  
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+6.012 - Microelectronic Devices and Circuits 
+Lecture 8 - BJTs Wrap-up, Solar Cells, LEDs - Outline  
+• Announcements 
+Exam One - Tomorrow, Wednesday, October 7, 7:30 pm 
+• BJT Review 
+Wrapping up BJTs (for now)  
+History - 1948 to Today  
+• p-n Diode review 
+Reverse biased junctions - photodiodes and solar cells 
+In the dark:  no minority carriers, no current 
+With illumination:  superposition, iD(vAB, L); photodiodes 
+The fourth quadrant:  optical-to-electrical conversion; solar cells 
+Video:  "Solar cell electricity is better electricity - putting 6.012 to work 
+improving our world (a true story)" 
+Forward biased junctions - light emitting diodes, diode lasers 
+Video:  "The LEDs Around Us" 
+Diode design for efficient light emission:  materials, structure 
+The LED renaissance:  red, amber, yellow, green, blue, white 
+Clif Fonstad, 10/6/09 
+Lecture 8 - Slide 1 
+
+ 
+  
+ 
+BJT Modeling: FAR models/characteristics  
+B
+E
+C
+vBE
++
+–
+iF
+IES
+!FiF
+iB
+"FiB
+or
+B
+E
+C
+vBE
++
+–
+iB
+IBS
+!FiB
+"F # $ iC
+iE
+=
+1$%B
+(
+)
+1+ %E
+(
+)
+&
+1
+1+ %E
+(
+)
+"F # iC
+iB
+=
+1$%B
+(
+)
+%E + %B
+(
+)
+&
+1
+%E
+Defects  
+"E = Dh
+De
+# NAB
+NDE
+# wB,eff
+wE,eff
+"B #
+wB,eff
+2
+2LeB
+2
+Design 
+Clif Fonstad, 10/6/09 
+Doping :    npn with   NDE >> NAB
+   wB,eff :   very small 
+      LeB :    very large and  >> wB,eff
+Lecture 8 - Slide 2 
+
+ 
+   
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+BJT's, cont.: What about the collector doping, NDC? 
+An effect we didn't put into our large signal model 
+• Base width modulation - the Early effect and Early voltage: 
+The width of the depletion region at the B-C junction increases as vCE 
+increases and the effective base width, wB,eff, gets smaller, thereby 
+E 
+Clif Fonstad, 10/6/09 reverse breakdown of the B-C junction. 
+Lecture 8 - Slide 3 
+• Punch through - base width modulation taken to the limit 
+When the depletion region at the B-C junction extends all the way
+through the base to the emitter, IC increases uncontrolably. 
+Punch through has a similar effect on the characteristics to that of 
+Punch through 
+p 
+n 
+wB,eff 
+C 
+Early effect 
+B 
+n+ 
+increasing β and, in turn, iC. 
+• We will take this effect into account in our small signal LEC modeling. 
+To minimize the Early effect we make NDC < NAB 
+
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+pnp BJT's: The other "flavor" of bipolar junction transistor 
+pnp 
+Symbol and FAR model: 
+Oriented with emitter down like npn: 
+C
+Structure: 
+iC 
++
+  
+C 
+iC
+iB 
+B + vBE 
+− E
+vCE 
+B
+E
+C
+vEB
++
+–
+IES
+!FIESe
+iB
+"FiB
+or
+qVEB/kT
+Oriented as found in circuits:  
++ 
+p+ 
+NAE 
+n 
+NDB 
+p
+NAC 
+iB  
+B
+C
+E
+vEB
++
+–
+IES
+!FIESe
+iB
+"FiB
+or
+qVEB/kT
+B  
+E 
++
+  
+vEB  
+vBE  
+B  
+−
+  
+iB 
+-iC
+C
+−
+− 
+iE
+E 
+Clif Fonstad, 10/6/09 
+Lecture 8 - Slide 4 
+
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+  
+ 
+Metallic base contact 
+n-type base wafer 
+Active base 
+region 
+Metallic emitter 
+contact 
+(2.5 mm) 
+Recrystallized  
+p-type regions  
+Metallic collector contact 
+Approx. 0.001" 
+(25 µm) 
+Diagram of an alloy junction bipolar junction transistor.
+Figure by MIT OpenCourseWare. 
+Alloy junction BJT 
+- Early1950's 
+Early Bipolar 
+Junction  
+Transistors  
+- the first 10 yrs. 
+Clif Fonstad, 10/6/09 
+Photograph of grown junction BJT (showing device width of 5 mm) 
+removed due to copyright restrictions. 
+Grown junction BJT - mid-1950's 
+p-type emitter region 
+Base contact 
+Base contact Emitter contact 
+n-type base region 
+Approx. 0.0002" 
+(0.25 mm) 
+Diagram of a diffused ju
+nction bipolar junc
+tion transistor.
+(5 µm) 
+Figure by MIT OpenCourseWare. 
+Diffused junction BJT - late-1950's 
+Lecture 8 - Slide 5 
+
+ 
+ 
+ 
+Di
+ag
+r
+am
+ o
+f 
+ju
+nct
+io
+n 
+is
+ol
+ated
+ in
+tegr
+ate
+d B
+JT 
+and
+ o
+xid
+e isolated integrated BJT.
+Integrated Bipolar Junction Transistors 
+- integrated circuit processes. 
+Clif Fonstad, 10/6/09 
+Figure by MIT OpenCourseWare. 
+Lecture 8 - Slide 6 
+
+  
+ 
+ 
+ 
+  
+ 
+ 
+ 
+   
+  
+     
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+     
+  
+ 
+Photodiodes - illuminated p-n junction diodes 
+Consider a p-n diode illuminated at x = xn + a(wn-xn), 0 ≤ a ≤ 1. 
+p 
+n 
+Ohmic 
+contact 
+Ohmic 
+contact 
+A 
+B 
+iD 
++ 
+-
+vAB 
+qM 
+x 
+-wp 
+-xp 0 xn 
+xL = 
+wn 
+xn+a(wn-xn) 
+What is iD(vAB, M)? Use superposition to find the answer: 
+iD(vAB,M) = iD(vAB,0) + iD(0,M)
+We know iD(vAB,0) already…  
+iD(vAB,0) = IS(eqvAB kT "1)
+The question is, "What is iD(0,M)."  
+iD(0,M) = ?
+Clif Fonstad, 10/6/09 
+Lecture 8 - Slide 10 
+
+  
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+   
+  
+  
+    
+ 
+  
+ 
+    
+  
+Photodiodes - cont.: the photocurrent, iD(0,M)  
+The excess minority carriers: 
+n'p p'n 
+p'(xL) 
+p'(wn) = 0 
+n'(-wp≤x≤-xp) = 0 
+p'(xn) = 0 
+x 
+-wp 
+-xp 0 xn 
+xL = 
+wn 
+xn+a(wn-xn)
+The minority carrier currents: 
+Je Jh 
+xL
+-wp 
+-xp 
+wn
+0 xn 
+Je(-wp≤x≤-xp) = 0 
+aqM 
+x 
+-(1-a)qM 
+qM 
+The photocurrent, iD(0,M):  
+iD(0,M) = " AqM 1" a
+(
+)
+Clif Fonstad, 10/6/09 
+Lecture 8 - Slide 11 
+
+  
+  
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+  
+Photodiodes - cont.: The i-v characteristic and what it means.  
+The total current:  iD(vAB,M) = iD(vAB,0) + iD(0,M)
+                 = IS eqvAB kT "1
+(
+) " AqM 1" a
+(
+)
+The illumination shifts the ideal diode curve vertically 
+down. 
+iD 
+vAB 
+iD(0,M) = -AqM(1-a) 
+iD(vAB,0) 
+iD(vAB,M) 
+Power conversion 
+Light detection 
+in this quadrant 
+in this quadrant 
+Clif Fonstad, 10/6/09 
+Lecture 8 - Slide 12 
+
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+  
+ 
+ 
+ 
+ 
+  
+ 
+ 
+Photovoltaic Energy Conversion: Solar cells and TPV, cont.  
+Efficiency issues: 1. hν:Eg mismatch 
+2. Voc and fill factor 
+3. Intensity (concentrator) effect 
+1. 
+2. 
+3. 
+vOC = kT
+q ln q"iL
+IS
+# 
+$ % 
+& 
+' ( 
+h"
+< Eg
+not absorbed; energy lost
+> Eg
+excess energy, h" # Eg
+(
+), lost
+$ 
+% 
+& 
+Pout max < "iSCvOC = #iL $ kT ln q#iL
+IS
+% 
+& ' 
+( 
+) * 
+L"# $"
+Clif Fonstad, 10/6/09 
+Skyline Solar parabolic reflector/concentrator multi-junction cell 
+Lecture 8 - Slide 14 
+installation photo-illustration from website. 
+Courtesy of Skyline Solar Inc. Used with permission. 
+
+ 
+  
+ 
+ 
+ 
+ 
+Multi-junction cells - efficiency improvement with number  
+Clif Fonstad, 10/6/09 
+"Photovoltaics take a load off soldiers," Oct. 27, 2006, online at: 
+Lecture 8 - Slide 15  
+http://www.solar.udel.edu/CSOctSOL-Darpa-reprint.pdf 
+Courtesy of Institute of Physics. Used with permission. 
+
+InGaP cell
+Eg= 1.84 eV (0.67 µm)
+GaAs cell
+Eg= 1.43 eV (0.86 µm)
+Ge cell
+Eg= 0.7 eV (1.75 µm)
+ 
+ 
+   
+ 
+  
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Multi-junction cells, 
+cont. - 2 designs 
+InGaP cell 
+Eg = 1.84 eV (0.67 µm) 
+GaAs cell 
+Eg = 1.43 eV (0.86 µm) 
+Ge cell 
+Eg = 0.7 eV (1.75 µm) 
+Tunnel junction 
+Tunnel junction 
+Substrate 
+Ge or GaAs 
+A 3 -junction design 
+(3 lattice-matched cells connected 
+in series by tunnel diodes) 
+A 6 -junction design* 
+(3-tandem multi-junction 
+cells set side-by-side) 
+Clif Fonstad, 10/6/09 
+* "Photovoltaics take a load off soldiers," Oct. 27, 2006, online at: 
+Lecture 8 - Slide 16 
+http://www.solar.udel.edu/CSOctSOL-Darpa-reprint.pdf 
+Courtesy of Institute of Physics. Used with permission. 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+     
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+Light emitting diodes: what they are all about 
+The basic idea 
+In Si p-n diodes and BJTs we make heavy use of the very long
+minority carrier lifetimes in silicon, but in LEDs we want all the
+excess carriers to recombination, and to do so creating a
+photon of light. We want asymmetrical long-base operation: 
+n'p, p'n 
+n' large 
+p'n very small 
+x 
+-w
+-x 0 x
+w
+p 
+p
+n
+n 
+Why have people cared so much about LEDs? 
+a cool, efficient source of light 
+rugged with extremely long lifetimes 
+can be turned on and off very quickly, 
+and modulated at very high data rates 
+Clif Fonstad, 10/6/09 
+Lecture 8 - Slide 18 
+
+ 
+  
+ 
+ 
+ 
+P
+ 
+ 
+ 
+ 
+ 
+ 
+1.0 
+0.9 
+Light emitting diodes ­
+0.8 
+0.7 
+Emis
+sion
+ spe
+ctru
+m fo
+r re
+d LED, cent
+ered on
+ 650
+nm and
+ abo
+ut 2
+0nm wi
+de.
+Relative photon intensity
+typical spectra  
+• LED emission - typ. 20 nm wide  
+0.6 
+0.5 
+0.4 
+0.3 
+0.2 
+0.1 
+0 
+l - Wavelength-nm 
+• Important spectra to compare  
+Figure by MIT OpenCourseWare.
+with LED emission spectra  
+Comparison o
+f spectra
+ from human eye response, LED outp
+ut, tungsten source output, and silic
+on phototransistor 
+response.
+Figure by MIT OpenCourseWare. 
+Clif Fonstad, 10/6/09 
+Lecture 8 - Slide 19 
+
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+__________________________ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Light emitting diodes: historical perspective  
+LEDs are a very old device, and were the first commercial
+compound semiconductor devices in the marketplace. Red, 
+amber, and green LEDs (but not blue) were sold in the 1960's, but
+the main opto research focus was on laser diodes; little LED 
+research in universities was done for many years. 
+Then…things changed dramatically in the mid-1990's: 
+In part because of new materials developed for red and blue lasers 
+(AlInGaP/GaAs, GaInAlN/GaN) 
+In part because of packaging innovations 
+(Improved heat sinking and advanced reflector designs) 
+In part due to advances in wafer bonding 
+(Transparent substrates for improved light extraction) 
+In part due to the diligence of LED researchers 
+(Taking advantage of advances in other fields) 
+Clif Fonstad, 10/6/09 
+Lecture 8 - Slide 20 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Light emitting diodes - design issues 
+Significant challenges in making LEDs include:  
+1.  Choosing the right semiconductor(s) 
+- efficient radiative recombination of excess carriers 
+- emission at the right wavelength (color) 
+2.  Getting the light out of the semiconductor  
+- overcoming total internal reflection and reabsorption 
+3.  Packaging the diode 
+- good light extraction and beam shaping 
+- good heat sinking (for high intensity applications) 
+Clif Fonstad, 10/6/09 
+Lecture 8 - Slide 22 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Compound Semiconductors: 
+A wide variety of bandgaps.  
+Diamond lattice (Si, Ge, C [diamond]) 
+The majority are "direct gap"  
+Lattice diagram for GaAs.
+Lecture 8 - Slide 23 
+Figure by MIT OpenCourseWare. 
+Clif Fonstad, 10/6/09 
+
+ 
+  
+ 
+ 
+Lecture 8 - Slide 24 
+Lecture 10 - Slide 20 
+Materials for Red LEDs: GaAsP and AlInGaP  
+Modern AlInGaP 
+red LEDs grown 
+lattice-matched on 
+GaAs, and then 
+transferred to GaP 
+substrates 
+- Kish, et al, APL 64 
+(1994) 2838. 
+GaP red LEDs  
+grown GaP and  
+based on Zn-O  
+pair transitions  
+Early GaAsP red  
+LEDs grown on a  
+linearly graded  
+buffer on GaAs  
+- Holonyak and Bevacqua, 
+APL 1 (1962) 82. 
+Clif Fonstad, 10/6/09 
+
+ 
+  
+ 
+ 
+Materials for Amber LEDs: GaAsP, AlInGaP, and GaP  
+Modern AlInGaP 
+amber LEDs 
+grown lattice-
+matched on 
+GaAs, and then 
+transferred to 
+GaP substrates 
+- Kish, et al, APL 64 
+(1994) 2838. 
+Early GaAsP 
+amber LEDs 
+grown on a 
+linearly graded 
+buffer on GaAs 
+- Holonyak and 
+Bevacqua, APL 1 (1962) 
+82. 
+Clif Fonstad, 10/6/09 
+Lecture 8 - Slide 25 
+Lecture 10 - Slide 21 
+
+ 
+  
+Materials for Green LEDs: GaP, InGaAlP  
+The first green 
+LEDs were GaP 
+grown by liquid 
+phase epitaxy on 
+GaP substrates 
+and based on N 
+doping. N is an 
+"isoelectronic" 
+donor, with a 
+very small Ed. 
+InGaAlP grown 
+by MOCVD on 
+GaAs substrates 
+provide modern 
+high brightness 
+LEDs 
+Clif Fonstad, 10/6/09 
+Lecture 8 - Slide 26 
+
+ 
+ 
+ 
+I
+Lattice diagram.
+Clif Fonstad, 10/6/09 
+Lecture 8 - Slide 27 
+
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+     
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+  
+ 
+Light emitting diodes: fighting total internal reflection 
+With an index of refraction ≈ 3.5, the angle for total internal 
+*
+reflection is only 16˚. 
+(Only 2% gets out the top!**) 
+Total internal reflection can be alleviated somewhat if the 
+device is packaged in a domed shaped, high index plastic 
+package: 
+(With ndome = 2.2, 
+10% gets out the top!**) 
+If the device is fabricated with a substrate that is transparent 
+to the emitted radiation, then light can be extracted from 
+the 4 sides and bottom of the device, as well as the top. 
+Increases the extraction efficiency by a factor of 6! 
+* Critical angle, θc = sin-1(nout/nin), ** Fraction ≈ (sinθc)2/4 =(nout/2nin)2 
+Clif Fonstad, 10/6/09 
+Lecture 8 - Slide 28 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Light emitting diodes: the latest wrinkles 
+Surface texturing, Super-thin (~ 5 µm) devices 
+p-pad (Cr/Au) 
+GaAs/AuGe Dot 
+n-pad (Cr/Au) 
+ITO 
+Al/Al2O3/ITO 
+Roughened n-GaN 
+Diagra
+m of 
+a high performance
+ thin-film LED.
+Figure by MIT OpenCourseWare. 
+©2005 IEEE. Used with permission. 
+Lee et al, "Increasing the extraction efficiency of AlGaInP LEDs via n-side surface roughening," 
+IEEE Photonics Technology Letters 17 (2005) 2289. 
+Right: Shchekin et al, "High performance thin-film flip-chip InGaN-Gan light-emitting diodes," Applied 
+Physics Letters 89 (2006) 071109. (Already in production by Philips LumiLeds.) 
+Courtesy of the American Institute of Physics. Used with permission.
+Clif Fonstad, 10/6/09 
+Lecture 8 - Slide 30 
+
+  
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+  
+    
+ 
+  
+    
+ 
+ 
+ 
+ 
+ 
+ 
+      
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+  
+ 
+ 
+  
+ 
+  
+ 
+ 
+6.012 - Microelectronic Devices and Circuits  
+Lecture 10 - BJT Wrap-up, Solar Cells, LEDs - Summary  
+• Photodiodes and solar cells 
+Characteristic: iD(vAB, L) = IS(eqvAB/kT -1) - IL 
+Reverse or zero bias: iD(vAB < 0) ≈ – IL 
+(detects the presence of light) 
+In fourth quadrant:  iD x vAB < 0 
+(power is being produced!!) 
+• Light emitting diodes; laser diodes 
+Materials: red:  GaAlAs, GaAsP, GaP amber:  GaAsP 
+yellow:  GaInN 
+green:  GaP, GaN 
+blue:  GaN 
+white: GaN w. a phosphor 
+The LED renaissance: new materials (phosphides, nitrides) 
+new applications (fibers, lighting, displays, etc) 
+Laser diodes: CD players, fiber optics, pointers
+ Check out: http://www.britneyspears.ac/lasers.htm 
+Clif Fonstad, 10/6/09 
+Lecture 8 - Slide 32 
+
+ 
+ 
+MIT OpenCourseWare
+http://ocw.mit.edu 
+6.012 Microelectronic Devices and Circuits 
+Fall 2009 
+For information about citing these materials or our Terms of Use, visit: http://ocw.mit.edu/terms. 
+

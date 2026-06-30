@@ -1,0 +1,1464 @@
+ 
+ 
+    
+ 
+  
+ 
+ 
+ 
+ 
+ 
+   
+  
+ 
+ 
+ 
+ 
+ 
+  
+    
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+     
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+  
+  
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+  
+  
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+6.012 - Microelectronic Devices and Circuits 
+Lecture 9 - MOS Capacitors I - Outline  
+• Announcements 
+Problem set 5 - Posted on Stellar. Due next Wednesday. 
+• Qualitative description - MOS in thermal equilibrium 
+Definition of structure: metal/silicon dioxide/p-type Si 
+(Example: n-MOS) 
+Electrostatic potential of metal relative to silicon: φm 
+Zero bias condition: Si surface depleted if φm > φp-Si 
+(typical situation) 
+Negative bias on metal: depletion to flat-band to accumulation 
+Positive bias on metal: depletion to threshold to inversion 
+• Quantitative modeling - MOS in thermal equilibrium, vBC = 0 
+Depletion approximation applied to the MOS capacitor: 
+1. Flat-band voltage, VFB 
+2. Accumulation layer sheet charge density, qA* 
+3. Maximum depletion region width, XDT 
+4. Threshold voltage, VT 
+5. Inversion layer sheet charge density, qN* 
+• Quantitative modeling - vBC ≠ 0; impact of vBC < 0 
+Voltage between n+ region and p-substrate: |2φp-Si | → |2φp-Si| - vBC 
+Clif Fonstad, 10/8/09 
+Lecture 9 - Slide 1 
+
+ 
+ 
+    
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+n-Channel MOSFET: Connecting with the npn MOSFET 
+A very similar behavior, and very similar uses. 
+MOSET 
+G
+S
+D
++
+–
+–
++
+vGS
+vDS
+iG
+iD
+i
+B
+vBE
+vCE
+iC
+0.6 V
+0.2 V
+Forward Active Region
+FAR
+Cutoff
+Cutoff
+Saturation
+iC ! !F iB
+vCE > 0.2 V
+iB ! IBSe qVBE/kT
+Input curve
+Output family
+BJT 
+B
+E
+C
++
+–
+–
++
+vBE
+vCE
+iB
+iC
+vDS
+iD
+Saturation (FAR)
+Cutoff
+Linear
+or
+Triode
+iD ! K [vGS - VT(vBS)]2/2!
+Clif Fonstad, 10/8/09 
+Lecture 9 - Slide 2 
+
+ 
+ 
+    
+ 
+ 
+ 
+ 
+ 
+p-Si
+B
+G
++
+vGS
+n+
+D
+n+
+S
+–
+vDS
+vBS
++
+iG
+iB
+iD
+MOS 
+structures 
+An n-channel MOSFET 
+In an n-channel MOSFET, we have two n-regions (the source and 
+the drain), as in the npn BJT, with a p-region producing a potential 
+barrier for electrons between them. In this device, however, it is the 
+voltage on the gate, vGS, that modulates the potential barrier height. 
+The heart of this device is the MOS capacitor, which we will study 
+today. To analyze the MOS capacitor we will use the same depletion 
+approximation that we introduced in conjunction with p-n junctions. 
+Clif Fonstad, 10/8/09 
+Lecture 9 - Slide 3 
+
+ 
+ 
+    
+ 
+ 
+  
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+The n-MOS  
+capacitor  
+Right: Basic device 
+with vBC = 0 
+p-Si
+n+
+B
+S
+G
+SiO2
++
+–
+vGS
+(= vGB)
+C 
+Below: One-dimensional structure for depletion approximation analysis*  
+Clif Fonstad, 10/8/09 
+Lecture 9 - Slide 4 
+B
+G
++
+–
+p-Si
+SiO 2
+x
+-tox 0
+vGB
+* Note: We can't forget the n+ region is there; we 
+will need electrons, and they will come from there. 
+
+ 
+ 
+    
+ 
+  
+  
+ 
+Electrostatic potential and net charge proﬁles  
+φ(x) 
+Zero bias: vGB = 0 
+-tox 
+xd 
+φm
+x 
+φp 
+ρ(x) 
+qNAxd 
+xd 
+x
+-tox 
+qD
+* = -qNAxd
+−qNA 
+Clif Fonstad, 10/8/09 
+Lecture 9 - Slide 5 
+
+ 
+ 
+    
+ 
+ 
+  
+  
+Electrostatic potential and net charge proﬁles  
+φ(x) 
+Depletion: VFB < vGB < 0 
+-tox 
+xd 
+φm 
+x 
+φp 
+vGB < 0 
+ρ(x) 
+qNAxd 
+xd 
+x
+-tox 
+-qNAxd
+−qNA 
+Clif Fonstad, 10/8/09 
+Lecture 9 - Slide 6 
+
+ 
+ 
+    
+ 
+ 
+ 
+  
+  
+  
+    
+  
+  
+Electrostatic potential and net charge proﬁles  
+φ(x) 
+Flat band : vGB = VFB 
+-tox 
+x 
+vGB = VFB 
+VFB = φp – φm 
+φp 
+ρ(x) 
+x
+-tox 
+φm 
+VFB = φp – φm 
+Clif Fonstad, 10/8/09 
+Lecture 9 - Slide 7 
+
+ 
+ 
+    
+ 
+ 
+  
+  
+ 
+ 
+Electrostatic potential and net charge proﬁles  
+φ(x) 
+Accumulation : vGB < VFB 
+-tox 
+x 
+vGB < VFB 
+ρ(x) 
+φp 
+φm 
+- C
+*(vGB - VFB)
+ox 
+-tox 
+C
+*(vGB - VFB)
+ox 
+Clif Fonstad, 10/8/09 
+Lecture 9 - Slide 8 
+x 
+
+ 
+ 
+    
+ 
+ 
+ 
+  
+  
+  
+    
+Electrostatic potential and net charge proﬁles  
+φ(x) 
+Flat band : vGB = VFB 
+-tox 
+φm 
+x 
+vGB = VFB 
+VFB = φp – φm 
+φp 
+ρ(x) 
+x
+-tox 
+Clif Fonstad, 10/8/09 
+Lecture 9 - Slide 9 
+
+ 
+ 
+    
+ 
+ 
+ 
+  
+  
+Electrostatic potential and net charge proﬁles  
+φ(x) 
+Depletion: VFB < vGB < 0 
+-tox 
+xd 
+φm 
+x 
+φp 
+VFB < vGB < 0 
+ρ(x) 
+qNAxd 
+xd 
+x
+-tox 
+-qNAxd
+−qNA 
+Clif Fonstad, 10/8/09 
+Lecture 9 - Slide 10 
+
+ 
+ 
+    
+ 
+  
+  
+Electrostatic potential and net charge proﬁles  
+φ(x) 
+Depletion: vGB = 0 
+-tox 
+xd 
+φm
+x 
+φp 
+ρ(x) 
+qNAxd 
+xd 
+x
+-tox 
+qD* = -qNAxd
+−qNA 
+Clif Fonstad, 10/8/09 
+Lecture 9 - Slide 11 
+
+ 
+ 
+    
+ 
+ 
+ 
+  
+  
+ 
+ 
+ 
+ 
+ 
+  
+     
+    
+  
+  
+    
+ 
+  
+  
+  
+ 
+ 
+ 
+ 
+Electrostatic potential and net charge proﬁles  
+φ(x)  
+Depletion: 0 < vGB < VT 
+Weak inversion: φ(0) > 0 
+xd 
+x 
+0 < vGB 
+-tox 
+φm
+< VT 
+φp 
+J = 0 ⇒ n(x) = nie-qφ(x)/kT 
+ρ(x) 
+and p(x) = nieqφ(x)/kT 
+qNAxd 
+φ(0)↑⇒ n(0)↑ 
+xd 
+x 
+qD
+* = -qNAxd
+-tox  
+−qNA  
+Weak inversion: φ(0) > 0 ⇒ n(0) > p(0)  
+Clif Fonstad, 10/8/09  
+Lecture 9 - Slide 12 
+
+ 
+ 
+    
+ 
+  
+ 
+ 
+ 
+ 
+   
+  
+  
+  
+  
+Electrostatic potential and net charge proﬁles 
+φ(x) 
+Threshold: vGB = VT 
+vGB = VT 
+-φp  
+-tox  
+x 
+φp 
+φm 
+XDT 
+At threshold φ(0) = - φp 
+ρ(x) 
+qNAXDT 
+φ(0) = -φp ⇒ n(0) = NA 
+XDT 
+x 
+qD
+* =  -qNAXDT 
+-tox  
+−qNA  
+Clif Fonstad, 10/8/09 
+Lecture 9 - Slide 13 
+
+ 
+ 
+    
+ 
+  
+  
+   
+ 
+  
+  
+  
+VT = 
+B + |2φp| + (2εSi|2φp|qNA)1/2/Cox
+*
+  
+ 
+  
+  
+ 
+  
+  
+  
+Electrostatic potential and net charge proﬁles  
+-tox 
+x 
+φ(x) 
+φp 
+φm 
+-tox 
+x 
+−qNA 
+XDT 
+XDT 
+ρ(x)
+qNAXDT 
+VT – VFB 
+Threshold*: vGB = VT 
+-φp 
+qD 
+* = -qNAXDT 
+|2φp| 
+qNAXDT/Cox 
+* 
+vGB = VT 
+VT – VFB = |2φp| + qNAXDT/Cox 
+* 
+VF
+XDT = (2εSi|2φp|/qNA)1/2 
+qD 
+* = -qNAXDT = -(2εSi|2φp|qNA)1/2 
+VT = VFB + |2φp| + (2εSi|2φp|qNA)1/2/Cox 
+* 
+Clif Fonstad, 10/8/09 
+* At threshold φ(0) = - φp 
+Lecture 9 - Slide 14  
+
+ 
+ 
+    
+ 
+  
+  
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+Electrostatic potential and net charge proﬁles 
+Inversion: VT < vGB 
+-tox 
+x 
+φ(x) 
+φp 
+φm 
+XDT 
+VT < vGB 
+-φp 
+|2φp | 
+-tox 
+x 
+−qNA 
+XDT 
+ρ(x) 
+qNAXDT + 
+Cox 
+*(vGB - VT) 
+qN 
+* = - Cox 
+*(vGB - VT) 
+qD 
+* = -qNAXDT 
+qD*, depletion region
+charge unchanged 
+qN* = Inversion layer charge
+(sheet of mobile electrons in
+Si near the Si-oxide interface) 
+Clif Fonstad, 10/8/09 
+Lecture 9 - Slide 15 
+
+ 
+ 
+    
+ 
+ 
+ 
+ 
+  
+ 
+     
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Electrostatic potential and net charge profiles - regions and boundaries 
+φ
+XDT 
+p 
+φ(x) 
+-tox 
+φ
+φ(x) 
+φ(x) 
+φp 
+φ
+vGB 
+-φ
+|2φp |
+-tox 
+vGB 
+-tox 
+xd 
+x
+x
+x 
+m
+m 
+φp
+m φp
+vGB 
+qNAXDT + 
+xd 
+ox 
+ox 
+ρ(x) 
+ρ(x) 
+C
+*(vGB - VT)
+ρ(x) 
+qNAxd 
+ox 
+C
+- C
+*(vGB - VFB) 
+-t
+-t
+ox 
+XDT 
+x
+-tox 
+x
+x 
+qD
+* = -qNAXDT 
+−qNA 
+* 
+−qNA
+qD =  -qNAxd
+ox 
+*(vGB - VFB) 
+vGB 
+* 
+qN = - Cox 
+*(vGB - VT) 
+Acccumulation 
+Depletion 
+Inversion 
+Flat Band Voltage
+Threshold Voltage 
+vGB < VFB 
+VFB < vGB < VT 
+VT < vGB 
+vGB 
+|qNA)1/2/C
+– φ
+VT = VFB+|2φp|+(2εSi|2φp
+ox 
+*
+VFB = φp
+m 
+φ(x) 
+φm 
+φ
+φ(x) 
+XDT 
+φ
+-φp
+vGB 
+|2φ |
+p
+-tox 
+-tox 
+x
+x 
+m
+vGB 
+φp
+p 
+qNAXDT 
+ρ(x) 
+ρ(x) 
+-tox 
+-tox 
+XDT 
+x
+x 
+−qNA 
+qD
+* = -qNAXDT 
+Clif Fonstad, 10/8/09 
+Lecture 9 - Slide 16 
+
+Clif Fonstad, 10/8/09
+Lecture 9   Slide 17
+ 
+  
+  
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+    
+ 
+vGB 
+Electrostatic potential and net charge proﬁles
+- the grand procession from accumulation to inversion ­
+VT 
+φ(x) 
+Accumulation : vGB < VFB 
+-φp  
+-tox  
+x
+0 
+vGB < VFB
+VFB 
+ρ(x) 
+φp 
+φm 
+- C
+*(vGB - VFB)
+ox
+-tox 
+x 
+Cox 
+*(vGB - VFB) 
+Clif Fonstad, 10/8/09 
+Lecture 9 - Slide 17 
+
+Clif Fonstad, 10/8/09
+Lecture 9   Slide 18
+ 
+ 
+  
+  
+  
+          
+  
+    
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+    
+ 
+  
+  
+vGB 
+Electrostatic potential and net charge proﬁles
+- the grand procession from accumulation to inversion ­
+VT 
+φ(x) 
+Flat band : vGB = VFB 
+φ(0) = φp 
+-φp  
+-tox  
+φm 
+x
+0 
+vGB = VFB 
+VFB 
+φp
+= φ – φ
+VFB
+p
+m 
+ρ(x) 
+x
+-tox 
+VFB = φp – φm 
+Clif Fonstad, 10/8/09 
+Lecture 9 - Slide 18 
+
+Clif Fonstad, 10/8/09
+Lecture 9   Slide 19
+ 
+ 
+  
+  
+           
+  
+    
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+    
+ 
+vGB 
+Electrostatic potential and net charge proﬁles
+- the grand procession from accumulation to inversion ­
+VT 
+φ(x) 
+Depletion: VFB < vGB < 0 
+φp < φ(0) 
+-φp  
+-tox  
+xd 
+x
+0 
+φm 
+φp
+VFB 
+VFB < vGB < 0 
+ρ(x) 
+qNAxd 
+xd 
+x
+-tox 
+-qNAxd
+−qNA 
+Clif Fonstad, 10/8/09 
+Lecture 9 - Slide 19 
+
+Clif Fonstad, 10/8/09
+Lecture 9   Slide 20
+  
+  
+           
+  
+      
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+    
+ 
+0 
+vGB 
+VT 
+-φp 
+-tox 
+φp
+VFB 
+qNAxd 
+−qNA 
+Electrostatic potential and net charge proﬁles
+- the grand procession from accumulation to inversion ­
+φ(x) 
+Depletion: vGB = 0 
+φp < φ(0) < 0 
+xd 
+φm 
+-tox 
+ρ(x) 
+xd 
+qD* = -qNAxd 
+Clif Fonstad, 10/8/09 
+Lecture 9 - Slide 20 
+x 
+x 
+
+Clif Fonstad, 10/8/09
+Lecture 9   Slide 21
+ 
+ 
+  
+  
+ 
+   
+ 
+  
+     
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+    
+ 
+vGB 
+Electrostatic potential and net charge proﬁles
+- the grand procession from accumulation to inversion ­
+VT 
+φ(x) 
+Depletion: 0 < vGB < VT 
+Weak Inversion: φ(0) > 0 
+-φp 
+xd 
+x
+0 
+0 < 
+-tox 
+φm
+vGB < VT φp
+VFB 
+ρ(x) 
+qNAxd 
+xd 
+x 
+qD
+* = -qNAxd
+-tox  
+−qNA  
+Clif Fonstad, 10/8/09 
+Lecture 9 - Slide 21 
+
+Clif Fonstad, 10/8/09
+Lecture 9   Slide 22
+  
+           
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+    
+ 
+ 
+ 
+vGB 
+Electrostatic potential and net charge proﬁles
+- the grand procession from accumulation to inversion ­
+VT 
+φm 
+x 
+φ(x) 
+Threshold: vGB = VT 
+vGB = VT 
+φ(0) = -φp 
+-φp  
+-tox  
+XDT 
+0 
+φp
+VFB 
+ρ(x)
+qNAXDT 
+XDT 
+x 
+qD
+* =  -qNAXDT 
+-tox  
+−qNA  
+|qNA)1/2/Cox 
+* 
+Clif Fonstad, 10/8/09 
+Lecture 9 - Slide 22
+VT = VFB + |2φp| + (2εSi|2φp
+
+Clif Fonstad, 10/8/09
+Lecture 9   Slide 23
+  
+  
+ 
+           
+  
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+    
+ 
+vGB 
+XDT 
+qN 
+* = - C
+*(vGB - VT)
+ox 
+x 
+Electrostatic potential and net charge proﬁles
+φm 
+XDT 
+-φp 
+-tox 
+qD 
+* = -qNAXDT 
+x 
+- the grand procession from accumulation to inversion ­
+VT 
+φ(x) 
+Inversion: VT < vGB 
+VT < vGB 
+-φp < φ(0) 
+-tox 
+|2φp | 
+0 
+φp
+VFB 
+ρ(x)
+qNAXDT +  
+C
+*(vGB - VT) 
+ox 
+−qNA 
+Clif Fonstad, 10/8/09 
+Lecture 9 - Slide 23 
+
+ 
+ 
+    
+ 
+ 
+ 
+Bias between n+ region and substrate, cont.  
+Reverse bias applied to substrate, I.e. vBC < 0 
+vBC < 0 
+p-Si
+n+
+B
+C
+G
+SiO2
++
+–
+vGC
+vBC 
++
+–
+Soon we will see how this will let us electronically adjust MOSFET  
+threshold voltages when it is convenient for us to do so.  
+Clif Fonstad, 10/8/09 
+Lecture 9 - Slide 24 
+
+ 
+ 
+    
+ 
+ 
+ 
+ 
+ 
+ 
+  
+  
+  
+ 
+ 
+  
+ 
+  
+vGB 
+With voltage between substrate 
+and channel, vBC < 0 
+Flat band:
+VT(0) 
+vGB = VFB 
+φ(x) 
+No difference from when vBC = 0 
+-tox 
+ρ(x) 
+φm 
+x
+0 
+vGB = VFB 
+VFB 
+φp 
+= φ – φ
+VFB 
+p
+m 
+x
+-tox 
+Clif Fonstad, 10/8/09 
+Lecture 9 - Slide 25 
+
+ 
+ 
+    
+ 
+ 
+  
+     
+  
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+vGB 
+φ(x) 
+With voltage between substrate 
+and channel, vBC < 0 
+VT(0) 
+Depletion: 0 < vGB < VT(vBC) 
+No difference from when vBC = 0 
+-φp – vBC  
+-φp  
+xd
+vGB 
+-tox 
+φm 
+x
+0 
+φp
+VFB 
+ρ(x) 
+qNAxd 
+xd 
+x 
+qD
+* = -qNAxd
+-tox  
+−qNA  
+Clif Fonstad, 10/8/09 
+Lecture 9 - Slide 26 
+
+ 
+ 
+    
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+  
+ 
+ 
+ 
+ 
+0 
+VT(0) 
+VFB 
+vGB 
+vGB 
+φ(x) 
+-φp – vBC 
+With voltage between substrate 
+and channel, vBC < 0 
+Depletion: 0 < vGB < VT(vBC) 
+No difference from when vBC = 0 
+XDT 
+x 
+φp 
+qNAXDT 
+ρ(x) 
+XDT 
+x 
+−qNA 
+-tox 
+φm 
+-φp
+-tox 
+qD 
+* =  -qNAXDT 
+Clif Fonstad, 10/8/09 
+Lecture 9 - Slide 27 
+
+ 
+ 
+    
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+  
+  
+ 
+ 
+ 
+ 
+ 
+  
+vGB  
+VT(vBC) 
+VT(0) 
+0 
+VFB 
+At threshold: vGB = VT(vBC) 
+Big difference from when vBC = 0 
+-tox 
+x 
+φ(x) 
+φp 
+φm 
+XDT(vBC < 0) 
+-φp
+ vGB = 
+VT(vBC) 
+XDT(vCB = 0) 
+-φp – vBC 
+|2φp| – vBC 
+With voltage between substrate 
+and channel, vBC < 0 
+-tox 
+x 
+−qNA 
+ρ(x) 
+qNAXDT 
+qN * = -qNAxDT 
+XDT(vBC < 0) 
+Clif Fonstad, 10/8/09 
+Lecture 9 - Slide 28 
+
+ 
+ 
+    
+ 
+ 
+  
+ 
+ 
+  
+ 
+ 
+  
+  
+  
+ 
+  
+  
+  
+ 
+ 
+  
+  
+ 
+ 
+ 
+ 
+ 
+  
+φm 
+-φp 
+XDT(vCB = 0) 
+-φp – vBC 
+x 
+φ(x) 
+With voltage between substrate 
+and channel, vBC < 0 
+Threshold: vGC = VT(vBC) with vBC < 0 
+vGB = 
+VT(vBC) 
+|2φp| – vBC 
+-tox 
+XDT(vBC < 0) 
+φp 
+|-vBC)qNA]1/2/Cox 
+* 
+ρ(x) VT(vBC) = VFB + |2φp| + [2εSi(|2φp
+qNAXDT 
+{This is vGC at threshold} 
+|-vBC)/qNA]1/2 
+XDT(vBC < 0) = [2εSi(|2φp
+XDT(vBC < 0) 
+x 
+qN* = -qNAxDT 
+-tox  
+−qNA  
+|-vBC)qNA]1/2 
+Clif Fonstad, 10/8/09 
+Lecture 9 - Slide 29 
+qN
+* = -[2εSi(|2φp
+
+ 
+ 
+    
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+    
+     
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+  
+   
+  
+  
+ 
+ 
+   
+  
+6.012 - Microelectronic Devices and Circuits 
+Lecture 9 - MOS Capacitors I - Summary  
+• Qualitative description 
+Three surface conditions: accumulated, depleted, inverted 
+Two key voltages: flat-band voltage, VFB; threshold voltage, VT 
+The progression: 
+accumulation through flat-band to depletion, 
+then depletion through threshold to inversion 
+• Quantitative modeling 
+Apply depletion approximation to the MOS capacitor, vBC = 0 
+Definitions: VFB ≡ vGB such that φ(0) = φp-Si 
+VT ≡ vGB such that φ(0) = – φp-Si 
+Cox * ≡εox/tox 
+Results and expressions 
+(For n-MOS example) 
+1. Flat-band voltage, VFB  = φp-Si – φm 
+2. Accumulation layer sheet charge density, qA* = – Cox *(vGB – VFB) 
+3. Maximum depletion region width, XDT  = [2εSi(|2φp-Si|-vBC)/qNA]1/2 
+4. Threshold voltage, VT = VFB  – 2φp-Si + [2εSi qNA|(|2φp-Si|-vBC)]1/2/Cox * 
+5. Inversion layer sheet charge density, qN* = – Cox *(vGB – VT) 
+Clif Fonstad, 10/8/09 
+Lecture 9 - Slide 30 
+
+ 
+ 
+MIT OpenCourseWare
+http://ocw.mit.edu 
+6.012 Microelectronic Devices and Circuits 
+Fall 2009 
+For information about citing these materials or our Terms of Use, visit: http://ocw.mit.edu/terms. 
+

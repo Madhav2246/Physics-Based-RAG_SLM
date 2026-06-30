@@ -1,0 +1,1679 @@
+  
+ 
+ 
+ 
+ 
+  
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+6.012 - Microelectronic Devices and Circuits 
+Lecture 14 - Digital Circuits: Inverter Basics - Outline  
+• Announcements 
+Stellar - Two supplemental readings posted  
+Exam Two - Be the first in your living unit to study for it.  
+• Review - Linear Equivalent Circuits 
+Everything depends on the bias; only low frequency for now 
+• Digital building blocks - inverters 
+A generic inverter  
+MOS inverter options  
+• Digital inverter performance metrics
+Transfer characteristic: logic levels and noise margins
+Power dissipation 
+Switching speed 
+Fan-out, fan-in 
+Manufacturability 
+• Comparing the MOS options
+And the winner is…. 
+Clif Fonstad, 10/29/09 
+Lecture 14 - Slide 1 
+
+  
+ 
+ 
+ 
+ 
+ 
+ 
+  
+  
+ 
+ 
+ 
+  
+Reviewing our LECs: Important points made in Lec. 14  
+We found LECs for BJTs and MOSFETs in both strong inversion 
+and sub-threshold. When vbs = 0, they all look very similar: 
+gi
+in
+common
+gmvin
+go
+common
+out
+iin
++
+-
+vin
++
+-
+vout
+iout
+Ci
+Cm
+Co
+Most linear circuits are designed to operate at frequencies where
+the capacitors look like open circuits. We can thus do our 
+designs neglecting them.* 
+Bias dependences: 
+BJT
+ST MOS
+SI MOS
+gi :    
+qIC "FkT
+0
+0
+gm :    
+qIC kT
+qID n kT
+2KoID #
+go :    
+$ IC
+$ ID
+$ ID
+ST = sub-threshold  
+SI = strong inversion  
+The LEC elements all depend on the bias levels. Establishing a 
+known, stable bias point is a key part of linear circuit design. 
+We use our large signal models in this design and analysis.  
+* Only when we want to determine the maximum frequency to which 
+Clif Fonstad, 10/29/09 
+Lecture 14 - Slide 2
+our designs can usefully operate must we include the capacitors. 
+
+  
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+  
+ 
+   
+ 
+  
+  
+ 
+  
+ 
+   
+ 
+  
+LECs: Identifying the incremental parameters in the characteristics 
+BJT: 
+vDS
+iD
+gm
+go
+Q
+Inc. vGS
+vGS = vDS
+(iD)1/2
+Inc. |vBS|
+!
+VT
+Q
+vCE
+ln iB, ln iC
+"
+Q
+iB
+iC
+IC
+vCE
+iC
+go
+Q
+"
+Inc. iB
+IC
+gm = qIC/kT; gπ = βgm with β = diC/diB|Q; go = diC/dvCE|Q 
+MOSFET: 
+gm = diD/dvGS|Q; gmb = ηgm with η = -dVT/dvBS|Q; go = diD/dvDS|Q 
+Clif Fonstad, 10/29/09 
+Lecture 14 - Slide 3 
+
+ 
+ 
+ 
+ 
+ 
+ 
+Building Blocks for Digital Circuits: inverters 
+Performance metrics 
+A basic 
+• Transfer characteristic
+inverter 
+• Logic levels 
+• Noise margins 
+• Power dissipation 
+• Switching speed 
+• Fan-in/Fan-out 
+• Manufacturability 
+Logic gates 
+NOR: 
+vIN
+vOUT
+Lo (0)
+Hi (1)
+Hi (1)
+Lo (0)
+Pull-
+Up
+VDD
++
++
+–
+–
+vOUT
+vIN
+Device: on or off 
+Switch: open or 
+closed 
+Pull-
+Up
+VDD
++
++
+–
+–
+vOUT
+vA
++
+vB
+–
+NAND: 
+vA
+vB
+vOUT
+0
+0
+1
+0
+1
+1
+1
+0
+1
+1
+1
+0
+vA
+vB
+vOUT
+0
+0
+1
+0
+1
+0
+1
+0
+0
+1
+1
+0
+Pull-
+Up
+VDD
++
++
+–
+–
+vOUT
+vA
++
+–
+vB
+Pull-
+Up
+VDD
+Pull-
+Up
+Flip-flop 
+Clif Fonstad, 10/29/09 
+Lecture 14 - Slide 4 
+Memory cell  
+
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+    
+   
+ 
+ 
+Pull-
+Up
+VDD
++
++
+–
+–
+iPU
+vOUT
+vIN
+iPD
+Node equation :   iPD = iPU
+iPD =
+0         
+     when    vIN < VT ,PD 
+KPD vIN "VT,PD
+(
+)
+2 2 
+    when    0 < vIN "VT,PD
+[
+] < vOUT
+KPD vIN "VT ,PD " vOUT 2
+(
+)vOUT 
+    when    0 < vOUT < vIN "VT ,PD
+[
+]
+# 
+$ 
+% 
+% 
+% % 
+& 
+% 
+% 
+% 
+% 
+iPU :   Depends on the specific pull- up device used.
+V DD
+V IN
+V OUT
+Inverter metrics: Transfer characteristic 
+* Note: We can say iPD is zero for the 
+purpose of calculating a transfer
+characteristic. For power we may 
+want to use: 
+* 
+iPD,off = IS,s"te"VT nVt
+For simplicity: α = 1, λ = 0 
+The transfer characteristic, vOUT vs vIN, is found 
+applying the large signal models at this node 
+Clif Fonstad, 10/29/09 
+Lecture 14 - Slide 5 
+
+  
+ 
+ 
+ 
+  
+  
+          
+  
+  
+  
+  
+  
+ 
+ 
+  
+       
+ 
+ 
+  
+Inverter metrics: Transfer characteristic, cont.  
+An example: NMOS 
+Pull-up: Depletion mode 
+n-channel MOSFET 
+(Note: VT,PU < 0) 
+Pull-down: Enhancement 
+mode n-channel MOSFET 
+Identify the regions 
+vOUT  
+vOUT 
+VDD
+vOUT
+vIN
++
++
+–
+–
+iPU =
+KPU VT ,PU
+2 2 
+    when    0 < VT ,PU < VDD " vOUT
+[
+]
+KPU VT ,PU " VDD " vOUT
+(
+) 2
+[
+] VDD " vOUT
+(
+) 
+    when    0 < VDD " vOUT
+[
+] < VT ,PU
+# 
+$ 
+% 
+% 
+& 
+% 
+% 
+iPD =
+0         
+     when    vIN < VT ,PD 
+KPD vIN "VT,PD
+(
+)
+2 2 
+    when    0 < vIN "VT,PD
+[
+] < vOUT
+KPD vIN "VT ,PD " vOUT 2
+(
+)vOUT 
+    when    0 < vOUT < vIN "VT ,PD
+[
+]
+# 
+$ 
+% 
+% 
+% % 
+& 
+% 
+% 
+% 
+% 
+vOUT = VT,PD 
+VDD 
+VDD 
+PU linear 
+PD 
+VDD - vOUT 
+off 
+PD 
+= 
+VDD - |VT,PD| 
+= |VT,PU |
+sat.  
+vOUT  
+vIN-VT,PD  
+PU saturated. 
+PD  
+linear  
+vIN 
+vIN 
+VT,PD 
+VDD  
+VT,PD 
+VDD 
+Clif Fonstad, 10/29/09  
+Lecture 14 - Slide 6 
+
+  
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+Inverter metrics: Transfer characteristic, cont. 
+Combine the plots; write the node equation in each region and solve. 
+VDD - |VT,PD| 
+vIN 
+vOUT 
+VDD 
+VDD 
+VT,PD 
+PD off,
+PU lin. 
+PD sat,
+PU lin. 
+PD sat.,
+PU sat. 
+PD lin., 
+PU sat. 
+PD off,
+PU sat. 
+KPD vIN "VT,PD
+(
+)
+2 2 = KPU VT ,PU
+2 2
+KPD vIN "VT ,PD " vOUT 2
+(
+)vOUT = KPU VT,PU
+2 2
+0 = KPU VT ,PU
+2 2
+0 = KPU VT ,PU " VDD " vOUT
+(
+) 2
+[
+] VDD " vOUT
+(
+)
+VDD - |VT,PD| 
+vOUT 
+VDD 
+VDD 
+vOUT = VDD
+vIN =
+KPU
+KPD
+VT ,PD + VT ,PU
+(
+)
+VDD " vOUT
+(
+)
+2 " 2VT ,PU VDD " vOUT
+(
+) + KPD
+KPU
+vIN "VT,PD
+(
+)
+2 = 0
+KPD vIN "VT,PD
+(
+)
+2 2 = KPU VT ,PU " VDD " vOUT
+(
+) 2
+[
+] VDD " vOUT
+(
+)
+vOUT
+2
+" 2 vIN "VT,PD
+(
+)vOUT " KPU
+KPD
+VT ,PU
+2 = 0
+vIN 
+VT,PD 
+Clif Fonstad, 10/29/09 
+Lecture 14 - Slide 7 
+
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+                                                      
+ 
+ 
+ 
+ 
+ 
+ 
+Inverter metrics: Transfer characteristic, cont.  
+Is the characteristic really vertical and vOUT indeterminate when both 
+transistors are in saturation? It is if λ = 0 (i.e. no Early effect), but we 
+know this isn't true. We can find the slope when λ ≠ 0 from an LEC 
+analysis about the bias point 
+. 
+vOUT = vIN =
+KPU KPD VT ,PD + VT ,PU
+(
+)
+VDD
+vOUT
+vIN
++
++
+–
+–
+gpu
+spu
+go,pu
+spu
+dpu
+0
+-
++
+-
+vgs = 0
++
+-
+id,pu
+go,pu
+spu
+dpu
++
+-
+vds = -v out
+id,pu
+gpd
+spd
+go,pd
+spd
+dpd
+gm,pdvin
+-
++
+-
+vgs = v in
++
+-
+vds = v out
+id,pd
+Av " vout
+vin
+= #
+gm,pd
+go,pd + go,pu
+= #
+2KPDID
+$PDID + $PUID
+gpd
+spd, dpu
+go,pd
+dpd, spu
+gm,pdvin
++
+-
+ v in
++
+vout
+-
+spd, dpu
+go,pu
+Clif Fonstad, 10/29/09 
+This is the slope of the
+Lecture 14 - Slide 8 
+"vertical" portion. 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Clif Fonstad, 10/29/09 
+Lecture 14 - Slide 9 
+V DD
+vIN1
+vOUT1
+vOUT2
+vIN2
+V DD
+V LO V 1L
+V 1H
+V HI
+V HI
+V LO
+V M
+V M
+vIN
+vOUT
+NML
+NMH
+45˚
+45˚
+Inverter metrics: 
+Logic levels, noise margins 
+Stage 1 
+Stage 2 
+Stable solution 
+Stable 
+solution 
+Unstable solution 
+Tipping point 
+Tipping point 
+Pull-
+Up
++
++
+-
+-
+vOUT2 = vIN1
+vIN2
+Pull-
+Up
+VDD
++
++
+-
+-
+vOUT1
+vIN1
+
+  
+ 
+  
+  
+ 
+ 
+ 
+ 
+ 
+Inverter metrics: Switching times (gate delay)  
+Pull-
+Up
+VDD
+HI to LO
++
++
+–
+–
+CL
+LO 
+to 
+HI
+OFF
+iPU
+Pull-
+Up
+VDD
++
++
+–
+–
+CL
+HI 
+to 
+LO
+LO to HI
+ON
+iPU
+iPD
+iDischarge
+When the output goes from LO to HI, the load charge store must be
+charged through the pull-up device. When the output goes from
+HI to LO, it is discharged through the pull-down device. 
+Charging cycle: iCharge = iPU 
+Discharging cycle: iDischarge = iPD – iPU 
+We can often model CL as a linear capacitor (i.e. a multiple of Cox*) in
+which case the charge and discharge cycles are found by solving: 
+"Ch arge : dvOUT
+dt
+= 1
+CL
+iPU (vOUT )
+" Disch arge : dvOUT
+dt
+= 1
+CL
+iPD(vIN,vOUT ) # iPU (vOUT )
+[
+]
+Clif Fonstad, 10/29/09 
+Lecture 14 - Slide 10 
+
+  
+ 
+Inverter metrics: Power 
+Total Power: 
+Two components - static and dynamic (switching) 
+PStatic,on =
+IPU,onVDD
+Static: 
+Pull-down off: 
+Pull-
+Up
+VDD
++
++
+–
+–
+iPU
+vOUT
+vIN
+iPD
+Pull-
+Up
+VDD
++
++
+–
+–
+iPU
+vOUT
+vIN
+iPD
+Pull-down on: 
+PStatic,off = IPD,offVDD
+" 0
+(
+)
+PTotal = PStatic + PDynamic
+ PStatic,ave = 1
+2 PStatic,on + 1
+2 PStatic,off = 1
+2 IPD,off + IPU,on
+(
+)VDD
+To estimate the total static power we assume the typical pull-down
+is off half the time and on half the time. 
+Clif Fonstad, 10/29/09 
+Lecture 14 - Slide 11 
+
+ 
+ 
+  
+ 
+Inverter metrics: Power, cont.  
+Charging cycle: 
+Discharging cycle: 
+Pull-
+Up
+VDD
+HI to LO
++
++
+–
+–
+CL
+LO 
+to 
+HI
+OFF
+iPU
+Pull-
+Up
+VDD
++
++
+–
+–
+CL
+HI 
+to 
+LO
+LO to HI
+ON
+iPU
+iPD
+iDischarge
+Dynamic: 
+  1
+2 CLVDD
+2   Dissipated,  1
+2 CLVDD
+2   Stored
+1
+2 CLVDD
+2   Dissipated
+Energy dissipated per cycle :    CLVDD
+2
+               Cycles per second :    f
+ PDynamic,ave = f CLVDD
+2
+PTotal = 1
+2 IPD,off + IPU,on
+(
+)VDD + f CLVDD
+2
+Total: 
+Clif Fonstad, 10/29/09 
+Lecture 14 - Slide 12  
+
+ 
+ 
+ 
+ 
+ 
+                 
+ 
+ 
+ 
+ 
+Pull-
+Up
+VDD
+vOUT
+vIN
++
++
+–
+–
+CL
+VDD
+vOUT
+vIN
++
++
+–
+–
+VDD
+vOUT
+vIN
++
++
+–
+–
+VGG
+(>>VDD)
+VDD
+vOUT
+vIN
++
++
+–
+–
+VDD
+vOUT
+vIN
++
++
+–
+–
+VDD
+vOUT
+vIN
++
++
+–
+–
+RL
+MOS  
+inverters:  
+5 pull-up 
+Resistor  
+pull-up  
+choices 
+Generic 
+inverter 
+n-channel, e-mode pull-up* 
+n-channel, d-mode 
+Active p-channel 
+VDD on gate 
+VGG on gate 
+pull-up (NMOS) 
+pull-up (CMOS)** 
+Clif Fonstad, 10/29/09 
+Lecture 14 - Slide 13 
+* Called PMOS when made with p-channel FETs. 
+** Notice that CMOS has a larger (~3x) input capacitance. 
+
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+  
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+MOS inverters: Comparing the 5 pull-up choices 
+Ground rules: 
+To make the comparison meaningful, we set the following 
+conditions: 
+1. We use the same pull-down device with each of the 
+different pull-ups. 
+2. We use the same fan out, n, to identical inverters to 
+have a valid comparison of the amount of charge that 
+must managed to charge and discharge, and of the 
+dynamic power dissipation. We also assume the load 
+capacitance, CL, is linear and n times a single inverter 
+input capacitance. 
+3. We use the same VHI and IPU,on so the static power 
+dissipation is the same. 
+In this way we can see which pull-up gives us the highest 
+speed, all else being equal. 
+Clif Fonstad, 10/29/09 
+Lecture 14 - Slide 14 
+
+ 
+  
+ 
+  
+  
+ 
+ 
+ 
+ 
+ 
+ 
+   
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Switching transients 
+General approach 
+The load, CL, is a non­
+linear charge store, but 
+for MOSFETs it is fairly 
+linear and it is useful to 
+think linear: 
+dvOUT
+dt
+= iCL (vOUT ) CL
+Charging cycle:
+Discharging cycle:
+iCharge = iPU 
+iDischarge = iPD – iPU 
+Pull-
+Up
+VDD
+HI to LO
++
++
+–
+–
+CL
+LO 
+to 
+HI
+OFF
+iPU
+Pull-
+Up
+VDD
++
++
+–
+–
+CL
+HI 
+to 
+LO
+LO to HI
+ON
+iPU
+iPD
+iDischarge
+Charging CL: 
+The charging  
+current for the  
+various MOSFET  
+pull-up options  
+Clif Fonstad, 10/29/09 
+Lecture 14 - Slide 15 
+vOUT
+iCharge
+VDD
+ION
+n-ch, d-mode
+resistor and n-ch, e-mode
+w. VGG on gate
+n-ch, e-mode
+VDD on gate
+CMOS, ION= 0
+Bigger current 
+→ faster vOUT change 
+
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+Switching transients, cont. 
+Discharging CL: 
+This depends on the pull-up device,  
+as well as the pull-down  
+The discharging current for the  
+various pull-up options  
+iDischarge = iPD – iPU 
+• The discharge 
+current (iDischarge) 
+is the difference 
+between the upper 
+curve (iPD) and the 
+appropriate lower 
+curve (iPU). 
+Discharging cycle: 
+Pull-
+Up
+VDD
++
++
+–
+–
+CL
+HI 
+to 
+LO
+LO to HI
+ON
+iPU
+iPD
+iDischarge
+vOUT
+iPD = i Discharge + iPU
+VDD
+ION
+n-ch, d-mode
+resistor and n-ch, e-mode
+w. VGG on gate
+n-ch, e-mode
+VDD on gate
+iPU!s
+CMOS  (iPU = 0)
+i
+Which pull-up is best? To see we next look 
+Clif Fonstad, 10/29/09 
+at each in turn and then compare them. 
+Lecture 14 - Slide 16 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Switching transients, cont.  
+Charging and discharging: 
+Linear resistor pull-up 
+VDD
+vOUT
+vIN
++
++
+–
+–
+RL
+iPU = iCharge
+vOUT
+VDD
+ION
+iCharge
+Simple 
+Least costly with discrete components 
+but integrated resistors consume lots 
+of space. 
+τCharge >> τDischarge 
+vOUT
+VDD
+ION
+iDischarge
+iPD = iDischarge + iPU
+Clif Fonstad, 10/29/09 
+Lecture 14 - Slide 17 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Switching transients, cont.  
+Charging and discharging: 
+Saturated E-mode pull-up 
+vOUT
+VDD
+ION
+iCharge
+iPU = iCharge
+VDD
+vOUT
+vIN
++
++
+–
+–
+No added cost in adding more MOSFETs 
+Very compact 
+No added wiring 
+Slower than linear resistors 
+τCharge >>> τDischarge 
+vOUT
+VDD
+ION
+iDischarge
+iPD = iDischarge + iPU
+Clif Fonstad, 10/29/09 
+Lecture 14 - Slide 18 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Switching transients, cont.  
+Charging and discharging: 
+Linear E-mode pull-up 
+VDD
+vOUT
+vIN
++
++
+–
+–
+VGG
+(>>VDD)
+iPU = iCharge
+vOUT
+VDD
+ION
+iCharge
+Still compact  
+Need to wire VGG to each gate  
+Need second supply  
+Not faster than linear resistor  
+τCharge >> τDischarge 
+vOUT
+VDD
+ION
+iDischarge
+iPD = iDischarge + iPU
+Clif Fonstad, 10/29/09 
+Lecture 14 - Slide 19 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+Switching transients, cont.  
+Charging and discharging: 
+D-mode pull-up ("NMOS") 
+VDD
+vOUT
+vIN
++
++
+–
+–
+vOUT
+VDD
+ION
+iCharge
+iPU = iCharge
+Compact 
+Symmetrical charge/discharge 
+Fastest possible 
+Must make E- and D-mode on safe wafer 
+vOUT
+VDD
+ION
+iDischarge
+iPD = iDischarge + iPU
+τCharge ≈ τDischarge 
+Clif Fonstad, 10/29/09 
+Lecture 14 - Slide 20 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+Switching transients, cont. 
+Charging and discharging: 
+Active complementary pull-up 
+VDD
+vOUT
+vIN
++
++
+–
+–
+("CMOS") 
+vOUT
+VDD
+ION
+iDischarge
+iPD = iDischarge + iPU
+Symmetrical charge/discharge  
+Almost as fast, or even faster than, n-MOS*  
+MInimal static power dissipation (ION ≈ 0)  
+Must make n- and p-channel on same wafer 
+τCharge ≈ τDischarge  
+ION = 0
+vOUT
+VDD
+ION
+iCharge
+iPU = iCharge
+Clif Fonstad, 10/29/09 
+* The input capacitance is 3x larger, but the interconnect capacitance
+Lecture 14 - Slide 21 
+is the same, so it depends on which of the two is dominant. 
+
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Switching transients: summary of charge/discharge currents 
+VDD
+vOUT
+vIN
++
++
+–
+–
+VGG
+(>>VDD)
+VDD
+vOUT
+vIN
++
++
+–
+–
+RL
+Resistor and E-
+mode pull-up 
+(VGG on gate) 
+E-mode pull-up  
+(VDD on gate)  
+D-mode pull-up  
+(called "NMOS")  
+VDD
+vOUT
+vIN
++
++
+–
+–
+VDD
+vOUT
+vIN
++
++
+–
+–
+CMOS 
+Clif Fonstad, 10/29/09 
+VDD
+vOUT
+vIN
++
++
+–
+–
+Lecture 14 - Slide 22 
+vOUT
+VDD
+ION
+iDischarge
+iPD = iDischarge + iPU
+vOUT
+VDD
+ION
+iDischarge
+iPD = iDischarge + iPU
+vOUT
+VDD
+ION
+iDischarge
+iPD = iDischarge + iPU
+vOUT
+VDD
+ION
+iDischarge
+iPD = iDischarge + iPU
+ION = 0
+vOUT
+VDD
+ION
+iCharge
+iPU = iCharge
+vOUT
+VDD
+ION
+iCharge
+iPU = iCharge
+iPU = iCharge
+vOUT
+VDD
+ION
+iCharge
+vOUT
+VDD
+ION
+iCharge
+iPU = iCharge
+• Comparisons made with same pull-down MOSFET, VHI, and ION. 
+
+  
+ 
+ 
+ 
+ 
+  
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+MOS Technology: An abbreviated history 
+p-MOS: 
+In the beginning (mid-60s) there were only metal-gate p-channel e-
+mode MOSFETs; n-channel MOSFETs came out d-mode. p-MOS 
+logic relied on saturated and linear e-mode pull-ups. 
+n-MOS: 
+With the development of <100> substrates, e-beam deposition, self-
+aligned poly-Si gates, and ion implantation, initially to improve p-
+MOS, it became possible to also reliably fabricate e-mode n-chan­
+nel FETs. NMOS, with d-mode pull-ups, then took off (ca 1970). 
+CMOS: 
+It was clear for many years that CMOS inverters were superior, but 
+fabricating them reliably in high density and at low cost was a big 
+challenge. Eventually manufacturers learned how to make n- and 
+p-channel MOSFETS together in close proximity and economically 
+(ca 1980); CMOS then soon became the dominant IC technology 
+because of its superior low power and high speed. 
+For the past decade the industry has been fixated on systematically 
+making FETs smaller, circuits more dense, and wafers larger.* 
+Clif Fonstad, 10/29/09 
+Lecture 14 - Slide 23 
+* And with good reason; more next week in Lecture 17. 
+
+ 
+ 
+  
+ 
+ 
+  
+ 
+       
+ 
+  
+ 
+ 
+ 
+  
+ 
+  
+   
+ 
+  
+  
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+6.012 - Microelectronic Devices and Circuits 
+Lecture 14 - Digital Circuits: Inverter Basics - Summary  
+• Digital building blocks - inverters 
+A generic inverter: Switch = pull-down device, Load = pull-up device 
+MOS inverter options - Pull-down:  n-channel, e-mode (faster than p-channel) 
+Pull-up:  1. resistor; 2. n-channel, e-mode w. and w.o. gate bias;
+3. n-channel, d-mode (NMOS); 4. p-channel, e-mode (CMOS) 
+• Digital inverter performance metrics
+Transfer characteristic  
+Logic levels: VHI, VLO  
+Noise margins: NMHI (high), and NMLO (low) 
+Design variables: choice of pull-up device 
+pull-up and pull-down thresholds
+device sizes (absolute and relative)  
+Power dissipation: stand-by power and switching dissipation  
+Switching speed: capacitive load 
+charge and discharge currents critical 
+Fan-out, fan-in: minimal issue in MOS; more so with BJT logic
+Manufacturability: small, fast, low-power, reliable, and cheap 
+• Comparing the MOS options
+And the winner is….CMOS 
+Clif Fonstad, 10/29/09 
+Lecture 14 - Slide 24 
+
+ 
+ 
+MIT OpenCourseWare
+http://ocw.mit.edu 
+6.012 Microelectronic Devices and Circuits 
+Fall 2009 
+For information about citing these materials or our Terms of Use, visit: http://ocw.mit.edu/terms. 
+

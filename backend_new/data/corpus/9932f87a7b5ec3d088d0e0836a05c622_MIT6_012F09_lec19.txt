@@ -1,0 +1,1728 @@
+  
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+  
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+6.012 - Microelectronic Devices and Circuits 
+Lecture 19 - Differential Amplifier Stages - Outline  
+Announcements 
+Design Problem - coming out tomorrow; PS #10 looks at pieces; 
+neglect the Early effect in large signal analyses  
+Review - Single-transistor building block stages 
+Common source: general purpose gain stage, workhorse 
+Common gate: small Rin, large Rout, unity Ai, same A as CS
+v 
+Source follower: large Rin, small Rout, unity Av, same Ai as CS  
+Series and Shunt feedback: we'll see in special situations  
+Differential Amplifier Stages - Large signal behavior 
+General features: symmetry, inputs, outputs, biasing (Symmetry is the key!) 
+Large signal transfer characteristic 
+Difference- and common-mode signals
+Decomposing and reconstructing general signals 
+Half-circuit incremental analysis techniques
+Linear equivalent half-circuits 
+Difference- and common-mode analysis
+Example: analysis of source-coupled pair 
+Clif Fonstad, 11/17/09 
+Lecture 19 - Slide 1 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+IBIAS
+-V
++V
+1
+2
+3
+IBIAS
+-V
++V
+1
+2
+3
+Linear amplifier layouts: The practical ways of putting
+inputs to, and taking outputs from, transistors to form 
+linear amplifiers 
+There are 12 choices: three 
+possible nodes to connect to 
+the input, and for each one, 
+two nodes from which to take 
+an output, and two choices of 
+what to do with the remaining 
+node (ground it or connect it 
+to something). 
+Not all these choices work 
+well, however. In fact only 
+three do: 
+Name 
+Input 
+Output 
+Grounded 
+Common source/emitter 
+1
+2
+3 
+Common gate/base 
+3
+2
+1 
+Common drain/collector 
+1
+3
+2 
+(Source/emitter follower) 
+Source/emitter degeneration 
+1 
+2 
+none 
+Clif Fonstad, 11/17/09 
+Lecture 19 - Slide 2 
+
+IBIAS
+V-
+V+
+vout
++
+-
+vin
++
+-
+CE
+CO
+IBIAS
+V-
+V+
+vout
++
+-
+vIN
++
+-
+CO
+CI
+ 
+ 
+  
+ 
+  
+  
+ 
+ 
+ 
+ 
+   
+  
+  
+ 
+ 
+ 
+ 
+ 
+  
+ 
+  
+  
+ 
+ 
+• Three MOSFET single-transistor amplifiers 
+V+ 
++
+IBIAS 
+CO
+vin 
+-
++
+vout 
+-
+V­
+SOURCE FOLLOWER 
+Input: gate 
+Output: source  
+Common: drain  
+Substrate: to source  
+IBIAS
+V-
+V+
+vin
++
+-
+CE
+CO
+vout
++
+-
+COMMON SOURCE 
+Input: gate 
+Output: drain 
+Common: source  
+Substrate: to source  
+IBIAS
+V-
+V+
+vout
++
+-
+vIN
++
+-
+CO
+CI
+COMMON GATE 
+Input: source; Output: drain 
+Common: gate  
+Substrate: to ground  
+vout 
++
+-
+vin 
++
+-
+vout 
++
+-
+vin 
++
+-
+vout 
++
+-
+vin 
++
+-
+Clif Fonstad, 11/17/09 
+Lecture 19 - Slide 3 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+• Single-transistor amplifiers with feedback
+V+ 
++
+vin 
++
+CO 
+V+ 
+RF 
+CO 
++
+vout
+vout 
++
+-
+-
+vin 
+-
+-
+RF 
+IBIAS
+IBIAS 
+CE 
+CE 
+V­
+V­
+SERIES FEEDBACK 
+PARALLEL FEEDBACK* 
+vout
++
+-
+vin
++
+-
+RF
+Clif Fonstad, 11/17/09 
+vout
++
+-
+vin
++
+-
+RF
+* Also termed "source degeneracy" 
+Lecture 19 - Slide 4 
+
+  
+ 
+   
+ 
+ 
+ 
+ 
+ 
+ 
+• Summary of the single transistor stages (MOSFET)  
+MOSFET
+Voltage
+gain, Av
+Current
+gain, Ai
+Input
+resistance, Ri
+Output
+resistance, Ro
+Common source
+"
+gm
+go + gl
+[
+]
+= "gmrl
+'
+(
+)
+#
+#
+ro
+= 1
+go
+$ 
+% & 
+' 
+( ) 
+Common gate
+* gm + gmb
+[
+]rl
+'
+*1
+*
+1
+gm + gmb
+[
+]
+* ro 1+ gm + gmb + go
+[
+]
+gt
++ 
+, 
+- 
+. 
+/ 
+0 
+Source follower
+gm
+[
+]
+gm + gmb + go + gl
+[
+]
+*1
+#
+#
+1
+gm + go + gl
+[
+]
+* 1
+gm
+Source degeneracy
+(series feedback)
+* " rl
+RF
+#
+#
+* ro
+Shunt feedback
+" gm " GF
+[
+]
+go + GF
+[
+]
+* "gmRF
+" gl
+GF
+1
+GF 1" Av
+[
+]
+ro || RF =
+1
+go + GF
+[
+]
+$ 
+% 
+& 
+' 
+( 
+) 
+Power gain, Ap = Av " Ai
+Note: When vbs = 0 the gmb factors should be deleted. 
+Clif Fonstad, 11/17/09 
+Lecture 19 - Slide 5  
+
+• Summary of the single transistor stages (bipolar)  
+BIPOLAR
+Voltage
+gain, Av
+Current
+gain, Ai
+Input
+resistance, Ri
+Output
+resistance, Ro
+Common emitter
+"
+gm
+go + gl
+[
+]
+= "gmrl
+'
+(
+)
+"
+# gl
+go + gl
+[
+]
+r$
+ro
+= 1
+go
+% 
+& ' 
+( 
+) * 
+Common base
+gm
+go + gl
+[
+]
+= gmrl
+'
+(
+)
++1
++
+r$
+# +1
+[
+]
++ # +1
+[
+]ro
+Emitter follower
+gm + g$
+[
+]
+gm + g$ + go + gl
+[
+]
++1
+# gl
+go + gl
+[
+]
++ #
+r$ + # +1
+[
+]rl
+'
+rt + r$
+# +1
+[
+]
+Emitter degeneracy
++ " rl
+RF
++ #
++ r$ + # +1
+[
+]RF
++ ro
+Shunt feedback
+" gm " GF
+[
+]
+go + GF
+[
+]
++ "gmRF
+" gl
+GF
+1
+g$ + GF 1" Av
+[
+]
+ro || RF =
+1
+go + GF
+% 
+& ' 
+( 
+) * 
+Power gain, Ap = Av " Ai
+Clif Fonstad, 11/17/09 
+Lecture 19 - Slide 6  
+
+ 
+ 
+ 
+-
+-
+ 
+ 
+Differential Amplifiers: emitter- and source-coupled pairs  
+V+ 
++
++
+vOUT1 vOUT2 
+V+ 
+vOUT1 
++
+-
+vOUT2 
++
+-
+IBIAS 
+V-
++
++
++
++
+vIN2
+vIN1 
+vIN2 
+vIN1 
+-
+-
+-
+-
+IBIAS 
+V-
+Emitter-coupled pair 
+Source-coupled pair 
+Why do we care? - They amplify only difference-mode signals 
+They are easy to interconnect and cascade 
+They help us eliminate coupling capacitors 
+They are optimally suited to integration  
+Clif Fonstad, 11/17/09 
+Lecture 19 - Slide 7 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+IBIAS
+vI1
+vO1
++
+-
+vO2
++
+-
++
+-
+vI2
++
+-
++
+-
+vO
+-VSS
++VDD
+RD
+RD
+M1
+M2
+Differential Amplifiers: large signal analysis of 
+source coupled pairs 
+Source-coupled pair 
+Below:  Schematic with resistor loads  
+Right:  Large signal equiv. circuit in saturation  
+Analysis: 
+vI1 - vGS1 +vGS2 - vI2 = 0, vO1 = VDD - RDiD1, vO2 = VDD - RDiD2 
+KCL at one node:   iD1 + iD2 = IBIAS  
+MOSFET relationships: iD1 = K(vGS1-VT)2/2; iD2 = K(vGS2-VT)2/2  
+(see text for details of analysis) 
+Clif Fonstad, 11/17/09 
+Lecture 19 - Slide 8 
+3 KVL loops:  
+
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+   
+  
+Diff. Amps: large signal analysis of source coupled pairs, cont.  
+Results: 
+The outputs again only depend on the difference between  
+the two inputs, (vI1 - vI2): 
+Slope around origin = -gmRD 
+vO1 = VDD " RD
+2
+K vIN1 " vIN 2
+[
+]
+2 + IBIAS                                          
+     + K
+2 vIN1 " vIN 2
+[
+]
+4IBIAS
+K
+" vIN1 " vIN 2
+[
+]
+2
+# 
+$ % 
+& % 
+' 
+( % 
+) % 
+vO2 = VDD " RD
+2
+K vIN1 " vIN 2
+[
+]
+2 + IBIAS                                          
+     " K
+2 vIN1 " vIN 2
+[
+]
+4IBIAS
+K
+" vIN1 " vIN 2
+[
+]
+2
+# 
+$ % 
+& % 
+' 
+( % 
+) % 
+       vO = " RDK
+2
+vIN1 " vIN 2
+[
+] 4IBIAS
+K
+" vIN1 " vIN 2
+[
+]
+2
+Symmetrical 
+vo 
+Clif Fonstad, 11/17/09 
+Only the difference in the inputs matters!! 
+Lecture 19 - Slide 9  
+
+ 
+IBIAS
++VCC
+vI1
++
+-
+vO1
++
+-
+vO2
++
+-
+vI2
++
+-
+-VEE
++
+-
+vO
+RC
+RC
+Q2
+Q1
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+  
+ 
+  
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Differential Amplifiers: large signal analysis of
+emitter coupled pairs 
+Emitter-coupled pair 
+Below:  Schematic with resistor loads  
+Right:  Large signal equivalent circuit in FAR  
+Analysis: 
+3 KVL loops: vI1 - vBE1 +vBE2 - vI2 = 0, vO1 = VCC - RCαFiF1, vO2 = VCC - RCαFiF2 
+KCL at one node:     iF1 + iF2 = IBIAS 
+Ideal diode relationships: iF1 ≈ IES exp (qvBE1/kT), iF2 ≈ IES exp (qvBE2/kT) 
+(see text for details of analysis) 
+Clif Fonstad, 11/17/09 
+Lecture 19 - Slide 10 
+
+   
+  
+ 
+ 
+  
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Diff. Amps: large signal analysis of emitter coupled pairs, cont.  
+Results: 
+The outputs only depend on the 
+difference between the inputs, (vI1 - vI2): 
+Slope around origin = -gmRC 
+vO1 = VCC "
+#F RC IBIAS
+1+ e
+"q v I 1"v I 2
+(
+) kT
+[
+]
+vO2 = VCC "
+#F RC IBIAS
+1+ e
+q v I1"v I 2
+(
+) kT
+[
+]
+vO = "#F RC IBIAS tanh q vI1 " vI 2
+(
+)
+2kT
+Symmetrical 
+Clif Fonstad, 11/17/09 
+Only the difference in the inputs matters!! 
+Lecture 19 - Slide 11  
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+  
+ 
+ 
+      
+  
+  
+      
+  
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+    
+  
+  
+       
+  
+  
+_______________________________________ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+  
+  
+  
+  
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+  
+  
+  
+  
+  
+  
+  
+  
+Differential Amplifier Analysis - difference-mode and  
+common-mode signals 
+Any pair of signals can be decomposed into a portion that 
+is the identical in both, and a portion that is equal, but opposite 
+in both. For example, if we have two voltages, v1 and v2, we can 
+define a common-mode signal, vC, and a difference-mode signal, 
+vD, as: 
+vC = (v1 + v2)/2 
+vD = v1 - v2 
+In terms of these two voltages, we can write v1 and v2 as: 
+v1 = vC + vD/2 
+v2 = vC - vD/2 
+In incremental analysis of linear amplifiers we will decom­
+pose our inputs into difference- and common-mode inputs: 
+vic = (vin1 + vin2)/2 and vid = vin1 - vin2. 
+We will apply vid to the circuit and get vod (= Avdvid), and 
+then apply vic to the circuit to get voc (= Avcvic). Then we will 
+reconstruct our outputs: 
+vout1 = voc + vod/2 = Avcvic + Avdvid/2 
+vout2 = voc - vod/2 = Avcvic - Avdvid/2 
+Clif Fonstad, 11/17/09 
+Lecture 19 - Slide 12 
+
+ 
+ 
+ 
+ 
+ 
+ 
+Differential Amplifier Analysis ­
+incremental analysis exploiting symmetry and superposition 
+vin1
++
+-
+vin2
++
+-
+vout1
++
+-
+vout2
++
+-
+Linear equivalent
+circuit 
+(symmetrical)
+vin2
++
+-
+vout2
++
+-
+vin1
++
+-
+vout1
++
+-
+a LEHC: 
+one half
+of sym. 
+LEC 
+a LEHC: 
+one half
+of sym. 
+LEC 
+Clif Fonstad, 11/17/09 
+Lecture 19 - Slide 13  
+
+ 
+ 
+ 
+ 
+ 
+ 
+Differential Amplifier Analysis ­
+incremental analysis exploiting symmetry and superposition 
+Clif Fonstad, 11/17/09 
+Lecture 19 - Slide 14 
+-vid
++
+-
+-vod
++
+-
+a LEHC: 
+one half
+of sym. 
+LEC 
+vid
++
+-
+vod
++
+-
+a LEHC: 
+one half
+of sym. 
+LEC 
+No voltage on 
+common links, so 
+incrementally they 
+are grounded.
+vid
++
+-
+vod = Avdvid
++
+-
+a LEHC: 
+one half
+of sym. 
+LEC 
+vic
++
+-
+voc
++
+-
+a LEHC: 
+one half
+of sym. 
+LEC 
+vic
++
+-
+voc
++
+-
+a LEHC: 
+one half
+of sym. 
+LEC 
+No current in 
+common links, so 
+incrementally they 
+are open.
+vic
++
+-
+voc = Avcvic
++
+-
+a LEHC: 
+one half
+of sym. 
+LEC 
+
+  
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Differential Amplifier Analysis - example of LEC analysis 
+Consider a source-coupled pair: 
+IBIAS 
+V-
+V+ 
++
+vi1 
++
+-
+vo1 
+-
+vi2 
+vo2 
+We begin by drawing the LEC for this differential amplifier....  
+Clif Fonstad, 11/17/09 
+Lecture 19 - Slide 15 
+
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+    
+Differential Amplifier Analysis - example, cont. 
+The LEC for our amplifier: 
+g 
+gmvgs1 
+go 
+d 
+gsl 
+s,b 
++
+-
+vo1 
+gel 
+gmvgs2
+go 
+d 
+gsl 
+vo2
+gel 
+s,b 
+gcs /2
+gcs /2
+g 
++
++
+vgs1 
+vgs2
+vin1 
+­
+vin2 
+-
+We decompose our inputs into common- and difference-mode  
+inputs: vid " vin1 # vin2
+vic " vin1 + vin2
+2
+Also: vod " vout1 # vout 2
+voc " vout1 + vout 2
+2
+Clif Fonstad, 11/17/09 
+Lecture 19 - Slide 16 
+
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+gmvgs
+go
+d
+gsl
+vid =v gs
+s,b
+g
+-
++
+-
+vod
+gel
++
+s,b
+vod =
+"gmvid
+go + gsl + gel
+(
+)
+Avd =
+"gm
+go + gsl + gel
+(
+)
+From which: 
+Differential Amplifier Analysis - example, cont.  
+gmvgs1 
+go 
+d 
+gsl 
+vid 
+s,b 
+g 
++
+-
++
+-
+vod 
+gel
+vgs1 
++
+-
+gmvgs2
+go 
+d 
+gsl 
+-vid 
+s,b 
+g 
+-vod
+gel 
+vgs2 
+gcs /2
+gcs /2
+With vid and -vid inputs: 
+This LEC simplifies to:  
+Clif Fonstad, 11/17/09 
+Note: We want Avd to be very large. 
+Lecture 19 - Slide 17  
+
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+Differential Amplifier Analysis - example, cont.  
+gmvgs1 
+go 
+d 
+gsl 
+vic 
+s,b 
+g 
++
+-
++
+-
+voc 
+gel
+vgs1 
++
+-
+gmvgs2
+go 
+d 
+gsl 
+vic 
+s,b 
+g 
+voc
+gel 
+vgs2 
+gcs /2
+gcs /2
+voc "
+#gcsvic
+2 gsl + gel
+(
+)
+Avc "
+#gcs
+2 gsl + gel
+(
+)
+With vic inputs: 
+This LEC simplifies to: 
+From which: 
+gmvgs
+go
+d
+gsl
+vic
+s,b
+g
+-
++
+-
+vod
+gel
++
+gcs/2
+vgs
+-
+Clif Fonstad, 11/17/09 
+Note: We want Avc to be very small. 
+Lecture 19 - Slide 18  
+
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Differential Amplifier Analysis - example, cont.  
+vo1 = voc + vod
+2
+= Avcvic + Avdvid
+2
+= "
+gcs
+2 gsl + gel
+(
+)
+vic "
+gm
+2 go + gsl + gel
+(
+)
+vid
+= "
+gcs
+2 gsl + gel
+(
+)
+vi1 + vi2
+(
+)
+2
+"
+gm
+2 go + gsl + gel
+(
+)
+vi1 " vi2
+(
+)
+vo2 = voc " vod
+2
+= Avcvic " Avdvid
+2
+= "
+gcs
+2 gsl + gel
+(
+)
+vic +
+gm
+2 go + gsl + gel
+(
+)
+vid
+= "
+gcs
+2 gsl + gel
+(
+)
+vi1 + vi2
+(
+)
+2
++
+gm
+2 go + gsl + gel
+(
+)
+vi1 " vi2
+(
+)
+Knowing Avd and Avc, we can construct vo1 and vo2 : 
+Remember: In a good Diff Amp |Avd| is very large, and |Avc| is very small. 
+Clif Fonstad, 11/17/09 
+Lecture 19 - Slide 19  
+
+   
+ 
+ 
+ 
+ 
+ 
+  
+ 
+Looking at a complicated circuit: 
+Lesson I - Find the biasing circuitry and represent it symbolically 
+Consider the following example: 
+Circuitry 
+providing 
+the V REFs
+IBIAS1
+IBIAS3
+IBIAS2
+Q1
+A
+B
+Q4
+Q16
+Q19
+Q18
+Q20
+Q21
+vOUT
++
+-
+B
+vIN2
++ 1.5 V
+- 1.5 V
+A
+Q7
+Q6
+B
+vIN1
++
+-
++
+-
+Q8
+Q9
+Q10
+Q3
+Q2
+Q17
+Q14
+Q15
+Q11
+Q12
+Q4 Q5
+Q13
+7 of the 21 transistors are used for biasing the other 
+14 transistors. 
+If we get the biasing transistors out of the picture for 
+awhile, the circuit looks simpler. (next foil) 
+Clif Fonstad, 11/17/09 
+Lecture 19 - Slide 20 
+
+   
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Looking at a complicated circuit:
+Lesson II - Identify the individual stages and their active
+transistors and load elements. 
+Actives 
+Continuing with our earlier example, consider the following:  
+Loads  
+follower pair
+source stages 
+Source-coupled
+pair 
+Push-
+Pull 
+Output
+Stage
+(bipolar) 
+Pair of common-
+Complementary emitter
+(pnp and npn) 
+IBIAS1
+Q18
+Q20
+Q21
+vOUT
++
+-
+vIN2
++ 1.5 V
+- 1.5 V
+Q7
+Q6
+vIN1
++
+-
++
+-
+Q8
+Q9
+Q17
+Q14
+Q15
+Q11
+Q12
+Q4 Q5
+Q13
+IBIAS3
+IBIAS2
+Note: We can almost make sense of all of the stages, but we still need to 
+study active loads and output stages to fully understand them. 
+Clif Fonstad, 11/17/09 
+Lecture 19 - Slide 21 
+
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Looking at a complicated circuit: 
+Lesson III - Use half-circuit techinques to convert the 
+differential stages to familiar single transistor stages. 
+Continuing with the same example: 
+Pair of common 
+Source coupled pair 
+Complementary
+EF pair 
+IBIAS1
+Q18
+Q20
+Q21
+vOUT
++
+-
+vIN2
++ 1.5 V
+- 1.5 V
+vIN1
++
+-
++
+-
+Q8
+Q9
+Q17
+Q11
+Q12
+IBIAS3
+IBIAS2
+Lee Load
+Q4, Q5, Q6, Q7
+(active load)
+Current Mirror
+ Q14, Q15
+(active load)
+with level shift
+Q13 
+source stages  
+emitter followers 
+(Push-Pull or 
+Totem Pole) 
+There are two symmetrical differential gain stages, 
+followed by two complementary output stages (next foil) 
+Clif Fonstad, 11/17/09 
+Lecture 19 - Slide 22 
+
+   
+   
+Looking at a complicated circuit:
+Lesson III, cont. - Draw the difference and common mode half circuits. 
+Voila!! We have reduced the transistor count from 21 to 4, and we see 
+vod
++
+-
+vid
++
+-
+Q8
+Q20
+Q17
+Q12
+roQ16
+roLLdm
+roCMdm
+RLOAD
+voc
++
+-
+vic
++
+-
+Q8
+Q20
+Q17
+Q12
+roQ16
+roCMcm
+2roQ10
+roLLcm
+RLOAD
+Difference mode  
+half circuit:  
+Common mode  
+half circuit:  
+that our complex amplifier is just a cascade of 4 single-transistor stages.
+Clif Fonstad, 11/17/09 
+Lecture 19 - Slide 23 
+
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+          
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+  
+ 
+ 
+  
+ 
+ 
+  
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+6.012 - Microelectronic Devices and Circuits 
+Lecture 19 - Differential Amplifier Stages - Summary  
+• Differential Amplifier Stages - Large signal behavior 
+General features: two transistors 
+(a source-coupled, or emitter-coupled, pair) 
+highly symmetrical 
+two inputs, two outputs 
+(Note: one input can be zero) 
+biased by single current source 
+Large signal transfer characteristic: only depends on vIN1 - vIN2 
+• Difference- and common-mode signals
+Difference-mode: vID = vIN1 - vIN2  
+Common-mode: vIC = (vIN1 + vIN2)/2  
+Reconstruction: vIN1 = vID + vIC/2, vIN2 = vID - vIC/2  
+• Half-circuit incremental analysis techniques
+Exploiting symmetry and superposition 
+Difference-mode lin. equiv. half-circuit: links are grounded 
+Common-mode lin. equiv. half circuit: links are cut, open circuited 
+Approach: 1. identify common- and difference-mode half circuits 
+2. calculate common- and difference-mode signals 
+3. analyze difference-mode half-circuit  
+(each half-circuit is one of
+our known building-blocks) 
+4. analyze common-mode half-circuit 
+5. reconstruct signals 
+Clif Fonstad, 11/17/09  
+Lecture 19 - Slide 24 
+
+ 
+ 
+MIT OpenCourseWare
+http://ocw.mit.edu 
+6.012 Microelectronic Devices and Circuits 
+Fall 2009 
+For information about citing these materials or our Terms of Use, visit: http://ocw.mit.edu/terms. 
+
