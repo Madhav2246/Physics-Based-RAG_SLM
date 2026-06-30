@@ -27,7 +27,9 @@ OUT_PATH     = PROJECT_ROOT / "data/evaluation/eval_compare_3models.jsonl"
 N = 20
 
 # NVIDIA NIM
-NVIDIA_API_KEY  = "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"
+NVIDIA_API_KEY  = os.environ.get("NVIDIA_API_KEY", "")
+if not NVIDIA_API_KEY:
+    raise RuntimeError("NVIDIA_API_KEY environment variable not set")
 NVIDIA_BASE_URL = "https://integrate.api.nvidia.com/v1"
 NIM_1_5B = "qwen/qwen2.5-1.5b-instruct"
 NIM_3B   = "qwen/qwen2.5-3b-instruct"

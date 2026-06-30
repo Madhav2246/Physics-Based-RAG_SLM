@@ -70,12 +70,7 @@ EVAL_LIVE     = EVAL_DIR / "live_evaluation_nvidia_golden_qa.json"
 TRAIN_LIVE    = FEEDBACK_DIR / "live_training.json"
 
 # --- NVIDIA NIM config --------------------------------------------------------
-# Key is read from the environment; the literal below is only a last-resort
-# fallback so the server starts in dev without extra setup.
-NVIDIA_API_KEY = os.environ.get(
-    "NVIDIA_API_KEY",
-    "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",
-)
+NVIDIA_API_KEY = os.environ.get("NVIDIA_API_KEY", "")
 NVIDIA_BASE_URL = "https://integrate.api.nvidia.com/v1"
 # llama-3.3-70b is the maintained successor of 3.1-70b on NIM (same interface,
 # 3.1 is being sunset). It is the strongest defensible "big model" baseline:
