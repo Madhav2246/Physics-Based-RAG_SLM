@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Physics Validation Module — Physics-Based RAG SLM</title>
+<style>
+:root{
+  --bg:#f6f8fa; --card:#ffffff; --ink:#1f2328; --muted:#59636e; --line:#d1d9e0;
+  --blue:#0969da; --purple:#8250df; --green:#1a7f37; --orange:#bc4c00;
+  --red:#cf222e; --cyan:#0598a8; --gray:#59636e; --gold:#9a6700;
+  --chip:#eaeef2; --code:#f0f3f6;
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:#0d1117; --card:#161b22; --ink:#e6edf3; --muted:#9198a1; --line:#30363d;
+    --blue:#4493f8; --purple:#ab7df8; --green:#3fb950; --orange:#f0883e;
+    --red:#f85149; --cyan:#39c5cf; --gray:#9198a1; --gold:#d29922;
+    --chip:#21262d; --code:#1c2128;
+  }
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--ink);font:15px/1.5 "Segoe UI",system-ui,sans-serif;padding:28px 16px}
+.wrap{max-width:1150px;margin:0 auto}
+h1{font-size:24px;margin-bottom:4px}
+h2{font-size:18px;margin:26px 0 10px}
+.sub{color:var(--muted);margin-bottom:18px}
+code{font-family:Consolas,"Cascadia Code",monospace;font-size:13px;background:var(--code);padding:1px 5px;border-radius:4px}
+pre{font-family:Consolas,"Cascadia Code",monospace;font-size:12.5px;background:var(--code);padding:10px 12px;border-radius:8px;overflow-x:auto;color:var(--ink);border:1px solid var(--line)}
+.box{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin:6px 0}
+.box h3{font-size:14px;margin-bottom:6px}
+.box p,.box li{font-size:13px;color:var(--muted)}
+.box ul,.box ol{padding-left:18px}
+.acc-green{border-left:5px solid var(--green)} .acc-orange{border-left:5px solid var(--orange)}
+.acc-red{border-left:5px solid var(--red)} .acc-gray{border-left:5px solid var(--gray)}
+.acc-blue{border-left:5px solid var(--blue)} .acc-gold{border-left:5px solid var(--gold)}
+.arr{text-align:center;color:var(--muted);font-size:17px;line-height:1.25;margin:2px 0}
+.arr small{font-size:11.5px;display:block}
+.row{display:flex;gap:10px;flex-wrap:wrap}
+.row>div{flex:1;min-width:270px}
+table{width:100%;border-collapse:collapse;font-size:13px;background:var(--card)}
+th,td{border:1px solid var(--line);padding:7px 10px;text-align:left;vertical-align:top}
+th{background:var(--chip)}
+a{color:var(--blue);text-decoration:none} a:hover{text-decoration:underline}
+.scroll{overflow-x:auto}
+.crumb{font-size:12.5px;color:var(--muted);margin-bottom:14px}
+.ok{color:var(--green);font-weight:600} .warn{color:var(--gold);font-weight:600} .fail{color:var(--red);font-weight:600}
+.n{background:var(--green);color:#fff;border-radius:50%;min-width:22px;height:22px;display:inline-flex;align-items:center;justify-content:center;font-size:12px;font-weight:600}
+.step{display:flex;gap:10px;align-items:baseline;font-size:13px;color:var(--muted);margin:3px 0}
+</style>
+</head>
+<body>
+<div class="wrap">
+<p class="crumb"><a href="00_system_overview.html">← System overview</a></p>
+<h1>Physics Validation Module — <code>backend_new/physics/</code></h1>
+<p class="sub">Deterministic neuro-symbolic checkers. Three independent validators + a 0–4 scorer + a human-readable explainer.
+Files: <code>equation_validator.py</code> · <code>dimension_checker.py</code> · <code>numerical_validator.py</code> · <code>physics_scorer.py</code> · <code>new_checker.py</code> · <code>physics_explainer.py</code>.</p>
+
+<h2>Validation chain (as invoked by the pipeline on every answer)</h2>
+
+<div class="box acc-blue"><h3>Input</h3><p>Answer text (LaTeX-stripped by the pipeline first) — model output <i>or</i> deterministic EXPLORE/SWEEP response.</p></div>
+<div class="arr">▼</div>
+
+<div class="box acc-green">
+<h3>1 · <code>EquationValidator.validate(text) → (lhs_expr, rhs_expr, msg)</code></h3>
+<div class="step"><span class="n">a</span><span><code>_candidate_equations()</code>: lines starting <code>"Equation:"</code> get priority, then every other <code>=</code> line; de-duplicated, order preserved.</span></div>
+<div class="step"><span class="n">b</span><span><code>_clean_candidate()</code>: skip prompt/evidence header lines (<code>_SKIP_PATTERNS</code>), strip LaTeX wrappers and <code>"Label:"</code> prefixes, cut trailing prose clauses ("… where J is …", new sentences).</span></div>
+<div class="step"><span class="n">c</span><span><b>Prose rejection</b> <code>_looks_like_prose()</code>: any English connective word (per/of/is/the/…, ~45-word frozenset) or two consecutive ≥4-letter words on the RHS → candidate discarded. Stops <code>"Cox = oxide capacitance per unit area"</code> being scored as an equation.</span></div>
+<div class="step"><span class="n">d</span><span><code>normalize_equation()</code>: LaTeX → ASCII (<code>\frac{a}{b}</code>→<code>(a)/(b)</code>, <code>\sqrt</code>, <code>\cdot</code>…), Greek aliases (µ/μ→mu, γ→gamma, λ→lam), subscript variants (<code>V_th</code>/<code>VT</code>/<code>VTn</code>→Vth), SPICE notation (<code>vDS</code>→Vds), 70B habits (<code>e**{x}</code>→<code>exp(x)</code>, <code>Jo[expr]</code>→<code>Jo*(expr)</code>), compound symbols (<code>kT</code>→<code>k*T</code>), <code>^</code>→<code>**</code>.</span></div>
+<div class="step"><span class="n">e</span><span>SymPy <code>parse_expr</code> on both sides with <code>local_dict=self.symbols</code> (~50 predeclared symbols) + <code>implicit_multiplication_application</code>. Candidates ranked by <code>(known_symbols, −unknown_symbols)</code>; best wins.</span></div>
+<p>Returns <span class="ok">[OK] Equation parsed successfully</span> or <span class="warn">[WARN] No equation detected / Parsing failed</span>.</p>
+</div>
+<div class="arr">▼<small>lhs_expr / rhs_expr (SymPy) flow into checks 2 and 3</small></div>
+
+<div class="row">
+<div class="box acc-green">
+<h3>2 · <code>DimensionChecker.check_equation(lhs, rhs)</code></h3>
+<p>Recursive AST walk (<code>evaluate()</code>) over base dimensions <b>I, V, L, T, K, C</b>:</p>
+<ul>
+<li><code>Symbol</code> → <code>dim_map</code> lookup (~50 entries; unknown = dimensionless)</li>
+<li><code>Number/Rational/Half</code> → {} (dimensionless)</li>
+<li><code>Mul</code> → exponents added (<code>_mul_dims</code>)</li>
+<li><code>Pow</code> → exponents scaled by <b>float</b> exponent (handles <code>sqrt = Pow(x, 1/2)</code>)</li>
+<li><code>Add</code> → all terms must match, else <code>{"DIMENSION_MISMATCH":1}</code></li>
+<li><code>Function</code> (log, ln, exp) → {} by convention</li>
+</ul>
+<p><span class="ok">[OK] Dimensionally consistent: {dims}</span> when simplified LHS dims == RHS dims, else <span class="fail">[FAIL] Dimension mismatch</span>.
+Example entries: <code>mu = L²·V⁻¹·T⁻¹</code>, <code>Cox = I·T·V⁻¹·L⁻²</code>, <code>gamma = V^0.5</code>.</p>
+</div>
+
+<div class="box acc-green">
+<h3>3 · <code>NumericalValidator.evaluate(lhs, rhs)</code></h3>
+<p>Multi-point realism check at <b>three self-consistent technology nodes</b> — 100 nm, 22 nm, 5 nm — each a full SI parameter dict (~70 symbols + <code>_COMMON_EXTRAS</code>).</p>
+<ul>
+<li>Substitute the node dict into RHS; indexed variants fall back (<code>gm5</code>→gm, <code>go1/GL</code>→gds).</li>
+<li>LHS symbol looked up in <code>RESULT_RANGES</code> (per-quantity [lo, hi], e.g. <code>Id ∈ [1e-15, 5e-2] A</code>, <code>ro ∈ [50, 1e9] Ω</code>); unknown LHS → generic [1e-30, 1e15].</li>
+<li><b>Majority vote: ≥ 2 of 3 nodes in range → <span class="ok">[OK]</span></b>; all unresolved → <span class="warn">[WARN]</span>; else <span class="fail">[FAIL] Out of physical range</span>.</li>
+<li>Special case — constant RHS (e.g. <code>C*E*h = 3</code>): LHS evaluated at the nodes must match the constant within 3 orders of magnitude at ≥2 nodes, otherwise FAIL ("likely extracted number").</li>
+<li>RHS = 0: passes only if LHS ≈ 0 (&lt;1e-10) at ≥2 nodes.</li>
+</ul>
+</div>
+</div>
+
+<h2>The 0–4 physics score</h2>
+<div class="row">
+<div class="box acc-gold">
+<h3><code>physics_scorer.score_text(text)</code> — Tier-2 fair scoring (single source of truth)</h3>
+<pre>total = parseable(1.0) + dimensional(1.0) + numerical(1.0) + coverage_frac(0..1)</pre>
+<ul>
+<li><b>Coverage is partial</b>: fraction of RHS free symbols with a known test value (<code>NumericalValidator.test_values</code> = the 22 nm node) — previously all-or-nothing.</li>
+<li>Sub-checks computed <b>independently</b> from the parsed expression (no more string-coupling through <code>num_msg</code>).</li>
+<li><code>strip_latex()</code> applied first so all callers score identical normalized text.</li>
+<li>Module-level singletons of the three validators (stateless, cheap).</li>
+<li>Returned dict: <code>parseable, dimensional, numerical, coverage (bool, =full), coverage_frac, total, equation, sym_msg, dim_msg, num_msg</code>.</li>
+</ul>
+</div>
+<div class="box acc-gold">
+<h3><code>new_checker.py</code> — fixed re-scorer (Stage-1 re-evaluation)</h3>
+<ul>
+<li>Same 0–4 shape (<code>score_text</code> / <code>score_equation</code>), plus:</li>
+<li><code>_is_letter_soup()</code> — rejects OCR/prose artifacts parsed into single-letter symbol products;</li>
+<li>expanded device-physics vocabulary; Greek pre-normalization (<code>_greek_pre</code>);</li>
+<li><code>_guard_trivial_dimensionless()</code> — blocks trivially "consistent" dimensionless garbage;</li>
+<li>separate coverage for the dimension step (<code>_coverage_for_dim</code>).</li>
+<li>Used by <code>stage1_physics_new.py</code>, <code>stage2</code>, <code>stage4</code> re-scoring — original <code>physics_scorer</code> left untouched for comparability.</li>
+</ul>
+</div>
+</div>
+
+<h2>Explainer</h2>
+<div class="box acc-gray">
+<h3><code>physics_explainer.py</code></h3>
+<p><code>explain_physics_score()</code> and <code>explain_compact(symbolic, dimensional, numerical, equation, model_label)</code> convert the raw
+<code>[OK]/[WARN]/[FAIL]</code> messages into the human-readable verdicts shown in the frontend Inspector panel
+(<code>api_server._make_explanation()</code> is the only runtime caller). Helpers parse the dimension dict and unresolved-symbol
+lists back out of the message strings.</p>
+</div>
+
+<h2>Consumers</h2>
+<div class="scroll">
+<table>
+<tr><th>Consumer</th><th>What it uses</th></tr>
+<tr><td><code>RAGPipeline.answer()</code></td><td>All three validators — once per best-of-N candidate (scoring) and once on the final response; also <code>validator._candidate_equations</code> + letter-soup guard inside <code>_find_corpus_equation()</code></td></tr>
+<tr><td><code>api_server</code> (<code>/api/query/baseline</code>, <code>/api/query/rag-compare</code>)</td><td>Fresh validator instances to prove 70B/1.5B/3B NIM answers fail physics checks; <code>explain_compact</code> for the Inspector</td></tr>
+<tr><td><code>ExplorationEngine</code></td><td><code>validator.symbols</code> dict (shared symbol table for solve targets)</td></tr>
+<tr><td>Evaluation scripts (stage1/2/4/4b/6)</td><td><code>physics_scorer.score_text</code> and <code>new_checker.score_text</code> as the headline metric</td></tr>
+</table>
+</div>
+
+<p class="crumb">Related: <a href="05_rag_pipeline.html">05_rag_pipeline</a> · <a href="04_exploration_design.html">04_exploration_design</a> · <a href="08_evaluation_training.html">08_evaluation_training</a></p>
+</div>
+</body>
+</html>

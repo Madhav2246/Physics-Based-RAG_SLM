@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>End-to-End Flow — Physics-Based RAG SLM</title>
+<style>
+:root{
+  --bg:#f6f8fa; --card:#ffffff; --ink:#1f2328; --muted:#59636e; --line:#d1d9e0;
+  --blue:#0969da; --purple:#8250df; --green:#1a7f37; --orange:#bc4c00;
+  --red:#cf222e; --cyan:#0598a8; --gray:#59636e; --gold:#9a6700;
+  --chip:#eaeef2; --code:#f0f3f6;
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:#0d1117; --card:#161b22; --ink:#e6edf3; --muted:#9198a1; --line:#30363d;
+    --blue:#4493f8; --purple:#ab7df8; --green:#3fb950; --orange:#f0883e;
+    --red:#f85149; --cyan:#39c5cf; --gray:#9198a1; --gold:#d29922;
+    --chip:#21262d; --code:#1c2128;
+  }
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--ink);font:15px/1.5 "Segoe UI",system-ui,sans-serif;padding:28px 16px}
+.wrap{max-width:880px;margin:0 auto}
+h1{font-size:24px;margin-bottom:4px}
+.sub{color:var(--muted);margin-bottom:22px}
+code{font-family:Consolas,"Cascadia Code",monospace;font-size:12.5px;background:var(--code);padding:1px 5px;border-radius:4px}
+.stage{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:13px 16px;margin:0;position:relative}
+.stage h3{font-size:14.5px;margin-bottom:4px;display:flex;align-items:center;gap:10px}
+.stage p,.stage li{font-size:13px;color:var(--muted)}
+.stage ul{padding-left:18px;margin-top:4px}
+.n{color:#fff;border-radius:50%;min-width:26px;height:26px;display:inline-flex;align-items:center;justify-content:center;font-size:12.5px;font-weight:700;flex:none}
+.arr{text-align:center;color:var(--muted);font-size:19px;line-height:1.15;margin:3px 0}
+.arr small{font-size:11.5px;display:block;color:var(--muted)}
+.b-cyan{border-left:6px solid var(--cyan)}   .b-cyan .n{background:var(--cyan)}
+.b-red{border-left:6px solid var(--red)}     .b-red .n{background:var(--red)}
+.b-blue{border-left:6px solid var(--blue)}   .b-blue .n{background:var(--blue)}
+.b-orange{border-left:6px solid var(--orange)} .b-orange .n{background:var(--orange)}
+.b-purple{border-left:6px solid var(--purple)} .b-purple .n{background:var(--purple)}
+.b-green{border-left:6px solid var(--green)} .b-green .n{background:var(--green)}
+.b-gold{border-left:6px solid var(--gold)}   .b-gold .n{background:var(--gold)}
+.b-gray{border-left:6px solid var(--gray)}   .b-gray .n{background:var(--gray)}
+.branch{border:1.5px dashed var(--line);border-radius:14px;padding:12px;margin:3px 0}
+.branch>.title{text-align:center;font-size:12.5px;color:var(--muted);margin-bottom:8px;font-weight:600;letter-spacing:.4px}
+.lanes{display:flex;gap:10px;flex-wrap:wrap}
+.lane{flex:1;min-width:230px;display:flex;flex-direction:column}
+.lane .stage{flex:1}
+.tag{display:inline-block;border:1px solid var(--line);background:var(--chip);border-radius:5px;padding:0 8px;font-size:11px;font-weight:700;letter-spacing:.5px}
+.fall{text-align:center;font-size:11.5px;color:var(--red);margin-top:6px}
+a{color:var(--blue);text-decoration:none} a:hover{text-decoration:underline}
+.crumb{font-size:12.5px;color:var(--muted);margin-bottom:14px}
+.legendnote{font-size:12px;color:var(--muted);text-align:center;margin-top:20px}
+pre{font-family:Consolas,monospace;font-size:12px;background:var(--code);padding:8px 10px;border-radius:8px;overflow-x:auto;border:1px solid var(--line);margin-top:6px;color:var(--ink)}
+</style>
+</head>
+<body>
+<div class="wrap">
+<p class="crumb"><a href="00_system_overview.html">← System overview</a> · per-module detail pages linked inline</p>
+<h1>End-to-End Flow — one question, one pass</h1>
+<p class="sub">The complete life of a query, exactly as executed by <code>RAGPipeline.answer()</code> behind <code>POST /api/query</code>.
+Single spine, three-way branch at generation, everything reconverges into the same validation gauntlet.</p>
+
+<div class="stage b-cyan">
+<h3><span class="n">1</span>User asks a question — SLM Console (React, :3000)</h3>
+<p>Q&amp;A Playground textarea + optional mode override (AUTO / LOOKUP / EXPLORE / SWEEP).
+<code>apiFetch()</code> → <code>POST http://localhost:8000/api/query</code> with <code>{question, mode}</code>. <a href="07_frontend.html">detail</a></p>
+</div>
+<div class="arr">▼</div>
+
+<div class="stage b-red">
+<h3><span class="n">2</span>FastAPI receives — <code>api_server.rag_query()</code></h3>
+<p>Pipeline singleton (loaded once at startup, ~30 s) runs on a 2-worker ThreadPoolExecutor so the event loop stays free.
+Call: <code>_pipeline.answer(question, force_mode)</code>. <a href="06_api_server.html">detail</a></p>
+</div>
+<div class="arr">▼</div>
+
+<div class="stage b-blue">
+<h3><span class="n">3</span>Hybrid retrieval — top-3 evidence chunks</h3>
+<ul>
+<li><b>Dense</b>: bge-large-en-v1.5 (1024-d, query prefix, cosine via FAISS IndexFlatIP) → 6 candidates</li>
+<li><b>Sparse</b>: BM25, physics-aware tokenizer (<code>Vgs-Vth</code> → two tokens) → 6 candidates</li>
+<li><b>RRF fusion</b> (k=60) → top 6 → <b>CrossEncoder rerank</b> (ms-marco-MiniLM-L-6-v2) → <b>top 3</b></li>
+</ul>
+<p><a href="01_retrieval.html">detail</a></p>
+</div>
+<div class="arr">▼</div>
+
+<div class="stage b-blue">
+<h3><span class="n">4</span>Mode decision + corpus equation extraction</h3>
+<ul>
+<li><code>force_mode</code> honored if valid, else <code>detect_mode()</code>: parseable range → <b>SWEEP</b>; design phrase ("what W/L…") → <b>EXPLORE</b>; else <b>LOOKUP</b></li>
+<li><code>prefer_vars</code> (design modes): the equation must contain the variables being solved/plotted</li>
+<li><code>_find_corpus_equation()</code> scans all chunks: SymPy-parseable, ≥2 symbols, <b>letter-soup guard</b>, prose rejected</li>
+<li>Design-query <b>retrieval retry</b> on a cleaned query if no covering equation; node profile detected ("5nm GAA")</li>
+<li><b>Honesty guard</b>: design mode with no governing equation → relabelled LOOKUP</li>
+</ul>
+<p><a href="05_rag_pipeline.html">detail</a></p>
+</div>
+<div class="arr">▼<small>branch on mode</small></div>
+
+<div class="branch">
+<div class="title">5 · ANSWER COMPOSITION — three lanes, one survives</div>
+<div class="lanes">
+<div class="lane">
+<div class="stage b-purple">
+<h3><span class="tag">SWEEP</span></h3>
+<p>Solve symbolically <b>once</b> (SymPy), lambdify over
+<code>linspace(start, stop, 50)</code>, matplotlib PNG
+(family-of-curves supported). No SLM math.</p>
+<div class="fall">any failure ▼ falls to EXPLORE</div>
+</div>
+</div>
+<div class="lane">
+<div class="stage b-orange">
+<h3><span class="tag">EXPLORE</span></h3>
+<p>Extract user values (regex + verified-SLM stage) →
+<code>solve(Eq(lhs,rhs), target)</code> → physical branch pick →
+substitute with provenance tracking → derivation audit text.</p>
+<div class="fall">any failure ▼ falls to LOOKUP</div>
+</div>
+</div>
+<div class="lane">
+<div class="stage b-green">
+<h3><span class="tag">LOOKUP</span> (default &amp; final fallback)</h3>
+<p>Prompt = evidence + corpus equation → Qwen2.5-0.5B+LoRA generates
+<b>3 seeded samples</b> → each scored 0–4 by the validators →
+best wins (cosine tiebreak). Answer = <code>Equation: … + explanation</code>.</p>
+</div>
+</div>
+</div>
+<p style="text-align:center;font-size:12px;color:var(--muted);margin-top:8px">
+<a href="04_exploration_design.html">explore/sweep detail</a> · <a href="02_reasoning_slm.html">SLM detail</a></p>
+</div>
+<div class="arr">▼<small>one response string continues (always starts "Equation: …")</small></div>
+
+<div class="stage b-green">
+<h3><span class="n">6</span>Validation gauntlet — every answer, no exceptions</h3>
+<ul>
+<li><b>LaTeX sanitise</b> — strip <code>\[ \] \( \) $</code>, map <code>\frac → /</code> so SymPy can parse</li>
+<li><b>Symbolic</b> — <code>EquationValidator.validate()</code>: real parseable equation? (~50-symbol dictionary)</li>
+<li><b>Dimensional</b> — recursive AST unit walk: LHS units ≡ RHS units?</li>
+<li><b>Numerical</b> — evaluate at 100 nm / 22 nm / 5 nm nodes, LHS-specific ranges, <b>≥2/3 majority vote</b></li>
+<li><b>Semantic similarity</b> — cosine(answer, evidence) catches structurally-valid-but-wrong answers</li>
+</ul>
+<p><a href="03_physics_validation.html">detail</a></p>
+</div>
+<div class="arr">▼</div>
+
+<div class="stage b-gold">
+<h3><span class="n">7</span>Confidence + stability</h3>
+<ul>
+<li><b>LOOKUP</b> → <code>compute()</code>: retrieval .20 + symbolic .15 + dimensional .20 + numerical .20 + length .10 + similarity .15</li>
+<li><b>EXPLORE/SWEEP</b> → <code>score_explore()</code>: corpus .25 + unique solution .20 + dims .10 + sanity .07 + parse .03 + <b>value provenance</b> 0–.25</li>
+<li>Labels: ≥0.80 HIGH · ≥0.55 MODERATE · else LOW — REVIEW REQUIRED</li>
+<li><b>Stability</b>: agreement across the 3 samples = <code>1 − (unique−1)/(total−1)</code></li>
+</ul>
+</div>
+<div class="arr">▼</div>
+
+<div class="stage b-gray">
+<h3><span class="n">8</span>Audit log</h3>
+<p><code>RAGLogger</code> appends the full record — query, evidence, response, all three validator verdicts, similarity,
+confidence, stability — to <code>logs/rag_logs.jsonl</code> (UTC ISO-8601).</p>
+</div>
+<div class="arr">▼</div>
+
+<div class="stage b-red">
+<h3><span class="n">9</span>JSON back to the console</h3>
+<pre>{ response, confidence, breakdown[], symbolic, dimensional, numerical,
+  stability{score,label}, similarity, chunks[], explanation{per-check verdicts},
+  mode, explore_result{provenance[], sweep{x,y}}, node_profile, sweep_plot_url }</pre>
+<p>Rendered as the <b>Confidence Inspector</b>: verdict cards, evidence chunks, provenance table, sweep <code>&lt;img&gt;</code>.
+Thumbs-down → HITL correction → LoRA retraining loop. <a href="08_evaluation_training.html">detail</a></p>
+</div>
+
+<p class="legendnote">Fallback chain: SWEEP → EXPLORE → LOOKUP — the system always answers, and the returned
+<code>mode</code> always tells the truth about which path actually ran.</p>
+</div>
+</body>
+</html>

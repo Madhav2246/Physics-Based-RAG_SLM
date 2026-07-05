@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reasoning / SLM Module — Physics-Based RAG SLM</title>
+<style>
+:root{
+  --bg:#f6f8fa; --card:#ffffff; --ink:#1f2328; --muted:#59636e; --line:#d1d9e0;
+  --blue:#0969da; --purple:#8250df; --green:#1a7f37; --orange:#bc4c00;
+  --red:#cf222e; --cyan:#0598a8; --gray:#59636e; --gold:#9a6700;
+  --chip:#eaeef2; --code:#f0f3f6;
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:#0d1117; --card:#161b22; --ink:#e6edf3; --muted:#9198a1; --line:#30363d;
+    --blue:#4493f8; --purple:#ab7df8; --green:#3fb950; --orange:#f0883e;
+    --red:#f85149; --cyan:#39c5cf; --gray:#9198a1; --gold:#d29922;
+    --chip:#21262d; --code:#1c2128;
+  }
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--ink);font:15px/1.5 "Segoe UI",system-ui,sans-serif;padding:28px 16px}
+.wrap{max-width:1150px;margin:0 auto}
+h1{font-size:24px;margin-bottom:4px}
+h2{font-size:18px;margin:26px 0 10px}
+.sub{color:var(--muted);margin-bottom:18px}
+code{font-family:Consolas,"Cascadia Code",monospace;font-size:13px;background:var(--code);padding:1px 5px;border-radius:4px}
+pre{font-family:Consolas,"Cascadia Code",monospace;font-size:12.5px;background:var(--code);padding:10px 12px;border-radius:8px;overflow-x:auto;color:var(--ink);border:1px solid var(--line)}
+.box{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin:6px 0}
+.box h3{font-size:14px;margin-bottom:6px}
+.box p,.box li{font-size:13px;color:var(--muted)}
+.box ul{padding-left:18px}
+.acc-purple{border-left:5px solid var(--purple)} .acc-orange{border-left:5px solid var(--orange)}
+.acc-green{border-left:5px solid var(--green)} .acc-gray{border-left:5px solid var(--gray)}
+.arr{text-align:center;color:var(--muted);font-size:17px;line-height:1.25;margin:2px 0}
+.arr small{font-size:11.5px;display:block}
+.row{display:flex;gap:10px;flex-wrap:wrap}
+.row>div{flex:1;min-width:260px}
+table{width:100%;border-collapse:collapse;font-size:13px;background:var(--card)}
+th,td{border:1px solid var(--line);padding:7px 10px;text-align:left;vertical-align:top}
+th{background:var(--chip)}
+a{color:var(--blue);text-decoration:none} a:hover{text-decoration:underline}
+.scroll{overflow-x:auto}
+.crumb{font-size:12.5px;color:var(--muted);margin-bottom:14px}
+.step{display:flex;gap:10px;align-items:baseline;font-size:13px;color:var(--muted);margin:3px 0}
+.step b{color:var(--ink)}
+.n{background:var(--purple);color:#fff;border-radius:50%;min-width:22px;height:22px;display:inline-flex;align-items:center;justify-content:center;font-size:12px;font-weight:600}
+</style>
+</head>
+<body>
+<div class="wrap">
+<p class="crumb"><a href="00_system_overview.html">← System overview</a></p>
+<h1>Reasoning Module — <code>backend_new/reasoning/</code></h1>
+<p class="sub">Language generation only. All math is delegated to SymPy engines — the SLM never computes numbers in the deployed paths.
+Files: <code>slm_model.py</code> (class <code>TinySLM</code>) · <code>prompt_builder.py</code> (function <code>build_prompt</code>).</p>
+
+<h2>Model stack — <code>TinySLM.__init__</code></h2>
+<div class="box acc-purple">
+<h3>Load order (exact)</h3>
+<div class="step"><span class="n">1</span><span><code>torch.set_num_threads(4)</code> (module import time)</span></div>
+<div class="step"><span class="n">2</span><span>Device auto-detect: <b>CUDA → float16</b>, <b>CPU → float32</b> (fp16 ops unsupported on CPU)</span></div>
+<div class="step"><span class="n">3</span><span><code>AutoTokenizer</code> + <code>AutoModelForCausalLM.from_pretrained("Qwen/Qwen2.5-0.5B-Instruct")</code> (<code>cfg.MODEL_NAME</code>)</span></div>
+<div class="step"><span class="n">4</span><span>If <code>cfg.ADAPTER_PATH = models/finetuned_slm</code> exists → wrap with <code>PeftModel.from_pretrained</code> (<b>LoRA adapter</b>); else run base model and print a notice</span></div>
+<div class="step"><span class="n">5</span><span><code>model.config.use_cache = True</code></span></div>
+</div>
+
+<h2>Generation — <code>generate_multiple(prompt, n_samples, max_tokens, seed)</code></h2>
+
+<div class="box acc-orange">
+<h3>Chat template</h3>
+<p>Messages = fixed <b>system prompt</b> + user prompt, rendered via <code>tokenizer.apply_chat_template(..., add_generation_prompt=True)</code>. System prompt (verbatim intent):</p>
+<pre>"You are a semiconductor physics assistant.
+Explain the physical meaning of each symbol in an equation using a bulleted list.
+Use PLAIN TEXT ONLY. Do NOT use LaTeX, \[, \(, $, or \frac.
+Example output:
+- Id = drain current in amperes
+- Cox = oxide capacitance per unit area in F/m^2
+Base your answer ONLY on the provided Evidence."</pre>
+</div>
+<div class="arr">▼</div>
+<div class="box acc-purple">
+<h3>Sampling (all values from <code>utils/config.py</code>)</h3>
+<ul>
+<li><b>Reproducibility (Tier 1)</b>: <code>transformers.set_seed(cfg.SEED = 42)</code> is called <i>immediately before</i> <code>model.generate()</code> — identical calls give identical outputs; set <code>SEED=None</code> for stochastic mode.</li>
+<li><code>max_new_tokens = 128</code> (capped to prevent slow CPU loops) · <code>do_sample=True</code> · <code>temperature = 0.3</code> (0.7 caused hallucinations at 0.5B) · <code>top_p = 0.9</code> · <code>num_return_sequences = n_samples = 3</code>.</li>
+</ul>
+</div>
+<div class="arr">▼</div>
+<div class="box acc-green">
+<h3>Decode fix</h3>
+<p>Only <b>newly generated tokens</b> are decoded: <code>output[input_length:]</code> slice strips the prompt
+(the old code decoded the full sequence, so the prompt leaked into every answer). Returns <code>list[str]</code> of length 3.</p>
+</div>
+
+<h2>Prompt construction — <code>prompt_builder.build_prompt(query, evidence, corpus_equation=None)</code></h2>
+<div class="row">
+  <div class="box acc-green">
+    <h3>Branch A — corpus equation found (easy task)</h3>
+    <p>Used when <code>RAGPipeline._find_corpus_equation()</code> extracted a parseable equation from the retrieved chunks.
+    The model is only asked to <b>explain the symbols</b> of the given equation, one bullet per symbol, plain text, no LaTeX.
+    This is deliberately a much simpler task for a 0.5B model.</p>
+    <pre>Evidence:
+- {chunk 1}
+- {chunk 2}
+- {chunk 3}
+
+Question: {query}
+
+Equation: {corpus_equation}
+
+Explain what each symbol ... means, using the Evidence.
+Format: one bullet point per symbol ...
+Explanation:</pre>
+  </div>
+  <div class="box acc-orange">
+    <h3>Branch B — no clean corpus equation</h3>
+    <p>Fallback: the model must find/write the equation itself from the evidence.</p>
+    <pre>Evidence:
+- {chunks}
+
+Question: {query}
+
+Instructions:
+1. Write the key equation using = notation if you
+   can find it in the Evidence.
+2. Explain each symbol in one sentence.
+3. If no equation is available, explain the concept
+   from the Evidence.
+
+Answer:</pre>
+  </div>
+</div>
+
+<h2>Who calls what</h2>
+<div class="scroll">
+<table>
+<tr><th>Caller</th><th>Call</th><th>Purpose</th></tr>
+<tr><td><code>RAGPipeline.answer()</code> (LOOKUP mode)</td><td><code>slm.generate_multiple(prompt, n_samples=3)</code></td><td>Best-of-N candidates for neuro-symbolic re-ranking (see <a href="05_rag_pipeline.html">05_rag_pipeline</a>)</td></tr>
+<tr><td><code>ExplorationEngine.set_slm_model(slm)</code></td><td>wraps the <b>same loaded instance</b> in <code>SLMExtractor</code></td><td>Stage-1 value extraction in EXPLORE mode — no second copy of the weights is ever loaded</td></tr>
+<tr><td><code>SLMExtractor.extract()</code></td><td><code>generate_multiple(prompt, n_samples=1, max_tokens=120)</code></td><td>JSON parameter extraction (currently dormant in practice — see <a href="04_exploration_design.html">04_exploration_design</a>)</td></tr>
+<tr><td><code>scripts/train_slm.py</code> / <code>train_from_feedback.py</code></td><td>LoRA fine-tuning (PEFT)</td><td>Produces <code>models/finetuned_slm</code> / staging <code>models/candidate_slm</code></td></tr>
+</table>
+</div>
+
+<div class="box acc-gray">
+<h3>Boundary rule (stated in code)</h3>
+<p>The SLM explains language; it never performs algebra or substitution in EXPLORE/SWEEP — those responses are composed
+entirely by <code>ExplorationEngine</code>/<code>SweepEngine</code> from SymPy results. LOOKUP answers are always validated afterwards by the
+three physics validators regardless of what the model wrote.</p>
+</div>
+
+<p class="crumb">Related: <a href="05_rag_pipeline.html">05_rag_pipeline</a> · <a href="03_physics_validation.html">03_physics_validation</a> · <a href="08_evaluation_training.html">08_evaluation_training</a> (training scripts)</p>
+</div>
+</body>
+</html>

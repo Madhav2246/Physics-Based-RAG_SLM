@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RAG Pipeline Orchestrator — Physics-Based RAG SLM</title>
+<style>
+:root{
+  --bg:#f6f8fa; --card:#ffffff; --ink:#1f2328; --muted:#59636e; --line:#d1d9e0;
+  --blue:#0969da; --purple:#8250df; --green:#1a7f37; --orange:#bc4c00;
+  --red:#cf222e; --cyan:#0598a8; --gray:#59636e; --gold:#9a6700;
+  --chip:#eaeef2; --code:#f0f3f6;
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:#0d1117; --card:#161b22; --ink:#e6edf3; --muted:#9198a1; --line:#30363d;
+    --blue:#4493f8; --purple:#ab7df8; --green:#3fb950; --orange:#f0883e;
+    --red:#f85149; --cyan:#39c5cf; --gray:#9198a1; --gold:#d29922;
+    --chip:#21262d; --code:#1c2128;
+  }
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--ink);font:15px/1.5 "Segoe UI",system-ui,sans-serif;padding:28px 16px}
+.wrap{max-width:1150px;margin:0 auto}
+h1{font-size:24px;margin-bottom:4px}
+h2{font-size:18px;margin:26px 0 10px}
+.sub{color:var(--muted);margin-bottom:18px}
+code{font-family:Consolas,"Cascadia Code",monospace;font-size:13px;background:var(--code);padding:1px 5px;border-radius:4px}
+pre{font-family:Consolas,"Cascadia Code",monospace;font-size:12.5px;background:var(--code);padding:10px 12px;border-radius:8px;overflow-x:auto;color:var(--ink);border:1px solid var(--line)}
+.box{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin:6px 0}
+.box h3{font-size:14px;margin-bottom:6px}
+.box p,.box li{font-size:13px;color:var(--muted)}
+.box ul,.box ol{padding-left:18px}
+.acc-green{border-left:5px solid var(--green)} .acc-orange{border-left:5px solid var(--orange)}
+.acc-red{border-left:5px solid var(--red)} .acc-gray{border-left:5px solid var(--gray)}
+.acc-blue{border-left:5px solid var(--blue)} .acc-purple{border-left:5px solid var(--purple)}
+.acc-gold{border-left:5px solid var(--gold)}
+.arr{text-align:center;color:var(--muted);font-size:17px;line-height:1.25;margin:2px 0}
+.arr small{font-size:11.5px;display:block}
+.row{display:flex;gap:10px;flex-wrap:wrap}
+.row>div{flex:1;min-width:270px}
+table{width:100%;border-collapse:collapse;font-size:13px;background:var(--card)}
+th,td{border:1px solid var(--line);padding:7px 10px;text-align:left;vertical-align:top}
+th{background:var(--chip)}
+a{color:var(--blue);text-decoration:none} a:hover{text-decoration:underline}
+.scroll{overflow-x:auto}
+.crumb{font-size:12.5px;color:var(--muted);margin-bottom:14px}
+.n{background:var(--orange);color:#fff;border-radius:50%;min-width:24px;height:24px;display:inline-flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex:none}
+.step{display:flex;gap:10px;align-items:baseline;font-size:13px;color:var(--muted);margin:6px 0}
+.step b{color:var(--ink)}
+.tag{display:inline-block;border:1px solid var(--line);background:var(--chip);border-radius:5px;padding:0 7px;font-size:11.5px;font-weight:600}
+.branch{border:1px dashed var(--line);border-radius:10px;padding:10px;margin:6px 0}
+</style>
+</head>
+<body>
+<div class="wrap">
+<p class="crumb"><a href="00_system_overview.html">← System overview</a></p>
+<h1>RAG Pipeline Orchestrator — <code>backend_new/pipeline/rag_pipeline.py</code></h1>
+<p class="sub">Class <code>RAGPipeline</code> — the 10-step flow behind every <code>/api/query</code>. One instance owns all components
+(constructed once at API startup; the SLM is shared with the extractor via <code>exploration_engine.set_slm_model(self.slm)</code> — no duplicate weights).</p>
+
+<h2>Members built in <code>__init__</code></h2>
+<div class="box acc-gray">
+<p><code>retriever = HybridRetriever()</code> · <code>slm = TinySLM()</code> · <code>validator = EquationValidator()</code> · <code>dimension_checker = DimensionChecker()</code> ·
+<code>numerical_validator = NumericalValidator()</code> · <code>logger = RAGLogger()</code> · <code>confidence_engine = ConfidenceEngine()</code> ·
+<code>uncertainty_engine = UncertaintyEngine()</code> · <code>exploration_engine = ExplorationEngine(validator.symbols)</code> · <code>node_manager = NodeProfileManager()</code></p>
+</div>
+
+<h2><code>answer(query, force_mode=None) → dict</code> — step by step</h2>
+
+<div class="box acc-blue">
+<div class="step"><span class="n">1</span><span><b>Retrieve evidence</b> — <code>retriever.retrieve(query, top_k=cfg.TOP_K=3)</code> (hybrid dense+BM25+RRF+rerank, see <a href="01_retrieval.html">01_retrieval</a>).</span></div>
+</div>
+<div class="arr">▼</div>
+<div class="box acc-blue">
+<div class="step"><span class="n">2</span><span><b>Mode</b> — <code>force_mode</code> (UI button) if ∈ {LOOKUP, EXPLORE, SWEEP}, else <code>detect_mode(query)</code>.
+Then compute <code>prefer_vars</code>: SWEEP → {target_var, sweep_var} (+ family param); EXPLORE → {detected target}. These bias equation selection toward equations containing the variables the user wants.</span></div>
+</div>
+<div class="arr">▼</div>
+<div class="box acc-blue">
+<div class="step"><span class="n">3</span><span><b>Corpus equation extraction</b> — <code>_find_corpus_equation(evidence, prefer_vars)</code>:
+scans every candidate in every chunk via <code>validator._candidate_equations()</code> + <code>validate()</code>, applies the <code>_acceptable()</code> guard
+(real expressions on both sides, not <code>2=3</code>, ≥2 symbols, <b>letter-soup rejection</b> — needs a multi-char symbol or nearly all symbols recognised).
+LOOKUP path prefers candidates with ≥2 recognised physics symbols; SWEEP/EXPLORE path prefers an equation whose free symbols cover <code>prefer_vars</code> (fallback = first acceptable).
+<i>This guard is the fix for the Stage-1/4 coverage-zero bug (prose like "current density" used to parse into garbage like <code>I = N*d*e*i**2*j*r*t</code>).</i></span></div>
+<div class="step"><span class="n">3b</span><span><b>Retrieval retry (design queries only)</b> — if SWEEP/EXPLORE found no equation or one not covering <code>prefer_vars</code>:
+<code>_clean_design_query()</code> strips "using 5nm GAA node", plot/sweep/versus keywords and numeric ranges, re-retrieves, and takes the retry equation only if it covers the wanted vars (or nothing existed before). LOOKUP never retries.</span></div>
+<div class="step"><span class="n">3c</span><span><b>Node profile</b> — <code>node_manager.detect_from_query()</code> → <code>as_tracker_defaults(node)</code>; None ⇒ 100 nm baseline.
+<b>Honesty guard</b>: SWEEP/EXPLORE with no governing equation is relabelled LOOKUP so the returned <code>mode</code> reflects what actually ran.</span></div>
+</div>
+<div class="arr">▼<small>three-way branch on mode</small></div>
+
+<div class="row">
+<div class="branch" style="flex:1;min-width:280px">
+<p style="text-align:center;margin-bottom:6px"><span class="tag">SWEEP</span></p>
+<div class="box acc-purple">
+<ul>
+<li><code>parse_sweep_request()</code> + <code>parse_multi_curve_param()</code>; <code>sweep_req.node_name</code> = detected node or 100nm_CMOS.</li>
+<li>Family param present (and ≠ target/sweep var) → <code>solve_sweep_multi()</code> → <code>plot_multi()</code> PNG; else <code>solve_sweep()</code> → <code>plot()</code> PNG under <code>data/evaluation/sweep_*.png</code>.</li>
+<li><b>Any error / empty curve / exception → fall back to EXPLORE</b> (single point).</li>
+</ul>
+</div>
+</div>
+<div class="branch" style="flex:1;min-width:280px">
+<p style="text-align:center;margin-bottom:6px"><span class="tag">EXPLORE</span> (also SWEEP's fallback)</p>
+<div class="box acc-orange">
+<ul>
+<li><code>exploration_engine.solve(lhs, rhs, query, node_defaults)</code> — deterministic SymPy derivation + audit (see <a href="04_exploration_design.html">04_exploration_design</a>).</li>
+<li><b>Error → silent fallback to LOOKUP.</b></li>
+<li>Response comes from <code>format_response()</code>; if it doesn't already start with <code>"Equation:"</code>, the derived form is prepended (validator-compatible format).</li>
+</ul>
+</div>
+</div>
+<div class="branch" style="flex:1;min-width:280px">
+<p style="text-align:center;margin-bottom:6px"><span class="tag">LOOKUP</span> (default / final fallback)</p>
+<div class="box acc-green">
+<ul>
+<li><code>build_prompt(query, evidence, corpus_equation)</code> → <code>slm.generate_multiple(n=3)</code>.</li>
+<li><b>Best-of-N neuro-symbolic re-ranking</b>: each candidate is LaTeX-stripped, then scored
+<code>(sym_ok + dim_ok + num_ok + cov_ok) ∈ 0..4</code>; ties broken by cosine(candidate, evidence) using the dense embedder.</li>
+<li>Winner promoted to <code>responses[0]</code>; final text = <code>"Equation: {corpus_eq | NOT FOUND IN CORPUS}\n\n{winner}"</code>.</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div class="arr">▼<small>single merged path continues</small></div>
+
+<div class="box acc-green">
+<div class="step"><span class="n">4</span><span><b>LaTeX sanitise</b> — <code>_strip_latex()</code> removes <code>\[ \] \( \) $$</code>, maps <code>\frac→/</code>, <code>\cdot→*</code>, strips backslash commands (0.5B ignores anti-LaTeX instructions; raw LaTeX crashed SymPy on subscripts).</span></div>
+<div class="step"><span class="n">5</span><span><b>Symbolic validation</b> — <code>validator.validate(response)</code> → <code>(lhs, rhs, symbolic_validation)</code>.</span></div>
+<div class="step"><span class="n">6</span><span><b>Dimensional validation</b> — <code>dimension_checker.check_equation(lhs, rhs)</code>; skipped with [WARN] if no parse.</span></div>
+<div class="step"><span class="n">7</span><span><b>Numerical validation</b> — <code>numerical_validator.evaluate(lhs, rhs)</code>; skipped with [WARN] if no RHS.</span></div>
+<div class="step"><span class="n">8</span><span><b>Semantic similarity</b> — cosine(embed(response), embed(joined evidence)) via <code>retriever.dense.embed_model</code>; catches structurally-valid but factually-wrong answers. Non-fatal on failure (None).</span></div>
+</div>
+<div class="arr">▼</div>
+
+<div class="row">
+<div class="box acc-gold">
+<h3>9a · Confidence — EXPLORE/SWEEP success → <code>score_explore()</code></h3>
+<pre>corpus_found       0.25
+unique_solution    0.20
+dim_ok             0.10
+sanity_ok          0.07
+symbolic_ok        0.03
+provenance         0–0.25 (× user-supplied fraction)</pre>
+<p>Semantic similarity deliberately excluded — derived equations don't match corpus chunks by design.
+Verified targets: all-user+all-pass = 0.90 HIGH · all-default = 0.65 MODERATE · no corpus eq = LOW.</p>
+</div>
+<div class="box acc-gold">
+<h3>9b · Confidence — LOOKUP → <code>compute()</code></h3>
+<pre>Evidence retrieved   0.20 (× n_chunks/3, continuous)
+Symbolic parse       0.15
+Dimensional check    0.20
+Numerical realism    0.20
+Response length      0.10 (20–1200 chars)
+Semantic similarity  0.15 (× cosine, continuous)</pre>
+<p>Labels (<code>interpret()</code>): ≥0.80 HIGH · ≥0.55 MODERATE · else LOW CONFIDENCE — REVIEW REQUIRED.</p>
+</div>
+</div>
+<div class="arr">▼</div>
+<div class="box acc-gray">
+<div class="step"><span class="n">10</span><span><b>Uncertainty</b> — <code>uncertainty_engine.evaluate(responses)</code>: normalize (strip+lower), <code>agreement = 1 − (unique−1)/(total−1)</code>; ≥0.8 HIGH / ≥0.5 MODERATE / else LOW STABILITY. <b>Logging</b> — <code>RAGLogger.log()</code> appends the full record (query, evidence, response, all three validations, similarity, confidence, uncertainty) to <code>logs/rag_logs.jsonl</code> with UTC ISO-8601 timestamp.</span></div>
+</div>
+<div class="arr">▼</div>
+<div class="box acc-red">
+<h3>Return dict (consumed by <code>api_server.rag_query</code>)</h3>
+<p><code>response · all_responses · evidence · symbolic_validation · dimension_validation · numerical_validation ·
+semantic_similarity · confidence_score · confidence_label · confidence_breakdown · uncertainty_score ·
+stability_label · mode · explore_result (None in LOOKUP) · sweep_plot_path (None unless SWEEP) · node_profile</code></p>
+</div>
+
+<h2>Fallback chain (guarantees an answer)</h2>
+<div class="box acc-gray">
+<pre>SWEEP ──parse/solve/plot fails──▶ EXPLORE ──solve fails──▶ LOOKUP (SLM + validators)
+  ▲ honesty guard: no corpus equation ⇒ relabel to LOOKUP before even trying</pre>
+</div>
+
+<p class="crumb">Related: <a href="01_retrieval.html">01_retrieval</a> · <a href="02_reasoning_slm.html">02_reasoning_slm</a> · <a href="03_physics_validation.html">03_physics_validation</a> · <a href="04_exploration_design.html">04_exploration_design</a> · <a href="06_api_server.html">06_api_server</a></p>
+</div>
+</body>
+</html>
