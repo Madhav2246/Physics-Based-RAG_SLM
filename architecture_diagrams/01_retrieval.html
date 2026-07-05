@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Retrieval Module — Physics-Based RAG SLM</title>
+<style>
+:root{
+  --bg:#f6f8fa; --card:#ffffff; --ink:#1f2328; --muted:#59636e; --line:#d1d9e0;
+  --blue:#0969da; --purple:#8250df; --green:#1a7f37; --orange:#bc4c00;
+  --red:#cf222e; --cyan:#0598a8; --gray:#59636e; --gold:#9a6700;
+  --chip:#eaeef2; --code:#f0f3f6;
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:#0d1117; --card:#161b22; --ink:#e6edf3; --muted:#9198a1; --line:#30363d;
+    --blue:#4493f8; --purple:#ab7df8; --green:#3fb950; --orange:#f0883e;
+    --red:#f85149; --cyan:#39c5cf; --gray:#9198a1; --gold:#d29922;
+    --chip:#21262d; --code:#1c2128;
+  }
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--ink);font:15px/1.5 "Segoe UI",system-ui,sans-serif;padding:28px 16px}
+.wrap{max-width:1150px;margin:0 auto}
+h1{font-size:24px;margin-bottom:4px}
+h2{font-size:18px;margin:26px 0 10px}
+.sub{color:var(--muted);margin-bottom:18px}
+code,.mono{font-family:Consolas,"Cascadia Code",monospace;font-size:13px;background:var(--code);padding:1px 5px;border-radius:4px}
+.box{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin:6px 0}
+.box h3{font-size:14px;margin-bottom:6px}
+.box p,.box li{font-size:13px;color:var(--muted)}
+.box ul{padding-left:18px}
+.acc-blue{border-left:5px solid var(--blue)} .acc-orange{border-left:5px solid var(--orange)}
+.acc-green{border-left:5px solid var(--green)} .acc-gray{border-left:5px solid var(--gray)}
+.arr{text-align:center;color:var(--muted);font-size:17px;line-height:1.25;margin:2px 0}
+.arr small{font-size:11.5px;display:block}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:stretch}
+.row>div{flex:1;min-width:250px}
+table{width:100%;border-collapse:collapse;font-size:13px;background:var(--card)}
+th,td{border:1px solid var(--line);padding:7px 10px;text-align:left;vertical-align:top}
+th{background:var(--chip)}
+a{color:var(--blue);text-decoration:none} a:hover{text-decoration:underline}
+.scroll{overflow-x:auto}
+.crumb{font-size:12.5px;color:var(--muted);margin-bottom:14px}
+.chip{display:inline-block;background:var(--chip);border:1px solid var(--line);border-radius:20px;padding:1px 10px;font-size:12px;margin:2px 3px 2px 0;color:var(--muted)}
+.step{display:flex;gap:10px;align-items:baseline;font-size:13px;color:var(--muted);margin:3px 0}
+.step b{color:var(--ink)}
+.n{background:var(--blue);color:#fff;border-radius:50%;min-width:22px;height:22px;display:inline-flex;align-items:center;justify-content:center;font-size:12px;font-weight:600}
+</style>
+</head>
+<body>
+<div class="wrap">
+<p class="crumb"><a href="00_system_overview.html">← System overview</a></p>
+<h1>Retrieval Module — <code>backend_new/retrieval/</code></h1>
+<p class="sub">Hybrid dense + sparse retrieval with Reciprocal Rank Fusion and cross-encoder reranking.
+Files: <code>hybrid_retriever.py</code> · <code>dense_retriever.py</code> · <code>sparse_retriever.py</code> · <code>reranker.py</code>. All constants from <code>utils/config.py</code>.</p>
+
+<h2>Query-time flow — <code>HybridRetriever.retrieve(query, top_k=cfg.TOP_K)</code></h2>
+
+<div class="box acc-orange">
+<h3>Input</h3>
+<p><code>query: str</code> · <code>top_k</code> defaults to <code>cfg.TOP_K = 3</code> (caller may override; pipeline passes it explicitly).</p>
+</div>
+<div class="arr">▼<small>fan-out: both retrievers asked for <code>top_k × 2 = 6</code> candidates each</small></div>
+
+<div class="row">
+  <div class="box acc-blue">
+    <h3>Dense — <code>DenseRetriever.retrieve(query, top_k=6)</code></h3>
+    <div class="step"><span class="n">1</span><span>Prepend <b>query prefix</b>: <code>"Represent this sentence for searching relevant passages: "</code> (<code>cfg.QUERY_PREFIX</code>, required by bge-large)</span></div>
+    <div class="step"><span class="n">2</span><span>Encode with SentenceTransformer <b>BAAI/bge-large-en-v1.5</b> (1024-d), <code>normalize_embeddings=True</code></span></div>
+    <div class="step"><span class="n">3</span><span><code>faiss.IndexFlatIP.search()</code> — inner product on normalized vectors = <b>cosine similarity</b></span></div>
+    <div class="step"><span class="n">4</span><span>Return docs in FAISS ranked order (explicitly no <code>set()</code> — ordering preserved)</span></div>
+  </div>
+  <div class="box acc-blue">
+    <h3>Sparse — <code>SparseRetriever.retrieve(query, top_k=6)</code></h3>
+    <div class="step"><span class="n">1</span><span>Tokenize with physics-aware regex <code>_TOKEN_RE</code>: identifiers <code>[A-Za-z][A-Za-z0-9_]*</code> + numbers incl. scientific notation → <code>"Vgs-Vth"</code> becomes <code>["Vgs","Vth"]</code>, <code>1e-7</code> kept whole</span></div>
+    <div class="step"><span class="n">2</span><span><code>BM25Okapi.get_scores(tokens)</code> over pre-tokenised corpus</span></div>
+    <div class="step"><span class="n">3</span><span>Sort indices by score desc, return top-k documents</span></div>
+  </div>
+</div>
+
+<div class="arr">▼ ▼<small>two ranked lists merge</small></div>
+
+<div class="box acc-orange">
+<h3>Reciprocal Rank Fusion (in <code>HybridRetriever.retrieve</code>)</h3>
+<p>For each list: <code>rrf_scores[doc] += 1 / (k + rank)</code> with <b>k = 60</b> (standard RRF constant).
+Docs appearing in both lists accumulate both contributions. Sort by RRF score desc, keep <b>top_k × 2 = 6</b> candidates.</p>
+</div>
+<div class="arr">▼<small>6 fused candidates</small></div>
+
+<div class="box acc-green">
+<h3>Rerank — <code>CrossEncoderReranker.rerank(query, docs, top_k)</code></h3>
+<p>Model: <code>cross-encoder/ms-marco-MiniLM-L-6-v2</code>. Builds <code>(query, doc)</code> pairs → <code>model.predict(pairs)</code> →
+sort by score desc → return <b>top 3</b> document strings.</p>
+</div>
+<div class="arr">▼</div>
+<div class="box acc-gray"><h3>Output</h3><p><code>list[str]</code> — 3 evidence chunks, passed to prompt builder / corpus-equation extractor.</p></div>
+
+<h2>Index build &amp; persistence</h2>
+<div class="scroll">
+<table>
+<tr><th>Component</th><th>Build path</th><th>On-disk artifacts (<code>data/embeddings/</code>)</th><th>Load behavior</th></tr>
+<tr>
+<td><code>DenseRetriever.build_index(docs)</code></td>
+<td>Prefers docs already on disk (so ingested PDFs survive); reuses existing <code>dense.index</code> only if <code>ntotal == len(documents)</code>, otherwise rebuilds. Doc prefix <code>cfg.DOC_PREFIX = ""</code>. IndexFlatIP if <code>NORMALIZE_EMBEDDINGS</code> else IndexFlatL2.</td>
+<td><code>dense.index</code>, <code>docs.json</code> (UTF-8 JSON; legacy <code>docs.pkl</code> still readable)</td>
+<td><code>load_index()</code>: read FAISS index + docs.json (pickle fallback). Called once by <code>api_server._load_pipeline()</code>.</td>
+</tr>
+<tr>
+<td><code>SparseRetriever</code></td>
+<td><code>build_index()</code> prefers pre-tokenised <code>bm25_docs.json</code> written by IngestionEngine; <code>build_index_from_docs(docs)</code> re-tokenises raw strings (used at API startup with the dense doc list).</td>
+<td><code>bm25_docs.json</code> (list of token lists)</td>
+<td>In-memory <code>BM25Okapi</code> rebuilt at startup — no binary index file.</td>
+</tr>
+</table>
+</div>
+
+<h2>Configuration (exact values, <code>utils/config.py</code>)</h2>
+<div class="scroll">
+<table>
+<tr><th>Constant</th><th>Value</th><th>Why</th></tr>
+<tr><td><code>TOP_K</code></td><td>3</td><td>Chunks handed to the SLM / validators</td></tr>
+<tr><td><code>EMBED_MODEL_NAME</code></td><td>BAAI/bge-large-en-v1.5</td><td>SOTA sweep winner (2026-06-07): Hit@3 0.65 @ chunk 384/64 vs MiniLM@512 baseline 0.52</td></tr>
+<tr><td><code>EMBED_DIM</code></td><td>1024</td><td>bge-large output dimension</td></tr>
+<tr><td><code>QUERY_PREFIX</code></td><td>"Represent this sentence for searching relevant passages: "</td><td>bge instruction prefix — queries only, not docs</td></tr>
+<tr><td><code>DOC_PREFIX</code></td><td>"" (empty)</td><td>bge docs are embedded bare</td></tr>
+<tr><td><code>NORMALIZE_EMBEDDINGS</code></td><td>True</td><td>cosine via normalized vectors + IndexFlatIP</td></tr>
+<tr><td>RRF <code>k</code></td><td>60 (hardcoded in <code>hybrid_retriever.py</code>)</td><td>Standard RRF smoothing constant</td></tr>
+<tr><td>Reranker model</td><td>cross-encoder/ms-marco-MiniLM-L-6-v2 (default arg)</td><td>Fast CPU cross-encoder</td></tr>
+</table>
+</div>
+
+<h2>Design decisions recorded in code comments</h2>
+<div class="box acc-gray">
+<ul>
+<li><b>Determinism fix</b>: candidate merge uses ranked dict accumulation, not <code>set()</code> union — set ordering is hash-dependent and made runs non-reproducible.</li>
+<li><b>Ranking fix</b>: dense results previously went through <code>list(set(...))</code> which destroyed FAISS distance ordering; now order-preserving.</li>
+<li><b>Tokenizer fix</b>: BM25 previously used <code>doc.split()</code>, so <code>"Vgs-Vth"</code> was a single token and keyword matches failed on hyphenated physics symbols.</li>
+<li><b>Revert path</b>: to restore the old MiniLM index set <code>EMBED_MODEL_NAME="all-MiniLM-L6-v2"</code>, <code>EMBED_DIM=384</code>, <code>QUERY_PREFIX=""</code>, <code>NORMALIZE_EMBEDDINGS=False</code>.</li>
+</ul>
+</div>
+
+<p class="crumb">Related: <a href="05_rag_pipeline.html">05_rag_pipeline</a> (caller) · <a href="08_evaluation_training.html">08_evaluation_training</a> (Stage-3 retrieval metrics, SOTA sweep)</p>
+</div>
+</body>
+</html>

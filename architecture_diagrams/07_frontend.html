@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Frontend — Physics-Based RAG SLM</title>
+<style>
+:root{
+  --bg:#f6f8fa; --card:#ffffff; --ink:#1f2328; --muted:#59636e; --line:#d1d9e0;
+  --blue:#0969da; --purple:#8250df; --green:#1a7f37; --orange:#bc4c00;
+  --red:#cf222e; --cyan:#0598a8; --gray:#59636e; --gold:#9a6700;
+  --chip:#eaeef2; --code:#f0f3f6;
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:#0d1117; --card:#161b22; --ink:#e6edf3; --muted:#9198a1; --line:#30363d;
+    --blue:#4493f8; --purple:#ab7df8; --green:#3fb950; --orange:#f0883e;
+    --red:#f85149; --cyan:#39c5cf; --gray:#9198a1; --gold:#d29922;
+    --chip:#21262d; --code:#1c2128;
+  }
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--ink);font:15px/1.5 "Segoe UI",system-ui,sans-serif;padding:28px 16px}
+.wrap{max-width:1150px;margin:0 auto}
+h1{font-size:24px;margin-bottom:4px}
+h2{font-size:18px;margin:26px 0 10px}
+.sub{color:var(--muted);margin-bottom:18px}
+code{font-family:Consolas,"Cascadia Code",monospace;font-size:13px;background:var(--code);padding:1px 5px;border-radius:4px}
+.box{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin:6px 0}
+.box h3{font-size:14px;margin-bottom:6px}
+.box p,.box li{font-size:13px;color:var(--muted)}
+.box ul{padding-left:18px}
+.acc-cyan{border-left:5px solid var(--cyan)} .acc-gray{border-left:5px solid var(--gray)}
+.acc-green{border-left:5px solid var(--green)} .acc-orange{border-left:5px solid var(--orange)}
+.acc-purple{border-left:5px solid var(--purple)} .acc-blue{border-left:5px solid var(--blue)}
+table{width:100%;border-collapse:collapse;font-size:13px;background:var(--card)}
+th,td{border:1px solid var(--line);padding:7px 10px;text-align:left;vertical-align:top}
+th{background:var(--chip)}
+a{color:var(--blue);text-decoration:none} a:hover{text-decoration:underline}
+.scroll{overflow-x:auto}
+.crumb{font-size:12.5px;color:var(--muted);margin-bottom:14px}
+.row{display:flex;gap:10px;flex-wrap:wrap}
+.row>div{flex:1;min-width:260px}
+.get{color:var(--green);font-weight:700;font-family:Consolas,monospace;font-size:12px}
+.post{color:var(--orange);font-weight:700;font-family:Consolas,monospace;font-size:12px}
+.chip{display:inline-block;background:var(--chip);border:1px solid var(--line);border-radius:20px;padding:1px 10px;font-size:12px;margin:2px 3px 2px 0;color:var(--muted)}
+</style>
+</head>
+<body>
+<div class="wrap">
+<p class="crumb"><a href="00_system_overview.html">← System overview</a></p>
+<h1>Frontend — <code>frontend_new/</code></h1>
+<p class="sub">"Physics RAG · SLM Console". React 18 + <b>TanStack Router</b> (file-based routes) + <b>shadcn/ui</b> (Radix) + Tailwind, built with Vite.
+LaTeX rendering via <code>react-katex</code> (<code>components/Latex.tsx</code>).</p>
+
+<h2>Shell &amp; plumbing</h2>
+<div class="row">
+<div class="box acc-cyan">
+<h3><code>components/AppShell.tsx</code></h3>
+<ul>
+<li>Fixed 64-wide glass sidebar; nav: <b>Q&amp;A Playground</b> (/), <b>Knowledge Base</b> (/knowledge), <b>Evaluation</b> (/evaluation), <b>Model Tuning</b> (/tuning).</li>
+<li>API health pill — polls <code>checkHealth()</code> (GET <code>/</code>, 3 s timeout) every <b>15 s</b>; shows "API: Online/Offline :8000".</li>
+</ul>
+</div>
+<div class="box acc-cyan">
+<h3><code>lib/api.ts</code></h3>
+<ul>
+<li><code>API_BASE = "http://localhost:8000"</code>.</li>
+<li><code>apiFetch&lt;T&gt;(path, init)</code>: fetch + <code>AbortController</code> timeout (default <b>35 s</b>, per-call override), auto <code>Content-Type: application/json</code> unless FormData, throws on non-2xx.</li>
+</ul>
+</div>
+</div>
+
+<h2>Pages → endpoints</h2>
+<div class="scroll">
+<table>
+<tr><th>Route file</th><th>Page</th><th>Calls</th><th>Key UI</th></tr>
+<tr>
+<td><code>routes/index.tsx</code></td>
+<td>Q&amp;A Playground</td>
+<td>
+<span class="post">POST</span> <code>/api/query</code> (question + optional forced mode)<br>
+<span class="post">POST</span> <code>/api/query/baseline</code> (fired in parallel)<br>
+<span class="post">POST</span> <code>/api/query/rag-compare</code> (1.5B/3B panel)<br>
+<span class="post">POST</span> <code>/api/feedback</code> (thumbs-up / correction / gap)
+</td>
+<td>Side-by-side <b>baseline 70B vs RAG 0.5B</b>; mode selector (AUTO/LOOKUP/EXPLORE/SWEEP → <code>RagMeta.mode</code>);
+<b>Confidence Inspector</b> (breakdown bars, symbolic/dimensional/numerical verdicts, stability, similarity, per-check explanations, evidence chunks);
+EXPLORE provenance table (<code>user/corpus/default</code> rows, provenance_fraction); SWEEP curve via <code>sweep_plot_url</code> <code>&lt;img&gt;</code> + x/y data; HITL feedback box. Ships mock data for offline demo.</td>
+</tr>
+<tr>
+<td><code>routes/knowledge.tsx</code></td>
+<td>Knowledge Base</td>
+<td><span class="get">GET</span> <code>/api/registry</code> · <span class="post">POST</span> <code>/api/ingest</code> (FormData PDFs, 60 s timeout) · <span class="post">POST</span> <code>/api/ingest/reset</code></td>
+<td>Ingested-PDF table (chunks, FAISS offsets, date), corpus stats (total PDFs, FAISS vectors, BM25 vocab), drag-drop upload, reset-index button.</td>
+</tr>
+<tr>
+<td><code>routes/evaluation.tsx</code></td>
+<td>Evaluation</td>
+<td><span class="get">GET</span> <code>/api/evaluation/results</code> · <span class="get">GET</span> <code>/api/synthesis/live</code> + <span class="get">GET</span> <code>/api/evaluation/live</code> (polling) · <span class="post">POST</span> <code>/api/synthesis/start</code> · <span class="post">POST</span> <code>/api/evaluation/start</code></td>
+<td>Confidence histogram from real <code>eval_results_*.jsonl</code> bins; live progress cards for golden-QA synthesis (40/40/20 difficulty split) and pipeline evaluation (high-conf correct vs low-conf caught).</td>
+</tr>
+<tr>
+<td><code>routes/tuning.tsx</code></td>
+<td>Model Tuning</td>
+<td><span class="get">GET</span> <code>/api/feedback/count</code> · <span class="get">GET</span> <code>/api/feedback/corrections?limit=5</code> · <span class="get">GET</span> <code>/api/train/live</code> (poll during run) · <span class="post">POST</span> <code>/api/train/from-feedback</code></td>
+<td>Pending-corrections counter, before/after correction preview, hyperparameter form (lr 2e-4, LoRA rank 16, batch 1, 200 steps, cosine), live training log/loss stream.</td>
+</tr>
+</table>
+</div>
+
+<h2>Structure</h2>
+<div class="box acc-gray">
+<span class="chip">src/routes/__root.tsx — root layout wraps AppShell</span>
+<span class="chip">src/router.tsx + routeTree.gen.ts — TanStack file-based routing</span>
+<span class="chip">src/components/ui/* — 40+ shadcn/ui primitives</span>
+<span class="chip">src/components/Latex.tsx — KaTeX wrapper</span>
+<span class="chip">src/lib/utils.ts — cn() class merge</span>
+<span class="chip">src/server.ts / start.ts — SSR entry (TanStack Start)</span>
+<span class="chip">src/lib/error-capture.ts / lovable-error-reporting.ts — Lovable template error hooks</span>
+</div>
+
+<div class="box acc-blue">
+<h3>Data-shape contract with the backend</h3>
+<p>Types in <code>index.tsx</code> mirror <code>api_server</code> serializers exactly:
+<code>ExploreResult {success, target, symbolic, numeric, sanity_ok, error, corpus_equation, provenance[], provenance_fraction, sweep{x,y,…}}</code>
+(from <code>_serialize_explore_result</code>) and <code>RagMeta {mode, node_profile, explore_result, sweep_plot_url}</code>.
+Confidence breakdown rows are <code>{label, value, max, ok}</code> from <code>_format_breakdown</code> — real engine values, not recomputed client-side.</p>
+</div>
+
+<p class="crumb">Related: <a href="06_api_server.html">06_api_server</a> · <a href="00_system_overview.html">00_system_overview</a></p>
+</div>
+</body>
+</html>

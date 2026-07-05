@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>System Overview — Physics-Based RAG SLM</title>
+<style>
+:root{
+  --bg:#f6f8fa; --card:#ffffff; --ink:#1f2328; --muted:#59636e; --line:#d1d9e0;
+  --blue:#0969da; --purple:#8250df; --green:#1a7f37; --orange:#bc4c00;
+  --red:#cf222e; --cyan:#0598a8; --gray:#59636e; --gold:#9a6700;
+  --chip:#eaeef2; --code:#f0f3f6;
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:#0d1117; --card:#161b22; --ink:#e6edf3; --muted:#9198a1; --line:#30363d;
+    --blue:#4493f8; --purple:#ab7df8; --green:#3fb950; --orange:#f0883e;
+    --red:#f85149; --cyan:#39c5cf; --gray:#9198a1; --gold:#d29922;
+    --chip:#21262d; --code:#1c2128;
+  }
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--ink);font:15px/1.5 "Segoe UI",system-ui,sans-serif;padding:28px 16px}
+.wrap{max-width:1150px;margin:0 auto}
+h1{font-size:26px;margin-bottom:4px}
+h2{font-size:18px;margin:26px 0 10px}
+.sub{color:var(--muted);margin-bottom:18px}
+code,.mono{font-family:Consolas,"Cascadia Code",monospace;font-size:13px;background:var(--code);padding:1px 5px;border-radius:4px}
+.box{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin:6px 0}
+.box h3{font-size:14px;margin-bottom:6px}
+.box p, .box li{font-size:13px;color:var(--muted)}
+.box ul{padding-left:18px}
+.acc-blue{border-left:5px solid var(--blue)} .acc-purple{border-left:5px solid var(--purple)}
+.acc-green{border-left:5px solid var(--green)} .acc-orange{border-left:5px solid var(--orange)}
+.acc-red{border-left:5px solid var(--red)} .acc-cyan{border-left:5px solid var(--cyan)}
+.acc-gray{border-left:5px solid var(--gray)} .acc-gold{border-left:5px solid var(--gold)}
+.arr{text-align:center;color:var(--muted);font-size:17px;line-height:1.25;margin:2px 0}
+.arr small{font-size:11.5px;display:block}
+.row{display:flex;gap:10px;flex-wrap:wrap}
+.row>.box{flex:1;min-width:230px}
+.chip{display:inline-block;background:var(--chip);border:1px solid var(--line);border-radius:20px;padding:1px 10px;font-size:12px;margin:2px 3px 2px 0;color:var(--muted)}
+table{width:100%;border-collapse:collapse;font-size:13px;background:var(--card);border:1px solid var(--line);border-radius:8px;overflow:hidden}
+th,td{border:1px solid var(--line);padding:7px 10px;text-align:left;vertical-align:top}
+th{background:var(--chip)}
+a{color:var(--blue);text-decoration:none} a:hover{text-decoration:underline}
+.scroll{overflow-x:auto}
+.legend span{margin-right:14px;font-size:12.5px;color:var(--muted)}
+.dot{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:4px;vertical-align:-1px}
+.note{font-size:12.5px;color:var(--muted);margin-top:6px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<h1>Physics-Based RAG SLM — System Overview</h1>
+<p class="sub">Semiconductor-physics Q&amp;A: fine-tuned Qwen2.5-0.5B + hybrid retrieval + deterministic SymPy validation.
+Repo root: <code>Physics_Based_RAG_SLM/</code> · branch <code>Phy_SLM_V1</code> · verified against source on 2026-07-05.</p>
+
+<div class="legend">
+<span><span class="dot" style="background:var(--cyan)"></span>Frontend</span>
+<span><span class="dot" style="background:var(--red)"></span>API</span>
+<span><span class="dot" style="background:var(--orange)"></span>Pipeline</span>
+<span><span class="dot" style="background:var(--blue)"></span>Retrieval</span>
+<span><span class="dot" style="background:var(--purple)"></span>Reasoning (SLM)</span>
+<span><span class="dot" style="background:var(--green)"></span>Physics engines</span>
+<span><span class="dot" style="background:var(--gray)"></span>Utils / storage</span>
+<span><span class="dot" style="background:var(--gold)"></span>Offline scripts</span>
+</div>
+
+<h2>Runtime request path</h2>
+
+<div class="box acc-cyan">
+<h3>Frontend — <code>frontend_new/</code> (React 18 + TanStack Router + shadcn/ui + Tailwind, Vite)</h3>
+<p>4 pages: <b>Ask</b> (<code>routes/index.tsx</code>), <b>Evaluation</b>, <b>Knowledge</b>, <b>Tuning</b>.
+All backend calls via <code>lib/api.ts → apiFetch()</code>, <code>API_BASE = http://localhost:8000</code>, 35 s abort timeout.
+Detail: <a href="07_frontend.html">07_frontend</a></p>
+</div>
+<div class="arr">▼<small>HTTP JSON (CORS: allow *)</small></div>
+
+<div class="box acc-red">
+<h3>API server — <code>backend_new/api_server.py</code> (FastAPI, uvicorn :8000)</h3>
+<p>Pipeline <b>singleton</b> loaded in background thread at startup (<code>ThreadPoolExecutor(max_workers=2)</code>).
+17 endpoints: query / baseline (NVIDIA NIM 70B) / rag-compare (NIM Qwen 1.5B &amp; 3B) / registry / ingest / synthesis / evaluation / feedback / train.
+Serves sweep PNGs at <code>/static/evaluation</code>. Detail: <a href="06_api_server.html">06_api_server</a></p>
+</div>
+<div class="arr">▼<small><code>_pipeline.answer(question, force_mode)</code> via executor</small></div>
+
+<div class="box acc-orange">
+<h3>Orchestrator — <code>pipeline/rag_pipeline.py → RAGPipeline.answer()</code></h3>
+<p>10-step flow: retrieve → mode detect (LOOKUP / EXPLORE / SWEEP) → corpus-equation extraction →
+generate <i>or</i> solve deterministically → 3 physics validators → semantic similarity → confidence → uncertainty → JSONL log.
+Detail: <a href="05_rag_pipeline.html">05_rag_pipeline</a></p>
+</div>
+<div class="arr">▼<small>owns one instance of each component below</small></div>
+
+<div class="row">
+  <div class="box acc-blue">
+    <h3>Retrieval — <code>retrieval/</code></h3>
+    <ul>
+      <li><code>HybridRetriever</code>: RRF(k=60) fusion</li>
+      <li><code>DenseRetriever</code>: FAISS + <b>BAAI/bge-large-en-v1.5</b> (1024-d, cosine/IndexFlatIP)</li>
+      <li><code>SparseRetriever</code>: BM25Okapi, physics-aware tokenizer</li>
+      <li><code>CrossEncoderReranker</code>: ms-marco-MiniLM-L-6-v2</li>
+    </ul>
+    <p><a href="01_retrieval.html">01_retrieval</a></p>
+  </div>
+  <div class="box acc-purple">
+    <h3>Reasoning — <code>reasoning/</code></h3>
+    <ul>
+      <li><code>TinySLM</code>: Qwen2.5-0.5B-Instruct + LoRA adapter (<code>models/finetuned_slm</code>)</li>
+      <li>N=3 samples, temp 0.3, top_p 0.9, max 128 new tokens, SEED 42</li>
+      <li><code>prompt_builder.build_prompt()</code>: 2 templates (with / without corpus equation)</li>
+    </ul>
+    <p><a href="02_reasoning_slm.html">02_reasoning_slm</a></p>
+  </div>
+</div>
+<div class="row">
+  <div class="box acc-green">
+    <h3>Physics validation — <code>physics/</code></h3>
+    <ul>
+      <li><code>EquationValidator</code> — extract + SymPy parse</li>
+      <li><code>DimensionChecker</code> — recursive AST unit analysis</li>
+      <li><code>NumericalValidator</code> — 3 tech nodes, majority vote</li>
+      <li><code>physics_scorer</code> / <code>new_checker</code> — 0–4 score</li>
+      <li><code>physics_explainer</code> — Inspector text</li>
+    </ul>
+    <p><a href="03_physics_validation.html">03_physics_validation</a></p>
+  </div>
+  <div class="box acc-green">
+    <h3>Design synthesis — <code>physics/</code></h3>
+    <ul>
+      <li><code>ExplorationEngine</code> — SymPy solve, no SLM math</li>
+      <li><code>SweepEngine</code> — parametric sweeps + matplotlib PNG</li>
+      <li><code>ValueTracker</code> — user/corpus/default provenance</li>
+      <li><code>NodeProfileManager</code> — 5nm GAA / 16nm FinFET / 28nm FDSOI / 100nm CMOS profiles</li>
+      <li><code>SLMExtractor</code> — 2-stage value extraction (stage 1 dormant)</li>
+    </ul>
+    <p><a href="04_exploration_design.html">04_exploration_design</a></p>
+  </div>
+  <div class="box acc-gray">
+    <h3>Utils — <code>utils/</code></h3>
+    <ul>
+      <li><code>ConfidenceEngine</code> — weighted score (compute / score_explore)</li>
+      <li><code>UncertaintyEngine</code> — agreement across N samples</li>
+      <li><code>RAGLogger</code> — append-only JSONL audit</li>
+      <li><code>config.py</code> — single source of model/retrieval constants</li>
+    </ul>
+  </div>
+</div>
+
+<div class="arr">▼<small>reads / writes</small></div>
+
+<div class="box acc-gray">
+<h3>Persistent stores</h3>
+<span class="chip">data/embeddings/dense.index (FAISS)</span>
+<span class="chip">data/embeddings/docs.json</span>
+<span class="chip">data/embeddings/bm25_docs.json</span>
+<span class="chip">data/embeddings/registry.json</span>
+<span class="chip">models/finetuned_slm (LoRA)</span>
+<span class="chip">models/candidate_slm (staging)</span>
+<span class="chip">logs/rag_logs.jsonl</span>
+<span class="chip">data/evaluation/*.json(l) + sweep PNGs</span>
+<span class="chip">data/feedback/hitl_corrections.jsonl</span>
+<span class="chip">physics/node_profiles/*.json</span>
+<span class="chip">hf_cache/ (HF_HOME, offline if present)</span>
+</div>
+
+<h2>Offline / batch lane</h2>
+<div class="box acc-gold">
+<h3>Scripts — <code>backend_new/scripts/</code> (also mirrored in <code>kaggle_regen/</code>, <code>kaggle_sweep/</code> for GPU runs)</h3>
+<ul>
+<li><b>Ingestion</b>: <code>ingest.py</code> CLI → <code>_ingestion_engine.IngestionEngine</code> (PyMuPDF → 384/64-word chunks → FAISS + BM25 + registry)</li>
+<li><b>Data synthesis</b>: <code>synthesize_data.py</code> — NIM-generated golden QA (target 100: 40 easy / 40 medium / 20 hard)</li>
+<li><b>Training</b>: <code>train_slm.py</code>, <code>train_from_feedback.py</code> (HITL 70/30 mix → candidate adapter), <code>evaluate_candidate.py</code> (promotion gate)</li>
+<li><b>Report evaluation</b>: <code>stage1…stage6</code> + <code>sweep_retrieval.py</code> — physics score, generation quality, retrieval Hit@k/MRR/NDCG, ablations, significance</li>
+</ul>
+<p>Detail: <a href="08_evaluation_training.html">08_evaluation_training</a></p>
+</div>
+
+<h2>External services</h2>
+<div class="box acc-red">
+<ul>
+<li><b>NVIDIA NIM</b> (<code>https://integrate.api.nvidia.com/v1</code>, key from <code>NVIDIA_API_KEY</code> env):
+<code>meta/llama-3.3-70b-instruct</code> (no-RAG baseline), <code>qwen/qwen2.5-1.5b-instruct</code> &amp; <code>qwen/qwen2.5-3b-instruct</code> (RAG size comparison), plus golden-QA synthesis.</li>
+<li><b>Hugging Face Hub</b> — only when <code>hf_cache/hub</code> missing; otherwise fully offline (<code>HF_HUB_OFFLINE=1</code>).</li>
+</ul>
+</div>
+
+<h2>Module index</h2>
+<div class="scroll">
+<table>
+<tr><th>Diagram</th><th>Covers</th><th>Source of truth</th></tr>
+<tr><td><a href="01_retrieval.html">01_retrieval</a></td><td>Hybrid dense+sparse retrieval, RRF, reranking, index files</td><td><code>backend_new/retrieval/*.py</code>, <code>utils/config.py</code></td></tr>
+<tr><td><a href="02_reasoning_slm.html">02_reasoning_slm</a></td><td>TinySLM generation, chat template, LoRA, prompt builder</td><td><code>backend_new/reasoning/*.py</code></td></tr>
+<tr><td><a href="03_physics_validation.html">03_physics_validation</a></td><td>Equation / dimension / numerical validators, 0–4 scorer, explainer</td><td><code>backend_new/physics/{equation_validator,dimension_checker,numerical_validator,physics_scorer,new_checker,physics_explainer}.py</code></td></tr>
+<tr><td><a href="04_exploration_design.html">04_exploration_design</a></td><td>EXPLORE/SWEEP deterministic solving, value provenance, node profiles</td><td><code>backend_new/physics/{exploration_engine,sweep_engine,value_tracker,node_profile_manager,slm_extractor}.py</code></td></tr>
+<tr><td><a href="05_rag_pipeline.html">05_rag_pipeline</a></td><td>RAGPipeline.answer() step-by-step, mode branching, best-of-N</td><td><code>backend_new/pipeline/rag_pipeline.py</code></td></tr>
+<tr><td><a href="06_api_server.html">06_api_server</a></td><td>All FastAPI endpoints, subprocess launchers, NIM calls</td><td><code>backend_new/api_server.py</code></td></tr>
+<tr><td><a href="07_frontend.html">07_frontend</a></td><td>Pages, components, endpoint wiring</td><td><code>frontend_new/src/</code></td></tr>
+<tr><td><a href="08_evaluation_training.html">08_evaluation_training</a></td><td>Stage 1–6 evaluation, ingestion, synthesis, training loop</td><td><code>backend_new/scripts/</code>, <code>kaggle_regen/</code>, <code>kaggle_sweep/</code></td></tr>
+</table>
+</div>
+
+<p class="note">Every class name, method, constant and file path on these pages was read from the code, not inferred.
+Key config (<code>utils/config.py</code>): MODEL_NAME=Qwen/Qwen2.5-0.5B-Instruct · N_SAMPLES=3 · MAX_NEW_TOKENS=128 · TEMPERATURE=0.3 · TOP_P=0.9 · SEED=42 · TOP_K=3 · EMBED_MODEL_NAME=BAAI/bge-large-en-v1.5 · EMBED_DIM=1024 · NORMALIZE_EMBEDDINGS=True.</p>
+
+</div>
+</body>
+</html>
