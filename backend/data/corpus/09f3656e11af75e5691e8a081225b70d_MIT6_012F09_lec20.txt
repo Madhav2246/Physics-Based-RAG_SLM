@@ -1,0 +1,1670 @@
+ 
+ 
+          
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+  
+    
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+  
+ 
+ 
+ 
+6.012 - Microelectronic Devices and Circuits  
+Lecture 20 - Diff-Amp Anal. I: Metrics, Max. Gain - Outline  
+• Announcements 
+Announcements - D.P.:  No Early effect in large signal analysis; just LECs. 
+Lec. 21 foils useful; Sp 06 DP foils, too (on Stellar) 
+Do PS #10: free points while working on D.P. 
+• Review - Differential Amplifier Basics 
+Difference- and common-mode signals: vID =vIN1 -vIN 2, vIC =(vIN1+vIN2)/2 
+Half-circuits: half of original with wires shorted or cut 
+(familiar, easy analyses) 
+• Performance metrics - specific to diff. amps. 
+Difference- and common-mode gains  
+Common-mode rejection ratio  
+Input and output voltage swings  
+• Non-linear loads 
+The limitation of resistive loads: Gain limited by voltage supply  
+Non-linear loads: High incremental resistance/small voltage drop  
+• Active loads 
+Lee load  
+Current mirror load  
+Clif Fonstad, 11/19/09 
+Lecture 20 - Slide 1 
+
+  
+ 
+ 
+ 
+ 
+ 
+ 
+  
+Differential Amplifiers - overview of features and properties 
+Intrinsic advantages and features: 
+- large difference mode gain 
+- small common mode gain 
+- easy to cascade stages; no coupling capacitors  
+- no emitter/source capacitors in CS/CE stages 
+Performance metrics: 
+- difference mode voltage gain, Avd 
+Today 
+- common mode voltage gain, Avc 
+Today 
+- input resistance, Rin 
+∞ 
+- output resistance, Rout 
+Lec 21 
+- common mode input voltage range 
+Today 
+- output voltage swing 
+Today 
+- DC offset on output 
+Lec 21 
+- Power dissipation 
+Lec 18 
+Clif Fonstad, 11/19/09 
+Lecture 20 - Slide 2 
+
+  
+ 
+ 
+ 
+  
+  
+            
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+Differential Amplifiers - common-mode input range 
+(VC,min ≤ vC ≤ VC,max) 
+We have said the output  
+changes very little for  
+common-mode inputs.  
+This is true as long as the  
+vC doesn't push the  
+transistors out of  
+saturation.  
+There are a minimum and  
+maxiumum vC:  
+VC, max: As vC increases,  
+vDS8 and vDS9 decrease  
+until Q8 and Q9 are no  
+longer in saturation.  
+VC, min: As vC decreases,  
+vDS10 decreases until Q10  
+is no longer in saturation.  
+The node between Q8/Q9 and Q10 moves up 
+Clif Fonstad, 11/19/09 
+Lecture 20 - Slide 3 
+Q7
+Q6
+B
+Q8
+Q9
+Q10
+Q5
+Q4
++ 1.5 V
+- 1.5 V
++
++
+-
+-
+vGS stays constant
+Q10  forced out
+of saturation
+if vc  too low
+vC
+down
+vGS
+vGS
+vc
+down
++
+-
+-
++
+vC
+up
+vC
+up
+vGS stays constant
+Q8, Q9 forced
+out of
+saturation
+if vC too high
+-
++
++
+-
+vDS
+vDS  gets 
+smaller
++
++
+-
+-
+vDS
+vDS  gets 
+smaller
+vDS
+and down with vC.  
+
+  
+ 
+ 
+  
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Differential Amplifiers - output voltage range 
+(VOUT,min ≤ vOUT ≤ VOUT,max) 
+As vOUT goes down, Q15 and/or Q19 may go out of saturation; 
+as vOUT goes up, the same may happen to Q12 and/or Q16. 
+vSG12
++
+-
+-
++
+vOUT
+down
+vOUT
+up
++
+-
+Fixed
+Fixed
+Q16
+Q19
+Q18
+Q20
+Q21
+B
++ 1.5 V
+- 1.5 V
+A
+Q17
+Q15
+Q12
+Q13
+vDS15 and vDS19 decrease 
+as vOUT  goes down, so 
+Q15 and/or Q19 may be 
+forced out of saturation if 
+vOUT  is too low
+vGS19
+! 0.6V
+! 0.6V+
+-
+! 0.6V
+-
++
+! 0.6V
+! 0.6V+
+-
++
+-
+vGS15
++
+-
+vSG16+
+-
+vSD12 and vSD16 decrease as 
+vOUT  goes up, so Q 12 and/or Q16
+may be forced out of 
+saturation if v OUT  is too high
++
+-
+vDS15
++
+-
+vDS19
++
+-
+vSD12
++
+-
+vSD16
+Clif Fonstad, 11/19/09 
+Lecture 20 - Slide 4 
+
+ 
+ 
+ 
+ 
+ 
+ 
+Differential Amplifier Analysis ­
+incremental analysis exploiting symmetry and superposition 
+Clif Fonstad, 11/19/09 
+Lecture 20 - Slide 5 
+-vid
++
+-
+-vod
++
+-
+a LEHC: 
+one half
+of sym. 
+LEC 
+vid
++
+-
+vod
++
+-
+a LEHC: 
+one half
+of sym. 
+LEC 
+No voltage on 
+common links, so 
+incrementally they 
+are grounded.
+vid
++
+-
+vod = Avdvid
++
+-
+a LEHC: 
+one half
+of sym. 
+LEC 
+vic
++
+-
+voc
++
+-
+a LEHC: 
+one half
+of sym. 
+LEC 
+vic
++
+-
+voc
++
+-
+a LEHC: 
+one half
+of sym. 
+LEC 
+No current in 
+common links, so 
+incrementally they 
+are open.
+vic
++
+-
+voc = Avcvic
++
+-
+a LEHC: 
+one half
+of sym. 
+LEC 
+
+     
+Looking at the design problem circuit:
+Lesson - Draw the difference and common mode half circuits. 
+We have reduced the transistor count from 22 to 4, and we see that our 
+vod
++
+-
+vid
++
+-
+Q8
+Q20
+Q17
+Q12
+roQ16
+roLLdm
+roCMdm
+RLOAD
+voc
++
+-
+vic
++
+-
+Q8
+Q20
+Q17
+Q12
+roQ16
+roCMcm
+2roQ10
+roLLcm
+RLOAD
+Difference mode  
+half circuit:  
+Common mode  
+half circuit:  
+complex amplifier is a just cascade of 4 single-transistor stages. 
+Clif Fonstad, 11/19/09 
+Lecture 20 - Slide 6 
+
+  
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+  
+  
+  
+  
+  
+- with linear resistor loads we must 
+make a compromise between the
+voltage gain and the size of the
+output voltage swing. 
+Maximum voltage gains 
+MOSFET" :          Av,max = gmRSL =
+2IDRSL
+VGS #VT
+[
+]
+$ 2 IDRSL
+[
+]max
+VGS #VT
+[
+]min
+Bipolar :              Av,max = gmRSL = qICRSL
+kT
+$
+ICRSL
+[
+]max
+VThermal
+Linear Resistor Loads: 
+the limit on maximum stage gain 
+What's with these active, nonlinear loads? 
+Why doesn't the design problem use resistors? 
+IBIAS
+V-
+V+
+vin
++
+-
+CS
+CO
+vout
++
+-
+RSL
+Q
+gmvgs
+go
+d
+s,b
+ GSL
+(=1/RSL)
+vin = v gs
+s,b
+g
++
+-
++
+-
+vout
+What are [ICRSL]
+,  [IDRSL]
+,  and [VGS - VT]min ?
+max
+max
+* For a MOSFET, gm = (2KID/α)1/2 = K(VGS - VT)/α = 2ID/(VGS - VT)
+Clif Fonstad, 11/19/09 
+Lecture 20 - Slide 7 
+
+ 
+ 
+ 
+ 
+  
+ 
+  
+ 
+Resistor Loads: cont. 
+- What are [IDRSL]
+,  [ICRSL]
+,  and [VGS - VT]min?
+max
+max
+[IDRSL]max, [ICRSL]max:
+ - [IDRSL]max and [ICRSL]max are 
+determined by the desired 
+voltage swing at the output 
+and/or by the common-
+mode input voltage range.
+ - The ultimate limit is the  
+power supply.  
+[VGS - VT]min:
+ - [VGS - VT]min is set by how close 
+to threshold the gate can safely 
+be biased before the strong 
+inversion, drift model fails. We 
+will say more about this shortly 
+(Slide 23). 
+IBIAS
+V-
+V+
+vin
++
+-
+CS
+CO
+vout
++
+-
+RSL
+Q
+Clif Fonstad, 11/19/09 
+Lecture 20 - Slide 8 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Current Source Loads: 
+Incrementally large resistance
+Relatively small quiescent voltage drop 
+-
+- transistors with a DC input voltage, i.e. set up as sources/sinks ­
+Bipolar: 
+MOSFET: 
+VREF
++
+-
+VREF
++
+-
++
+-
+vgs = 0
+g
+s
+gmbvbs
+= 0
+gmvgs
+= 0
+b
+-
++
+go
+s
+d
+vbs = 0
+go
+s, b, g
+d
+VREF
++
+-
+VREF
++
+-
++
+-
+v!=
+0
+b
+e
+gmv!
+= 0
+go
+e
+c
+go
+e, b
+c
+g!
+go = " ID = ID
+VA
+go = " IC = IC
+VA
+Clif Fonstad, 11/19/09 
+Lecture 20 - Slide 9 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+  
+ 
+  
+  
+  
+  
+  
+Current Source Loads: 
+the limit on the maximum 
+stage gain 
+- current source loads eliminate the 
+need to compromise between the
+voltage gain and the output
+voltage swing 
+Maximum voltage gains 
+MOSFET" :          Av,max =
+gm
+go + gsl
+=
+2ID
+VGS #VT
+[
+]
+ID VA,Q + ID VA,SL
+$
+2VA,eff
+VGS #VT
+[
+]min
+Bipolar :              Av,max =
+gm
+go + gsl
+=
+qIC kT
+IC VA,Q + IC VA,SL
+= VA,eff
+Vt
+gmvgs
+go
+d
+s,b
+vin = v gs
+s,b
+g
++
+-
++
+-
+vout
+gsl
+IBIAS
+V-
+V+
+vin
++
+-
+CS
+CO
+vout
++
+-
+Q
+IStage Load
+with   VA,eff "
+VA,QVA,SL
+VA,Q + VA,SL
+[
+]
+,
+Vt " kT
+q
+Typically VA,eff >>  [ID RSL]max 
+Clif Fonstad, 11/19/09 
+* For a MOSFET, g
+= (2KID/α)1/2 = K(VGS - VT)/α = 2ID/(VGS - VT) 
+Lecture 20 - Slide 10 
+m 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+Current Source Loads: the maximum stage gain, cont.  
+- the similarity in the results for BJT's 
+and MOSFETs operating in strong 
+inversion extends to MOSFETs 
+operating sub-threshold and in 
+velocity saturation, also: 
+gmvgs
+go
+d
+s,b
+vin = v gs
+s,b
+g
++
+-
++
+-
+vout
+gsl
+The MOSFET LEC: the same for all. 
+Maximum voltage gains 
+MOSFET sub - threshold :
+ iD = IS,s"te
+vGS "VT
+(
+) nVt ,   gm =  ID
+nVt
+    
+                             Av,max =
+gm
+go + gsl
+=
+ID nVt
+ID VA,Q + ID VA,SL
+= VA,eff
+nVt
+MOSFET w. velocity saturation:
+ iD = W ssat Cox
+* vGS "VT
+(
+),   gm = W ssat Cox
+* =
+ID
+vGS "VT
+(
+)
+   
+                             Av,max =
+gm
+go + gsl
+=
+ID
+vGS "VT
+(
+)
+ID VA,Q + ID VA,SL
+#
+VA,eff
+vGS "VT
+(
+)min
+with   VA,eff "
+VA,QVA,SL
+VA,Q + VA,SL
+[
+]
+Clif Fonstad, 11/19/09  
+Lecture 20 - Slide 11 
+
+  
+  
+ 
+ 
+ 
+ 
+ 
+           
+ 
+Current Source Loads: Example - biasing a source-coupled 
+pair differential amplifer stage 
+V+
+vIN1
++
+-
++
+-
+Q4
+Q5
+V-
+vO1
++
+-
+vO2
++
+-
+IBIAS
+ILOAD
+ILOAD
+vIN2
+Note:  ILOAD =  IBIAS/2 
+Q1
+Q6
+R1
+V+
+Q3
+vIN1
++
+-
++
+-
+Q4
+Q5
+Q7
+Q2
+V-
+vO1
++
+-
+vO2
++
+-
+Want: 
+Build: 
+Note:  W1 = W2 = W3 
+W7 = 2W6 
+This is nice…can we do even better?  
+Yes, with active loads.  Consider… 
+Clif Fonstad, 11/19/09 
+Lecture 20 - Slide 12 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+Active Loads:  
+Loads that don't just sit there and look pretty. 
+First example: the current mirror load  
+Signal actively fed from
+left side to right side,
+and applied inputs to
+"stage load" MOSFETs. 
+Now "single ended," i.e.
+only one output, but it
+is twice as large: 
+vI2
+V+
+Q2
+vI1
++
+-
++
+-
+Q3
+Q4
+Q1
+vOUT
++
+-
+V-
+IBIAS,
+rob
+vout = 2vout1 
+Load self-adjusting; circuit
+forces ILOAD = IBIAS/2. 
+Clif Fonstad, 11/19/09 
+Lecture 20 - Slide 13 
+
+  
+ 
+ 
+ 
+ 
+ 
+ 
+V+
+Q2
+vid/2
++
++
+-
+Q3
+Q4
+Q1
+vOUT
++
+-
+V-
+IBIAS,
+rob
+-vid/2
+id
+id
+id
+id
+2id
+-
+Active Loads: The current mirror load, cont. 
+Large differential-mode 
+gain, small common-mode 
+gain. 
+Also provides high gain 
+conversion from double-
+ended to single-ended 
+output. 
+The circuit is no 
+longer symmetrical, so 
+half-circuit techniques 
+can not be applied. 
+The full analysis is 
+found in the course 
+text. We find: 
+Difference-mode inputs  
+vout,d =
+2gm3
+go2 + go4 + gel
+(
+)
+vid 2
+Clif Fonstad, 11/19/09 
+Lecture 20 - Slide 14 
+
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+   
+ 
+ 
+  
+ 
+ 
+ 
+Active Loads: The current mirror load 
+Common-mode inputs 
+vic
+V+
+Q2
+vic
++
+-
++
+-
+Q3
+Q4
+Q1
+vOUT
++
+-
+V-
+IBIAS,
+rob
+ic
+ic
+ic
+ic 0
+vout,c = gob
+2gm2
+vic
+With both inputs:  
+vout =
+2gm3
+go2 + go4 + gel
+(
+)
+vin1 " vin2
+(
+)
+2
+" gob
+2gm2
+vin1 + vin2
+(
+)
+2
+Note: In D.P. the output goes to the base of two BJTs; gel ≠ 0 and can 
+Clif Fonstad, 11/19/09 
+be important. 
+Lecture 20 - Slide 15 
+
+  
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+What if we want an active load and yet stay differential?  
+Active Loads - The Lee load 
+A load for a fully-
+differential stage 
+that looks like a 
+large resistance in 
+difference-mode 
+and small resis­
+tance in common-
+mode) 
+The conventional 
+schematic is drawn 
+here, but the coup­
+ling of the load and 
+what is happening 
+is made clearer by 
+redrawing the 
+circuit (next slide.) 
+Clif Fonstad, 11/19/09 
+Lecture 20 - Slide 16 
+vI2 
+V+ 
+Q4
+Q3 
+vI1 
++ 
+-
++ 
+-
+Q5 
+Q6 
+Q2
+Q1 
+vO1 
++ 
+-
+vO2 
++ 
+-
+V-
+Normal format 
+IBIAS,
+rob 
+
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Active Loads ­
+Drawn as on the 
+right we see that 
+the load MOSFETs 
+on each side are 
+driven by both out­
+puts. The result is 
+different if the two 
+outputs are equal 
+and opposite (diff­
+mode operation) or 
+if they are equal 
+(common-mode). 
+The next few slides 
+give the results for 
+each mode. 
+Clif Fonstad, 11/19/09 
+The Lee load. cont. 
+V+ 
+IBIAS,
+rob 
+V-
+vI2 
+Q4 
+vI1 
++ 
+-
++ 
+-
+Q5 
+Q6 
+Q1 
+Q2
+Q3 
+vO1 
+vO2 
++ 
+-
++ 
+-
+vO1 
+vO2
++ 
+-
+-
++
+vO1 
++ 
+-
+vO2 
++ 
+-
+Drawn to highlight cross-coupling 
+and demonstrate symmetry 
+Lecture 20 - Slide 17 
+
+ 
+ 
+The Lee load: 
+analysis for 
+difference-mode 
+inputs 
+LEHC: difference-mode 
+V-
+IBIAS,
+rob 
+-vid 
+V+ 
+Q4 
+vid 
++ 
+-
++ 
+-
+Q5 
+Q6 
+Q1 
+Q2
+Q3 
+vod 
++ 
+-
+-vod 
++ 
+-
+vod 
+-vod
++ 
+-
++ 
+-
+vod 
++ 
+-
+-vod 
++ 
+-
+gm5vid/2
+go5
+vid/2 = v gs5
++
+-
++
+-
+vod/2
+gel
+go5
+gm1vod/2
+go1
+-gm3vod/2
+go3
+goLLd 
+Clif Fonstad, 11/19/09 
+Lecture 20 - Slide 18 
+
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+  
+The Lee load: analysis for difference-mode inputs, cont 
+LEHC: difference-mode 
+gm5vid/2
+go5
+vid/2 = v gs5
++
+-
++
+-
+vod/2
+gel
+go5
+gm1
+go1
+-gm1
+go1
+gm5vgs5
+go5
+d
+s,b
+vid/2 = v gs5
+s,b
+g
++
+-
++
+-
+vod/2
+gel
+go5
+d
+s,b
+goLLd
+goLLd = 2go1
+Avd = vod
+vid
+=
+"gm5
+go5 + 2go1 + ge1
+(
+)
+gm5vid/2
+go5
+vid/2 = v gs5
++
+-
++
+-
+vod/2
+gel
+go5
+gm1vod/2
+go1
+-gm3vod/2
+go3
+Clif Fonstad, 11/19/09 
+Note: In D.P., the outputs go to MOSFET gates so gel = 0. 
+Lecture 20 - Slide 19  
+
+ 
+  
+V+ 
+The Lee load: 
+analysis for  
+common-mode  
+inputs  
+IBIAS,
+rob 
+LEHC: common-mode 
+V-
+vI2 
+Q4 
+voc 
++ 
+-
++ 
+-
+Q5 
+Q6 
+Q1 
+Q2
+Q3 
+voc 
++ 
+-
+voc 
++ 
+-
+voc 
+voc
++ 
+-
++ 
+-
+voc 
++ 
+-
+voc 
++ 
+-
+gm5vgs5
+go5
+vgs5
++
+-
++
+-
+voc
+gel
+go5
+vic
++
+-
+gm1voc
+go1
+gm3voc
+go3
+gob/2
+Clif Fonstad, 11/19/09 
+goLLc 
+Lecture 20 - Slide 20 
+
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+  
+The Lee load: analysis for common-mode inputs, cont 
+LEHC: common-mode 
+goLLc = 2 gm1 + go1
+(
+)
+" 2gm1
+Avc = voc
+vic
+=
+"gob
+2 2 gm1 + go1
+(
+) + ge1
+[
+]
+# " gob
+4gm1
+gm5vgs5
+go5
+vgs5
++
+-
++
+-
+gel
+vic
++
+-
+voc
+gm1
+go1
+gm1
+go1
+gob/2
+gm5vgs5
+go5
+d
+vgs5
+s,b
+g
++
+-
++
+-
+voc
+gel
+go5
+d
+s,b
+goLLc
+gob/2
+vic
++
+-
+Clif Fonstad, 11/19/09 
+Note: In D.P., the outputs go to MOSFET gates so gel = 0. 
+Lecture 20 - Slide 21  
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+    
+ 
+ 
+ 
+ 
+ 
+                   
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Achieving the maximum gain: Comparing linear  
+resistors, current sources, and active loads  
+Maximum Gains 
+MOSFET (SI) 
+Bipolar-like 
+(BJT and Sub-VT MOS) 
+Linear resistor loads 
+Current source loads 
+Active loads  
+Difference mode  
+Common mode 
+Observations: 
+" 2 IDRSL
+[
+]max
+vGS #VT
+[
+]min
+"
+ICRSL
+[
+]max
+n Vt
+"
+2VA,eff
+vGS #VT
+[
+]min
+" VA,eff
+n Vt
+$
+2VA,eff
+vGS #VT
+[
+]min
+$ VA,eff
+n Vt
+$
+vGS #VT
+[
+]min
+2VA,bias
+$
+n Vt
+VA,bias
+- Non-linear (current source) loads typically yield much higher gain than 
+linear resistors, i.e. VA,eff >> [IDRSL]
+.
+max
+ - The bias point is not as important to BJT-type stage gain.
+ - An SI MOSFET should be biased just above threshold for highest gain.
+ - For active loads what increases Avd, decreases Avc. 
+Clif Fonstad, 11/19/09 
+Lecture 20 - Slide 22 
+
+ 
+  
+ 
+    
+ 
+ 
+ 
+ 
+Achieving the maximum gain: (vGS-VT)min = ? 
+For SI-MOSFETs, maximizing the voltage gain (Av or Avd) requires 
+minimizing (VGS-VT).  What is the limit? 
+Sub - threshold :
+                 Av
+VA
+=
+1
+n Vt
+Strong inversion :
+         Av
+VA
+=
+2
+VGS "VT
+(
+)
+Av/VA is a smooth 
+curve, so clearly 
+(VGS-VT)min > 2nVt. 
+? 
+Note: n = 1.25 was assumed.  
+Clif Fonstad, 11/19/09 
+Lecture 20 - Slide 23 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+  
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+6.012 - Microelectronic Devices and Circuits 
+Lecture 20 - Diff-Amp Analysis I - Summary  
+• Performance metrics - specific to diff. amps. 
+Difference- and common-mode gains: Avd = vod/vid, A
+= v /vic 
+vc 
+oc
+Common-mode rejection ratio: CMRR = Avd/Avc 
+Common-mode input range 
+• Non-linear loads 
+Transistors biased in their constant current regions: 
+MOSFETs in saturation  
+BJTs in their FAR  
+• Active loads 
+Current mirror load: 
+Achieves double- to single-ended conversion without loss of gain 
+Has high resistance for difference-mode signals 
+Has low resistance for common-mode signals 
+Lee Load: 
+Maintains differential signals  
+Has high resistance for difference-mode signals  
+Has low resistance for common-mode signals  
+Clif Fonstad, 11/19/09 
+Lecture 20 - Slide 24 
+
+ 
+ 
+MIT OpenCourseWare
+http://ocw.mit.edu 
+6.012 Microelectronic Devices and Circuits 
+Fall 2009 
+For information about citing these materials or our Terms of Use, visit: http://ocw.mit.edu/terms. 
+

@@ -1,0 +1,1752 @@
+  
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+  
+ 
+ 
+ 
+  
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+6.012 - Microelectronic Devices and Circuits 
+Lecture 24 - Intrin. Freq. Limits - Outline  
+• Announcements 
+Final Exam - Tuesday, Dec 15, 9:00 am - 12 noon 
+• Review - Shunt feedback capacitances: Cµ and Cgd 
+Miller effect: any C bridging a gain stage looks bigger at the input 
+Marvelous cascode: CE/S-CB/G (E/SF-CB/G work, too - see µA741) 
+large bandwidth, large output resistance 
+used in gain stages and in current sources 
+Using the Miller effect to advantage: Stabilizing OP Amps - the µA741 
+• Intrinsic high frequency limitations of transistors 
+General approach 
+MOSFETs: fT  
+biasing for speed 
+impact of velocity saturation 
+design lessons 
+BJTs: fβ, fT, fα 
+biasing for speed  
+design lessons  
+Clif Fonstad, 12/8/09 
+Lecture 24 - Slide 1 
+
+ 
+ 
+  
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+Summary of OCTC and SCTC results 
+• OCTC: an estimate for ωHI 
+log !
+log |A vd|
+!b
+!c
+!d
+!a
+!LO
+!LO*
+!4
+!5 !2!1
+!3
+!HI*
+!HI
+Mid-band Range
+1.  ωHI* is a weighted sum of ω's associated with device capacitances: 
+(add RC's and invert) 
+2. Smallest ω (largest RC) dominates ωHI * 
+3. Provides a lower bound on ωHI 
+• SCTC: an estimate for ωLO 
+1.  ωLO * is a weighted sum of w's associated with bias capacitors: 
+(add ω's directly) 
+2. Largest ω (smallest RC) dominates ωLO * 
+3. Provides a upper bound on ωLO 
+Clif Fonstad, 12/8/09  
+Lecture 24 - Slide 2 
+
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+The Miller effect (general)  
++
+-
+vin
+(1-Av)vin
+Cm
+vout = Avvin
++
+-
++
+-
+iin
+Consider an amplifier shunted by a capacitor, and consider 
+how the capacitor looks at the input and output terminals: 
+Note: Av is negative 
+vout
++
+-
+Cm
+vin
++
+-
+Av
+iin = Cm
+d 1" Av
+(
+)vin
+[
+]
+dt
+= 1" Av
+(
+)Cm
+dvin
+dt
++
+-
+vout
+Cm
++
+-
+vin
+(1-Av)Cm
+Cin looks much 
+Cm
+1" Av
+(
+)
+Av
+# Cm
+bigger than Cm 
+Cout looks like Cm 
+Clif Fonstad, 12/8/09 
+Lecture 24 - Slide 3  
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+The cascode when the substrate is grounded: 
+High frequency issues: 
+L.E.C. of cascode: can't use equivalent transistor idea here 
+because it didn't address the issue of the C's! 
+ro2
+vgs1
+gm1vgs1
+ro1
++
+-
+(gm2+gmb2)vgs2
++
+-
+vgs2
++
+-
+vout
+rl
+Cdb1 +Cgs2 +Cbs2
+Cgd2 +Cbd2
+Cgd1
+Cgs1
+g1
+d1,s2,b2
+d2
+s1,b1,b2
+s1,b1,g2,b2
+g2,b2
+Voltage gain ≈ -1 so 
+Voltage gain ≈ g rl,
+m
+minimal Miller effect. 
+without Miller effect. 
+Common-source gain without the Miller effect penalty!  
+Clif Fonstad, 12/8/09 
+Lecture 24 - Slide 4 
+
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Multi-stage amplifier analysis and design: The µA741  
+Figuring the circuit out: 
+Emitter-follower/
+Current mirror load 
+Simplified schematic 
+Push-pull
+output 
+common-base "cascode" 
+differential gain stage 
+EF 
+CB 
+The full schematic 
+© Source unknown. All rights reserved.  
+This content is excluded from our Creative Commons license.  
+For more information, see http://ocw.mit.edu/fairuse.  
+Darlington common-
+emitter gain stage 
+© Source unknown. All rights reserved. 
+Clif Fonstad, 12/8/09  
+This content is excluded from our Creative Commons license. 
+Lecture 24 - Slide 5 
+For more information, see http://ocw.mit.edu/fairuse. 
+
+ 
+ 
+ 
+ 
+  
+   
+ 
+   
+ 
+ 
+Multi-stage amplifier analysis and design: Understanding the µA741 
+input "cascode" 
+Begin with the BJT building-block stages: 
++
+-
+vout
+vt
++
+-
+rt
+iout
+iin
+gmv!
++
+-
+vin 
++
+-
+vout
+go
+c
+e 
+e
+b
+Common emitter
+iout
+g!
++
+-
+v! 
+vin
++
+-
+vin 
++
+-
+vout
+ gsl + 
+!/(rt+r!)
+e
+c
+c
+b
+Emitter follower
+iin
+iout
+r" + 
+!/gl
++
+-
+iin
++
+-
+vin 
++
+-
+vout
+d
+g,b
+g,b
+s
+Common base
+! go/!
+iin
+iout
+!(gm+g!)
++
+-
+vin
+rl = 1/gl
+iin
+Relative sizes: 
+gm: large 
+gπ: medium 
+go: small 
+gt, gl: cannot 
+generalize 
+Clif Fonstad, 12/8/09 
+Lecture 24 - Slide 6 
+
+ 
+ 
+ 
+ 
+  
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Multi-stage amplifier analysis and design: Two-port models 
+Two different "cascode" configurations, this time bipolar: 
++
+-
+vout
+vt
++
+-
+rt
+iout
++
+-
+vin
+rl = 1/gl
+iin
+iin
+gmv!
++
+-
+vin 
++
+-
+vout
+go
+c
+e 
+e
+b
+Common emitter
+iout
+g!
++
+-
+v! 
++
+-
+vout
+vt
++
+-
+rt
+iout
++
+-
+vin
+rl = 1/gl
+iin
+iin
+gmv!
++
+-
+vin 
++
+-
+vout
+go
+c
+e 
+e
+b
+Common emitter
+iout
+g!
++
+-
+v! 
+iin
++
+-
+vin 
++
+-
+vout
+d
+g,b
+g,b
+s
+Common base
+! go/!
+iin
+iout
+!(gm+g!)
++
+-
+vin
+rl = 1/gl
+iin
+iin
++
+-
+vin 
++
+-
+vout
+d
+g,b
+g,b
+s
+Common base
+! go/!
+iin
+iout
+!(gm+g!)
++
+-
+vout
+vt
++
+-
+rt
+iout
+!v in
++
+-
+vin 
++
+-
+vout
+! !/(rt+r!)
+e
+c
+c
+b
+Emitter follower
+iin
+iout
+r" + 
+!/gl
++
+-
+In a bipolar cascode, starting with an emitter follower still reduces the 
+gain, but it also gives twice the input resistance, which is helpful. 
+Clif Fonstad, 12/8/09 
+Lecture 24 - Slide 7 
+
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+   
+ 
+Multi-stage amplifier analysis and design: MOSFET 2-port models 
+Reviewing our building-block stages: 
++
+-
+vout
+vt
++
+-
+rt
+iout
+gmvin
++
+-
+vin 
++
+-
+vout
+gm+go+gl
+s,b
+d
+d
+g
+Source follower
+iin
+iout
+(gm+ 
+gmb)vin
++
+-
+vin 
++
+-
+vout
+    gogt
+gm+gmb+gt
+d
+g,b
+g,b
+s
+Common gate
+gm+
+gmb
+iin
+iout
+iin
+gmvin
++
+-
+vin 
++
+-
+vout
+go
+d
+s,g
+s,g
+g
+Common source
+iout
++
+-
+vin
+rl = 1/gl
+iin
+Relative sizes: 
+large 
+gm, gmb: 
+go: small 
+gt, gl: cannot 
+generalize 
+Clif Fonstad, 12/8/09 
+Lecture 24 - Slide 8 
+
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+  
+ 
+  
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+Multi-stage amplifier analysis and design: Two-port models  
+Two different "cascode" configurations: 
++
+-
+vout
+vt
++
+-
+rt
+iout
++
+-
+vin
+rl = 1/gl
+iin
+iin
+gmvin
++
+-
+vin 
++
+-
+vout
+go
+d
+s,g
+s,g
+g
+Common source
+iout
++
+-
+vout
+vt
++
+-
+rt
+iout
++
+-
+vin
+rl = 1/gl
+iin
+(gm+ 
+gmb)vin
++
+-
+vin 
++
+-
+vout
+    gogt
+gm+gmb+gt
+d
+g,b
+g,b
+s
+Common gate
+gm+
+gmb
+iin
+iout
+iin
+gmvin
++
+-
+vin 
++
+-
+vout
+go
+d
+s,g
+s,g
+g
+Common source
+iout
+gmvin
++
+-
+vin 
++
+-
+vout
+gm+go+gl
+s,b
+d
+d
+g
+Source follower
+iin
+iout
++
+-
+vout
+vt
++
+-
+rt
+iout
++
+-
+vin
+rl = 1/gl
+iin
+(gm+ 
+gmb)vin
++
+-
+vin 
++
+-
+vout
+    gogt
+gm+gmb+gt
+d
+g,b
+g,b
+s
+Common gate
+gm+
+gmb
+iin
+iout
+With MOSFETs, starting a cascode with a source follower costs a factor of two in gain  
+Clif Fonstad, 12/8/09 
+because rout for an SF is small, so it isn't very attractive. 
+Lecture 24 - Slide 9  
+
+ 
+ 
+ 
+ 
+  
+ 
+Multi-stage ampliﬁer analysis and design: The µA741  
+The circuit:  a full schematic 
+The monolithic capacitor made the µA741
+"complete" and a big success. Why is it
+needed? What does it do? 
+C1 is in 
+a Miller 
+position 
+across 
+Q16 
+Clif Fonstad, 12/8/09 
+Lecture 24 - Slide 10 
+© Source unknown. All rights reserved.  
+This content is excluded from our Creative Commons license.  
+For more information, see http://ocw.mit.edu/fairuse.  
+
+ 
+ 
+ 
+ 
+  
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+   
+     
+Multi-stage amplifier analysis and design: The µA741  
+Why is there a capacitor in the circuit?:  the added capacitor
+introduces a low 
+frequency pole
+that stabilizes 
+the circuit. 
+Without it the gain 
+is still greater than 1 
+when the phase shift 
+exceeds 180˚ (dashed 
+curve).  This can result 
+in positive feedback 
+and instability. 
+With it the gain 
+is less than 1 by 
+the time the phase 
+shift exceeds 180˚ 
+(solid curve). 
+Low
+frequency
+pole 
+Clif Fonstad, 12/8/09 
+Lecture 24 - Slide 11  
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Intrinsic performance - the best we can do 
+We've focused on ωHI, the upper limit of mid-band, but even when ω > ωHI 
+the |Av| > 1, and the circuit is useful.  For example, for the common 
+source stage we had 
+Av j"
+(
+) =
+#gt gm # j"Cgd
+(
+)
+j"
+(
+)
+2CgsCgd + j" gl + go
+(
+)Cgs + gl + go + gt + gm
+(
+)Cgd
+[
+] + gl + go
+(
+)gt
+{
+}
+gm /(gl+go)
+log |Av,oc |
+log !
+!1
+! 2 ! 3
+1
+!1gm /(gl+go)
+A Bode plot of 
+Av is shown 
+to the right: 
+this and ask how high can a device in isolation have 
+provide voltage or current gain? 
+When we look for a metric to compare the ultimate 
+performance limits of transistors, we make note of 
+Clif Fonstad, 12/8/09 
+Lecture 24 - Slide 12 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Intrinsic performance - the best we can do, cont. 
+Consider the two possibilities shown below, one for a voltage input and 
+output where the metric would be the open circuit voltage gain, Av,oc, 
+and the other for a current input and output with the metric being the 
+short circuit current gain, Ai,sc (commonly written βsc): 
+Av,oc s( ) " vout( j#)
+vin( j#) = $ gm $ j#Cgd
+go $ j#Cgd
++
+-
+vgs
+gmvgs
+go
+Cgs
+Cgd
+d
+s,b
+s,b
+g
+iin
+iout
++
+-
+vgs
+gmvgs
+go
+Cgs
+Cgd
+d
+s,b
+s,b
+g
+vin
++
+-
++
+-
+vout
+"sc j#
+(
+) $ id j#
+(
+)
+ig j#
+(
+)
+=
+gm % j#Cgd
+j# Cgs + Cgd
+(
+)
+Of these two alternatives, β
+is the more useful. A
+is derived with a 
+sc 
+v,oc 
+voltage source driving a capacitor, something that doesn't give a mean­
+ingful result and leads to ever increasing input power.  It also does not 
+involve gm and Cgs.  Consequently, short circuit current gain is used as 
+the intrinsic high frequency performance metric for transistors. 
+Clif Fonstad, 12/8/09 
+Lecture 24 - Slide 13 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+Intrinsic ωHI's for MOSFETs - short-circuit current gain  
++
+-
+vgs
+gmvgs
+go
+ig
+Cgs
+Cgd
+id
+d
+s
+s
+g
+The common-source short-circuit current gain is:  
+"sc j#
+(
+) $ id j#
+(
+)
+ig j#
+(
+)
+=
+gm % j#Cgd
+j# Cgs + Cgd
+(
+)
+there is one pole at ω = 0, and one zero, ωz: 
+"z = gm
+Cgd
+The short circuit current gain, βsc, is infinite at DC (ω = 0) , and 
+its magnitude decreases linearly with increasing frequency. 
+Clif Fonstad, 12/8/09 
+Lecture 24 - Slide 14 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+   
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+Intrinsic ωHI's for MOSFETs - short-circuit current gain, cont.  
++
+-
+vgs
+gmvgs
+go
+ig
+Cgs
+Cgd
+id
+d
+s
+s
+g
+The magnitude of βsc decreases with ω, but it is still greater 
+than one for a wide range of frequencies. 
+"sc j#
+(
+) =
+gm
+2 + # 2Cgd
+2
+# 2 Cgs + Cgd
+(
+)
+2
+The transistor is useful until |βsc| is less than one. The 
+frequency at which this occurs is called ωt. Setting = 1 and 
+solving for ωt yields: 
+"t =
+gm
+2
+Cgs + Cgd
+(
+)
+2 # Cgd
+2
+[
+]
+$
+gm
+Cgs + Cgd
+(
+)
+Clif Fonstad, 12/8/09 
+Lecture 24 - Slide 15 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+     
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+     
+  
+  
+  
+MOSFET short-circuit current gain, βsc(jω), cont. 
+log !
+log |"sc|
+!t
+!z
+No 3dB point, ωb. 
+Low frequency value: 
+infinity 
+Zero, ωz : 
+ωz = gm/Cgd 
+Note: ωz > ωt 
+Unity gain point, ωt : 
+ωt @ gm/(Cgs+Cgd) 
+Clif Fonstad, 12/8/09 
+Lecture 24 - Slide 16  
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+MOSFET short-circuit current gain, βsc(jω), cont. 
+log !
+log |"sc|
+!t
+!z
+"t(MOSFET) =
+gm
+Cgs + Cgd
+(
+)
+# gm
+Cgs
+                         =
+W
+L µChCox
+* VGS $VT
+2
+3 W LCox
+*
+                             = 3
+2
+µCh VGS $VT
+L 2
+Can we bias to maximize ωt? 
+What is the ultimate limit? 
+Channel 
+transit 
+time! 
+Maximize VGS. 
+"t(MOSFET) = 3
+2
+µCh VGS #VT
+L 2
+=
+3
+2L µCh
+VDS
+L
+=
+3
+2L µCh ECh = 3
+2
+sCh
+L
+=
+1
+$Ch
+Lessons: Bias at well above VT; make L small, use n-channel.  
+Clif Fonstad, 12/8/09 
+Lecture 24 - Slide 17  
+
+  
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+An aside: looking back at CMOS gate delays  
+CMOS: switching speed; minimum cycle time (from Lec. 15) 
+Gate delay/minimum cycle time: 
+" MinCycle = 12nLmin
+2 VDD
+µe VDD #VTn
+[
+]
+2
+For MOSFETs operating in strong inversion, no velocity saturation: 
+Comparing this to the channel transit time:  
+"ChTransit = Lmin
+s e,Ch
+=
+Lmin
+µe#Ch
+=
+Lmin
+µe VDD $VTn
+(
+) Lmin
+We see that the cycle time is a multiple of the transit time:  
+" MinCycle =
+12nVDD
+VDD #VTn
+(
+)
+"ChannelTransit = n' "ChannelTransit
+When velocity saturation dominated, we found the same thing:  
+" Min.Cycle #
+LminVDD
+ssat VDD $VTn
+[
+]
+= n'"ChanTransit
+"ChanTransit = L
+ssat
+where 
+Clif Fonstad, 12/8/09 
+Lecture 24 - Slide 18 
+
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+Intrinsic ωHI's for MOSFETs - βsc(jω) and ωt w. velocity saturation 
+What about the intrinsic ωHI of a MOSFET operating with full 
+velocity saturation? 
+The basic result is unchanged; we still have: 
+"t =
+gm
+2
+Cgs + Cgd
+(
+)
+2 # Cgd
+2
+[
+]
+$
+gm
+Cgs + Cgd
+(
+)
+$ gm
+Cgs
+However, now gm is different: 
+gm = W ssat Cox
+*
+With this we have: 
+"t # gm
+Cgs
+= W ssat Cox
+*
+W LCox
+*
+= ssat
+L
+=
+1
+$Ch
+In the case where velocity saturation dominates, we once again find 
+that it is the channel transit time that is the ultimate limit. 
+Do you care to speculate on the intrinsic ωHI of a BJT? 
+Clif Fonstad, 12/8/09 
+Lecture 24 - Slide 19 
+
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+  
+ 
+Intrinsic ωHI's for BJTs - short-circuit current gain  
+The common-emitter short-circuit current gain is: 
+"sc j#
+(
+) $ ic j#
+(
+)
+ib j#
+(
+)
+=
+gm % j#Cµ
+g& + j# C& + Cµ
+(
+)
+[
+]
+g!
++
+-
+v!
+gmv!
+go
+ib
+C!
+Cµ
+ic
+c
+e
+e
+b
+there is one pole, call it ωp, and one zero, ωz: 
+" p =
+g#
+C# + Cµ
+(
+)
+,                 "z = gm
+Cµ
+Of these two, ωp is much smaller and this is the 3dB point of 
+the common-emitter short-circuit current gain. 
+"# =
+g$
+C$ + Cµ
+(
+)
+We give it the 
+name ωβ: 
+Clif Fonstad, 12/8/09 
+Lecture 24 - Slide 20 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+   
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+Intrinsic ωHI's for BJTs - short-circuit current gain, cont.  
+g!
++
+-
+v!
+gmv!
+go
+ib
+C!
+Cµ
+ic
+c
+e
+e
+b
+The magnitude of βsc decreases above ωb, but it is still 
+greater than one initially: 
+"sc j#
+(
+) =
+gm
+2 + # 2Cµ
+2
+g$
+2 + # 2 C$ + Cµ
+(
+)
+2
+[
+]
+The transistor is useful until |βsc| is less than one. The 
+frequency at which this occurs is called ωt. Setting = 1 and 
+solving for ωt yields: 
+"t =
+g#
+2 + gm
+2
+(
+)
+C# + Cµ
+(
+)
+2 $ Cµ
+2
+[
+]
+%
+gm
+C# + Cµ
+(
+)
+Clif Fonstad, 12/8/09 
+Lecture 24 - Slide 21 
+
+ 
+ 
+ 
+   
+ 
+ 
+ 
+ 
+  
+  
+ 
+ 
+  
+ 
+   
+  
+  
+  
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+BJT short-circuit current gain, βsc(jω), cont. 
+log !
+log |"sc|
+"F
+!"
+!t
+!z
+Note: ωz > ωt >> ωβ 
+/Cµ 
+3dB point, ωb: ωb = gπ/(Cπ+Cµ) 
+Unity gain point, ωt : ωt @ gm/(Cπ+Cµ) 
+Low frequency value: βF 
+Zero, ωz : ωz = gm
+(= ωt /βF) 
+Clif Fonstad, 12/8/09 
+Lecture 24 - Slide 22 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+BJT short-circuit current gain, βsc(jω), cont. 
+log !
+log |"sc|
+"F
+!"
+!t
+!z
+In the limit of large IC: 
+"t #
+gm
+C$ + Cµ
+(
+)
+=
+qIC
+kT
+qIC
+kT
+% 
+& ' 
+( 
+) * + b + Ceb,dp + Ccb,dp
+, 
+- . 
+/ 
+0 1 
+    
+                              Used  C$ = gm+ b + Ceb,dp
+Can we bias to maximize ωt? 
+Maximize IC. 
+limIC "#$t %
+1
+& b
+= 2Dmin,B
+wB
+2
+= 2µmin,BVthermal
+wB
+2
+Base transit time 
+Base 
+transit 
+time 
+Lessons: Bias at large IC; make wB small, use npn.  
+Clif Fonstad, 12/8/09 
+Lecture 24 - Slide 23  
+
+  
+ 
+ 
+ 
+ 
+ 
+  
+ 
+  
+ 
+ 
+ 
+ 
+     
+  
+ 
+ 
+  
+   
+ 
+ 
+ 
+  
+ 
+ 
+     
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+    
+  
+ 
+  
+ 
+  
+     
+ 
+ 
+      
+ 
+ 
+6.012 - Microelectronic Devices and Circuits  
+Lecture 24 - Intrinsic Limits of Transistor Speed - Summary  
+• Intrinsic high frequency limits for transistors
+General approach: short-circuit current gains 
+• Limits for MOSFETs: 
+Metric - CS short-circuit current unity gain pt: ωT = gm/[(Cgs+Cgd)2 -Cgd 
+2]1/2 
+ωT is approximately g /C
+=  3µ (VGS-VT)/2L2 
+m
+gs  
+e
+g
+= (W/L)µ C
+*(VGS-VT) and C
+= (2/3)WLC
+* 
+m 
+e
+ox 
+gs  
+ox  
+so ωT ≈ 3µe(VGS-VT)/2L2 = 1/τch  
+Design lessons: bias at large ID  
+minimize L 
+(win as L2; as L in velocity saturation)  
+use n-channel rather than p-channel 
+(µ >> µh)  
+• Limits for BJTs: 
+e 
+Metrics - CE short-circuit current gain 3B pt: ωb = gp/(Cπ + Cµ)  
+CE short-circuit current gain unit gain pt: ωT = gm/(Cπ + Cµ)  
+ωT approaches 1/τb as Ic increases and τb = wB
+2/2Dmin,B  
+so ωT ≈ 2Dmin,B/wB
+2  = 2µeVt/wB
+2 = 1/τb  
+CB short-circuit current gain unit gain pt: ωα = gm/Cπ  
+Design lessons: bias at high collector current  
+minimize wB 
+(win as wB
+2)  
+use npn rather than pnp 
+(µ >> µh) 
+e 
+Clif Fonstad, 12/8/09 
+Lecture 24 - Slide 24 
+
+ 
+ 
+MIT OpenCourseWare
+http://ocw.mit.edu 
+6.012 Microelectronic Devices and Circuits 
+Fall 2009 
+For information about citing these materials or our Terms of Use, visit: http://ocw.mit.edu/terms. 
+

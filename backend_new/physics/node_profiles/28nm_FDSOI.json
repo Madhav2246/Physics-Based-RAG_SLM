@@ -1,0 +1,12 @@
+{
+  "name": "28nm FD-SOI",
+  "description": "Fully-Depleted Silicon-On-Insulator, 28nm node. Thinner oxide, lower Vth, higher Cox than bulk 100nm.",
+  "params": {
+    "mu":   { "value": 0.042, "unit": "m^2/Vs", "note": "electron mobility (28nm FD-SOI, slight degradation)" },
+    "Cox":  { "value": 0.035, "unit": "F/m^2",  "note": "gate oxide capacitance (28nm, thinner oxide)" },
+    "W":    { "value": 1e-6,  "unit": "m",      "note": "default gate width" },
+    "L":    { "value": 2.8e-8,"unit": "m",      "note": "gate length (28nm node)" },
+    "tox":  { "value": 1.2e-9,"unit": "m",      "note": "gate oxide thickness (28nm node)" },
+    "Vth":  { "value": 0.25,  "unit": "V",      "note": "threshold voltage (28nm, lower)" }
+  }
+}

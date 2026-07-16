@@ -1,0 +1,101 @@
+================================================================
+ PHYSICS-RAG SLM  —  VERIFIED DEMO QUESTIONS (11)
+ verified live through the pipeline on 2026-06-06  ·  all 11 PASS
+ (3 LOOKUP + 3 EXPLORE + 4 SWEEP + 1 MULTI-CURVE SWEEP)
+================================================================
+
+HOW TO USE (Q&A Playground)
+  1. Click the MODE button shown in [BRACKETS] under the query box.
+     (AUTO also works for every one of these — the button just
+      guarantees the path if auto-detect ever wavers.)
+  2. Paste the question exactly as written.
+  3. Press Query.
+
+WHAT EACH MODE SHOWS THE EVALUATOR
+  LOOKUP   -> governing equation + symbolic/dimensional/numerical
+              validators + a confidence score.
+  EXPLORE  -> "Deterministic Design Synthesis" card: one solved
+              numeric value (no LLM guessing — pure SymPy algebra).
+  SWEEP    -> a "Parametric Sweep" plot (PNG) under the answer.
+
+
+----------------------------------------------------------------
+LOOKUP  —  explain the governing equation
+----------------------------------------------------------------
+[LOOKUP]  What is the drain current equation for a MOSFET in saturation?
+          expect:  Id = 0.5 * Cox * (W/L) * mu * (Vgs - Vth)^2
+
+[LOOKUP]  What is the subthreshold swing equation?
+          expect:  SS = (kT/q) * ln(10) * (1 + Cd/Cox)
+
+[LOOKUP]  What is the saturation drain current equation with channel length modulation?
+          expect:  Id = 0.5 * Cox * mu * (W/L) * Vov^2 * (1 + lam * Vds)
+
+
+----------------------------------------------------------------
+EXPLORE  —  solve for a single numeric value
+----------------------------------------------------------------
+[EXPLORE]  Calculate the output resistance ro for Id = 100uA
+           expect:  ro = 1 / (lam * Id)  =  1.0e5 ohm  (100 kohm)
+
+[EXPLORE]  Find the transconductance gm for Vov = 0.4V
+           expect:  gm = mu * Cox * (W/L) * Vov  =  4.0e-3 S
+
+[EXPLORE]  Find the drain current Id for Vgs = 1.0V
+           expect:  Id = 0.5 * Cox * mu * (W/L) * (Vgs - Vth)^2  =  1.8e-3 A
+
+
+----------------------------------------------------------------
+SWEEP  —  generate a parametric plot (PNG appears under the answer)
+----------------------------------------------------------------
+[SWEEP]  Plot ro versus Id from 10uA to 1mA
+         expect:  decreasing curve, ro = 1/(lam*Id)     -> sweep_ro_vs_Id.png
+
+[SWEEP]  Plot gm versus Vov from 0.1V to 0.6V
+         expect:  straight line, gm = mu*Cox*(W/L)*Vov  -> sweep_gm_vs_Vov.png
+
+[SWEEP]  Plot Id versus Vds from 0.1V to 2V
+         expect:  Id rising with CLM slope (1+lam*Vds)  -> sweep_Id_vs_Vds.png
+
+[SWEEP]  Plot Vth versus Vsb from 0V to 1V
+         expect:  body-effect curve,
+                  Vth = Vth0 + gamma*(sqrt(2*Phi_f+Vsb) - sqrt(2*Phi_f))
+                                                          -> sweep_Vth_vs_Vsb.png
+
+
+----------------------------------------------------------------
+MULTI-CURVE SWEEP  —  several curves in ONE plot (family of curves)
+  Syntax: add "for <PARAM> = v1, v2, v3" — each value draws one curve.
+----------------------------------------------------------------
+[SWEEP]  Plot Id versus Vds from 0.1V to 2V for Vov=0.3V, 0.5V, 0.7V
+         expect:  classic MOSFET output characteristics — 3 Id-Vds curves,
+                  one per overdrive Vov (0.3 / 0.5 / 0.7 V)
+                                              -> sweep_Id_vs_Vds_Vov_family.png
+
+  Other verified multi-curve options (pick any):
+    [SWEEP] Plot gm versus Vov from 0.1V to 0.8V for WL=5, 15, 30
+            -> 3 lines, one per W/L ratio   (sweep_gm_vs_Vov_WL_family.png)
+    [SWEEP] Plot W/L versus Vov from 0.1V to 0.6V for Id=0.5mA, 1mA, 2mA
+            -> 3 design curves, one per Id  (sweep_WL_vs_Vov_Id_family.png)
+
+
+================================================================
+ VERIFICATION LOG  (actual pipeline output, 2026-06-06)
+================================================================
+LOOKUP   drain current (sat)      -> Id = 0.5*Cox*W*mu*(Vgs-Vth)**2/L          PASS
+LOOKUP   subthreshold swing       -> SS = T*k*(Cd/Cox + 1)*log(10)/q           PASS
+LOOKUP   drain current (CLM)      -> Id = 0.5*Cox*Vov**2*WL*mu*(Vds*lam + 1)   PASS
+EXPLORE  ro @ Id=100uA            -> ro = 1/(Id*lam) = 100000.0 ohm            PASS
+EXPLORE  gm @ Vov=0.4V            -> gm = Cox*Vov*WL*mu = 0.004 S              PASS
+EXPLORE  Id @ Vgs=1.0V            -> Id = 0.5*Cox*W*mu*(Vgs-Vth)**2/L = 0.0018 PASS
+SWEEP    ro vs Id                 -> sweep_ro_vs_Id.png                        PASS
+SWEEP    gm vs Vov                -> sweep_gm_vs_Vov.png                       PASS
+SWEEP    Id vs Vds                -> sweep_Id_vs_Vds.png                       PASS
+SWEEP    Vth vs Vsb               -> sweep_Vth_vs_Vsb.png                      PASS
+MULTI    Id vs Vds (Vov family)   -> 3 curves, sweep_Id_vs_Vds_Vov_family.png  PASS
+
+ALL 11 / 11 PASS.
+Note: defaults are the 100 nm baseline node (mu=0.05, Cox=0.02, W/L=10,
+lam=0.1, Vth=0.4). Add e.g. "using 5nm GAA node" to any question to shift
+the technology profile.
+================================================================

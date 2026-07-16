@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python -c ' *)",
+      "Bash(\"f:/AMRITA ALL SEMESTER/SEMESTER-6/NLP/Physics_Based_RAG_SLM/Physics_Based_RAG_SLM/env_slm/Scripts/python.exe\" -X utf8 scripts/test_exploration_engine.py)",
+      "PowerShell(Get-Content \"C:\\\\Users\\\\anshb\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\f--AMRITA-ALL-SEMESTER-SEMESTER-6-NLP-Physics-Based-RAG-SLM-Physics-Based-RAG-SLM\\\\c108e1ca-49ef-4b29-9d48-cb3351462818\\\\tasks\\\\bh16l8p3p.output\" -Raw | ForEach-Object { $_ -replace '[^\\\\x00-\\\\x7F]', '?' })",
+      "Bash(\"f:/AMRITA ALL SEMESTER/SEMESTER-6/NLP/Physics_Based_RAG_SLM/Physics_Based_RAG_SLM/env_slm/Scripts/python.exe\" -X utf8 scripts/_explore_eval.py)",
+      "PowerShell(Get-Content \"C:\\\\Users\\\\anshb\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\f--AMRITA-ALL-SEMESTER-SEMESTER-6-NLP-Physics-Based-RAG-SLM-Physics-Based-RAG-SLM\\\\c108e1ca-49ef-4b29-9d48-cb3351462818\\\\tasks\\\\bqzduadmu.output\" | ForEach-Object { $_ -replace '[^\\\\x20-\\\\x7E]', '?' })",
+      "Bash(echo \"saved, exit $?\")"
+    ]
+  }
+}

@@ -1,0 +1,2475 @@
+  
+ 
+ 
+ 
+ 
+ 
+   
+ 
+ 
+ 
+ 
+ 
+ 
+  
+   
+ 
+ 
+  
+ 
+ 
+    
+  
+    
+  
+ 
+  
+  
+ 
+  
+  
+ 
+ 
+  
+  
+  
+ 
+ 
+ 
+  
+ 
+ 
+ 
+  
+   
+  
+    
+   
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+  
+ 
+6.012 - Microelectronic Devices and Circuits 
+Lecture 11 - MOSFETs II; Large Signal Models - Outline  
+• Announcements 
+On Stellar - 2 write-ups on MOSFET models 
+• The Gradual Channel Approximation (review and more)
+MOSFET model: 
+0
+K (vGS 
+K (vGS 
+with K ≡ (W/L)µe
+gradual channel approximation 
+(Example: n-MOS) 
+for (vGS – VT)/α ≤ 0 ≤ vDS 
+(cutoff) 
+iD ≈ 
+– VT)2 /2α 
+for 0 ≤ (vGS – VT)/α ≤ vDS (saturation) 
+– VT – αvDS/2)vDS for 0 ≤ vDS ≤ (vGS – VT)/α 
+(linear) 
+Cox *, VT = VFB  – 2φp-Si + [2εSi qNA(|2φp-Si| – vBS)]1/2/Cox * 
+and α = 1 + [(εSi qNA/2(|2φp-Si| – vBS)]1/2 /Cox (frequently α ≈ 1) 
+• Refined device models for transistors (MOS and BJT)
+Other flavors of MOSFETS: p-channel, depletion mode  
+The Early Effect: 
+1. Base-width modulation in BJTs: wB(vCE)
+2. Channel-length modulation in MOSFETs:  L(vDS) 
+Charge stores:
+1. Junction diodes 
+2. BJTs 
+3. MOSFETs 
+Extrinsic parasitics: Lead resistances, capacitances, and inductances 
+Clif Fonstad, 3/18/08 
+Lecture 11 - Slide 1 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+An n-channel MOSFET showing gradual channel axes  
+p-Si
+B
+G
++
+vGS
+n+
+D
+n+
+S
+–
+vDS
+vBS
++
+iG
+iB
+iD
+L
+0
+y
+x
+0
+Extent into plane = W 
+Gradual Channel Approximation:
+ - A one-dimensional electrostatics problem in the x direction is solved to find 
+the channel charge, qN
+*(y); this charge depends on vGS, vCS(y) and vBS.
+ - A one-dimensional drift problem in the y direction then gives the channel 
+current, iD, as a function of vGS, vDS, and vBS. 
+Clif Fonstad, 3/18/08 
+Lecture 11 - Slide 2 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+   
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+   
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+Gradual Channel Approximation i-v Modeling
+(n-channel MOS used as the example) 
+The Gradual Channel Approximation is the approach typically 
+used to model the drain current in field effect transistors.* 
+It assumes that the drain current, iD, consists entirely of carriers 
+flowing in the channel of the device, and is thus proportional 
+to the sheet density of carriers at any point and their net 
+average velocity. It is not a function of y, but its components 
+in general are: 
+iD = "W # "q# nch
+* (y)#sey(y)
+In this expression, W is the width of the device, -q is the 
+charge on each electron, n*ch(y) is sheet electron concentra­
+tion in the channel (i.e. electrons/cm2) at y, and sey(y) is the net 
+electron velocity in the y-direction. 
+If the electric field is not too large, sey(y) = -µeEy(y), and 
+iD = "W # q# nch
+* (y)#µeEy(y) = W # q# nch
+* (y)#µe
+dvCS(y)
+dy
+Cont. 
+* Junction FETs (JFETs), MEtal Semiconductor FETs (MESFETs1), and Heterojunction FETs  
+Clif Fonstad, 3/18/08 (HJFETs2), as well as Metal Oxide Semiconductor FETs (MOSFETs). Lecture 11 - Slide 3  
+1. Also called Shottky Barrrier FETs (SBFETs). 2. Includes HEMTs, TEGFETs, MODFETs, SDFETs, HFETs, PHEMTs, MHEMTs, etc. 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+   
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+  
+ 
+ 
+ 
+iD = W " q" nch
+* (y)"µe
+dvCS(y)
+dy
+GCA i-v Modeling, cont. 
+p-Si
+B
+G
++
+vGS
+n+
+D
+n+
+S
+–
+vDS
+vBS
++
+iG
+iB
+iD
+L
+0
+y
+x
+0
+We have: 
+To eliminate the derivative from this equation we integrate both 
+sides with respect to y from the source (y = 0) to the drain (y 
+= L). This corresponds to integrating the right hand side with 
+respect to vCS from 0 to vDS, because vCS(0) = 0 to vCS(L) = vDS: 
+iD
+0
+L
+"
+dy = W #µe # q#
+nch
+* (y) dvCS(y)
+dy
+0
+L
+"
+dy = W #µe # q#
+nch
+* (vCS)
+0
+vDS
+"
+dvCS
+The left hand integral is easy to evaluate; it is simply iDL. Thus 
+we have: 
+iD
+0
+L
+"
+dy = iDL
+#
+iD = W
+L $µe $ q$
+nch
+* (vCS)
+0
+vDS
+"
+dvCS
+Clif Fonstad, 3/18/08 
+Cont. 
+Lecture 11 - Slide 4 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+GCA i-v Modeling, cont.  
+The various FETs differ primarily in the nature of their channels
+and thereby, the expressions for n*
+ch(y). 
+For a MOSFET we speak in terms of the inversion layer charge, 
+qn
+*(y), which is equivalent to - q·n*
+ch(y). Thus we have: 
+iD = " W
+L µe
+qn
+*(vGS,vCS,vBS) dvCS
+0
+vDS
+#
+We derived qn
+* earlier by solving the vertical electrostatics 
+problem, and found: 
+qn
+*(vGS,vCS,vBS) = " Cox
+* vGS " vCS "VT (vCS,vBS)
+[
+]        
+with   VT (vCS,vBS) = VFB " 2#p"Si + 2$SiqNA 2#p"Si " vBS + vCS
+[
+]
+{
+}
+1/ 2
+Cox
+*
+Using this in the equation for iD, we obtain:  
+iD(vGS,vDS,vBS) = W
+L µe
+Cox
+* vGS " vCS "VT (vCS,vBS)
+[
+]
+{
+} dvCS
+0
+vDS
+#
+At this point we can do the integral, but it is common to simplify
+the expression of VT(vCS,vBS) first, to get a more useful result. 
+Clif Fonstad, 3/18/08 
+Cont. 
+Lecture 11 - Slide 5 
+
+  
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+GCA - dealing with the non-linear dependence of VT on vCS  
+Approach #1 - Live with it 
+Even though VT(vCS,vBS) is a non-linear function of vCS, we can 
+still put it in this last equation for iD: 
+iD = W
+L µe
+Cox
+* vGS " vCS "VFB + 2#p"Si " tox
+$ox
+2$SiqNA 2#p"Si " vBS + vCS
+[
+]
+% 
+& ' 
+( 
+) * 
++ 
+, 
+- 
+. 
+/ 
+0 
+dvCS
+0
+vDS
+1
+and do the integral, obtaining:  
+iD(vDS,vGS,vBS) = W
+L µe Cox
+*
+vGS " 2#p "VFB " vDS
+2
+$ 
+% & 
+' 
+( ) vDS
+* + 
+, 
+                                    + 3
+2
+2-SiqNA
+2#p + vDS " vBS
+(
+)
+3/ 2 " 2#p " vBS
+(
+)
+3/ 2
+. 
+/ 0 
+1 
+2 3 
+4 5 6 
+The problem is that this result is very unwieldy, and difficult to 
+work with. More to the point, we don't have to live with it 
+because it is easy to get very good, approximate solutions 
+that are much simpler to work with. 
+Clif Fonstad, 3/18/08 
+Cont. 
+Lecture 11 - Slide 6 
+
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+   
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+   
+GCA - dealing with the non-linear dependence of VT on vCS  
+Approach #2 - Ignore it 
+Early on researchers noticed that the difference between VT at 
+0 and at y, i.e. VT(0,vBS) and VT(vDS,vBS), is small, and that using 
+VT(0,vBS) alone gives a result that is still quite accurate and is 
+very easy to use: 
+iD(vGS,vDS,vBS) = W
+L µe
+Cox
+* vGS " vCS "VT (0,vBS)
+[
+]
+{
+} dvCS
+0
+vDS
+#
+             = W
+L µe Cox
+*
+vGS "VT (0,vBS)
+[
+] vDS " vDS
+2
+2
+$ 
+% 
+& 
+' 
+( 
+) 
+The variable, vCS, 
+is set to 0 in VT. 
+This result looks much simpler than the result of Approach #1, 
+and it is much easier to use in hand calculations. It is, in 
+fact, the one most commonly used by the vast majority of 
+engineers. At the same time, the fact that it was obtained by 
+ignoring the dependence of VT on vCS is cause for concern, 
+unless we have a way to judge the validity of our approxima­
+tion. We can get the necessary metric through Approach #3. 
+Clif Fonstad, 3/18/08 
+Cont. 
+Lecture 11 - Slide 7 
+
+  
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+  
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+  
+ 
+    
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+GCA - dealing with the non-linear dependence of VT on vCS  
+Approach #3 - Linearize it (i.e. expand it, keep first order term) 
+In this approach we leave the variation of VT with vCS in, but 
+linearize it by doing a Taylor's series expansion about vCS = 0: 
+VT[vCS,vBS] " VT (0,vBS) + #VT
+#vCS vCS = 0
+$ vCS
+Taking the derivative and evaluating it at vCS = 0 yields:  
+Clif Fonstad, 3/18/08 
+Lecture 11 - Slide 8 
+With this qn 
+* is 
+where 
+Cont. 
+VT[vCS,vBS] " VT (0,vBS) + tox
+#ox
+#SiqNA
+2 2$p % vBS
+(
+)
+& vCS
+qn
+*(vGS,vCS,vBS) " # Cox
+* vGS # vCS + VT (0,vBS) # tox
+$ox
+$SiqNA
+2 2%p # vBS
+(
+)
+& vCS
+' 
+( 
+) 
+) 
+* 
++ 
+, 
+,         
+                     = #Cox
+* vGS #- vCS + VT (vBS)
+[
+]
+        
+" # 1+ tox
+$ox
+$SiqNA 2 2%p & vBS
+(
+)
+' 
+( ) 
+* 
++ ,    and   VT (vBS) # VT (0,vBS)
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+   
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+  
+  
+GCA - dealing with the non-linear dependence of VT on vCS  
+Using this result in the integral in the expression for iD gives: 
+iD(vGS,vDS,vBS) = W
+L µe
+Cox
+* vGS "# vCS "VT (0,vBS)
+[
+]
+{
+} dvCS
+0
+vDS
+$
+             = W
+L µe Cox
+*
+vGS "VT (vBS)
+[
+] vDS "# vDS
+2
+2
+% 
+& 
+' 
+( 
+) 
+* 
+Except for α this is the 
+Approach 2 result. 
+Plotting this equation for increasing values of vGS we see that it 
+traces inverted parabolas as shown below. 
+Note: iD saturates 
+after its peak value 
+(solid lines), rather 
+than decreasing 
+(dashed lines). 
+Clif Fonstad, 3/18/08 
+Cont. 
+Lecture 11 - Slide 9 
+iD
+vDS
+inc.
+vGS
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Gradual Channel Approximation, cont. 
+The drain current expression, cont: 
+The point at which iD reaches its peak value and saturates is 
+easily found. Taking the derivative and setting it equal to 
+zero we find: 
+       "iD
+"vDS
+= 0      when      vDS = 1
+# vGS $VT (vBS)
+[
+]
+What happens physically at this voltage is that the channel  
+(inversion) at the drain end of the channel disappears:  
+qn
+*(L) " # Cox
+* vGS #VT (vBS) #$ vDS
+{
+}
+          = 0     when    vDS = 1
+$ vGS #VT (vBS)
+[
+]
+For vDS > [vGS-VT(vBS)]/α, all the additional drain-to-source voltage 
+appears across the high resistance region at the drain end of 
+the channel where the mobile charge density is very small, 
+and iD remains constant independent of vDS: 
+       iD(vGS,vDS,vBS) =
+1
+2"
+W
+L µe Cox
+* vGS #VT (vBS)
+[
+]
+2   for     vDS > 1
+" vGS #VT (vBS)
+[
+]
+Clif Fonstad, 3/18/08 
+Lecture 11 - Slide 10 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Gradual Channel Approximation, cont.  
+The full model: 
+With this drain current expression, we now have the complete 
+set of Gradual Channel Model expressions for the MOSFET 
+terminal characteristics in the three regions of operation: 
+Clif Fonstad, 3/18/08 
+Lecture 11 - Slide 11 
+             Valid for vBS " 0, and  vDS # 0 :
+              iG(vGS,vDS,vBS) = 0     and      iB(vGS,vDS,vBS) = 0
+iD(vGS,vDS,vBS) =
+0
+for
+vGS $VT (vBS)
+[
+] < 0 < % vDS
+1
+2
+W
+% L µe Cox
+* vGS $VT (vBS)
+[
+]
+2
+for 
+0 < vGS $VT (vBS)
+[
+] < % vDS
+W
+% L µe Cox
+*
+vGS $VT (vBS) $% vDS
+2
+& ' ( 
+) * + % vDS
+for 
+0 < % vDS < vGS $VT (vBS)
+[
+]
+& 
+' 
+, 
+, , 
+( 
+, 
+, 
+, 
+               with    VT (vBS) - VFB $ 2.p$Si + 1
+Cox
+*
+2/SiqNA 2.p$Si $ vBS
+[
+]
+{
+}
+1/ 2
+                              % -1+ 1
+Cox
+*
+/SiqNA
+2 2.p$Si $ vBS
+[
+]
+& 
+' , 
+( , 
+) 
+* , 
++ , 
+1/ 2
+                 Cox
+* - /ox
+tox
+
+ 
+ 
+ 
+ 
+ 
+ 
+Clif Fonstad, 3/18/08 
+Lecture 11 - Slide 12 
+iD
+vDS
+increasing 
+vGS
+The full model, cont: 
+iB(vGS,vDS,vBS) = 0
+iG(vGS,vDS,vBS) = 0
+Saturation or 
+Forward Active 
+Region 
+Cutoff Region 
+Linear or 
+Triode 
+Region 
+iD(vGS,vDS,vBS) =
+0
+for
+vGS "VT (vBS)
+[
+] < 0 < # vDS
+K
+2 vGS "VT (vBS)
+[
+]
+2
+for 
+0 < vGS "VT (vBS)
+[
+] < # vDS
+K vGS "VT (vBS) " #vDS
+2
+$ % & 
+' ( ) #vDS
+for 
+0 < # vDS < vGS "VT (vBS)
+[
+]
+$ 
+% 
+* 
+* * 
+& 
+* 
+* 
+* 
+                                                                                                                   with    K + W
+#L µe Cox
+*
+Saturation 
+Linear or 
+Triode 
+Cutoff 
+G
+B
+S
+D
++
+–
++
+vGS
+vBS
+iD
+iG
+iB
++
+vDS
+Gradual Channel Approximation, cont. 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+The operating regions of MOSFETs and BJTs:  
+Comparing an n-channel MOSFET and an npn BJT  
+MOSFET 
+Clif Fonstad, 3/18/08 
+Lecture 11 - Slide 13 
+i
+B
+vBE
+vCE
+iC
+0.6 V
+0.2 V
+Forward Active Region
+FAR
+Cutoff
+Cutoff
+Saturation
+iC ! !F iB
+vCE > 0.2 V
+iB ! IBSe qVBE/kT
+Input curve
+Output family
+BJT 
+B
+E
+C
++
+–
+–
++
+vBE
+vCE
+iB
+iC
+G
+S
+D
++
+–
+–
++
+vGS
+vDS
+iG
+iD
+vDS
+iD
+Saturation (FAR)
+Cutoff
+Linear
+or
+Triode
+iD ! K [vGS - VT(vBS)]2/2!
+
+ 
+  
+ 
+ 
+ 
+ 
+             Valid for vSB " 0, and  vSD # 0 :
+iG(vSG,vSD,vSB) = 0     and      iB(vSG,vSD,vSB) = 0
+$iD(vSG,vSD,vSB) =
+0
+for
+vSG $ VT (vSB)
+[
+] < 0 < % vSD
+1
+2
+W
+% L µe Cox
+* vSG $ VT (vSB)
+[
+]
+2
+for 
+0 < vSG $ VT (vSB)
+[
+] < % vSD
+W
+% L µe Cox
+*
+vSG $ VT (vSB) $% vSD
+2
+& ' ( 
+) * + % vSD
+for 
+0 < % vSD < vSG $ VT (vSB)
+[
+]
+& 
+' 
+, 
+, , 
+( 
+, 
+, 
+, 
+VT (vSB) = VFB " 2#n"Si " $ 2#n"Si " vSB
+[
+]
+1/ 2   with  $ % 1
+Cox
+*
+2&SiqND
+[
+]
+1/ 2
+  
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+p-channel  
+Structure: 
+Gradual channel model*: 
+p-channel MOSFET's: The other "flavor" of MOSFET 
+n-Si
+B
+G
++
+vGS
+p+
+D
+p+
+S
+–
+vDS
+vBS
++
+iG
+iB
+iD
+VFB
+VT
+0
+vGS
+Depletion
+Accumulation
+Inversion
+For enhancement mode p-channe
+VT (i.e. vGS at thresho
+l: 
+ld) < 0, VFB >  0.. 
+The voltage progression: 
+* Enhancement mode only, VT (i.e. vGS at threshold) < 0. 
+Clif Fonstad, 3/18/08 
+Lecture 11 - Slide 14 
+
+ 
+  
+ 
+  
+  
+  
+  
+  
+  
+ 
+  
+  
+  
+  
+  
+  
+p-channel MOSFET's: cont. 
+p-channel 
+Structure: 
+Symbol and FAR model: 
+G
+S
+D
+vGS
++
+–
+iG
+iD(vGS,vDS,vBS)
++
+–
+iD
+vDS
+B
++
+vBS
+iB
+Oriented with source down like n-channel: 
+G
+B
+S
+D
++
+–
++
+vGS
+vBS
+iD
+iG
+iB
++
+vDS
+FAR model: 
+Symbol: 
+vGS < VT 
+vBS > 0 
+vDS < 0 
+Oriented as found in circuits: 
+G
+B
+D
+S
++
+–
+vSG
+vSB
+-iD
+iG
+iB
++
+vSD
+–
+–
+FAR model: 
+vSG > -VT
+Symbol: 
+vSB < 0 
+vSD > 0 
+Clif Fonstad, 3/18/08 
+Lecture 11 - Slide 15 
+n-Si
+B
+G
++
+vGS
+p+
+D
+p+
+S
+–
+vDS
+vBS
++
+iG
+iB
+iD
+G
+D
+S
+vSG
++
+–
+iG
+-i D(vSG,vSD,vSB)
++
+–
+-iD
+vSD
+B
+vSB
+iB –
+
+  
+ 
+ 
+ 
+ 
+  
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+   
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Depletion mode MOSFET's: The very last MOSFET variant 
+It is possible to have n-channel MOSFETs with VT < 0. 
+In this situation the channel exists with vGS = 0, and a 
+negative bias must be applied to turn it off. 
+This type of device is called a "depletion mode" MOSFET. 
+Devices with VT > 0 are "enhancement mode." 
+iD
+vDS
+increasing 
+vGS
+vGS = 0
+vGS ! VT
+For a p-channel depletion mode MOSFET, VT > 0. 
+The expressions for iD(vGS, vDS, vBS) are exactly the same 
+for enhancement mode and depletion mode MOSFETs. 
+Clif Fonstad, 3/18/08 
+Lecture 11 - Slide 16 
+
+ 
+iB
+vBE
+vCE
+iC
+0.6 V
+0.2 V
+Forward Active Region
+FAR
+Cutoff
+Cutoff
+Saturation
+iC ! !F iB
+vCE > 0.2 V
+iB ! IBSeqV BE/kT
+Input curve
+Output family
+BJT Characteristics (npn)
+Clif Fonstad, 3/18/08 
+Lecture 11 - Slide 17 
+B
+E
+C
+vBE
++
+–
+iB
+IBS
+!Fib
+Forward active region: 
+vBE > 0.6 V
+vCE > 0.2 V
+(i.e. vBC < 0.4V)
+ iR is negligible 
+Other regions
+Cutoff: 
+vBE < 0.6 V
+Saturation:
+vCE < 0.2 V
+B
+E
+C
+vBE
++
+–
+iF
+IES
+"FiF
+vBC
++
+–
+iR
+ICS
+"RiR
+vCE
++
+–
+BJT Models
+B
+E
+C
+vBE
++
+–
+iB
+IBS
+!FiB
+B
+E
+C
+vBE
++
+–
+iF
+IES
+!FiF
+vBC
++
+–
+iR
+ICS
+!RiR
+BJT MODELS 
+
+ 
+  
+ 
+  
+     
+ 
+  
+ 
+  
+ 
+ 
+  
+    
+ 
+     
+ 
+  
+   
+  
+  
+ 
+ 
+ 
+  
+   
+  
+  
+ 
+  
+ 
+ 
+ 
+  
+ 
+ 
+  
+  
+ 
+  
+  
+    
+  
+MOSFET  
+Characteristics  
+(n-channel) 
+Also: 
+iG ≈ 0 
+iB ≈ 0 
+K = (W/L)µeCox * 
+Model valid for vBS ≤ 0 and vDS ≥ 0, insuring 
+vDS
+iD
+Saturation (FAR)
+Cutoff
+Linear
+or
+Triode
+iD ! K [vGS - VT(vBS)]2/2!
+Output family
+Output family 
+α = 1 + [(εSi qNA/2(|2φp-Si| – vBS)]1/2 /Cox 
+Clif Fonstad, 3/18/08 
+(frequently  α ≈ 1) 
+Lecture 11 - Slide 18 
+with VT = VFB  – 2φp-Si + [2εSi qNA(|2φp-Si| – vBS)]1/2/Cox * 
+vGS
++
+–
+iD(vGS,vDS,vBS)
++
+–
+vDS
++
+iB
+G
+S
+D
+B
+vBS
+iG
+iD
+MOSFET 
+iG(vGS, vDS,vBS) ≈ 0, iB(vGS, vDS,vBS) ≈ 0
+circuit 
+0 
+model 
+for (vGS – VT) ≤ 0 ≤ αvDS 
+(cutoff) 
+≈ 
+(W/2αL)µeCox *(vGS – VT)2 
+for 0 ≤ (vGS – VT) ≤ αvDS 
+(saturation) 
+(W/αL)µeCox *(vGS – VT – αvDS/2)αvDS 
+for 0 ≤ αvDS ≤ (vGS – VT) 
+(linear) 
+
+  
+ 
+ 
+ 
+ 
+Clif Fonstad, 3/18/08 
+Lecture 11 - Slide 19 
+BJT: npn 
+MOSFET: 
+n-channel 
+The Early Effect: 
+(exaggerated for clarity*) 
+vCE
+iC
+0.2 V
+-1/! = -VA
+vCE 
+iC 
+vDS
+iD
+-1/! = -VA
+vDS 
+iD 
+* Typically the Early effect is far more important
+in small-signal applications than large signal. 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+  
+   
+ 
+ 
+   
+ 
+ 
+  
+ 
+ 
+Active Length Modulation - the Early Effect: MOSFET 
+"Channel length modulation" 
+MOSFET: 
+We begin by recognizing that the channel length decreases
+with increasing vDS and writing this dependence to first order 
+in vDS: 
+L " Lo 1# $ vDS #VDSat
+(
+)
+[
+]    and    1
+L " 1+ $ vDS #VDSat
+(
+)
+[
+]
+Lo
+K = W
+%L µeCox
+*
+Inserting the channel length variation with vDS into K we have:  
+Thus, in saturation: 
+K " Ko 1+ # vDS $VDSat
+(
+)
+[
+]      where     Ko % W
+&Lo
+µeCox
+*
+iD " Ko
+2
+vGS #VT
+(
+)
+2 1+ $ vDS #VDSat
+(
+)
+[
+]
+Note: λ is the inverse of the Early Voltage, VA (i.e., λ = 1/VA).  
+Clif Fonstad, 3/18/08 
+Lecture 11 - Slide 20 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+    
+   
+ 
+ 
+   
+ 
+ 
+  
+ 
+ 
+Active Length Modulation - the Early Effect: BJT 
+"Base width modulation" 
+BJT: 
+We begin by recognizing that the base width decreases 
+with increasing vCE and writing this dependence to first order 
+Then we recall that in a modern BJT the base defect, δB, is 
+negligible and βF depends primarily on the emitter defect, δE, 
+and can be written: 
+in vCE: 
+wB
+* " wBo
+* 1# $vCE
+(
+)    and    1
+wB
+* " 1
+wBo
+*
+1+ $vCE
+(
+)
+"F =
+1+ #B
+(
+)
+#E + #B
+(
+)
+$ 1
+#E
+= De
+Dh
+NDE
+NAB
+wE
+*
+wB
+*
+Inserting the base width variation with vCE into βF we have:  
+Thus, in the F.A.R.: 
+iC " #Fo 1+ $vCE
+(
+)iB
+"F # "Fo 1+ $vCE
+(
+)     where    "Fo % De
+Dh
+NDE
+NAB
+wE
+*
+wBo
+*
+Note: λ is the inverse of the Early Voltage, VA (i.e., λ = 1/VA). 
+Clif Fonstad, 3/18/08 
+Lecture 11 - Slide 21 
+
+  
+  
+  
+  
+  
+  
+Clif Fonstad, 3/18/08 
+Lecture 11 - Slide 22 
+BJT: 
+npn 
+MOSFET: 
+n-channel 
+vCE
+iC
+0.2 V
+Forward Active Region
+Cutoff
+Saturation
+iC ! !F iB
+iC ≈ βF(1 + λvCE)iB 
+vDS
+iD
+Saturation (FAR)
+Cutoff
+Linear
+or
+Triode
+iD ! K [vGS - VT(vBS)]2/2!
+iD ≈ K[vGS-VT(vBS)]2[1+λ(vDS-VDSat]/2 
+iD ≈ K[vGS - VT(vBS) - vDS/2]vDS 
+Large signal models*: 
+i
+vBE
+0.6 V
+FAR
+Cutoff
+vCE > 0.2 V
+iB ! IBSe qVBE/kT
+* The Early effect is included, but barely visible. 
+
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+  
+   
+ 
+Large signal models: when will we use them? 
+Digital circuit analysis/design: 
+This requires use of the entire circuit, and will be the topic of
+Lectures 14, 15, and 16. 
+Bias point analysis/design: 
+Clif Fonstad, 3/18/08 
+Lecture 11 - Slide 23 
+This uses the FAR models (below and Lec. 17ff). 
+BJT 
+MOSFET 
+G
+B
+S
+D
++
+–
++
+vGS
+vBS
+iDID 
+VGS = (2IDS/K)1/2 + VT 
+B
+E
+C
+vBE
++
+–
+iB
+IBS
+!FiB
+iD = (K/2)[vGS - V T]
+ 2
+G
+S
+D
+vGS
++
+–
+B
+E
+C
++
+–
+vBE
+iB
+iCIC = β IB 
+IB 
+0.6 V 
+
+ 
+ 
+ 
+  
+d/2 
+-d/2 
+qA 
+qB( = -qA) 
+ xn 
+-xp 
+qA 
+  qB 
+( = -Q
+  
+A) 
+-qNAp 
+ qNDn 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+Charge stores in devices: we must add them to our device models  
+Parallel plate 
+capacitor 
+ρ(x) 
+x 
+qA,PP = A "
+d vAB
+Cpp(VAB) # $qA,PP
+$vAB
+vAB =VAB
+= A"
+d
+Depletion region charge store
+qA,DP(vAB) = "A
+2q#Si $b " vAB
+[
+]
+NApNDn
+NAp + NDn
+[
+]
+Cdp(VAB) = A
+q#Si
+2 $b "VAB
+[
+]
+NApNDn
+NAp + NDn
+[
+]
+=
+A #Si
+w(VAB)
+ρ(x) 
+x
+QNR region diffusion charge store 
+p’(x), n’(x) 
+p’(xn) 
+qA, qB (=-qA) 
+n’(-x )
+p
+x
+Clif Fonstad, 3/18/08 
+Lecture 11 - Slide 24 
+qAB,DF(vAB) " Aqni
+2
+Dh
+NDnwn,eff
+eqVAB / kT #1
+[
+]
+                                                  =
+wn,eff
+2
+2Dh
+iD(vAB)
+Cdf (VAB) "
+wn,eff
+2
+2Dh
+q ID(VAB)
+kT
+Note: Approximate because we are
+only accounting for the charge
+store on the lightly doped side. 
+-w
+-x
+ x
+w
+p 
+p
+n
+n 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Adding charge stores to the large signal models:  
+B
+A
+IBS
+qAB
+qBC
+B
+E
+C
+iB’
+IBS
+!FiB’
+qBE
+G
+S
+D
+qDB
+iD
+B
+qSB
+qG
+p-n diode: 
+qAB:  Excess carriers on p-side plus 
+excess carriers on n-side plus 
+junction depletion charge. 
+BJT: npn 
+qBE:  Excess carriers in base plus E-B 
+(in F.A.R.) 
+junction depletion charge 
+qBC:  C-B junction depletion charge 
+qG:  Gate charge; a function of vGS, vDS,
+MOSFET: 
+and vBS. 
+n-channel  
+qDB:  D-B junction depletion charge 
+qSB:  S-B junction depletion charge 
+Clif Fonstad, 3/18/08 
+Lecture 11 - Slide 25 
+
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+  
+  
+  
+  
+  
+ 
+  
+ 
+ 
+    
+ 
+ 
+  
+  
+ 
+ 
+ 
+  
+  
+ 
+  
+  
+ 
+ 
+   
+ 
+  
+ 
+ 
+ 
+ 
+ 
+6.012 - Microelectronic Devices and Circuits 
+Lecture 11 - MOSFETS II; Large-Signal Models - Summary  
+• Gradual channel approximation for FETs 
+General approach 
+MOSFETS in strong inversion  
+1.  Ignore  variation of VT along channel 
+2.  Linearize variation of VT along channel: introduces α factor 
+• Additional device model issues 
+The Early Effect:
+1.   Base-width modulation in BJTs: wB(vCE)  
+In the F.A.R.:  iC ≈ βFo(1 + lvCE)iB  
+2.  Channel-length modulation in MOSFETs: L(vDS)
+In saturation:  iD ≈ Ko (vGS – VT)2 [1 + λ(vDS-VDSat)]/2α 
+Charge stores:
+1. Junction diodes - depletion and diffusion charge
+2. BJTs - at EB junction:  depletion and diffusion charge  
+at CB junction:  depletion charge 
+(focus on FAR)  
+3. MOSFETs - between B and S, D:  depletion charge of n+-p junctions 
+between G and S, D, B:  gate charge (the dominant store) 
+in cut-off: Cgs ≈ Cgd ≈ 0; all is Cgb 
+linear region: Cgs = Cgd = W L Cox */2 
+in saturation region: Cgs = (2/3) W L Cox * 
+Clif Fonstad, 3/18/08  
+Lecture 11 - Slide 26 
+Cgd = 0  (only parasitic overlap) 
+
+ 
+ 
+MIT OpenCourseWare
+http://ocw.mit.edu 
+6.012 Microelectronic Devices and Circuits 
+Fall 2009 
+For information about citing these materials or our Terms of Use, visit: http://ocw.mit.edu/terms. 
+

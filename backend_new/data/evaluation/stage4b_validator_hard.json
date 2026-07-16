@@ -1,0 +1,170 @@
+{
+  "n_1": {
+    "sys_best": {
+      "avg_score": 1.325,
+      "parseable": 55.0,
+      "coverage": 27.5,
+      "nvr_cond": 100.0,
+      "dcr_cond": 50.0
+    },
+    "sys_first": {
+      "avg_score": 1.325,
+      "parseable": 55.0,
+      "coverage": 27.5,
+      "nvr_cond": 100.0,
+      "dcr_cond": 50.0
+    },
+    "sys_rand": {
+      "avg_score": 1.325,
+      "parseable": 55.0,
+      "coverage": 27.5,
+      "nvr_cond": 100.0,
+      "dcr_cond": 50.0
+    },
+    "raw_best": {
+      "avg_score": 0.742,
+      "parseable": 25.0,
+      "coverage": 19.2,
+      "nvr_cond": 100.0,
+      "dcr_cond": 33.3
+    },
+    "raw_first": {
+      "avg_score": 0.742,
+      "parseable": 25.0,
+      "coverage": 19.2,
+      "nvr_cond": 100.0,
+      "dcr_cond": 33.3
+    },
+    "_analysis": {
+      "validator_gap_SYS": 0.0,
+      "validator_gap_RAW": 0.0,
+      "bestofN_gain": 0.0
+    }
+  },
+  "n_2": {
+    "sys_best": {
+      "avg_score": 1.675,
+      "parseable": 75.0,
+      "coverage": 32.5,
+      "nvr_cond": 100.0,
+      "dcr_cond": 50.0
+    },
+    "sys_first": {
+      "avg_score": 1.425,
+      "parseable": 60.0,
+      "coverage": 27.5,
+      "nvr_cond": 100.0,
+      "dcr_cond": 50.0
+    },
+    "sys_rand": {
+      "avg_score": 1.425,
+      "parseable": 70.0,
+      "coverage": 27.5,
+      "nvr_cond": 100.0,
+      "dcr_cond": 33.3
+    },
+    "raw_best": {
+      "avg_score": 1.292,
+      "parseable": 50.0,
+      "coverage": 29.2,
+      "nvr_cond": 100.0,
+      "dcr_cond": 50.0
+    },
+    "raw_first": {
+      "avg_score": 0.842,
+      "parseable": 30.0,
+      "coverage": 19.2,
+      "nvr_cond": 100.0,
+      "dcr_cond": 33.3
+    },
+    "_analysis": {
+      "validator_gap_SYS": 0.25,
+      "validator_gap_RAW": 0.45,
+      "bestofN_gain": 0.25
+    }
+  },
+  "n_3": {
+    "sys_best": {
+      "avg_score": 1.6,
+      "parseable": 70.0,
+      "coverage": 30.0,
+      "nvr_cond": 100.0,
+      "dcr_cond": 50.0
+    },
+    "sys_first": {
+      "avg_score": 1.425,
+      "parseable": 60.0,
+      "coverage": 27.5,
+      "nvr_cond": 100.0,
+      "dcr_cond": 50.0
+    },
+    "sys_rand": {
+      "avg_score": 1.35,
+      "parseable": 65.0,
+      "coverage": 25.0,
+      "nvr_cond": 100.0,
+      "dcr_cond": 33.3
+    },
+    "raw_best": {
+      "avg_score": 1.217,
+      "parseable": 45.0,
+      "coverage": 26.7,
+      "nvr_cond": 100.0,
+      "dcr_cond": 50.0
+    },
+    "raw_first": {
+      "avg_score": 0.842,
+      "parseable": 30.0,
+      "coverage": 19.2,
+      "nvr_cond": 100.0,
+      "dcr_cond": 33.3
+    },
+    "_analysis": {
+      "validator_gap_SYS": 0.25,
+      "validator_gap_RAW": 0.375,
+      "bestofN_gain": 0.175
+    }
+  },
+  "n_5": {
+    "sys_best": {
+      "avg_score": 1.72,
+      "parseable": 75.0,
+      "coverage": 37.0,
+      "nvr_cond": 100.0,
+      "dcr_cond": 40.0
+    },
+    "sys_first": {
+      "avg_score": 1.45,
+      "parseable": 70.0,
+      "coverage": 25.0,
+      "nvr_cond": 100.0,
+      "dcr_cond": 33.3
+    },
+    "sys_rand": {
+      "avg_score": 1.275,
+      "parseable": 60.0,
+      "coverage": 22.5,
+      "nvr_cond": 100.0,
+      "dcr_cond": 33.3
+    },
+    "raw_best": {
+      "avg_score": 1.287,
+      "parseable": 55.0,
+      "coverage": 23.7,
+      "nvr_cond": 100.0,
+      "dcr_cond": 66.7
+    },
+    "raw_first": {
+      "avg_score": 0.867,
+      "parseable": 40.0,
+      "coverage": 11.7,
+      "nvr_cond": 100.0,
+      "dcr_cond": 100.0
+    },
+    "_analysis": {
+      "validator_gap_SYS": 0.445,
+      "validator_gap_RAW": 0.42,
+      "bestofN_gain": 0.27
+    }
+  }
+}

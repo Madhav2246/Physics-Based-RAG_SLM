@@ -1,0 +1,785 @@
+THE INTERNATIONAL ROADMAP FOR DEVICES AND SYSTEMS:  2023 
+COPYRIGHT © 2023 IEEE. ALL RIGHTS RESERVED. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+INTERNATIONAL  
+ROADMAP  
+FOR  
+DEVICES AND SYSTEMS™ 
+ 
+2023 UPDATE 
+ 
+LITHOGRAPHY & PATTERNING 
+ 
+ 
+THE IRDSTM IS DEVISED AND INTENDED FOR TECHNOLOGY ASSESSMENT ONLY AND IS WITHOUT REGARD TO ANY 
+COMMERCIAL CONSIDERATIONS PERTAINING TO INDIVIDUAL PRODUCTS OR EQUIPMENT. 
+ 
+ 
+
+ii 
+ 
+THE INTERNATIONAL ROADMAP FOR DEVICES AND SYSTEMS:  2023 
+COPYRIGHT © 2023 IEEE. ALL RIGHTS RESERVED. 
+© 2023 IEEE. Personal use of this material is permitted. Permission from IEEE must be obtained for all other uses, in 
+any current or future media, including reprinting/republishing this material for advertising or promotional purposes, 
+creating new collective works, for resale or redistribution to servers or lists, or reuse of any copyrighted component 
+of this work in other works. 
+ 
+ 
+ 
+ 
+
+iii 
+ 
+THE INTERNATIONAL ROADMAP FOR DEVICES AND SYSTEMS:  2023 
+COPYRIGHT © 2023 IEEE. ALL RIGHTS RESERVED. 
+Table of Contents 
+1. 
+Executive Summary ............................................................................................ 1 
+2. 
+Overview  ........................................................................................................... 1 
+2.1. 
+Development of Roadmap ............................................................................. 1 
+2.2. 
+Lithography Drivers ........................................................................................ 1 
+2.3. 
+Trends since 2022 Lithography Roadmap ..................................................... 2 
+3. 
+EUV Challenges .................................................................................................. 2 
+3.1. 
+EUV Light Sources and Polarization control .................................................. 2 
+3.2. 
+High nA EUV Small Depth of Focus ............................................................... 2 
+3.3. 
+Stochastics ..................................................................................................... 3 
+3.4. 
+EUV Computational Lithography Capabilities ................................................ 3 
+3.5. 
+EUV masks .................................................................................................... 4 
+3.6. 
+Energy Efficiency ........................................................................................... 4 
+4. 
+Packaging and Lithography ................................................................................. 4 
+5. 
+Patterning Materials and Integration ................................................................... 5 
+5.1. 
+Patterning Materials ....................................................................................... 5 
+5.2. 
+Patterning Integration ..................................................................................... 6 
+6. 
+Long term Challenges (2028 and on) .................................................................. 8 
+7. 
+Conclusions ........................................................................................................ 9 
+8. 
+Acronyms/Abbreviations ................................................................................... 10 
+9. 
+References ........................................................................................................ 12 
+ 
+List of Figures 
+Figure LITH-1 Comparison between conventional and FSAV schemes (left 
+side); materials roadmap vs node (right side) .................................... 7 
+Figure LITH-2 COAG SAC integration scheme (left side), materials roadmap 
+vs node (right side) ............................................................................. 7 
+Figure LITH-3 Projected required improvement in defect rate per device and 
+per level .............................................................................................. 8 
+ 
+ 
+ 
+
+iv 
+ 
+THE INTERNATIONAL ROADMAP FOR DEVICES AND SYSTEMS:  2023 
+COPYRIGHT © 2023 IEEE. ALL RIGHTS RESERVED. 
+Acknowledgments 
+Mark Neisser, Harry Levinson, Anuja De Silva, Ted Fedynyshyn, Heiko Feldmann, David Fried, Zhenxing Han, 
+Naoya Hayashi, Karey Holland, Erik Hosler, Koji Ichimura, Hidemi Ishiuchi, Dave Kyser, Michael Lercel, 
+Ken McWilliams, Warren Montgomery, Seiji Nagahara, Kent Nakagawa, Tsuyoshi Nakamura, Shinji Okazaki, 
+Danping Peng, Daniele Piumi, Yoshitake Shusuke, Walt Trybula, Takeo Watanabe, Jim Wiley, Robert Wright, 
+Stefan Wurm, Nuo Xu 
+We would like to thank SPIE for support of Lithography International Focus Team (IFT) meetings during the 
+Advanced Lithography + Patterning Symposium.   
+ 
+
+Executive Summary  1 
+ 
+THE INTERNATIONAL ROADMAP FOR DEVICES AND SYSTEMS:  2023 
+COPYRIGHT © 2023 IEEE. ALL RIGHTS RESERVED. 
+LITHOGRAPHY AND PATTERNING 
+1. EXECUTIVE SUMMARY 
+Lithography and patterning will continue to advance but face many challenges. High NA tools with 0.55 NA are projected to be 
+introduced in 2024, but improvements are needed in light sources, tools, masks, materials, computational lithography, and control 
+of stochastics to enable production use of these tools. Process windows are expected to be small, forcing the use of thinner resists 
+and may also require improved process integration schemes. The smaller field size of the high NA tools is difficult for some 
+product designs. This could spur the growth of high-performance packaging of many relatively small chips. Approaches to larger 
+mask sizes that would enable bigger exposure fields are also under consideration. Improvements in resist and related materials 
+will be needed, but even with improvements, dose-to-print will continue to increase in order to enable sufficient control of 
+stochastic effects. Longer term, even higher NA EUV (“hyper NA”) could be developed, but this faces many technical challenges 
+and could prove less effective than multiple patterning of 0.33 or 0.55 NA EUV. Chemically amplified resists will remain the 
+workhorse resists up to at least the 1 nm logic node, but new varieties of resists based on metals, both wet and dry deposited, are 
+showing promise. Energy efficiency and chemical safety are concerns as world environmental concern increases.  
+The IRDS overall roadmap projects that chip area per device will shrink faster than critical dimensions. This is leading to the 
+increased use of new patterning integration schemes that can reduce edge placement error (EPE) and enable closer together circuit 
+features. Fully self-aligned vias and self-aligned via over active gates are two integration schemes that will see increased use in 
+future advanced chip products. Self-aligned materials will have to show improved dielectric constants in the future and will 
+require use of new techniques such as area selective deposition. Long term, the projected switch from scaling by shrinking devices 
+to scaling by stacking device will lead to faster growth in the number of critical levels. It will also require decreasing the EUV 
+defect rate per exposure level by roughly an order of magnitude each node, which is many times faster than current defect 
+improvements per node.  
+2. OVERVIEW 
+Historically, improvements in lithography have been key enablers to make improved chip technologies. The International 
+Roadmap for Devices and Systems (IRDS) Lithography roadmap predicts how current patterning capability can support future 
+chip generations and where challenges and improvements are needed. It gives a roadmap of expected key lithography 
+requirements. It is intended to be used by semiconductor industry participants, by industry analysts, and by researchers who want 
+or need to know how the industry will evolve in the future and what challenges need to be addressed.  
+This document is the 2023 update to the 2022 Lithography roadmap that was published last year. The basic tables are the same 
+as from 2022. This update discusses how the trends and challenges discussed in the 2022 roadmap have evolved in the past years. 
+In addition, this year the Lithography Roadmap has expanded its scope to include patterning technology and is now the 
+Lithography and Patterning roadmap. We have added a section discussing projected changes in patterning. This roadmap will 
+continue to cover both lithography and patterning in the future. 
+2.1. 
+DEVELOPMENT OF ROADMAP 
+This roadmap was developed through consultation with an international team of lithography and patterning experts and review 
+of publicly available literature and other available documents. The current contributing membership is shown in the 
+acknowledgments. Contributing members come from Asia, Europe, and the United States and represent semiconductor, 
+equipment, and material manufacturers, as well as research institutes. The IRDS overall roadmap and the More Moore focus 
+team provide the device roadmap from which lithography requirements are derived. Through polls of the IRDS Lithography team 
+members the key options, their timing and their key challenges are developed. The table and this document undergo internal 
+review by the team and by the overall IRDS before publication.  
+2.2. 
+LITHOGRAPHY DRIVERS 
+This roadmap projects future patterning needs and where the key challenges are. In the past, both logic and memory devices have 
+driven improvements in patterning technology. Currently, high-performance logic devices are leading the way to smaller critical 
+dimensions and driving the introduction of novel patterning technology. New DRAM devices are continuing to be introduced 
+with smaller critical dimensions (CDs), but trail logic in smallest resolution. Flash memory is scaling using 3D structures that 
+have relatively large CDs and does not need higher resolution patterning to make progress.  
+
+EUV Challenges  2 
+ 
+THE INTERNATIONAL ROADMAP FOR DEVICES AND SYSTEMS:  2023 
+COPYRIGHT © 2023 IEEE. ALL RIGHTS RESERVED. 
+2.3. 
+TRENDS SINCE 2022 LITHOGRAPHY ROADMAP 
+EUV lithography, which uses 13.5 nm wavelength light for imaging, is well established. Advanced logic products are dependent 
+on it and DRAM makers have started high volume manufacturing. It has become clear that EUV will not replace multiple 
+patterning. Both technologies will be used, and the choice of using multiple patterning or not will depend on level-specific details, 
+yield, and cost. As logic dimensions continue to shrink, use of EUV double patterning is likely.  
+As we describe below, the tradeoff between chip size and yield along with the high cost of leading-edge logic means that using 
+smaller chips along with high performance packaging may be an alternative to large chip sizes. But interposers and high-
+performance packaging can require large field or direct-write lithography. This need is spurring development of large field optical 
+exposure tools and  direct writing tools, both optical and ebeam.  
+3. EUV CHALLENGES 
+Enhancing EUV is a key challenge for meeting the needs of the roadmap. EUV resists are discussed in the section below on 
+patterning materials. Other challenges are as follows:  
+3.1. 
+EUV LIGHT SOURCES AND POLARIZATION CONTROL 
+Sources of light have long been a challenge for EUV lithography. The wavelengths used for optical lithography were selected 
+where there existed sources of high intensity light over narrow bandwidths. In contrast, the wavelength at which EUV lithography 
+is practiced is based on the availability of multilayer reflectors with high reflectivity. As a consequence, it has been a challenge 
+to develop reliable EUV light sources with enough power to achieve cost-effective scanner throughput while providing 
+sufficiently high doses to avoid yield losses due to photon shot noise.  
+Nevertheless, laser-produced plasma (LPP) EUV light sources are currently used routinely for EUV lithography in HVM. Light 
+power of 600 W at intermediate focus under dose-controlled conditions has been achieved, and there are efforts to increase this 
+to 1 kW. Reliability also continues to improve. As output power increases, so does the amount of electricity required to produce 
+the light. There are several options for reducing the amount of electricity consumed. Infrared lasers with wavelengths shorter 
+than that produced by the CO2 lasers used currently in LPP light sources may provide better efficiency in converting electricity 
+to infrared light and for converting infrared light to EUV light.  
+Alternatively, free-electron lasers (FELs) offer the ability to scale both power and wavelength according to the requirements of 
+lithography for the foreseeable future. An FEL lithography light source suitable for use in high-volume manufacturing must meet 
+requirements for “per photon cost” (both in operational expense as well as environmental impact), either by powering multiple 
+tools simultaneously or scaling the accelerator size. FELs can provide polarized light,1 which may be needed to enable hyper-
+NA lithography. Solutions are needed for reducing the high coherence of light produced by FELs,2, with polarization and 
+coherence being freely tunable for individual exposure tools. For implementations where single FELs power multiple exposure 
+tools, methods are needed for handling high total beam power. Moreover, availability of the light source must approach 100%, 
+and any interrupts must be quickly recoverable.  
+3.2. 
+HIGH NA EUV  KEY CHALLENGES 
+Lithographic technologies have long been extended by increases of numerical aperture, and prototype high-NA EUV lithography 
+tools are currently being fabricated by ASML (with 0.55 NA optics made by Carl Zeiss) and will be available for early use by 
+chip makers in 2024. Because of the limited range of angles over which the multi-layers on the mask have high reflectance, the 
+lens reduction in the scan direction is increased to 8×, while maintaining a reduction of 4× in the perpendicular direction. This 
+results in a maximum exposure field size on wafers of 26 mm × 16.5 mm, half that of current scanner field sizes, as long as the 
+current mask size is maintained. This has implications for fabricating large area chips, as well as for scanner throughput. One 
+solution for making large dies is the stitching of two separate exposures, although this approach introduces a number of technical 
+challenges, several of which are unique to EUV lithography.3 Larger masks that can support a 26 mm × 33 mm field on the wafer 
+have also been proposed. The length in the scan direction would have to increase by a factor of two. Currently 12 in x 6 in masks 
+are being considered but other form factors are possible. Making such masks will require considerable development and retooling 
+for mask-making, but require no fundamental changes in mask making technology.  
+Additional challenges (exclusive of those related to building the complex optics and exposure tools) for high-NA EUV 
+lithography are summarized in the following table. Some of these challenges are already being addressed for EUV lithography 
+at NA = 0.33, but will need to be extended for use at higher NA. Existing problems continue as challenges in part because of 
+tighter requirements for edge placement errors that accompany future smaller features. Many of the key challenges are connected. 
+For example, computational lithography is made complex by reduced depths-of-focus, the need to include resist stochastics as 
+
+EUV Challenges  3 
+ 
+THE INTERNATIONAL ROADMAP FOR DEVICES AND SYSTEMS:  2023 
+COPYRIGHT © 2023 IEEE. ALL RIGHTS RESERVED. 
+part of process variation, and (potentially) multiple mask absorbers to address mask 3D effects. The key challenge of stochastics 
+is discussed in the next section.  
+Table LITH-1    
+The Key Challenges of High-NA (0.55) EUV Lithography 
+Resists meeting resolution requirements, with low levels of defects from 
+stochastic phenomena and pattern collapse 
+Light sources that can support photon shot noise and productivity 
+requirements 
+Solutions for meeting small depths-of-focus at 0.55 NA 
+Computational lithography capabilities 
+Mask making and metrology infrastructure, including new absorber 
+materials 
+Solutions for large dies 
+Cost of high-NA EUV lithography 
+ 
+Longer term, EUV could be further extended by developing tools with an NA higher than 0.55, and hyper-NA systems (NA ≥ 
+0.75) are under consideration. Shorter wavelengths (6 nm <  < 7 nm) are also being assessed. This is sometimes referred to as 
+Beyond EUV (BEUV). A hyper-NA tool would use much of the infrastructure already in place for current EUV lithography, 
+although some modification of the multilayers on the masks would be required. Polarized light could improve image-quality 
+further, and enable the full potential of EUV optics for NA ≥ 0.75. Since current EUV light sources produce unpolarized light, 
+new technology will need to be introduced for producing polarized light. The depth-of-focus will also be very small for hyper-
+NA imaging and this would drive resist thicknesses below 20 nm. Such thin films are expected to drive metrology challenges. 
+These challenges are discussed in the IRDS metrology roadmap. As discussed below, thinner resists also provide pattern transfer 
+challenges and materials challenges.  
+Changing to a shorter wavelength would be a much bigger change than increased NA and be much more challenging, although 
+shorter wavelength lithography would have larger depths-of-focus than hyper-NA at  = 13.5 nm for the same resolution. New 
+light sources, multilayer coatings and photoresists would be needed for shorter wavelength lithography. Maintaining the same 
+level of photon shot noise at the shorter wavelength would require a doubling of light energy delivered to the wafer, which would 
+greatly increase the heating of masks and mirrors in the projection optics.  
+3.3. 
+STOCHASTICS 
+Stochastics refers to random factors that result in printed features that vary randomly from instance to instance. For example, 
+stochastic variations in imaging dose can result in printing contact holes of different sizes even when the mask features are of 
+identical size. Stochastic variations result from random variations in the imaging and patterning processes. They can result in 
+poor pattern quality, such as line width roughness or poor CD uniformity, and they can result in actual pattern defects, such as 
+missing or bridged features. Stochastic effects get worse as feature sizes shrink and the need to manage stochastic effects is a 
+challenge for EUV lithography. In the 2022 roadmap we projected that dose to print would have to increase about 3 fold in four 
+nodes in order to address stochastic issues and enable printed EUV features to meet critical dimension uniformity requirements.4 
+So far, this prediction is on track. Stochastic effects also get worse as resist films get thinner and are worse if the resist film 
+absorbs less light. Since resist films have to get thinner to accommodate the small depth of focus projected for EUV high NA, 
+this will force increasing resist absorbance and, as discussed below, wider use of metal based resists. 
+3.4. 
+EUV COMPUTATIONAL LITHOGRAPHY CAPABILITIES 
+Given the small depth of focus projected for advanced EUV capabilities (high-NA EUV with NA@0.55 and hyper-NA EUV 
+with NA@0.75), the co-optimization of mask, projection optics and illumination is more important and challenging than ever. 
+As discussed below, not only will advanced optical proximity correction (OPC) be used, but curvilinear masks are desired or 
+required. The normal trend is that more data is needed every mask generation because of smaller feature sizes and more 
+complicated assist features, but the advent of curvilinear features and the growing use of inverse lithography technology (ILT) 
+has the potential to multiply mask data volumes over tenfold. This will put stress on every element of the computational 
+
+Packaging and Lithography  4 
+ 
+THE INTERNATIONAL ROADMAP FOR DEVICES AND SYSTEMS:  2023 
+COPYRIGHT © 2023 IEEE. ALL RIGHTS RESERVED. 
+lithography path and the mask data processing and making flow. It will stimulate new approaches such as artificial intelligence 
+or greater use of dedicated chips such as graphics coprocessors to speed up computation and the adoption of a new mask data 
+format such as multigon as an extension to the traditional P39 oasis standard.  
+3.5. 
+EUV MASKS 
+The need for more complex and curvilinear patterns has led to long writing times in mask manufacturing. Multi-beam mask 
+writers, which have been in practical use for several years, help to address this problem. On the other hand, the measurement 
+technology for evaluating the transfer characteristics of patterned masks still has many issues, including its cost efficiency, and 
+there also are concerns about bright-field masks, sub-resolution assist features, and defect control. Furthermore, the practical 
+application of a pellicle with sufficient transmittance and long life for EUVL is also an issue. For the high-NA era of EUVL, 
+since an anamorphic optical system will be used, the mask reduction ratio changes in one direction and the pattern effective area 
+is limited, so it is necessary to consider increasing the mask size and/or stitching multiple masks to print large die sizes. In 
+addition, it is also necessary to develop new mask absorber materials and processes to reduce mask 3D effects and obtain higher 
+pattern resolution and fidelity on wafer. 
+3.6. 
+ENERGY EFFICIENCY 
+Energy usage and other resource consumption is more and more a concern in the world. Semiconductor manufacturing consumes 
+significant energy and in some cases is a measurable portion of the total power consumption of a nation. The IRDS ESH&S team 
+is assessing energy and water consumption and the effect on the environment by fabs and is extrapolating future usage in order 
+to identify where consumption can be reduced. The industry is already sensitive to the cost per transistor for each successive 
+device node. Now an additional question is whether the increased device density and chip performance is outpacing the use of 
+energy, water, and other resources used by fabs.  
+Lithography is the second major consumer of power after the facility requirements. EUV lithography usage is growing and can 
+be a major consumer of energy. The lithography and patterning team is working with the ESH team to understand the overall 
+impact of increasing EUV usage on power consumption. The assessment is complicated because even though increased EUV 
+use increases energy consumption, replacement of multiple patterning by EUV single exposures tends to reduce patterning levels 
+and this can reduce energy consumption.  
+The Lithography Energy Sub-Group is working to develop a methodology that considers the various power requirements for the 
+equipment employed in the complete lithography process employing the throughput and energy consumption of these tools, and 
+the resultant yielded devices based on the process flows for various nodes.  
+The current status is that the Energy Sub-Group has process flows for simpler nodes and has developed the methodology for 
+calculating Litho power consumption per node based on the identified process flow and the typical equipment power 
+requirements. The next steps in the overall process include obtaining detailed equipment model numbers (to obtain specific 
+energy consumption) as well as yielded throughput. 
+There is an ongoing effort to provide a comparison of multi-level optical exposure process flow to compare with single mask 
+EUV process flow. This adds to the complexity due to the difference in the manufacturing processing between optical and EUV 
+masks. 
+The plan is to report the status of the model and results of these investigations in the full 2024 roadmap update.  
+4. PACKAGING AND LITHOGRAPHY  
+Advanced packaging is pertinent to patterning in several ways, as follows: 
+• 
+Patterning is used directly in packaging processes 
+• 
+The overall lithographic impact on system costs can be reduced by the use of advanced packaging 
+• 
+Advanced packaging can potentially be used to address problems resulting from the field size of high-NA EUV systems 
+• 
+Advanced packaging also provides an alternative to device stacking and the resulting stringent defect density 
+requirements  
+Advanced packaging is already used to reduce the impact of lithography on system cost, by means of disaggregation. In this 
+approach, the parts of a circuit that can be shrunk using very advanced lithography, such logic cells and memory, are fabricated 
+separately from other parts of the circuit, such as input/output devices, which can be produced using much less expensive 
+patterning technology. The separately fabricated parts of the circuit (sometimes called chiplets) are then integrated by means of 
+
+Patterning Materials and Integration  5 
+ 
+THE INTERNATIONAL ROADMAP FOR DEVICES AND SYSTEMS:  2023 
+COPYRIGHT © 2023 IEEE. ALL RIGHTS RESERVED. 
+advanced packaging.5 6 With this approach, the benefits of scaling with advanced lithography is optimized. There is a tradeoff 
+between the cost of the advanced packaging and the cost savings due to making chiplets instead of larger chips. The use of high 
+NA EUV, where large chips are harder to make because of the smaller exposure field, may push this tradeoff more in the direction 
+of smaller chips being used together with high performance packaging.  
+Advanced packaging requires substrates, often called interposers, which are big enough for several chips to be placed side by 
+side and which contain interconnect lines and chip connection sites. Patterning technology is used to create the connection 
+patterns. Packaging substrates can have considerable topography or be warped, with substrates warped 100’s of microns or more, 
+resulting in a lithographic challenge for chucking and focusing. Large packages and substrates may be involved, requiring either 
+large-field exposure tools or direct write systems. For example, the LGA 6096 package area is more than 70 mm on a side. A 
+common substrate size for packaging is 510 x 515 mm, which can support even large packages. There are engineering challenges 
+for either large-field exposure tools or direct write systems, particularly as the features in advanced packages shrink well below 
+one micron. Etch processes capable of producing very high aspect ratio structures, such as through-silicon vias, are needed.  
+5. PATTERNING MATERIALS AND INTEGRATION 
+The Patterning Integration Roadmap is driven by the need to reduce variability and still support electrical performance. A major 
+figure of merit for variability is edge placement error (EPE). EPE is defined as the sum of terms taking care of local variability 
+(LER/LWR, LCDU) and global variability (overlay).7 This section is split into two main components: 
+• 
+Patterning Materials: Resist Platforms and assist materials specifically defined to mitigate local variability components 
+of EPE 
+• 
+Patterning Integration: Integration schemes and required materials defined to mitigate global variability components of 
+EPE 
+5.1. 
+PATTERNING MATERIALS 
+Patterning materials remain a key challenge for extending scaling. Along with continuous resist development, co-optimization 
+of the underlayer and patterning stack are necessary for improved patterning performance. Chemically amplified resists (CARs) 
+will remain the workhorse for the 1-nm node, with both single and double patterning options for critical device and metal levels. 
+CARs have seen significant improvements in  material stochastics.8 They are designed with smaller building blocks with 
+strategies to reduce the distribution variability of its multi components. Their chemistry is studied in detail to improve the 
+quantum yield by maximizing the number of useful chemical interactions with absorbed photons.9 Both spin on and deposited 
+underlayers are being tuned to optimize the resist-underlayer interaction with respect to stochastic defects and pattern transfer.10 
+Enhancements in bake and track hardware play a significant role in new post exposure bake and developer solutions for the 
+extendibility of CAR with resolution and uniformity improvements.11 Pattern transfer of CAR to underlying hard mask is another 
+active area of development. New descum chemistries, topographical and chemical selective deposition strategies, atomic layer 
+based etch techniques have been effective in mitigating stochastic defects formed at lithography.12 13 
+Advanced hard mask (HM) materials are being proposed as well, with intrinsic properties designed for mitigating pattern fidelity 
+loss (i.e., post etch LER and dimensional loss). Especially important are the HM materials used for low-k ILD etch, where the 
+minimum pitch in device is patterned. As plasma vapor deposited (PVD) TiN seems to be approaching its capability cliff as pitch 
+approaches 20 nm resolution, a new concept is being explored, namely Ti-free options or plasma enhanced atomic layer 
+deposition (PEALD) TiN, that enables much more tunability of the film properties hence mitigating LER via stress and 
+crystallinity control.14 
+Despite these material advancements coupled with imaging improvements, CAR will face challenges for around 2-1.5 nm node. 
+Some reports are appearing that CAR resists are not keeping up with the progress of metal oxide resists (MOR) for lines and 
+spaces, although they keeping up in contact hole performance15 and substantial progress is being made in MOR process 
+development16 17. Recent data at aggressive single exposure limits on NXE:3400 scanner indicate that CARs are likely to have 
+higher defects and low sensitivity at sub-28 nm pitch resolution.18 The aspect ratio at sub-28 nm pitch scale would require 
+thinning of resist thickness which would have negative consequences in roughness and line break defects. Resist suppliers are 
+already working towards these challenges with emerging resist designs. Simplified resist chemistries to limit stochastics, bound 
+photo chemical components and alternate developers could be approaches that make CAR competitive at higher resolution. 
+Although the mainstream of CAR development process is positive tone wet development (PTD) using TMAH developer, 
+negative tone wet developer is showing improvement in resolution and roughness with newly introduced hydrophobic 
+developer.19  
+
+Patterning Materials and Integration  6 
+ 
+THE INTERNATIONAL ROADMAP FOR DEVICES AND SYSTEMS:  2023 
+COPYRIGHT © 2023 IEEE. ALL RIGHTS RESERVED. 
+With high photon absorption that could translate to higher sensitivity, metal oxide resists are the biggest competitor to CAR.20 21 
+The insertion point for these new materials is expected to be for the 1.5 nm node and beyond. While some potential applications 
+in 0.33 NA double patterning can be foreseen, the differentiator for MOR will be with high NA 0.55 EUV insertion. With higher 
+resolution capability, MOR will be expected to resolve two dimensional (tip-to-tip) structures, which will enable single exposure 
+and a reduction in the needed number of EUV masks. Continuous improvement to MOR platforms will be expected with 
+increasing quantum yield to improve roughness and defectivity without compromise on dose. Track based edge bead removal 
+and backside/bevel clean options, which have become standard processes to address metal contamination, will continue to evolve. 
+As a new class of resists, understanding the effects of the environment and process delays on their stability remains a significant 
+focus for MOR. For high NA lithography, which will require stitching to accommodate a single die being printed in subsequent 
+exposures, CD stability control will be critical.22 New types of process flows with resist coat, exposure, bake and develop steps 
+being de-integrated are being considered for MOR.23 Characterizing the effect of these new methods and their impact on resist 
+performance is a near term industry focus. 
+Both wet and dry development are being considered for MOR. While wet development leverages existing eco-system from CAR, 
+new hardware improvements are needed to optimize the performance for MOR.24 Both dry deposited and dry developed resists 
+are new candidates in the industry. A new coater/developer-based development method was introduced recently for MOR 
+development for improving resolution, roughness, sensitivity, pattern collapse and defectivity. 25 Dry development has the 
+advantage of enabling higher aspect ratio without pattern collapse. Tuning of underlayer and pattern transfer techniques for MOR 
+is also a significant area of development that can enhance its performance.26 
+Directed self-assembly technology is being evaluated or used for device manufacturing in logic, memory, and CMOS sensors.27 
+28 29 DSA is used to make repeated smooth fine pitch patterns from rough initial patterns with reasonable cost of ownership. 
+Pattern reshaping techniques have been announced and will likely be used in future to target small sub-resolution feature on 
+specific typology or layouts; although beneficial and supporting an important need such as lithography cost reduction through 
+the patterning of line gratings and tip-to-tip in a single exposure, they are not expected to change the above-described picture in 
+term of materials and development techniques capabilities.30  
+Another impending challenge is the possibility of more stringent regulations of fluorine containing chemicals, including possible 
+bans on their use. Some lithography materials contain fluorine and do not have available substitutes.31 Please see the IRDS 
+ESH&S roadmap for more details about this. 
+5.2. 
+PATTERNING INTEGRATION 
+As minimum pitch in devices progressively keeps scaling, margin for EPE becomes smaller, leading to extra complexity in the 
+patterning space.  
+EPE components are well identified and known,7 each one having its own roadmap for making sure enough EPE budget is 
+available at each technology node. Numerical simulations have been published that estimate the process parameters EPE is most 
+sensitive to, with overlay taking 40% of the budget, and LER being responsible for 25%.32 
+To enhance the process window for overlay, hence mitigating EPE, several self-alignment techniques have been proposed,33 
+leveraging specific new process integration schemes. The key philosophy is to make use of multi-colored etch contrast along 
+with advanced etch systems for improved selectivity, to decrease the sensitivity of final dimensions and placement on actual 
+misalignment. These techniques go under the name of design-technology co-optimization (DTCO) or scaling boosters. The first 
+DTCO technique ever adopted has been self-aligned blocks (SAB), leveraging the ABACA colored scheme.34 
+DTCO is also important for enabling the correct node-to-node die area scaling, as minimum pitch approaches 20 nm and below. 
+Specifically, DTCO and self-alignment techniques are adopted to enable new layout strategies aimed to deliver a more compact 
+device design, hence enabling die area scaling faster than critical dimension scaling and avoid unacceptable RC delay increases.35 
+We define Patterning Integration as the branch of patterning techniques and material roadmaps specifically developed for 
+enabling advanced DTCO techniques. Among the many options currently in the pipeline (supervias, semidamascene, fully self-
+aligned contacts…), the two most relevant for patterning integration in upcoming nodes are discussed below, along with a 
+roadmap for material properties: 
+1. Fully self-aligned vias (FSAV) 
+2. Self-aligned contact over active gate (SAC for COAG) 
+
+Patterning Materials and Integration  7 
+ 
+THE INTERNATIONAL ROADMAP FOR DEVICES AND SYSTEMS:  2023 
+COPYRIGHT © 2023 IEEE. ALL RIGHTS RESERVED. 
+5.2.1. FULLY SELF-ALIGNED VIAS  
+FSAV technique consist in the creation of an ABAB multi-colored patterning scheme with “A” being the underlying metal and 
+“B” being an extra-dielectric permanent material used for self-aligning the etch; this enables printing larger vias at Litho level, 
+with enhanced overlay budget, and will also create a longer leaky path between the via and the adjacent non-connected metal 
+line, hence improving device reliability. 
+Figure LITH-3 reports the process flow scheme of the conventional flow (control flow) versus the FSAV flow, with the self-
+alignment materials being reported in dark blue; it also reports the estimated properties of the self-alignment materials for selected 
+pitch estimated under the assumption of constant node-to-node RC delay. 
+ 
+Figure LITH-1    
+Comparison between conventional and FSAV schemes (left side); materials roadmap vs node (right side) 
+It has been demonstrated that FSAV scheme vs control flow can significantly increase the overlay budget36 and it will be a key 
+technology for enabling roadmap beyond 2 nm node. 
+Self-alignment material dielectric constant will have to scale along with pitch scaling, to avoid a too high RC penalty associated 
+with the FSAV scheme. The best materials for high etch selectivity typically have high dielectric constant. 
+Self-alignment materials are deposited by area selective atomic layer deposition (ASD), emerging technology that use the surface 
+energy difference between adjacent materials for depositing on one and not on the other. In the specific case, a dielectric-on-
+dielectric (DoD) ASD is required. FSAV is expected to be required from pitch 20 nm. 
+5.2.2. SELF-ALIGNED CONTACT OVER ACTIVE GATE (SAC FOR COAG) 
+COAG enables a more contact and design-efficient layout for the cell, with the gate contact not requiring dummy gates to 
+minimize the risk of shorts with the source and drain contacts.37 The concept is based on multi-colored selectivity scheme, as 
+reported in Figure LITH-4. 
+ 
+Figure LITH-2    
+COAG SAC integration scheme (left side), materials roadmap vs node (right side) 
+An ABCBA pattern must be created, where “A” is a material capping source/drain (S/D) contacts, “B” is the low-k spacer and 
+“C” is a dielectric gate cap. Spacer width (B) defines the need of a self-alignment scheme adoption, with a threshold being 
+tentatively set at 6 nm. To form the two different families of contact (on gate and on source/drain, VCG and VCT respectively 
+in the common nomenclature), two dedicated masks and exposure steps are needed, each followed by an etch step that selectively 
+opens A or B. 
+ Self-alignment A and C materials are permanent in the device, as they are removed only where the contact has to be created, so 
+they must scale their dielectric constant as CPP scales, to minimize their impact on RC delay. The table in Figure LITH-4 reports 
+
+Long term Challenges (2028 and on)  8 
+ 
+THE INTERNATIONAL ROADMAP FOR DEVICES AND SYSTEMS:  2023 
+COPYRIGHT © 2023 IEEE. ALL RIGHTS RESERVED. 
+a roadmap defined under the assumption of constant RC factor node-to-node, with some examples of materials fulfilling the 
+requirement. 
+The multi-colored patterning scheme can be generated by recessing S/D and gate materials, then depositing in the gap and 
+planarizing, or by dielectric-on-metal (DoM) ASD. While the Recess+ Gapfill approach makes use of conventional technologies, 
+it leads to an increase in the aspect ratios to deal with during the several process steps. Area selective deposition is expected to 
+be a strong enabler for COAG SAC in the future, as well as for all the other DTCO techniques that will be developed and 
+implemented. 
+6. LONG TERM CHALLENGES (2028 AND ON) 
+Long term, the IRDS roadmap projects that logic devices will switch to scaling by stacking instead of scaling by shrinking. This 
+will create a large increase in the number of EUV levels. Since the EUV levels are the critical levels, one can project they will 
+generate most of the lithography defects after the process is ramped up. Taking the required defect densities for each node and 
+calculating the defect densities required of each critical level to meet this target, one can project required defect density by level. 
+As show in Figure LITH-5, with the use of multiple tiers of devices, defect densities will need to decrease by orders of magnitude 
+in order to maintain yield. The chart assumes that defect densities in 2022 just meet requirement and 2022 defect density is 
+normalized to one. Should such a rapid decrease in defect densities not be achievable, moving to smaller die sizes and using 
+advanced packaging integration to integrate the smaller chips could be a route to better yield.  
+ 
+ 
+Figure LITH-3    
+Projected required improvement in defect rate per device and per level 
+ 
+ 
+
+Conclusions  9 
+ 
+THE INTERNATIONAL ROADMAP FOR DEVICES AND SYSTEMS:  2023 
+COPYRIGHT © 2023 IEEE. ALL RIGHTS RESERVED. 
+7. CONCLUSIONS 
+EUV at 0.33 NA is well established now. Extensions to EUV are in development and higher NA tools are expected to be available 
+starting in 2024. There are many challenges to adopting high NA EUV, including small process windows, mask making, 
+stochastic effects and defects. High NA will bring smaller exposure field sizes with it. This may spur the growth of advanced 
+packaging and/or larger mask sizes. The slowdown in CD scaling compared to circuit area scaling requires the implementation 
+of advanced DTCO to reduce circuit size more than CD shrinks. Materials will have to be improved to support new device nodes. 
+Not only will resists have to improve, but improvements are also needed in underlayers, pattern quality improvement processes 
+such as DSA based processes, and pattern transfer processes. Leading edge resist technology is mostly based on chemically 
+amplified materials, but metal based resists and some dry deposited resists show promise both in being able to work at low film 
+thicknesses and in process integration schemes. Techniques such as fully self-aligned vias and self-aligned contact over active 
+gate will be essential to do this. Long term, the projected switch to scaling by stacking from scaling by shrinking will require 
+much faster improvements in EUV defect rates. Defect rates per EUV level will need to decrease roughly an order of magnitude 
+per node instead decreasing 20% or less each node.  
+ 
+ 
+
+Acronyms/Abbreviations  10 
+ 
+THE INTERNATIONAL ROADMAP FOR DEVICES AND SYSTEMS:  2023 
+COPYRIGHT © 2023 IEEE. ALL RIGHTS RESERVED. 
+8. ACRONYMS/ABBREVIATIONS 
+Term  
+Definition 
+ArF 
+Argon fluoride 
+ASD 
+Area selective atomic layer deposition 
+BEUV 
+Beyond EUV 
+CARS 
+Chemically amplified resists 
+CD 
+Critical dimension 
+CDU 
+Critical dimension uniformity 
+CMOS 
+Complementary metal oxide semiconductor 
+COAG 
+Contact over active gate 
+CoO 
+Cost of ownership 
+CVD 
+Chemical vapor deposition 
+DOD 
+Dielectric on dielectric 
+DOM 
+Dielectric on metal 
+DRAM 
+Dynamic random access memory 
+DSA 
+Directed self-assembly 
+DTCO 
+Design-technology co-optimization 
+EPE 
+Edge replacement error 
+ESH&S 
+Environment, safety, health and sustainability 
+EUV 
+Extreme ultraviolet 
+FEL 
+Free electron laser 
+FET 
+Field effect transistor 
+FinFET 
+Fin field-effect transistor 
+FSAV 
+Fully self-aligned vias 
+GAA 
+Gate all around 
+GPU 
+Graphic processing unit 
+HM 
+Hard mask 
+HVM 
+High volume manufacturing 
+I/O 
+Input/output 
+IC 
+Integrated circuit 
+IEEE 
+Institute of Electrical and Electronic Engineers  
+IEEE-SA 
+IEEE Standards Association 
+IFT 
+International focus team 
+IMEC 
+Interuniversity Microelectronics Centre 
+ILD 
+Interlevel dielectric 
+iNEMI 
+International Electronics Manufacturing Initiative 
+I/O 
+Input/output 
+IRC 
+International roadmap committee 
+IRDS 
+International Roadmap for Devices and Systems 
+ISSCC 
+International Solid-State Circuits Conference 
+ITRS 
+International Technology Roadmap for Semiconductors 
+KrF 
+Krypton fluoride 
+LCDU 
+Local CD uniformity 
+
+Acronyms/Abbreviations  11 
+ 
+THE INTERNATIONAL ROADMAP FOR DEVICES AND SYSTEMS:  2023 
+COPYRIGHT © 2023 IEEE. ALL RIGHTS RESERVED. 
+LER 
+Line edge roughness 
+LGAA 
+Lateral gate all around  
+LPP 
+Laser-produced plasma 
+LWR 
+Line width roughness 
+MEMS 
+Micro-electro mechanical system 
+MRAM 
+Magnetic RAM 
+MOR 
+Metal oxide resist 
+MOS 
+Metal oxide semiconductor 
+MOSFET 
+Metal oxide semiconductor field effect transistor 
+MPU 
+Microprocessor unit 
+MRAM 
+Magnetic RAM 
+Mx 
+Tight-pitch routing metal interconnect 
+NA 
+Numerical aperture 
+NAND 
+A logic gate (NOT-AND) that produces an output that is 
+false only if all its inputs are true 
+NIL 
+Nanoimprint lithography 
+OPC 
+Optical proximity correction 
+ORSC 
+Overall roadmap system characteristics 
+ORTC 
+Overall roadmap technology characteristics 
+OSC 
+Outside System Connectivity 
+PEALD 
+Plasma enhanced atomic layer deposition 
+PVD 
+Plasma vapor deposition 
+PTD 
+Positive tone wet development 
+RIE 
+Reactive ion etch 
+SAB 
+Self-aligned blocks 
+SAC 
+Self-aligned contacts 
+S/D 
+Source/drain 
+SDRJ 
+System Device Roadmap Committee of Japan 
+SEM 
+Scanning electron microscope 
+VGAA 
+Vertical gate all around 
+VLSI 
+Very large scale integration 
+ 
+ 
+
+References  12 
+ 
+THE INTERNATIONAL ROADMAP FOR DEVICES AND SYSTEMS:  2023 
+COPYRIGHT © 2023 IEEE. ALL RIGHTS RESERVED. 
+9. REFERENCES 
+ 
+1 H. Kawata, N. Nakamura, H. Sakai, R. Kato, and R. Hajima. "High power light source for future extreme ultraviolet lithography based on 
+energy-recovery linac free-electron laser." Journal of Micro/Nanopatterning, Materials, and Metrology 21, no. 2 (2022): 021210-
+021210. 
+2 W. A. Barletta, J. Bisognano, J. N. Corlett, P. Emma, Z. Huang, K-J. Kim, R. Lindberg et al. "Free electron lasers: Present status and future 
+challenges." Nuclear Instruments and Methods in Physics Research Section A: Accelerators, Spectrometers, Detectors and Associated 
+Equipment 618, no. 1-3 (2010): 69-96. 
+3 V. Wiaux, J. Bekaert, T. Kovalevich, J. Ryckaert, E. Hendrickx, N. Davydova, P. Woltgens et al. "Stitching enablement for anamorphic 
+imaging: a~ 1μm exclusion band and its implications." In Extreme Ultraviolet Lithography 2020, vol. 11517, pp. 76-83. SPIE, 2020 
+4 https://irds.ieee.org 
+5 H. J. Levinson, "Technological innovations for a sustainable business model in the semiconductor industry," Proc. SPIE 9189, p. 91890E 
+(2014) 
+6 S. Naffziger, N. Beck, T. Burd, K. Lepak, G. H. Loh, M. Subramony, and S. White. "Pioneering chiplet technology and design for the amd 
+epyc™ and ryzen™ processor families: Industrial product." In 2021 ACM/IEEE 48th Annual International Symposium on Computer 
+Architecture (ISCA), pp. 57-70. IEEE, 2021. 
+7 Jan Mulkens et. al., "Patterning control strategies for minimum edge placement error in logic devices", Proc. SPIE 10145, Metrology, 
+Inspection, and Process Control for Microlithography XXXI, 1014505 (28 March 2017) 
+8 Toru Fujimori , “Recent status of the stochastic issues of photoresist materials in EUV lithography”, Proceedings Volume 12292, 
+International Conference on Extreme Ultraviolet Lithography 2022; 122920F (2022). 
+9 Takahiro Kozawa, “Defect risk in chemically amplified resists used for extreme ultraviolet lithography”, Proceedings Volume PC12292, 
+International Conference on Extreme Ultraviolet Lithography 2022; PC122920 (2022) 
+10 Roberto Fallica,  “Scaling and readiness of underlayers for high-numerical aperture extreme ultraviolet lithography”, Journal of 
+Micro/Nanopatterning, Materials, and Metrology, Vol. 21, Issue 4, 044601 (2022) 
+11 Kanko Kato et al., Coater/developer based techniques to achieve sub-30nm CAR process on EUV stack 
+Proceedings Volume PC12055, Advances in Patterning Materials and Processes XXXIX; PC120550L (2022) 
+https://doi.org/10.1117/12.2613805d 
+12 Xun Xiang et al., “Introduction of pre-etch deposition techniques in EUV patterning”, Proceedings Volume 10589, Advanced Etch 
+Technology for Nanopatterning VII; 105890K (2018) 
+13 Katie Lutker Lee et al., “Plasma-based area selective deposition for extreme ultraviolet resist defectivity reduction and process window 
+improvement”, Journal of Vacuum Science & Technology B 40, 032204 (2022) 
+14 A. Turnquist et al., “Evaluation of TiN hardmask films to prevent line wiggling due to plasma-induced film stress”, Proceedings Volume 
+12499, Advanced Etch Technology and Process Integration for Nanopatterning XII; 1249904 (2023) 
+15 Florian Gstrein, "Material and patterning innovation: the foundation for Moore’s law extension," Proc. SPIE PC12497, Novel Patterning 
+Technologies 2023, PC1249704 (30 April 2023); https://doi.org/10.1117/12.2669519 
+16 Lior Huli, Kanzo Kato, Steven Gueci, Nathan Antonovich, Steven Grzeskowiak, David Hetzer, Eric Liu, Alexandra Krawicz, Satoru 
+Shimura, Shinichiro Kawakami, Soichiro Okada, Karen Petrillo, Luciana Meli, Nicholas Latham, Yasiel Cabrera, Belle Antonovich, 
+"Optimization of spin-on metal oxide resist performance via new development techniques on sub-30nm pitch patterning," Proc. SPIE 
+12498, Advances in Patterning Materials and Processes XL, 1249822 (30 April 2023); https://doi.org/10.1117/12.2658880 
+17 Kanzo Kato, Lior Huli, Nathan Antonovich, David Hetzer, Steven Grzeskowiak, Eric Liu, Akiteru Ko, Satoru Shimura, Shinichiro 
+Kawakami, Takahiro Kitano, Seiji Nagahara, Luciana Meli, Indira Seshadri, Martin Burkhardt, Karen Petrillo, "Coater/developer-
+based techniques to achieve tight pitches towards high-NA EUV," Proc. SPIE 12498, Advances in Patterning Materials and Processes 
+XL, 1249821 (30 April 2023); https://doi.org/10.1117/12.2657290 
+18 Arame Thiam et al.,  “Towards high NA patterning readiness: materials, processes and etch transfer for P24 Line Space”, Proceedings 
+Volume 11854, 118540A (2021)  
+19 Keiyu Ou, et al., “A novel formulated developer for negative-tone imaging with EUV exposure to improve chemical stochastic”, 
+Proceedings Volume 12498, Advances in Patterning Materials and Processes XL; 124980D (2023) 
+20 Stephen Meyers et al., “MOx resist formulation and process advances towards high-NA EUV lithography”, Proceedings Volume 12498, 
+Advances in Patterning Materials and Processes XL; 1249804 (2023). 
+21 Rich Wise et al., “Breaking stochastic tradeoffs with a dry deposited and dry developed EUV photoresist system”, Proceedings Volume 
+11612, Advances in Patterning Materials and Processes XXXVIII; 1161203 (2021) 
+ 
+
+References  13 
+ 
+THE INTERNATIONAL ROADMAP FOR DEVICES AND SYSTEMS:  2023 
+COPYRIGHT © 2023 IEEE. ALL RIGHTS RESERVED. 
+ 
+22 Sangjin Kim etal., “An investigation on the process control for the solid application of EUV MOR, Proceedings Volume 12494, Optical 
+and EUV Nanolithography XXXVI; 124940V (2023 
+23 Andreia Santos et al., “Scaling and readiness of underlayers for high-numerical aperture extreme ultraviolet lithography”, Proceedings 
+Volume PC12292, International Conference on Extreme Ultraviolet Lithography 2022; PC122920W 
+24 Seiji Nagahara et al.,“EUV Metal Oxide Resist Development Technology for Improved Sensitivity, Roughness and Pattern Collapse 
+Margin for High Volume Manufacturing”, J. Photopolym. Tech. Sci., 35 [1], (2022) 87-93 
+25 Cong Que Dinh, et al., “Advanced development methods for high-NA EUV lithography” SPIE Paper 12498-4 (2023) 
+26 Hyo Seon Suh et al., “Dry resist patterning readiness towards high-NA EUV lithography”, Proceedings Volume 12498, Advances in 
+Patterning Materials and Processes XL; 1249803 (2023) 
+27 Florian Gstrein, “Material and patterning innovation: The foundation for Moore’s law extension” Proceedings Volume PC12497, Novel 
+Patterning Technologies 2023; PC1249704 (2023) 
+28 Makoto Muramatsu, et al., “Pattern fidelity improvement of DSA hole patterns” Proceedings Volume 12497, Novel Patterning 
+Technologies 2023; 124970J (2023) 
+29 I. Oshiyama, et al., “Visible Light Sensitivity Enhancement of CMOS Image Sensor with Pseudo High Refractive Index Film Integrated by 
+Directed Self-Assembly Process”, IEEE Electron Devices Technology & Manufacturing Conference (EDTM) (2021). 
+30 ” Press Release https://ir.appliedmaterials.com/node/26161/pdf 
+31 C. K. Ober, F. Käfer, and J. Deng. "Review of essential use of fluorochemicals in lithographic patterning and semiconductor 
+processing." Journal of Micro/Nanopatterning, Materials, and Metrology 21, no. 1 (2022): 010901-010901. 
+32 Apoorva Oak, Ryan Ryoung-Han Kim, Soobin Hwang, "Quantifying process sensitivities for EUV and high-NA using machine learning 
+based analytics," Proc. SPIE 12495, DTCO and Computational Patterning II, 124951C (28 April 
+2023); https://doi.org/10.1117/12.2658912 
+33 G. Mirabelli, A. Vandooren, C. Roda Neve, V. V. Gonzalez, H. Mertens, A. Farokhnejad, P. Schuddinck, G. Murdoch, S. M. Salahuddin, 
+O. Zografos, L. Ragnarsson, P. Weckx, Z. Tokei, G. Hellings, J. Ryckaert, "Cost analysis of device options and scaling boosters below 
+the A14 technology node," Proc. SPIE 12495, DTCO and Computational Patterning II, 124951K (28 April 
+2023); https://doi.org/10.1117/12.2656456 
+34 Frédéric Lazzarino, Nihar Mohanty, Yannick Feurprier, Lior Huli, Vinh Luong, Marc Demand, Stefan Decoster, Victor Vega Gonzalez, 
+Julien Ryckaert, Ryan Ryoung Han Kim, Arindam Mallik, Philippe Leray, Chris Wilson, Jürgen Boemmels, Kaushik Kumar, Kathleen 
+Nafus, Anton deVilliers, Jeffrey Smith, Carlos Fonseca, Julie Bannister, Steven Scheer, Zsolt Tokei, Daniele Piumi, Kathy Barla, "Self-
+aligned block technology: a step toward further scaling," Proc. SPIE 10149, Advanced Etch Technology for Nanopatterning VI, 
+1014908 (7 April 2017); https://doi.org/10.1117/12.2258028 
+35 Ryoung-han Kim, Yasser Sherazi, Peter Debacker, Praveen Raghavan, Julien Ryckaert, Arindam Malik, Diederik Verkest, Jae Uk Lee, 
+Werner Gillijns, Ling Ee Tan, Victor Blanco, Kurt Ronse, Greg McIntyre, "IMEC N7, N5 and beyond: DTCO, STCO and EUV 
+insertion strategy to maintain affordable scaling trend," Proc. SPIE 10588, Design-Process-Technology Co-optimization for 
+Manufacturability XII, 105880N (20 March 2018); https://doi.org/10.1117/12.2299335 
+36 H. P. Chen et al., "Fully Self-Aligned Via Integration for Interconnect Scaling Beyond 3nm Node," 2021 IEEE International Electron 
+Devices Meeting (IEDM), San Francisco, CA, USA, 2021, pp. 22.1.1-22.1.4, https://doi.org/10.1109/IEDM19574.2021.9720600 
+37  C. Auth et al., "A 10nm high performance and low-power CMOS technology featuring 3rd generation FinFET transistors, Self-Aligned 
+Quad Patterning, contact over active gate and cobalt local interconnects," 2017 IEEE International Electron Devices Meeting (IEDM), 
+San Francisco, CA, USA, 2017, pp. 29.1.1-29.1.4, https://doi.org/10.1109/IEDM.2017.8268472 
+

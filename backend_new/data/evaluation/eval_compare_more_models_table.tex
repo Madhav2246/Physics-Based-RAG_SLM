@@ -1,0 +1,15 @@
+\begin{table}[pos=tp]
+\caption{Cross-model validation selection comparison on the 20-question semiconductor benchmark ($N=3$ candidates per model). We compare three selection conditions: First (raw $n=1$ baseline), Random (average expected selection), and Physics-Selected (the candidate isolated by the deterministic physical verifier).}
+\label{tab:model_comparison}
+\centering
+\begin{tabularx}{\linewidth}{@{}Lccccc@{}}
+\toprule
+\textbf{Model Architecture} & \textbf{Params} & \textbf{First Candidate} & \textbf{Random Candidate} & \textbf{Physics-Selected} & \textbf{Validation Gain} \\
+\midrule
+Proposed-0.5B             & 0.5B   & 1.05                 & 0.92                 & 1.75                 & +0.70              \\
+Llama-3.2-1B              & 1B     & 2.10                 & 2.12                 & 2.40                 & +0.30              \\
+Gemma-2-2B                & 2B     & 0.70                 & 0.98                 & 1.45                 & +0.75              \\
+Llama-3.2-3B              & 3B     & 1.90                 & 1.82                 & 2.70                 & +0.80              \\
+\bottomrule
+\end{tabularx}
+\end{table}

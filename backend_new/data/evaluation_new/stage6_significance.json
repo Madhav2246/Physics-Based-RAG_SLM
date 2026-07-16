@@ -1,0 +1,130 @@
+{
+  "tests": [
+    {
+      "label": "T1: SYS vs 70B (all, n=100)",
+      "n": 100,
+      "mean_a": 1.3053,
+      "mean_b": 1.2706,
+      "mean_diff": 0.0347,
+      "ci95": [
+        -0.3004,
+        0.3654
+      ],
+      "W": 1609.0,
+      "Z": -0.242,
+      "p": 0.80831,
+      "r": 0.024,
+      "effect": "negligible",
+      "sig": "n.s.",
+      "direction": "A>B"
+    },
+    {
+      "label": "T2: SYS vs RAW (all, n=100)",
+      "n": 100,
+      "mean_a": 1.3053,
+      "mean_b": 0.2246,
+      "mean_diff": 1.0807,
+      "ci95": [
+        0.8571,
+        1.3268
+      ],
+      "W": 0.0,
+      "Z": -6.451,
+      "p": 0.0,
+      "r": 0.645,
+      "effect": "large",
+      "sig": "***",
+      "direction": "A>B"
+    },
+    {
+      "label": "T3: SYS vs 70B (easy, n=40)",
+      "n": 40,
+      "mean_a": 1.1667,
+      "mean_b": 1.7826,
+      "mean_diff": -0.6159,
+      "ci95": [
+        -1.1397,
+        -0.0845
+      ],
+      "W": 191.5,
+      "Z": -2.023,
+      "p": 0.04296,
+      "r": 0.32,
+      "effect": "medium",
+      "sig": "*",
+      "direction": "B>A"
+    },
+    {
+      "label": "T4: SYS vs 70B (medium, n=40)",
+      "n": 40,
+      "mean_a": 1.1625,
+      "mean_b": 0.9966,
+      "mean_diff": 0.1659,
+      "ci95": [
+        -0.2843,
+        0.6148
+      ],
+      "W": 188.0,
+      "Z": -0.638,
+      "p": 0.52329,
+      "r": 0.101,
+      "effect": "small",
+      "sig": "n.s.",
+      "direction": "A>B"
+    },
+    {
+      "label": "T5: SYS vs 70B (hard, n=20)",
+      "n": 20,
+      "mean_a": 1.8683,
+      "mean_b": 0.7946,
+      "mean_diff": 1.0738,
+      "ci95": [
+        0.5949,
+        1.5563
+      ],
+      "W": 12.5,
+      "Z": -3.03,
+      "p": 0.00244,
+      "r": 0.677,
+      "effect": "large",
+      "sig": "**",
+      "direction": "A>B"
+    },
+    {
+      "label": "T6: sys_best vs sys_rand (validator, n=100)",
+      "n": 100,
+      "mean_a": 1.3053,
+      "mean_b": 1.1282,
+      "mean_diff": 0.1772,
+      "ci95": [
+        0.0763,
+        0.3077
+      ],
+      "W": 0.0,
+      "Z": -2.934,
+      "p": 0.00319,
+      "r": 0.293,
+      "effect": "small",
+      "sig": "**",
+      "direction": "A>B"
+    },
+    {
+      "label": "T7: sys_best vs sys_first (bestofN, n=100)",
+      "n": 100,
+      "mean_a": 1.3053,
+      "mean_b": 0.9645,
+      "mean_diff": 0.3408,
+      "ci95": [
+        0.191,
+        0.5198
+      ],
+      "W": 0.0,
+      "Z": -3.724,
+      "p": 0.00019,
+      "r": 0.372,
+      "effect": "medium",
+      "sig": "***",
+      "direction": "A>B"
+    }
+  ]
+}

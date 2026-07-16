@@ -1,0 +1,2047 @@
+ 
+  
+ 
+  
+ 
+ 
+ 
+ 
+ 
+  
+ 
+  
+ 
+ 
+  
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+  
+ 
+  
+6.012 - Microelectronic Devices and Circuits 
+Lecture 21 - Diff-Amp Anal. II: Output Stages - Outline 
+• Announcements 
+DP: Get help before the Thanksgiving break.  It's due Friday, Dec. 4 
+On Stellar: Write-up on the cascode connection posted under Lec. 21 
+Lee Load and Current Mirror Load write-ups posted under Lec. 20. 
+• Review - Non-linear and Active Loads 
+Maximum gain: Av,max∝ VA,eff/(VGS -VT)min for MOS; ∝ VA,eff/Vthemal for BJT 
+Lee Load, Current Mirror: foils on analysis of CM in DP 
+• Specialty Stages - useful transistor pairings 
+Source-coupled pairs  
+The Marvelous Cascode: Postponed until Lecture 22  
+Push-pull or Totem Pole output stages  
+• Performance metrics - continuing down the list 
+Output resistance: Driving a load 
+DC off-set on output: High impedance nodes; feedback connections 
+Power dissipation: Add up currents from voltage supplies 
+Clif Fonstad, 11/24/09 
+Lecture 21 - Slide 1 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+    
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Achieving the maximum gain: Comparing linear  
+resistors, current sources, and active loads  
+Maximum Gains 
+MOSFET (SI) 
+Bipolar-like 
+(w. and w.o. velocity sat.) 
+(Sub-VT MOS and BJT) 
+Linear resistor loads 
+Current source loads 
+Active loads  
+Difference mode  
+Common mode 
+Observations/Comments: 
+" 2 IDRSL
+[
+]max
+vGS #VT
+[
+]min
+"
+ICRSL
+[
+]max
+n Vt
+"
+2VA,eff
+vGS #VT
+[
+]min
+" VA,eff
+n Vt
+$
+2VA,eff
+vGS #VT
+[
+]min
+$ VA,eff
+n Vt
+$
+vGS #VT
+[
+]min
+2VA,bias
+$
+n Vt
+VA,bias
+- Non-linear (current source) loads typically yield much higher gain than 
+linear resistors, i.e. VA,eff >> [IDRSL]
+.
+max
+ - The bias point is not as important to BJT-type stage gain.
+ - An SI MOSFET should be biased just above threshold for highest gain.
+ - For active loads what increases Avd, decreases Avc. 
+- Making L larger increases VA proportionately, but at the cost of speed. 
+Clif Fonstad, 11/24/09 
+Lecture 21 - Slide 2 
+
+ 
+  
+ 
+    
+ 
+ 
+ 
+ 
+Achieving the maximum gain: (vGS-VT)min = ? 
+For SI-MOSFETs, maximizing the voltage gain (Av or Avd) requires 
+minimizing (VGS-VT).  What is the limit? 
+Sub - threshold :
+                 Av
+VA
+=
+1
+n Vt
+Strong inversion :
+         Av
+VA
+=
+2
+VGS "VT
+(
+)
+Av/VA is a smooth 
+curve, so clearly 
+(VGS-VT)min > 2nVt. 
+? 
+Note: n = 1.25 was assumed.  
+Clif Fonstad, 11/24/09 
+Lecture 21 - Slide 3 
+
+  
+ 
+ 
+ 
+ 
+ 
+V+
+Q2
+vid/2
++
++
+-
+Q3
+Q4
+Q1
+vOUT
++
+-
+V-
+IBIAS,
+rob
+-vid/2
+id
+id
+id
+id
+2id
+-
+Active Loads: The current mirror load  
+Large differential-mode 
+gain, small common-mode 
+gain. 
+Also provides high gain 
+conversion from double-
+ended to single-ended 
+output. 
+The circuit is no 
+longer symmetrical, so 
+half-circuit techniques 
+can not be applied. 
+The full analysis is 
+found in the course 
+text. We find: 
+Difference-mode inputs  
+vout,d =
+2gm3
+go2 + go4 + gel
+(
+)
+vid 2
+Clif Fonstad, 11/24/09 
+Lecture 21 - Slide 4 
+
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+  
+ 
+ 
+ 
+ 
+Active Loads: The current mirror load, cont. 
+Common-mode inputs 
+vic
+V+
+Q2
+vic
++
+-
++
+-
+Q3
+Q4
+Q1
+vOUT
++
+-
+V-
+IBIAS,
+rob
+ic
+ic
+ic
+ic 0
+vout,c = gob
+2gm2
+vic
+With both inputs:  
+vout =
+2gm3
+go2 + go4 + gel
+(
+)
+vin1 " vin2
+(
+)
+2
+" gob
+2gm2
+vin1 + vin2
+(
+)
+2
+Note: In D.P. the output goes to the gate of a BJT; gel matters. 
+Clif Fonstad, 11/24/09 
+Lecture 21 - Slide 5 
+
+   
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Active Loads: A current mirror load variant (D.P. version)  
+In the design problem we 
+have a current mirror stage 
+that is not biased by a 
+current source, but rather 
+by the preceding stage*.  It 
+thus looks like that on the 
+right. 
+We can do an 
+LEC analysis of 
+this circuit fairly 
+easily. We start 
+with the LEC for 
+V+
+Q2
+vIC + vID/2
++
+-
++
+-
+Q3
+Q4
+Q1
+vOUT
++
+-
+V-
+vINNER
++
+-
+vIC - vID/2
+the left side and 
+find vinner: 
+gm3vgs3
+vic+vid/2 = v gs3
++
+-
++
+-
+vinner
+go3
+gm1
+go1
+LEC for the left side 
+*  Notice that it is possible to make the bias currents in the two legs of the mirror (Q1/Q3 and Q2/Q4) 
+different by making the transistors widths different. 
+Clif Fonstad, 11/24/09  
+Lecture 21 - Slide 6 
+
+   
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+  
+ 
+  
+ 
+  
+  
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+Active Loads: A current mirror load variant, cont.  
+The left side LEC gives: 
+vinner =
+"gm3
+go3 + go1 + gm1
+(
+)
+vic + vid
+2
+# 
+$ % 
+& 
+' ( 
+Next we analyze the right side LEC: 
+Note: Make gm1 = gm3, 
+gm2 = gm4, go1 = go3, 
+and go2 = go4. 
+gm4vgs4
+vic-vid/2 = v gs4
++
+-
++
+-
+vout
+go4
+go2
+gm2vinner
+gel
+LEC for the right side 
+This then gives us vout: 
+Avc≈ 1
+Avd 
+vout =
+"gm4
+go4 + go2 + gel
+(
+)
+vic " vid
+2
+# 
+$ % 
+& 
+' ( +
+"gm2
+go4 + go2 + gel
+(
+)
+"gm3
+go3 + go1 + gm1
+(
+)
+vic + vid
+2
+# 
+$ % 
+& 
+' ( 
+=
+gm4
+go4 + go2 + gel
+(
+)
+vid
+2 1+
+gm3
+go3 + go1 + gm1
+(
+)
+) 
+* 
++ 
+, 
+- 
+. "
+gm4
+go4 + go2 + gel
+(
+)
+vic 1"
+gm3
+go3 + go1 + gm1
+(
+)
+) 
+* 
++ 
+, 
+- 
+. 
+/
+2gm4
+2go4 + gel
+(
+)
+vin1 " vin2
+(
+)
+2
+"
+gm4
+2go4 + gel
+(
+)
+2go1
+gm1
+vin1 + vin2
+(
+)
+2
+Note: The difference-mode response is
+Clif Fonstad, 11/24/09 
+unchanged, but now A
+≈ 1, not << 1. 
+Lecture 21 - Slide 7
+vc 
+
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+An aside: More on the design problem CM stage  
+Transistor Q13 does not 
+have a companion on the 
+left side of the second DP 
+gain stage (the Current 
+Mirror). If we ignore the 
+Early effect for the large 
+signal biasing analysis, 
+as you have been told to 
+do, this is fine.  However, 
+strictly speaking, it is best 
+to maintain symmetry and 
+thus you should add a 
+companion transistor, 
+Q13', as shown to the 
+right. 
+Q16
++ 1.5 V
+- 1.5 V
+A
+Q17
+Q14
+Q15
+Q11
+Q12
+Q13
+Q13'
+Clif Fonstad, 11/24/09 
+Lecture 21 - Slide 8 
+
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Specialty Pairings: The Source-coupled Pair  
+Two coupled common-source stages 
+Large differential gain
+Easy to cascade 
+Easy to bias  
+Common-mode rejection
+IBIAS 
+V-
+V+ 
++
+vi1 
++
+-
+vo1 
+-
+vi2 
+vo2 
+Discussed in Lecture 19.  
+Clif Fonstad, 11/24/09 
+Lecture 21 - Slide 9 
+
+ 
+ 
+ 
+  
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+V+
+vout
++
+-
+CO
+External
+Load
+IBIAS
+V-
+vin
++
+-
+CE
+VGG
+Specialty Pairings: The Cascode (postponed until Lec. 22)  
+Common-source stage followed by a common gate stage  
+Common-source voltage gain
+Very large output resistance
+Improved high frequency
+performance 
+Common Gate 
+Common Source 
+Clif Fonstad, 11/24/09 
+Lecture 21 - Slide 10 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+Specialty Pairings: The Push-pull or Totem Pole Output 
+A stacked pair of complementary emitter- or source-followers 
+Large input resistance 
+Voltage gain near one  
+Small output resistance 
+Low quiescent power  
+npn or n-MOS 
+follower 
+pnp or p-MOS
+follower 
+Qn
+Qp
+V+
+V-
+vout
++
+-
+RL
+vin+VBEn
++
+-
++
+-
+vin-VEBp
+Qn
+Qp
+V-
+V+
+vout
++
+-
+RL
+vin+VGSn
++
+-
++
+-
+vin-VSGp
+Clif Fonstad, 11/24/09 
+Lecture 21 - Slide 11 
+
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Specialty pairings: Push-pull or Totem Pole Output Pairs  
+The limitations of using a simple follower stage* output: 
+- Using a single source follower as the output stage must be biased 
+with a relatively large drain current to achieve a large output voltage 
+swing, which in turn dissipates a lot of quiescent power. 
+Q28
++ 1.5 V
+- 1.5 V
+IBIAS
+vIN
++
+-
+vOUT
++
+-
+vIN  goes 
+positive
+vOUT goes 
+positive
+Load current is 
+supplied through 
+Q28 as it turns on 
+more strongly
+RL
+Q
++ 1.5 V
+- 1.5 V
+IBIAS
+vIN
++
+-
+vOUT
++
+-
+vIN  goes 
+negative
+Negative vOUT 
+swing limited 
+to -I BIASRL 
+As Q turns off 
+IBIAS  flows 
+through load.
+RL
+Turns off 
+The
+Problem 
+Q 
+Q 
+Clif Fonstad, 11/24/09 
+* source follower or emitter follower 
+Lecture 21 - Slide 12 
+
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Specialty pairings: Push-pull or Totem Pole, cont.  
+- A p-MOS follower solves the 
+- The solution is to combine the two  
+negative swing problem, but has 
+in a totem pole stack (and drive and  
+its own positive swing problem. 
+bias them by the preceding stage).  
+RL
+vIN goes 
+positive
+Q
++ 1.5 V
+- 1.5 V
+IBIAS
+vIN
++
+-
+vOUT
++
+-
+Positive v OUT 
+swing limited 
+to I BIASRL 
+Turns 
+off 
+As Q turns off 
+IBIAS  flows 
+through load.
+The
+Problem 
+Q3
+Q5
+V+
+Q2
+IBIAS
+vOUT
++
+-
+Q1
+Q4
+vIN
++
+-
+V-
+Q2 supplies
+the load 
+current for 
+vOUT > 0 
+Q5 sinks the 
+load current 
+for vOUT < 0 
+Q3 and Q4 bias Q2 
+and Q5. They also
+insure that Q5 turns 
+off as Q2 turns on, 
+and visa versa.  
+Clif Fonstad, 11/24/09 
+Lecture 21 - Slide 13 
+
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Specialty pairings: Push-pull or Totem Pole, cont. 
+Comments/Observations: 
+- The output resistance is largest around vOUT = 0.  Here both Q2 and Q5 
+are active and the output resistance is: 
+Q3
+Q5
+V+
+Q2
+IBIAS
+vOUT
++
+-
+Q1
+Q4
+vIN
++
+-
+V-
+- One must always make K2/K3 = K5/K4, and 
+in the typical design K3 = K4, and K2 = K5. 
+The bias current of Q2 and Q5 is set by IBIAS: 
+rout "
+1
+gm2 + gm5
+- |vOUT| vs |vIN| is fairly linear 
+ID2 = ID5 = K2 K3
+(
+)IBIAS
+over a wide range (see right); 
+|vGS| increases slowly with |vIN|. 
+Clif Fonstad, 11/24/09 
+Lecture 21 - Slide 14 
+
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+   
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+vout = RLIE 20 e vin"vout
+(
+) Vt " e" vin"vout
+(
+) Vt
+(
+)
+= 2RLIE 20 sinh vin " vout
+(
+) Vt
+Specialty pairings: Push-pull or Totem Pole, cont. 
+Voltage gain: 
+- The design problem uses a bipolar totem pole.  The gain and linearity 
+of this stage depend on the bias level of the totem pole. The gain is 
+higher for with higher bias, but the power dissipation is also. 
+Q20
+Q21
++ 1.5 V
+- 1.5 V
+vout
++
+-
+50!
+vin+VBE20
++
+-
++
+-
+vin-VEB21
+To calculate the large signal transfer characteristic  
+of the bipolar totem pole we begin with vOUT:  
+vOUT = RL "iE 20 " iE 21
+(
+)
+The emitter currents depend on (vIN - vOUT):  
+iE 20 = "IE 20e v IN "vOUT
+(
+) Vt ,
+iE 21 = IE 21e" v IN "vOUT
+(
+) Vt
+Putting this all together, and using IE21 = - IE20, we 
+have: 
+We can do a spread-sheet solution by picking a 
+set of values for (vIN - vOUT), using the last 
+equation to calculate the vOUT, using this vOUT 
+to calculate vIN, and finally plotting vOUT vs 
+The results are seen on the next slide. 
+vIN. 
+Clif Fonstad, 11/24/09 
+Lecture 21 - Slide 15 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Voltage gain, cont.: 
+- With a 50 Ω load and for several different bias levels we find: 
+Clif Fonstad, 11/24/09 
+Lecture 21 - Slide 16 
+The gain and linearity are 
+improved by increasing 
+the bias current, but the 
+cost is increased power 
+dissipation. 
+The Av is lowest and rout is highest at the 
+bias point (i.e., VIN = VOUT = 0). rin to 
+the stage is also lowest there. 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+     
+Specialty pairings: Push-pull or Totem Pole in Design Prob.  
+Comments/Observations: 
+- The D.P. output stage 
+involves four emitter fol­
+lower building blocks 
+arranged as two parallel 
+cascades of two emitter 
+follower stages each. 
+- Driving the totem 
+pole in this manner 
+results in a much 
+larger output 
+voltage range than 
+is obtained by using 
+a single follower as 
+was done in our 
+earlier examples. 
+Q18
+Q20
+Q21
++ 1.5 V
+- 1.5 V
+Q17
+vOUT
++
+-
+50!
+IBIAS2
+IBIAS3
+vIN
++
+-
+NOTE: Designing with this output requires paying special attention
+to the biasing, and calculating the input and output resistances. 
+Clif Fonstad, 11/24/09 
+The next several slides look at these aspects of the push-pull stage. 
+Lecture 21 - Slide 17 
+
+  
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+  
+Specialty pairings: Push-pull or Totem Pole in D.P., cont. 
+Biasing the output stages: getting the currents right 
+IE 20 = IE 21
+Constraint at output node: 
+Constraint at input node:
+ Equivalently: 
+IB18 = IB17
+Sum at emitter of Q20: 
+IBIAS2 = IE17 + IE 20
+"n +1
+(
+)
+     = " p +1
+(
+) IB17 + IE 20
+"n +1
+(
+)
+     = " p +1
+(
+) IB17 +
+IE 20
+"n +1
+(
+) " p +1
+(
+)
+# 
+$ 
+% 
+% 
+& 
+' 
+( 
+( 
+Sum at emitter of Q21: 
+IBIAS3 = "n +1
+(
+)IB18 + IE 21
+" p +1
+(
+) = "n +1
+(
+) IB18 +
+IE 21
+"n +1
+(
+) " p +1
+(
+)
+# 
+$ 
+% 
+% 
+& 
+' 
+( 
+( 
+Combining everything: 
+IBIAS2 IBIAS3 = " p +1
+(
+)
+"n +1
+(
+) # "p "n
+IE18
+"n +1
+(
+) = IE17
+" p +1
+(
+)
+|IE21|
+IE20
+IOUT = 0
+IIN = 0
+  IB18
+= |IB17|
+IBIAS2
+IBIAS3
+IE18
+- 1.5 V
++ 1.5 V
+50!
+Q16
+Q19
+Q18
+Q20
+Q21
+B
+A
+Q17
+- IB17
+|IE21|/("p+1)
+|IE17|
+IE20/("n+1)
+IB18
+Lesson: The bias currents are constrained.  
+Clif Fonstad, 11/24/09 
+Lecture 21 - Slide 18 
+
+  
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+Specialty pairings: Push-pull or Totem Pole in D.P., cont. 
+Biasing the output stages: getting the voltages right 
+KVL constraint:  
+- 1.5 V
++ 1.5 V
+50!
++
+-
++
+-
+-
+Q16
+Q19
+Q18
+Q20
+Q21
+B
+A
+Q17
+VEB17
+VBE18
+VBE20
++
+VEB21 +
+-
+VBE 20 + VEB 21 "VBE18 "VEB17 = 0
+Relating voltages to currents:  
+VEB17 = kT q
+(
+)ln IE17 "17IESp
+[
+]
+VBE18 = kT q
+(
+)ln IE18 "18IESn
+[
+]
+VBE 20 = kT q
+(
+)ln IE 20 " 20IESn
+[
+]
+VBE 21 = kT q
+(
+)ln IE 21 " 21IESp
+[
+]
+Combining everything, including the 
+fact that IESp=IESn=IES, and the results 
+|IE21|=IE20 and |IE17|/(βp+1)=IE18/(βn+1), 
+yields: 
+IE 20
+IE18
+=
+"p +1
+(
+)
+"n +1
+(
+)
+# 20# 21
+#17#18
+Lesson: The BJT areas must be properly designed.  
+Clif Fonstad, 11/24/09 
+Lecture 21 - Slide 19 
+
+  
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+  
+ 
+ 
+ 
+Specialty pairings: Push-pull or Totem Pole in D.P., cont. 
+Operation: The npn follower supplies current when the input goes
+positive to push the output up, while the pnp follower sinks 
+current when the input goes negative to pull the output down. 
+NOTE: Near vin = 0 we have two paths in parallel, and this must 
+be considered when finding rin and rout. 
+In
+parallel 
+Q18
+Q21
++ 1.5 V
+- 1.5 V
+vOUT
++
+-
+50!
+IBIAS3
+vIN
++
+-
+vIN 
+decreaes
+vOUT  
+decreases
+Load current 
+drawn out 
+through Q21
+vBE21 
+increases
+vEB21 +
+-
+Q20
++ 1.5 V
+- 1.5 V
+Q17
+vOUT
++
+-
+50!
+IBIAS2
+vIN
++
+-
+vIN 
+increases
+vOUT  
+increases
+Load current 
+supplied 
+through Q20
+vBE20
++
+-
+vBE20 
+increases
+Clif Fonstad, 11/24/09 
+Lecture 21 - Slide 20 
+
+  
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+  
+ 
+Specialty pairings: Push-pull or Totem Pole in D.P., cont. 
+The input resistance of the output stages as seen by the Current Mirror 
+We will make the approximation that the two emitter-follower paths 
+can be modeled as being in parallel for purposes of calculating the 
+input resistance. 
+rin ≈ rin1|| rin2 
+2 x 50!
+Q17
+Q20
+Q16
+A
+- 1.5 V
++ 1.5 V
+rin1
+Q19
+Q21
+Q18
+B
+- 1.5 V
++ 1.5 V
+2 x 50!
+rin2
+In
+parallel 
+Note: rin is smallest around vin = 0, so this is a worst-case estimate. 
+Clif Fonstad, 11/24/09 
+Lecture 21 - Slide 21 
+
+  
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+Specialty pairings: Push-pull or Totem Pole in D.P., cont.  
+The output resistance of the amplifier as seen by the 50 Ω load 
+We will make the approximation that the two emitter-follower paths 
+can be modeled as being in parallel for purposes of calculating the 
+output resistance. 
+In
+parallel 
+rout ≈ rout1|| rout2 
+Q17
+Q20
+Q16
+A
+- 1.5 V
++ 1.5 V
+rout1
+2roS2
+Q19
+Q21
+Q18
+B
+- 1.5 V
++ 1.5 V
+rout2
+2roS2
+Note: rout is largest around vout = 0, so this is a worst-case estimate. 
+Clif Fonstad, 11/24/09 
+Lecture 21 - Slide 22 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+Specialty pairings: Push-pull or 
+Totem Pole in D.P., cont. 
+Reviewing the input and 
+output resistances of 
+an emitter follower: 
+rin 
+r!
+"ib
+ro
+rl
++
+-
+vin
+iin = ib
+roBias
+r!
+ro
++
+-vt
+rt
+"ib
+ib
+it
+roBias
+rout 
+IBIAS
+Q25
+- 1.5 V
++ 1.5 V
+rt
+rl
++
+-
++
+-vt
+vout
+rin = r" + # +1
+(
+) rl || ro || rBias
+(
+)
+   $ r" + # +1
+(
+)rl
+rout =1 go + gBias + " +1
+(
+)
+r# + rt
+(
+)
+[
+]
+     $ r# + rt
+(
+)
+" +1
+(
+)
+Note: 
+- Looking in the resistance is multiplied by (β+1); looking back it is divided by (β+1). 
+Clif Fonstad, 11/24/09 
+Lecture 21 - Slide 23 
+
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+Specialty pairings: Push-pull or 
+Totem Pole in D.P., cont. 
+Reviewing the voltage gain  
+of an emitter follower:  
+r!
+"ib
+ro
+rl
++
+-
+vin
+iin = ib
++
+-
+vout = Avvin
+roBias
+vout = " +1
+(
+)ib rl || ro || rBias
+(
+)
+vin = ibr# + " +1
+(
+)ib rl || ro || rBias
+(
+)
+Av = vout
+vin
+=
+" +1
+(
+) rl || ro || rBias
+(
+)
+r# + " +1
+(
+) rl || ro || rBias
+(
+)
+               $
+" +1
+(
+)rl
+r# + " +1
+(
+)rl
+IBIAS
+Q25
+- 1.5 V
++ 1.5 V
+rt
+rl
++
+-
++
+-vt
+vout
+Note: The voltage gains of the third-stage emitter followers (Q17 and Q18) will 
+likely be very close to one, but that of the stage-four followers might be
+noticeably less than one. 
+Clif Fonstad, 11/24/09 
+Lecture 21 - Slide 24 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+  
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+DC off-set at the output of an Operational Amplifier:  
+DC off-set: 
+The node between Q12 and Q13 is a high impedance node whose 
+quiescent voltage can only be determined by invoking symmetry.* 
+Q16
+Q19
+Q18
+Q20
+Q21
+vOUT
++
+-
+B
++ 1.5 V
+- 1.5 V
+A
+Q17
+Q15
+Q11
+Q12
+Q13
+Q14
+Q13'
+The voltage on these 
+two nodes is equal if 
+there is no input, i.e. 
+vIN1 = vIN2 = 0, and if 
+the circuit is truly 
+symmetrical/matched. 
+This is the high 
+impedance node. 
+Real-world asymmetries 
+mean the voltage on this 
+node is unpredictable. 
+0 V 
+≈ 0.6 V 
++ 
+-
+≈ 0.6 V 
++ 
+-
+≈ 0 V 
++ 
++ 
+-
+-
+≈ 0.5 V 
+≈ 0.6 V 
+≈ - 0.4 V 
+≈ - 0.4 V 
+The voltage symmetry 
+says will be at this node. 
+The voltage we need at this 
+node to make VOUT = 0. 
+≈ 0.6 V 
++ 
+-
+≈ 0.6 V 
++ 
+-
+In any practical Op Amp, a very small differential input, vIN1-vIN2,  
+is require to make the voltage on this node (and VOUT) zero.  
+Clif Fonstad, 11/24/09 
+Lecture 21 - Slide 25 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+DC off-set at the output of an Op Amp, cont: 
+DC off-set: 
+The transfer characteristic, 
+vOUT vs (vIN1 - vIN2), will not in 
+general go through the origin, 
+i.e., 
+vOUT = Avd(vIN1 - vIN2) + VOFFSET 
+In the example in the figure  
+Avd is -2 x 106, and VOFFSET is  
+0.1 V. 
+VIN2 - V IN1
+VOUT
+1V
+0.5µV
+-Avd = 2x10 6
+VIN2 - V IN1
+0.1V
+-50nV
+VOUT
++
+-
+50 !
+R
++
+-
+R
+vOUT
+vIN
++
+-
+Avd
+Input 1
+Input 2
+In a practice, an Op Amp will be 
+used in a feed-back circuit like the 
+example shown to the left, and the 
+value of vOUT with vIN = 0 will be 
+quite small. For this example (in 
+which Avd = -2 x 106, and VOFFSET = 
+In the D.P. you are asked for this value for your design. 
+is only 0.1
+0.1 V) vOUT 
+µV. 
+Clif Fonstad, 11/24/09 
+Lecture 21 - Slide 26 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+    
+ 
+  
+ 
+Power dissipation calculation 
+A constraint on the bias currents is the total power dissipation 
+specification of 8.5 mW. This means that the total bias cur­
+rent must be ≈ 2.8 mA or less (i.e, 3 V x 2.8 mA ≈ 8.5 mW). 
+IA + IB + IC + ID + IE + IF + IG " 2.8 mA
+PQ = IA + IB + IC + ID + IE + IF + IG
+(
+) " 3 Volts
+Q1
+A
+B
+Q22
+Q16
+Q19
+Q18
+Q20
+Q21
+vOUT
++
+-
+B
+vIN2
++ 1.5 V
+- 1.5 V
+A
+Q7
+Q6
+B
+vIN1
++
+-
++
+-
+Q8
+Q9
+Q10
+Q3
+Q2
+Q17
+Q14
+Q15
+Q11
+Q12
+Q4 Q5
+Q13
+IA
+IB
+IC
+ID
+IE
+IF
+IG
+Clif Fonstad, 11/24/09 
+Lecture 21 - Slide 27 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+  
+ 
+ 
+  
+ 
+  
+ 
+ 
+ 
+  
+ 
+  
+ 
+6.012 - Microelectronic Devices and Circuits 
+Lecture 21 - Diff-Amp Analysis II - Summary  
+• Active loads - Lee load, Current mirror 
+New CM analysis foils 
+• Specialty stages - useful pairings 
+Source coupled pairs: MOS  
+Cascode: Postponed until Lecture 22  
+Push-pull output: Emitter followers in vertical chain  
+Very low output resistance 
+Shared duties for positive and negative output swings 
+• Diff Amp Metrics 
+Output resistance: Largest about zero; view as followers in parallel 
+DC off-set on output: Nulled out by slight differential mode input 
+Power consumption: Add up the current from the supplies 
+Happy Thanksgiving 
+Clif Fonstad, 11/24/09 
+Lecture 21 - Slide 28 
+
+ 
+ 
+MIT OpenCourseWare
+http://ocw.mit.edu 
+6.012 Microelectronic Devices and Circuits 
+Fall 2009 
+For information about citing these materials or our Terms of Use, visit: http://ocw.mit.edu/terms. 
+

@@ -1,0 +1,2434 @@
+{
+  "summary": {
+    "n_evaluated_full": 99,
+    "n_evaluated_hiconf": 57,
+    "n_unmapped_excluded": 1,
+    "hit_definition": "gold chunk_id present in top-k retrieved chunk ids (exact ID containment)",
+    "hiconf_definition": "gold chunk assigned by substring match OR embedding score >= 0.7",
+    "overall_full": {
+      "n": 99,
+      "Hit@1": 0.2929,
+      "Hit@3": 0.4747,
+      "MRR": 0.3737,
+      "NDCG@3": 0.9639,
+      "Context_Relevancy": 0.5158,
+      "Faithfulness_full_evidence": 0.2685
+    },
+    "overall_hiconf": {
+      "n": 57,
+      "Hit@1": 0.3684,
+      "Hit@3": 0.5439,
+      "MRR": 0.4503,
+      "NDCG@3": 0.962,
+      "Context_Relevancy": 0.5179,
+      "Faithfulness_full_evidence": 0.2699
+    },
+    "by_difficulty_full": {
+      "easy": {
+        "n": 40,
+        "Hit@1": 0.25,
+        "Hit@3": 0.4,
+        "MRR": 0.3125,
+        "NDCG@3": 0.9648,
+        "Context_Relevancy": 0.4988,
+        "Faithfulness_full_evidence": 0.2505
+      },
+      "medium": {
+        "n": 40,
+        "Hit@1": 0.325,
+        "Hit@3": 0.575,
+        "MRR": 0.4375,
+        "NDCG@3": 0.9541,
+        "Context_Relevancy": 0.5247,
+        "Faithfulness_full_evidence": 0.253
+      },
+      "hard": {
+        "n": 19,
+        "Hit@1": 0.3158,
+        "Hit@3": 0.4211,
+        "MRR": 0.3684,
+        "NDCG@3": 0.9825,
+        "Context_Relevancy": 0.5327,
+        "Faithfulness_full_evidence": 0.3391
+      }
+    }
+  },
+  "per_question": [
+    {
+      "id": "E001",
+      "difficulty": "easy",
+      "question": "What is the equation for the current density in Fowler-Nordheim tunneling?",
+      "gold_chunk_id": 854,
+      "retrieved_ids": [
+        908,
+        909,
+        857
+      ],
+      "hiconf": true,
+      "gold_method": "substring",
+      "hit1": 0,
+      "hit3": 0,
+      "rr": 0.0,
+      "ndcg3": 0.8563,
+      "ctx_relevancy": 0.4865,
+      "faithfulness_full": 0.509,
+      "rel_grades": [
+        0.3319,
+        0.3725,
+        0.6275
+      ]
+    },
+    {
+      "id": "E002",
+      "difficulty": "easy",
+      "question": "What is the equation for the current density in a metal-semiconductor contact?",
+      "gold_chunk_id": 770,
+      "retrieved_ids": [
+        767,
+        786,
+        772
+      ],
+      "hiconf": true,
+      "gold_method": "substring",
+      "hit1": 0,
+      "hit3": 0,
+      "rr": 0.0,
+      "ndcg3": 0.9493,
+      "ctx_relevancy": 0.5995,
+      "faithfulness_full": 0.5768,
+      "rel_grades": [
+        0.5899,
+        0.5175,
+        0.7067
+      ]
+    },
+    {
+      "id": "E003",
+      "difficulty": "easy",
+      "question": "What is the equation for the threshold voltage controllability in Double-Diffused MOS Transistors?",
+      "gold_chunk_id": 676,
+      "retrieved_ids": [
+        888,
+        513,
+        828
+      ],
+      "hiconf": false,
+      "gold_method": "embedding",
+      "hit1": 0,
+      "hit3": 0,
+      "rr": 0.0,
+      "ndcg3": 0.9824,
+      "ctx_relevancy": 0.5538,
+      "faithfulness_full": 0.2099,
+      "rel_grades": [
+        0.549,
+        0.5943,
+        0.5879
+      ]
+    },
+    {
+      "id": "E004",
+      "difficulty": "easy",
+      "question": "What is the equation for the maximum electric field at x = 0 in a linearly graded junction?",
+      "gold_chunk_id": 725,
+      "retrieved_ids": [
+        725,
+        738,
+        739
+      ],
+      "hiconf": false,
+      "gold_method": "embedding",
+      "hit1": 1,
+      "hit3": 1,
+      "rr": 1.0,
+      "ndcg3": 0.9961,
+      "ctx_relevancy": 0.4519,
+      "faithfulness_full": 0.5202,
+      "rel_grades": [
+        1.0,
+        0.5348,
+        0.5835
+      ]
+    },
+    {
+      "id": "E005",
+      "difficulty": "easy",
+      "question": "What is the equation for the differential voltage gain of the differential amplifier?",
+      "gold_chunk_id": 362,
+      "retrieved_ids": [
+        407,
+        361,
+        469
+      ],
+      "hiconf": true,
+      "gold_method": "embedding",
+      "hit1": 0,
+      "hit3": 0,
+      "rr": 0.0,
+      "ndcg3": 0.8684,
+      "ctx_relevancy": 0.3524,
+      "faithfulness_full": 0.2216,
+      "rel_grades": [
+        0.428,
+        0.5159,
+        0.7735
+      ]
+    },
+    {
+      "id": "E006",
+      "difficulty": "easy",
+      "question": "What is the equation for the equivalent oxide thickness (EOT) in terms of the actual thickness and dielectric constants?",
+      "gold_chunk_id": 845,
+      "retrieved_ids": [
+        154,
+        217,
+        189
+      ],
+      "hiconf": true,
+      "gold_method": "substring",
+      "hit1": 0,
+      "hit3": 0,
+      "rr": 0.0,
+      "ndcg3": 1.0,
+      "ctx_relevancy": 0.4342,
+      "faithfulness_full": 0.0316,
+      "rel_grades": [
+        0.6532,
+        0.6412,
+        0.5898
+      ]
+    },
+    {
+      "id": "E007",
+      "difficulty": "easy",
+      "question": "What is the equation for the effective transverse field in the inversion layer?",
+      "gold_chunk_id": 830,
+      "retrieved_ids": [
+        831,
+        830,
+        821
+      ],
+      "hiconf": true,
+      "gold_method": "substring",
+      "hit1": 0,
+      "hit3": 1,
+      "rr": 0.5,
+      "ndcg3": 0.9302,
+      "ctx_relevancy": 0.3835,
+      "faithfulness_full": 0.0256,
+      "rel_grades": [
+        0.6874,
+        1.0,
+        0.4385
+      ]
+    },
+    {
+      "id": "E008",
+      "difficulty": "easy",
+      "question": "What is the eigenvalue equation for the separation constant p in a guided mode?",
+      "gold_chunk_id": 1034,
+      "retrieved_ids": [
+        1034,
+        1044,
+        405
+      ],
+      "hiconf": true,
+      "gold_method": "substring",
+      "hit1": 1,
+      "hit3": 1,
+      "rr": 1.0,
+      "ndcg3": 1.0,
+      "ctx_relevancy": 0.2218,
+      "faithfulness_full": -0.0869,
+      "rel_grades": [
+        1.0,
+        0.5372,
+        0.1266
+      ]
+    },
+    {
+      "id": "E009",
+      "difficulty": "easy",
+      "question": "What is the equation for the current density in trap-assisted tunneling and recombination current?",
+      "gold_chunk_id": 229,
+      "retrieved_ids": [
+        903,
+        163,
+        226
+      ],
+      "hiconf": false,
+      "gold_method": "embedding",
+      "hit1": 0,
+      "hit3": 0,
+      "rr": 0.0,
+      "ndcg3": 0.9416,
+      "ctx_relevancy": 0.5992,
+      "faithfulness_full": 0.6401,
+      "rel_grades": [
+        0.3004,
+        0.3928,
+        0.3928
+      ]
+    },
+    {
+      "id": "E010",
+      "difficulty": "easy",
+      "question": "What is the drain current equation for a MOSFET in the linear region?",
+      "gold_chunk_id": 529,
+      "retrieved_ids": [
+        823,
+        425,
+        822
+      ],
+      "hiconf": true,
+      "gold_method": "substring",
+      "hit1": 0,
+      "hit3": 0,
+      "rr": 0.0,
+      "ndcg3": 0.923,
+      "ctx_relevancy": 0.5237,
+      "faithfulness_full": 0.5185,
+      "rel_grades": [
+        0.3152,
+        0.4792,
+        0.3613
+      ]
+    },
+    {
+      "id": "E011",
+      "difficulty": "easy",
+      "question": "What is the equation for GIDL current in the BSIM4v4.8.0 model?",
+      "gold_chunk_id": 552,
+      "retrieved_ids": [
+        556,
+        220,
+        578
+      ],
+      "hiconf": false,
+      "gold_method": "embedding",
+      "hit1": 0,
+      "hit3": 0,
+      "rr": 0.0,
+      "ndcg3": 0.9966,
+      "ctx_relevancy": 0.5591,
+      "faithfulness_full": 0.1619,
+      "rel_grades": [
+        0.5498,
+        0.385,
+        0.4111
+      ]
+    },
+    {
+      "id": "E012",
+      "difficulty": "easy",
+      "question": "What is the equation for the effective mobility in the stress effect model?",
+      "gold_chunk_id": 576,
+      "retrieved_ids": [
+        576,
+        170,
+        233
+      ],
+      "hiconf": true,
+      "gold_method": "embedding",
+      "hit1": 1,
+      "hit3": 1,
+      "rr": 1.0,
+      "ndcg3": 1.0,
+      "ctx_relevancy": 0.6437,
+      "faithfulness_full": 0.6325,
+      "rel_grades": [
+        1.0,
+        0.411,
+        0.411
+      ]
+    },
+    {
+      "id": "E013",
+      "difficulty": "easy",
+      "question": "What is the current between the source and drain used for in the recessed-channel process?",
+      "gold_chunk_id": 885,
+      "retrieved_ids": [
+        885,
+        840,
+        635
+      ],
+      "hiconf": true,
+      "gold_method": "substring",
+      "hit1": 1,
+      "hit3": 1,
+      "rr": 1.0,
+      "ndcg3": 0.9907,
+      "ctx_relevancy": 0.4233,
+      "faithfulness_full": 0.4416,
+      "rel_grades": [
+        1.0,
+        0.3536,
+        0.4572
+      ]
+    },
+    {
+      "id": "E014",
+      "difficulty": "easy",
+      "question": "What is the equation for the channel transit time in a MOSFET operating in strong inversion with no velocity saturation?",
+      "gold_chunk_id": 512,
+      "retrieved_ids": [
+        665,
+        827,
+        208
+      ],
+      "hiconf": false,
+      "gold_method": "embedding",
+      "hit1": 0,
+      "hit3": 0,
+      "rr": 0.0,
+      "ndcg3": 0.9988,
+      "ctx_relevancy": 0.5235,
+      "faithfulness_full": 0.029,
+      "rel_grades": [
+        0.4142,
+        0.3244,
+        0.3317
+      ]
+    },
+    {
+      "id": "E015",
+      "difficulty": "easy",
+      "question": "What is the equation for the mean-frequency deviation in a TED?",
+      "gold_chunk_id": 953,
+      "retrieved_ids": [
+        969,
+        962,
+        968
+      ],
+      "hiconf": false,
+      "gold_method": "embedding",
+      "hit1": 0,
+      "hit3": 0,
+      "rr": 0.0,
+      "ndcg3": 1.0,
+      "ctx_relevancy": 0.2733,
+      "faithfulness_full": 0.1828,
+      "rel_grades": [
+        0.5133,
+        0.4514,
+        0.3845
+      ]
+    },
+    {
+      "id": "E016",
+      "difficulty": "easy",
+      "question": "What is the equation for Fowler-Nordheim tunneling current in a MOS capacitor?",
+      "gold_chunk_id": 634,
+      "retrieved_ids": [
+        601,
+        908,
+        614
+      ],
+      "hiconf": true,
+      "gold_method": "embedding",
+      "hit1": 0,
+      "hit3": 0,
+      "rr": 0.0,
+      "ndcg3": 0.9547,
+      "ctx_relevancy": 0.4263,
+      "faithfulness_full": 0.5194,
+      "rel_grades": [
+        0.6232,
+        0.5847,
+        0.7424
+      ]
+    },
+    {
+      "id": "E017",
+      "difficulty": "easy",
+      "question": "What is the total collector current equation in a phototransistor?",
+      "gold_chunk_id": 1077,
+      "retrieved_ids": [
+        1077,
+        1078,
+        973
+      ],
+      "hiconf": true,
+      "gold_method": "substring",
+      "hit1": 1,
+      "hit3": 1,
+      "rr": 1.0,
+      "ndcg3": 1.0,
+      "ctx_relevancy": 0.6147,
+      "faithfulness_full": 0.1947,
+      "rel_grades": [
+        1.0,
+        0.6154,
+        0.4712
+      ]
+    },
+    {
+      "id": "E018",
+      "difficulty": "easy",
+      "question": "What is the equation for the threshold voltage in the long-channel model with uniform doping?",
+      "gold_chunk_id": 186,
+      "retrieved_ids": [
+        192,
+        130,
+        572
+      ],
+      "hiconf": true,
+      "gold_method": "substring",
+      "hit1": 0,
+      "hit3": 0,
+      "rr": 0.0,
+      "ndcg3": 0.9979,
+      "ctx_relevancy": 0.5241,
+      "faithfulness_full": 0.0125,
+      "rel_grades": [
+        0.5464,
+        0.5527,
+        0.4449
+      ]
+    },
+    {
+      "id": "E019",
+      "difficulty": "easy",
+      "question": "What is the drain current equation for a MOSFET in saturation according to the Gradual Channel Approximation?",
+      "gold_chunk_id": 420,
+      "retrieved_ids": [
+        543,
+        823,
+        822
+      ],
+      "hiconf": true,
+      "gold_method": "substring",
+      "hit1": 0,
+      "hit3": 0,
+      "rr": 0.0,
+      "ndcg3": 0.9813,
+      "ctx_relevancy": 0.5908,
+      "faithfulness_full": 0.3126,
+      "rel_grades": [
+        0.467,
+        0.3069,
+        0.4347
+      ]
+    },
+    {
+      "id": "E020",
+      "difficulty": "easy",
+      "question": "What is the effective mobility equation for mobMod=0?",
+      "gold_chunk_id": 202,
+      "retrieved_ids": [
+        202,
+        201,
+        140
+      ],
+      "hiconf": false,
+      "gold_method": "embedding",
+      "hit1": 1,
+      "hit3": 1,
+      "rr": 1.0,
+      "ndcg3": 0.9894,
+      "ctx_relevancy": 0.5003,
+      "faithfulness_full": 0.0091,
+      "rel_grades": [
+        1.0,
+        0.687,
+        0.8386
+      ]
+    },
+    {
+      "id": "E021",
+      "difficulty": "easy",
+      "question": "What is the boundary condition at x = 0 when surface recombination is introduced at one end of a semiconductor sample?",
+      "gold_chunk_id": 716,
+      "retrieved_ids": [
+        768,
+        717,
+        716
+      ],
+      "hiconf": false,
+      "gold_method": "embedding",
+      "hit1": 0,
+      "hit3": 1,
+      "rr": 0.3333,
+      "ndcg3": 0.8554,
+      "ctx_relevancy": 0.4399,
+      "faithfulness_full": 0.1179,
+      "rel_grades": [
+        0.5299,
+        0.5713,
+        1.0
+      ]
+    },
+    {
+      "id": "E022",
+      "difficulty": "easy",
+      "question": "What is the equation for the channel current at any y-position in an ideal MOSFET?",
+      "gold_chunk_id": 821,
+      "retrieved_ids": [
+        822,
+        543,
+        528
+      ],
+      "hiconf": true,
+      "gold_method": "substring",
+      "hit1": 0,
+      "hit3": 0,
+      "rr": 0.0,
+      "ndcg3": 0.968,
+      "ctx_relevancy": 0.5336,
+      "faithfulness_full": 0.3681,
+      "rel_grades": [
+        0.4814,
+        0.4903,
+        0.5519
+      ]
+    },
+    {
+      "id": "E023",
+      "difficulty": "easy",
+      "question": "What is the equation for polysilicon gate depletion effects on gate capacitance and inversion charge density?",
+      "gold_chunk_id": 629,
+      "retrieved_ids": [
+        615,
+        629,
+        811
+      ],
+      "hiconf": true,
+      "gold_method": "substring",
+      "hit1": 0,
+      "hit3": 1,
+      "rr": 0.5,
+      "ndcg3": 0.92,
+      "ctx_relevancy": 0.7561,
+      "faithfulness_full": 0.0271,
+      "rel_grades": [
+        0.6335,
+        1.0,
+        0.6589
+      ]
+    },
+    {
+      "id": "E024",
+      "difficulty": "easy",
+      "question": "What is the relationship between the electric field distribution and the terminal voltage in the accumulation-layer mode?",
+      "gold_chunk_id": 964,
+      "retrieved_ids": [
+        965,
+        966,
+        978
+      ],
+      "hiconf": true,
+      "gold_method": "substring",
+      "hit1": 0,
+      "hit3": 0,
+      "rr": 0.0,
+      "ndcg3": 0.9434,
+      "ctx_relevancy": 0.5306,
+      "faithfulness_full": 0.5309,
+      "rel_grades": [
+        0.5179,
+        0.7117,
+        0.4516
+      ]
+    },
+    {
+      "id": "E025",
+      "difficulty": "easy",
+      "question": "What is the equation for equivalent oxide thickness (EOT) in a MOSFET gate stack?",
+      "gold_chunk_id": 845,
+      "retrieved_ids": [
+        217,
+        154,
+        845
+      ],
+      "hiconf": true,
+      "gold_method": "substring",
+      "hit1": 0,
+      "hit3": 1,
+      "rr": 0.3333,
+      "ndcg3": 0.8964,
+      "ctx_relevancy": 0.4558,
+      "faithfulness_full": 0.0714,
+      "rel_grades": [
+        0.6412,
+        0.6532,
+        1.0
+      ]
+    },
+    {
+      "id": "E026",
+      "difficulty": "easy",
+      "question": "What is the equation for the potential in the n-MOS capacitor structure in the depletion approximation?",
+      "gold_chunk_id": 416,
+      "retrieved_ids": [
+        513,
+        814,
+        439
+      ],
+      "hiconf": false,
+      "gold_method": "embedding",
+      "hit1": 0,
+      "hit3": 0,
+      "rr": 0.0,
+      "ndcg3": 0.9604,
+      "ctx_relevancy": 0.4235,
+      "faithfulness_full": 0.0575,
+      "rel_grades": [
+        0.6795,
+        0.6898,
+        0.8047
+      ]
+    },
+    {
+      "id": "E027",
+      "difficulty": "easy",
+      "question": "What is the equation for the temperature dependence of the recombination current in the BSIM4v4.8.0 model?",
+      "gold_chunk_id": 229,
+      "retrieved_ids": [
+        232,
+        225,
+        229
+      ],
+      "hiconf": false,
+      "gold_method": "embedding",
+      "hit1": 0,
+      "hit3": 1,
+      "rr": 0.3333,
+      "ndcg3": 0.8751,
+      "ctx_relevancy": 0.5785,
+      "faithfulness_full": 0.1531,
+      "rel_grades": [
+        0.676,
+        0.3739,
+        1.0
+      ]
+    },
+    {
+      "id": "E028",
+      "difficulty": "easy",
+      "question": "What is the relationship between dimensional scaling and the electronics industry ecosystem?",
+      "gold_chunk_id": 249,
+      "retrieved_ids": [
+        59,
+        68,
+        61
+      ],
+      "hiconf": true,
+      "gold_method": "embedding",
+      "hit1": 0,
+      "hit3": 0,
+      "rr": 0.0,
+      "ndcg3": 0.9943,
+      "ctx_relevancy": 0.4207,
+      "faithfulness_full": 0.3588,
+      "rel_grades": [
+        0.4274,
+        0.2731,
+        0.3062
+      ]
+    },
+    {
+      "id": "E029",
+      "difficulty": "easy",
+      "question": "What is the relationship between the mobility and stress effect in a MOSFET?",
+      "gold_chunk_id": 576,
+      "retrieved_ids": [
+        233,
+        170,
+        822
+      ],
+      "hiconf": true,
+      "gold_method": "embedding",
+      "hit1": 0,
+      "hit3": 0,
+      "rr": 0.0,
+      "ndcg3": 1.0,
+      "ctx_relevancy": 0.6257,
+      "faithfulness_full": -0.0206,
+      "rel_grades": [
+        0.411,
+        0.411,
+        0.3338
+      ]
+    },
+    {
+      "id": "E030",
+      "difficulty": "easy",
+      "question": "What is the channel current equation for an ideal MESFET structure?",
+      "gold_chunk_id": 885,
+      "retrieved_ids": [
+        881,
+        871,
+        872
+      ],
+      "hiconf": true,
+      "gold_method": "substring",
+      "hit1": 0,
+      "hit3": 0,
+      "rr": 0.0,
+      "ndcg3": 0.9565,
+      "ctx_relevancy": 0.5138,
+      "faithfulness_full": 0.1374,
+      "rel_grades": [
+        0.4787,
+        0.605,
+        0.3306
+      ]
+    },
+    {
+      "id": "E031",
+      "difficulty": "easy",
+      "question": "What is the equation for mobility due to interaction with acoustic phonons of the lattice?",
+      "gold_chunk_id": 694,
+      "retrieved_ids": [
+        694,
+        698,
+        695
+      ],
+      "hiconf": true,
+      "gold_method": "substring",
+      "hit1": 1,
+      "hit3": 1,
+      "rr": 1.0,
+      "ndcg3": 1.0,
+      "ctx_relevancy": 0.1302,
+      "faithfulness_full": 0.1331,
+      "rel_grades": [
+        1.0,
+        0.4899,
+        0.4362
+      ]
+    },
+    {
+      "id": "E032",
+      "difficulty": "easy",
+      "question": "What is the equation for the mean-frequency deviation in Transferred-Electron Devices (TEDs)?",
+      "gold_chunk_id": 953,
+      "retrieved_ids": [
+        969,
+        966,
+        968
+      ],
+      "hiconf": false,
+      "gold_method": "embedding",
+      "hit1": 0,
+      "hit3": 0,
+      "rr": 0.0,
+      "ndcg3": 0.9714,
+      "ctx_relevancy": 0.5167,
+      "faithfulness_full": 0.1991,
+      "rel_grades": [
+        0.5133,
+        0.5996,
+        0.3845
+      ]
+    },
+    {
+      "id": "E033",
+      "difficulty": "easy",
+      "question": "What is the subthreshold swing's dependence on channel length?",
+      "gold_chunk_id": 198,
+      "retrieved_ids": [
+        136,
+        198,
+        841
+      ],
+      "hiconf": true,
+      "gold_method": "embedding",
+      "hit1": 0,
+      "hit3": 1,
+      "rr": 0.5,
+      "ndcg3": 0.9975,
+      "ctx_relevancy": 0.4973,
+      "faithfulness_full": 0.0619,
+      "rel_grades": [
+        0.9875,
+        1.0,
+        0.5021
+      ]
+    },
+    {
+      "id": "E034",
+      "difficulty": "easy",
+      "question": "What is the reported loss of inversion charge at 1.5 V gate voltage due to the QM and polysilicon depletion effects for a 2.0 nm oxide?",
+      "gold_chunk_id": 629,
+      "retrieved_ids": [
+        629,
+        608,
+        620
+      ],
+      "hiconf": true,
+      "gold_method": "substring",
+      "hit1": 1,
+      "hit3": 1,
+      "rr": 1.0,
+      "ndcg3": 1.0,
+      "ctx_relevancy": 0.5703,
+      "faithfulness_full": 0.0493,
+      "rel_grades": [
+        1.0,
+        0.7163,
+        0.7054
+      ]
+    },
+    {
+      "id": "E035",
+      "difficulty": "easy",
+      "question": "What is the equation for drain current in a long channel body-contacted MOSFET device at small Vds?",
+      "gold_chunk_id": 595,
+      "retrieved_ids": [
+        1136,
+        624,
+        665
+      ],
+      "hiconf": true,
+      "gold_method": "embedding",
+      "hit1": 0,
+      "hit3": 0,
+      "rr": 0.0,
+      "ndcg3": 1.0,
+      "ctx_relevancy": 0.6213,
+      "faithfulness_full": 0.3753,
+      "rel_grades": [
+        0.4343,
+        0.4018,
+        0.3867
+      ]
+    },
+    {
+      "id": "E036",
+      "difficulty": "easy",
+      "question": "What is the relationship between the intrinsic carrier concentration and the number of mobile holes and electrons in intrinsic silicon at room temperature?",
+      "gold_chunk_id": 481,
+      "retrieved_ids": [
+        481,
+        689,
+        690
+      ],
+      "hiconf": true,
+      "gold_method": "embedding",
+      "hit1": 1,
+      "hit3": 1,
+      "rr": 1.0,
+      "ndcg3": 1.0,
+      "ctx_relevancy": 0.5938,
+      "faithfulness_full": 0.1291,
+      "rel_grades": [
+        1.0,
+        0.5888,
+        0.5059
+      ]
+    },
+    {
+      "id": "E037",
+      "difficulty": "easy",
+      "question": "What is the equation for conductivity in a semiconductor material?",
+      "gold_chunk_id": 486,
+      "retrieved_ids": [
+        691,
+        1129,
+        721
+      ],
+      "hiconf": true,
+      "gold_method": "substring",
+      "hit1": 0,
+      "hit3": 0,
+      "rr": 0.0,
+      "ndcg3": 1.0,
+      "ctx_relevancy": 0.5339,
+      "faithfulness_full": 0.6364,
+      "rel_grades": [
+        0.4313,
+        0.3544,
+        0.3483
+      ]
+    },
+    {
+      "id": "E038",
+      "difficulty": "easy",
+      "question": "What is the equation for the reverse saturation current in the collector for the Ebers-Moll model?",
+      "gold_chunk_id": 504,
+      "retrieved_ids": [
+        504,
+        0,
+        973
+      ],
+      "hiconf": true,
+      "gold_method": "embedding",
+      "hit1": 1,
+      "hit3": 1,
+      "rr": 1.0,
+      "ndcg3": 1.0,
+      "ctx_relevancy": 0.4558,
+      "faithfulness_full": 0.24,
+      "rel_grades": [
+        1.0,
+        0.2998,
+        0.2981
+      ]
+    },
+    {
+      "id": "E039",
+      "difficulty": "easy",
+      "question": "What is the equation for the total saturation current in the asymmetric MOS junction diode model?",
+      "gold_chunk_id": 169,
+      "retrieved_ids": [
+        162,
+        225,
+        0
+      ],
+      "hiconf": false,
+      "gold_method": "embedding",
+      "hit1": 0,
+      "hit3": 0,
+      "rr": 0.0,
+      "ndcg3": 1.0,
+      "ctx_relevancy": 0.4156,
+      "faithfulness_full": 0.2714,
+      "rel_grades": [
+        0.4516,
+        0.4516,
+        0.2823
+      ]
+    },
+    {
+      "id": "E040",
+      "difficulty": "easy",
+      "question": "What is the equation for the drain-side saturation current in the BSIM4v4.7 model?",
+      "gold_chunk_id": 229,
+      "retrieved_ids": [
+        0,
+        204,
+        141
+      ],
+      "hiconf": false,
+      "gold_method": "embedding",
+      "hit1": 0,
+      "hit3": 0,
+      "rr": 0.0,
+      "ndcg3": 0.8973,
+      "ctx_relevancy": 0.6551,
+      "faithfulness_full": 0.4591,
+      "rel_grades": [
+        0.2865,
+        0.4811,
+        0.4504
+      ]
+    },
+    {
+      "id": "M001",
+      "difficulty": "medium",
+      "question": "What is the relationship between the distance from S/D contact center to the gate edge (DMCG) and the distance from S/D contact center to the isolation edge in the channel-length direction (DMCI), and what is the governing equation?",
+      "gold_chunk_id": 228,
+      "retrieved_ids": [
+        181,
+        244,
+        653
+      ],
+      "hiconf": true,
+      "gold_method": "embedding",
+      "hit1": 0,
+      "hit3": 0,
+      "rr": 0.0,
+      "ndcg3": 0.8719,
+      "ctx_relevancy": 0.1536,
+      "faithfulness_full": 0.0129,
+      "rel_grades": [
+        0.2321,
+        0.2321,
+        0.4024
+      ]
+    },
+    {
+      "id": "M002",
+      "difficulty": "medium",
+      "question": "How does substrate bias (VBS) affect the threshold voltage in a MOSFET and what is the governing equation for the capacitance CDT?",
+      "gold_chunk_id": 420,
+      "retrieved_ids": [
+        440,
+        832,
+        419
+      ],
+      "hiconf": false,
+      "gold_method": "embedding",
+      "hit1": 0,
+      "hit3": 0,
+      "rr": 0.0,
+      "ndcg3": 0.9871,
+      "ctx_relevancy": 0.6956,
+      "faithfulness_full": 0.0783,
+      "rel_grades": [
+        0.3537,
+        0.2281,
+        0.2922
+      ]
+    },
+    {
+      "id": "M003",
+      "difficulty": "medium",
+      "question": "How does the applied reverse bias (v_AB) affect the hole concentration at the edge of the depletion region (xn), and what is the governing equation?",
+      "gold_chunk_id": 474,
+      "retrieved_ids": [
+        731,
+        402,
+        946
+      ],
+      "hiconf": false,
+      "gold_method": "embedding",
+      "hit1": 0,
+      "hit3": 0,
+      "rr": 0.0,
+      "ndcg3": 0.9825,
+      "ctx_relevancy": 0.3202,
+      "faithfulness_full": 0.0371,
+      "rel_grades": [
+        0.6489,
+        0.4322,
+        0.5985
+      ]
+    },
+    {
+      "id": "M004",
+      "difficulty": "medium",
+      "question": "What is the relationship between the floating-gate potential (VFG) and the control gate voltage (VG) in a floating-gate avalanche-injection MOS (FAMOS) memory, and what is the governing equation?",
+      "gold_chunk_id": 855,
+      "retrieved_ids": [
+        856,
+        868,
+        854
+      ],
+      "hiconf": true,
+      "gold_method": "substring",
+      "hit1": 0,
+      "hit3": 0,
+      "rr": 0.0,
+      "ndcg3": 0.9303,
+      "ctx_relevancy": 0.6278,
+      "faithfulness_full": 0.0694,
+      "rel_grades": [
+        0.4847,
+        0.5096,
+        0.6547
+      ]
+    },
+    {
+      "id": "M005",
+      "difficulty": "medium",
+      "question": "How does the charging current affect the rate of change of the output voltage in a MOSFET pull-up circuit, and what is the governing equation?",
+      "gold_chunk_id": 369,
+      "retrieved_ids": [
+        369,
+        855,
+        398
+      ],
+      "hiconf": true,
+      "gold_method": "embedding",
+      "hit1": 1,
+      "hit3": 1,
+      "rr": 1.0,
+      "ndcg3": 0.9916,
+      "ctx_relevancy": 0.5369,
+      "faithfulness_full": 0.2635,
+      "rel_grades": [
+        1.0,
+        0.4873,
+        0.5909
+      ]
+    },
+    {
+      "id": "M006",
+      "difficulty": "medium",
+      "question": "How does the gate voltage (V) affect the current in a BSIT, and what is the governing equation for this relationship?",
+      "gold_chunk_id": 1008,
+      "retrieved_ids": [
+        637,
+        1008,
+        635
+      ],
+      "hiconf": true,
+      "gold_method": "substring",
+      "hit1": 0,
+      "hit3": 1,
+      "rr": 0.5,
+      "ndcg3": 0.8487,
+      "ctx_relevancy": 0.5567,
+      "faithfulness_full": 0.5101,
+      "rel_grades": [
+        0.4063,
+        1.0,
+        0.4534
+      ]
+    },
+    {
+      "id": "M007",
+      "difficulty": "medium",
+      "question": "How does the width of the p-side depletion region (xp) affect the width of the n-side depletion region (xn), and what is the governing equation?",
+      "gold_chunk_id": 509,
+      "retrieved_ids": [
+        725,
+        835,
+        402
+      ],
+      "hiconf": true,
+      "gold_method": "embedding",
+      "hit1": 0,
+      "hit3": 0,
+      "rr": 0.0,
+      "ndcg3": 0.9466,
+      "ctx_relevancy": 0.5941,
+      "faithfulness_full": 0.2452,
+      "rel_grades": [
+        0.5926,
+        0.3917,
+        0.6727
+      ]
+    },
+    {
+      "id": "M008",
+      "difficulty": "medium",
+      "question": "How does the insertion of a barrier-enhancement layer affect the barrier height of a narrow-energy-gap semiconductor in an MSM photodetector, and what is the governing equation?",
+      "gold_chunk_id": 1089,
+      "retrieved_ids": [
+        1089,
+        1090,
+        1056
+      ],
+      "hiconf": true,
+      "gold_method": "substring",
+      "hit1": 1,
+      "hit3": 1,
+      "rr": 1.0,
+      "ndcg3": 0.9953,
+      "ctx_relevancy": 0.3935,
+      "faithfulness_full": 0.1047,
+      "rel_grades": [
+        1.0,
+        0.5643,
+        0.6241
+      ]
+    },
+    {
+      "id": "M009",
+      "difficulty": "medium",
+      "question": "For an MOSFET in saturation, how does the drain current (ID) depend on the gate voltage (VG), and what is the governing equation? What is the physical origin of this relationship?",
+      "gold_chunk_id": 815,
+      "retrieved_ids": [
+        1136,
+        878,
+        545
+      ],
+      "hiconf": false,
+      "gold_method": "embedding",
+      "hit1": 0,
+      "hit3": 0,
+      "rr": 0.0,
+      "ndcg3": 1.0,
+      "ctx_relevancy": 0.6963,
+      "faithfulness_full": 0.7101,
+      "rel_grades": [
+        0.3572,
+        0.335,
+        0.3087
+      ]
+    },
+    {
+      "id": "M010",
+      "difficulty": "medium",
+      "question": "What is the relationship between the total capacitance (Ct) of the single-electron island and its required size for experimental observation at room temperature, and what is the governing equation?",
+      "gold_chunk_id": 859,
+      "retrieved_ids": [
+        859,
+        860,
+        734
+      ],
+      "hiconf": true,
+      "gold_method": "embedding",
+      "hit1": 1,
+      "hit3": 1,
+      "rr": 1.0,
+      "ndcg3": 1.0,
+      "ctx_relevancy": 0.5986,
+      "faithfulness_full": 0.6027,
+      "rel_grades": [
+        1.0,
+        0.5082,
+        0.3397
+      ]
+    },
+    {
+      "id": "M011",
+      "difficulty": "medium",
+      "question": "How does the width of the p-substrate neutral region (H') affect the photocurrent generated in the p-side neutral region, and what is the governing equation?",
+      "gold_chunk_id": 1099,
+      "retrieved_ids": [
+        1099,
+        1103,
+        1066
+      ],
+      "hiconf": false,
+      "gold_method": "embedding",
+      "hit1": 1,
+      "hit3": 1,
+      "rr": 1.0,
+      "ndcg3": 1.0,
+      "ctx_relevancy": 0.6318,
+      "faithfulness_full": 0.2285,
+      "rel_grades": [
+        1.0,
+        0.6173,
+        0.4894
+      ]
+    },
+    {
+      "id": "M012",
+      "difficulty": "medium",
+      "question": "What is the relationship between the recombination current (Jr) and the depletion region width (W), and what is the governing equation? Physically, what is the origin of this relationship?",
+      "gold_chunk_id": 991,
+      "retrieved_ids": [
+        991,
+        752,
+        872
+      ],
+      "hiconf": false,
+      "gold_method": "embedding",
+      "hit1": 1,
+      "hit3": 1,
+      "rr": 1.0,
+      "ndcg3": 0.989,
+      "ctx_relevancy": 0.3001,
+      "faithfulness_full": 0.2762,
+      "rel_grades": [
+        1.0,
+        0.3087,
+        0.4288
+      ]
+    },
+    {
+      "id": "M013",
+      "difficulty": "medium",
+      "question": "How does the drain voltage (Vds) affect the drain-induced threshold shift (DITS) in a long-channel device with pocket implant, and what is the governing equation?",
+      "gold_chunk_id": 144,
+      "retrieved_ids": [
+        207,
+        144,
+        131
+      ],
+      "hiconf": false,
+      "gold_method": "embedding",
+      "hit1": 0,
+      "hit3": 1,
+      "rr": 0.5,
+      "ndcg3": 0.9919,
+      "ctx_relevancy": 0.7747,
+      "faithfulness_full": 0.3343,
+      "rel_grades": [
+        0.9603,
+        1.0,
+        0.4116
+      ]
+    },
+    {
+      "id": "M014",
+      "difficulty": "medium",
+      "question": "How does the gate-source voltage (Vgs) affect the effective mobility (μeff) in a MOSFET when Mobmod=1, and what is the governing equation? Physically, what is the origin of this relationship?",
+      "gold_chunk_id": 591,
+      "retrieved_ids": [
+        830,
+        201,
+        412
+      ],
+      "hiconf": false,
+      "gold_method": "embedding",
+      "hit1": 0,
+      "hit3": 0,
+      "rr": 0.0,
+      "ndcg3": 0.9622,
+      "ctx_relevancy": 0.4882,
+      "faithfulness_full": 0.5408,
+      "rel_grades": [
+        0.3272,
+        0.3997,
+        0.349
+      ]
+    },
+    {
+      "id": "M015",
+      "difficulty": "medium",
+      "question": "How does the number of quantum wells (Nw) affect the quantum efficiency in a QWIP, and what is the governing equation?",
+      "gold_chunk_id": 1092,
+      "retrieved_ids": [
+        1093,
+        1092,
+        1049
+      ],
+      "hiconf": true,
+      "gold_method": "substring",
+      "hit1": 0,
+      "hit3": 1,
+      "rr": 0.5,
+      "ndcg3": 0.9311,
+      "ctx_relevancy": 0.348,
+      "faithfulness_full": 0.0608,
+      "rel_grades": [
+        0.689,
+        1.0,
+        0.4624
+      ]
+    },
+    {
+      "id": "M016",
+      "difficulty": "medium",
+      "question": "How does the interface trap density (Dit) relate to the capacitance-voltage relationship in a metal-insulator-semiconductor capacitor, and what is the governing equation?",
+      "gold_chunk_id": 799,
+      "retrieved_ids": [
+        800,
+        799,
+        758
+      ],
+      "hiconf": false,
+      "gold_method": "embedding",
+      "hit1": 0,
+      "hit3": 1,
+      "rr": 0.5,
+      "ndcg3": 0.9204,
+      "ctx_relevancy": 0.5076,
+      "faithfulness_full": 0.2466,
+      "rel_grades": [
+        0.6418,
+        1.0,
+        0.5131
+      ]
+    },
+    {
+      "id": "M017",
+      "difficulty": "medium",
+      "question": "How does the doping concentration affect the total depletion width in the Type-I heterojunction between GaAs and Al0.4Ga0.6As, and what is the governing equation?",
+      "gold_chunk_id": 754,
+      "retrieved_ids": [
+        754,
+        726,
+        727
+      ],
+      "hiconf": true,
+      "gold_method": "substring",
+      "hit1": 1,
+      "hit3": 1,
+      "rr": 1.0,
+      "ndcg3": 1.0,
+      "ctx_relevancy": 0.68,
+      "faithfulness_full": -0.0165,
+      "rel_grades": [
+        1.0,
+        0.6495,
+        0.592
+      ]
+    },
+    {
+      "id": "M018",
+      "difficulty": "medium",
+      "question": "How do the electron and hole populations at a point with electrostatic potential φ relate to those at a point with zero potential, and what are the governing equations?",
+      "gold_chunk_id": 540,
+      "retrieved_ids": [
+        540,
+        514,
+        508
+      ],
+      "hiconf": true,
+      "gold_method": "substring",
+      "hit1": 1,
+      "hit3": 1,
+      "rr": 1.0,
+      "ndcg3": 0.9855,
+      "ctx_relevancy": 0.5668,
+      "faithfulness_full": 0.3026,
+      "rel_grades": [
+        1.0,
+        0.3704,
+        0.5393
+      ]
+    },
+    {
+      "id": "M019",
+      "difficulty": "medium",
+      "question": "How does the IIR model account for the first-order NQS effect, and what is the governing equation?",
+      "gold_chunk_id": 155,
+      "retrieved_ids": [
+        155,
+        156,
+        218
+      ],
+      "hiconf": false,
+      "gold_method": "embedding",
+      "hit1": 1,
+      "hit3": 1,
+      "rr": 1.0,
+      "ndcg3": 0.9701,
+      "ctx_relevancy": 0.4183,
+      "faithfulness_full": -0.0184,
+      "rel_grades": [
+        1.0,
+        0.5555,
+        0.99
+      ]
+    },
+    {
+      "id": "M020",
+      "difficulty": "medium",
+      "question": "What is the relationship between the optimum avalanche multiplication (Mop) and the excess noise factor (F(M)), and what is the governing equation? Physically, what is the origin of this relationship?",
+      "gold_chunk_id": 1071,
+      "retrieved_ids": [
+        1072,
+        1070,
+        1073
+      ],
+      "hiconf": true,
+      "gold_method": "substring",
+      "hit1": 0,
+      "hit3": 0,
+      "rr": 0.0,
+      "ndcg3": 0.9194,
+      "ctx_relevancy": 0.4323,
+      "faithfulness_full": 0.1293,
+      "rel_grades": [
+        0.5474,
+        0.6556,
+        0.7848
+      ]
+    },
+    {
+      "id": "M021",
+      "difficulty": "medium",
+      "question": "How does the signal-to-noise ratio affect the detection of multiple killer defects in semiconductor inspection, and what is the governing equation?",
+      "gold_chunk_id": 47,
+      "retrieved_ids": [
+        310,
+        47,
+        308
+      ],
+      "hiconf": false,
+      "gold_method": "embedding",
+      "hit1": 0,
+      "hit3": 1,
+      "rr": 0.5,
+      "ndcg3": 0.921,
+      "ctx_relevancy": 0.5382,
+      "faithfulness_full": 0.4236,
+      "rel_grades": [
+        0.6519,
+        1.0,
+        0.4288
+      ]
+    },
+    {
+      "id": "M022",
+      "difficulty": "medium",
+      "question": "What is the relationship between the scaling of devices and the transition from 2D to 3D device architecture in NAND and Logic, and what is the governing equation for the scaling of devices?",
+      "gold_chunk_id": 51,
+      "retrieved_ids": [
+        44,
+        14,
+        30
+      ],
+      "hiconf": false,
+      "gold_method": "embedding",
+      "hit1": 0,
+      "hit3": 0,
+      "rr": 0.0,
+      "ndcg3": 0.9537,
+      "ctx_relevancy": 0.5143,
+      "faithfulness_full": 0.49,
+      "rel_grades": [
+        0.4619,
+        0.5756,
+        0.5493
+      ]
+    },
+    {
+      "id": "M023",
+      "difficulty": "medium",
+      "question": "How does the depletion-layer width (WD) affect the avalanche gain (M) in an APD with position-independent ionization coefficients, and what is the governing equation?",
+      "gold_chunk_id": 1068,
+      "retrieved_ids": [
+        930,
+        1069,
+        1068
+      ],
+      "hiconf": true,
+      "gold_method": "substring",
+      "hit1": 0,
+      "hit3": 1,
+      "rr": 0.3333,
+      "ndcg3": 0.8021,
+      "ctx_relevancy": 0.5393,
+      "faithfulness_full": 0.1927,
+      "rel_grades": [
+        0.4059,
+        0.4728,
+        1.0
+      ]
+    },
+    {
+      "id": "M024",
+      "difficulty": "medium",
+      "question": "What is the relationship between the requirements for smart sensor systems and the role of edge analytics and AI, and what is the governing equation for power consumption reduction?",
+      "gold_chunk_id": 79,
+      "retrieved_ids": [
+        78,
+        69,
+        273
+      ],
+      "hiconf": false,
+      "gold_method": "embedding",
+      "hit1": 0,
+      "hit3": 0,
+      "rr": 0.0,
+      "ndcg3": 0.9672,
+      "ctx_relevancy": 0.4808,
+      "faithfulness_full": 0.4291,
+      "rel_grades": [
+        0.41,
+        0.4949,
+        0.4044
+      ]
+    },
+    {
+      "id": "M025",
+      "difficulty": "medium",
+      "question": "How do the minority carrier populations at the quasi-neutral region (QNR) edges relate to the applied voltage V_AB, and what is the governing equation? Physically, what is the origin of this relationship?",
+      "gold_chunk_id": 474,
+      "retrieved_ids": [
+        474,
+        403,
+        477
+      ],
+      "hiconf": false,
+      "gold_method": "embedding",
+      "hit1": 1,
+      "hit3": 1,
+      "rr": 1.0,
+      "ndcg3": 1.0,
+      "ctx_relevancy": 0.5566,
+      "faithfulness_full": 0.1549,
+      "rel_grades": [
+        1.0,
+        0.7001,
+        0.5901
+      ]
+    },
+    {
+      "id": "M026",
+      "difficulty": "medium",
+      "question": "How does the tunneling current component dominate the total current in a tunnel diode, and what is the governing equation? Physically, what is the origin of this dominance?",
+      "gold_chunk_id": 903,
+      "retrieved_ids": [
+        903,
+        911,
+        902
+      ],
+      "hiconf": true,
+      "gold_method": "embedding",
+      "hit1": 1,
+      "hit3": 1,
+      "rr": 1.0,
+      "ndcg3": 0.997,
+      "ctx_relevancy": 0.6926,
+      "faithfulness_full": 0.1382,
+      "rel_grades": [
+        1.0,
+        0.5973,
+        0.6367
+      ]
+    },
+    {
+      "id": "M027",
+      "difficulty": "medium",
+      "question": "What is the relationship between the inversion capacitance (Cinv) and the gate length (Lg), and what is the governing equation?",
+      "gold_chunk_id": 632,
+      "retrieved_ids": [
+        632,
+        624,
+        243
+      ],
+      "hiconf": false,
+      "gold_method": "embedding",
+      "hit1": 1,
+      "hit3": 1,
+      "rr": 1.0,
+      "ndcg3": 0.9944,
+      "ctx_relevancy": 0.5406,
+      "faithfulness_full": 0.2651,
+      "rel_grades": [
+        1.0,
+        0.5896,
+        0.6623
+      ]
+    },
+    {
+      "id": "M028",
+      "difficulty": "medium",
+      "question": "How does the metal half-pitch affect the scaling of devices, and what is the governing equation?",
+      "gold_chunk_id": 18,
+      "retrieved_ids": [
+        44,
+        41,
+        20
+      ],
+      "hiconf": false,
+      "gold_method": "embedding",
+      "hit1": 0,
+      "hit3": 0,
+      "rr": 0.0,
+      "ndcg3": 0.9561,
+      "ctx_relevancy": 0.3655,
+      "faithfulness_full": 0.509,
+      "rel_grades": [
+        0.4276,
+        0.4904,
+        0.5191
+      ]
+    },
+    {
+      "id": "M029",
+      "difficulty": "medium",
+      "question": "What is the relationship between the gate voltage (vGB) and the depletion region width (x) in the n-MOS capacitor, and what is the governing equation?",
+      "gold_chunk_id": 416,
+      "retrieved_ids": [
+        835,
+        514,
+        513
+      ],
+      "hiconf": false,
+      "gold_method": "embedding",
+      "hit1": 0,
+      "hit3": 0,
+      "rr": 0.0,
+      "ndcg3": 0.9507,
+      "ctx_relevancy": 0.6148,
+      "faithfulness_full": 0.0859,
+      "rel_grades": [
+        0.5679,
+        0.7195,
+        0.6795
+      ]
+    },
+    {
+      "id": "M030",
+      "difficulty": "medium",
+      "question": "What is the relationship between the noise figure (F) and the resonant frequency (ωr) in a high-gain avalanche diode amplifier, and what is the governing equation?",
+      "gold_chunk_id": 942,
+      "retrieved_ids": [
+        1070,
+        942,
+        943
+      ],
+      "hiconf": true,
+      "gold_method": "substring",
+      "hit1": 0,
+      "hit3": 1,
+      "rr": 0.5,
+      "ndcg3": 0.8902,
+      "ctx_relevancy": 0.4252,
+      "faithfulness_full": 0.4746,
+      "rel_grades": [
+        0.5384,
+        1.0,
+        0.6404
+      ]
+    },
+    {
+      "id": "M031",
+      "difficulty": "medium",
+      "question": "What is the relationship between the common mode voltage gain (Avc) and the difference mode voltage gain (Avd) in a differential amplifier, and what is the governing equation?",
+      "gold_chunk_id": 361,
+      "retrieved_ids": [
+        408,
+        361,
+        362
+      ],
+      "hiconf": true,
+      "gold_method": "substring",
+      "hit1": 0,
+      "hit3": 1,
+      "rr": 0.5,
+      "ndcg3": 0.8752,
+      "ctx_relevancy": 0.4063,
+      "faithfulness_full": 0.3738,
+      "rel_grades": [
+        0.4823,
+        1.0,
+        0.5159
+      ]
+    },
+    {
+      "id": "M032",
+      "difficulty": "medium",
+      "question": "How does the transconductance in the saturation region relate to the drain-source voltage and gate voltage, and what is the governing equation? Physically, what is the significance of this relationship?",
+      "gold_chunk_id": 875,
+      "retrieved_ids": [
+        1136,
+        876,
+        880
+      ],
+      "hiconf": true,
+      "gold_method": "embedding",
+      "hit1": 0,
+      "hit3": 0,
+      "rr": 0.0,
+      "ndcg3": 0.9618,
+      "ctx_relevancy": 0.5952,
+      "faithfulness_full": 0.3256,
+      "rel_grades": [
+        0.5221,
+        0.5535,
+        0.6157
+      ]
+    },
+    {
+      "id": "M033",
+      "difficulty": "medium",
+      "question": "How does the energy of the photon (hv) affect the process of carrier excitation in a p-i-n photodiode, and what is the governing equation?",
+      "gold_chunk_id": 1065,
+      "retrieved_ids": [
+        1067,
+        1066,
+        1065
+      ],
+      "hiconf": false,
+      "gold_method": "embedding",
+      "hit1": 0,
+      "hit3": 1,
+      "rr": 0.3333,
+      "ndcg3": 0.8938,
+      "ctx_relevancy": 0.5557,
+      "faithfulness_full": 0.0573,
+      "rel_grades": [
+        0.6318,
+        0.6621,
+        1.0
+      ]
+    },
+    {
+      "id": "M034",
+      "difficulty": "medium",
+      "question": "How does the channel length (L) affect the drain-induced barrier lowering (DIBL) effect in the strong inversion region, and what is the governing equation? Physically, what is the significance of this relationship?",
+      "gold_chunk_id": 143,
+      "retrieved_ids": [
+        143,
+        206,
+        635
+      ],
+      "hiconf": true,
+      "gold_method": "embedding",
+      "hit1": 1,
+      "hit3": 1,
+      "rr": 1.0,
+      "ndcg3": 1.0,
+      "ctx_relevancy": 0.6944,
+      "faithfulness_full": -0.0158,
+      "rel_grades": [
+        1.0,
+        0.9672,
+        0.6353
+      ]
+    },
+    {
+      "id": "M035",
+      "difficulty": "medium",
+      "question": "How does the avalanche gain M affect the noise equivalent power NEP in an avalanche photodiode, and what is the governing equation?",
+      "gold_chunk_id": 1073,
+      "retrieved_ids": [
+        1072,
+        1071,
+        1073
+      ],
+      "hiconf": false,
+      "gold_method": "embedding",
+      "hit1": 0,
+      "hit3": 1,
+      "rr": 0.3333,
+      "ndcg3": 0.9125,
+      "ctx_relevancy": 0.5616,
+      "faithfulness_full": 0.1404,
+      "rel_grades": [
+        0.679,
+        0.7848,
+        1.0
+      ]
+    },
+    {
+      "id": "M036",
+      "difficulty": "medium",
+      "question": "What is the relationship between the electron and hole concentrations in thermal equilibrium for a non-uniformly doped material, and what is the governing equation?",
+      "gold_chunk_id": 539,
+      "retrieved_ids": [
+        539,
+        690,
+        540
+      ],
+      "hiconf": true,
+      "gold_method": "substring",
+      "hit1": 1,
+      "hit3": 1,
+      "rr": 1.0,
+      "ndcg3": 1.0,
+      "ctx_relevancy": 0.7049,
+      "faithfulness_full": 0.4058,
+      "rel_grades": [
+        1.0,
+        0.5473,
+        0.4403
+      ]
+    },
+    {
+      "id": "M037",
+      "difficulty": "medium",
+      "question": "How does the channel doping concentration at the depletion edge (NDEP) affect the body-effect coefficient near the surface (GAMMA1), and what is the governing equation?",
+      "gold_chunk_id": 154,
+      "retrieved_ids": [
+        131,
+        193,
+        241
+      ],
+      "hiconf": false,
+      "gold_method": "embedding",
+      "hit1": 0,
+      "hit3": 0,
+      "rr": 0.0,
+      "ndcg3": 0.9264,
+      "ctx_relevancy": 0.4622,
+      "faithfulness_full": 0.0299,
+      "rel_grades": [
+        0.4649,
+        0.4649,
+        0.6358
+      ]
+    },
+    {
+      "id": "M038",
+      "difficulty": "medium",
+      "question": "What is the relationship between the output voltage/power and the electromagnetic coupling per unit volume, and what is the governing equation?",
+      "gold_chunk_id": 96,
+      "retrieved_ids": [
+        99,
+        944,
+        669
+      ],
+      "hiconf": false,
+      "gold_method": "embedding",
+      "hit1": 0,
+      "hit3": 0,
+      "rr": 0.0,
+      "ndcg3": 1.0,
+      "ctx_relevancy": 0.2582,
+      "faithfulness_full": 0.2978,
+      "rel_grades": [
+        0.4699,
+        0.2537,
+        0.0714
+      ]
+    },
+    {
+      "id": "M039",
+      "difficulty": "medium",
+      "question": "How does the semiconductor material affect the wavelength detectable by a CCD image sensor, and what is the governing equation?",
+      "gold_chunk_id": 1078,
+      "retrieved_ids": [
+        1079,
+        1087,
+        1058
+      ],
+      "hiconf": true,
+      "gold_method": "substring",
+      "hit1": 0,
+      "hit3": 0,
+      "rr": 0.0,
+      "ndcg3": 0.9606,
+      "ctx_relevancy": 0.6033,
+      "faithfulness_full": 0.0977,
+      "rel_grades": [
+        0.4799,
+        0.3293,
+        0.5181
+      ]
+    },
+    {
+      "id": "M040",
+      "difficulty": "medium",
+      "question": "What is the relationship between the drain current (Ids) and the source end velocity (vsHD), and what is the governing equation? Physically, what is the significance of this relationship in the context of carrier transport in nanoscale MOSFETs?",
+      "gold_chunk_id": 204,
+      "retrieved_ids": [
+        822,
+        208,
+        145
+      ],
+      "hiconf": false,
+      "gold_method": "embedding",
+      "hit1": 0,
+      "hit3": 0,
+      "rr": 0.0,
+      "ndcg3": 0.9764,
+      "ctx_relevancy": 0.5552,
+      "faithfulness_full": 0.5259,
+      "rel_grades": [
+        0.5938,
+        0.6164,
+        0.6573
+      ]
+    },
+    {
+      "id": "H001",
+      "difficulty": "hard",
+      "question": "Derive the gain of the common gate stage with substrate grounded and explain how the Miller effect impacts the gain, assuming Cgd << Cgs and Cbd << Cgs. Provide the governing equations and define the symbols used.",
+      "gold_chunk_id": 374,
+      "retrieved_ids": [
+        374,
+        375,
+        390
+      ],
+      "hiconf": true,
+      "gold_method": "embedding",
+      "hit1": 1,
+      "hit3": 1,
+      "rr": 1.0,
+      "ndcg3": 0.987,
+      "ctx_relevancy": 0.7081,
+      "faithfulness_full": 0.0353,
+      "rel_grades": [
+        1.0,
+        0.2899,
+        0.4307
+      ]
+    },
+    {
+      "id": "H002",
+      "difficulty": "hard",
+      "question": "Derive the total current density Jtot in the depletion region of a photodiode, and explain how the transit-time effect impacts the high-frequency response. Provide the governing equations and define the symbols used.",
+      "gold_chunk_id": 1065,
+      "retrieved_ids": [
+        1063,
+        1062,
+        1061
+      ],
+      "hiconf": false,
+      "gold_method": "embedding",
+      "hit1": 0,
+      "hit3": 0,
+      "rr": 0.0,
+      "ndcg3": 0.9882,
+      "ctx_relevancy": 0.3772,
+      "faithfulness_full": 0.0457,
+      "rel_grades": [
+        0.6831,
+        0.7304,
+        0.6395
+      ]
+    },
+    {
+      "id": "H003",
+      "difficulty": "hard",
+      "question": "Derive the threshold voltage change due to the narrow-width effect, and explain the significance of the fringing fields in this context. Provide the governing equations and define the symbols used.",
+      "gold_chunk_id": 133,
+      "retrieved_ids": [
+        195,
+        133,
+        1084
+      ],
+      "hiconf": false,
+      "gold_method": "embedding",
+      "hit1": 0,
+      "hit3": 1,
+      "rr": 0.5,
+      "ndcg3": 0.9979,
+      "ctx_relevancy": 0.4596,
+      "faithfulness_full": 0.0837,
+      "rel_grades": [
+        0.99,
+        1.0,
+        0.3456
+      ]
+    },
+    {
+      "id": "H005",
+      "difficulty": "hard",
+      "question": "Derive the base transport factor α+ in terms of the hole diffusion length Lp and the neutral n1-region width W. Explain how the ratio W/Wn1 affects the base transport factor as the reverse voltage increases. Provide the governing equations and define the symbols used.",
+      "gold_chunk_id": 982,
+      "retrieved_ids": [
+        982,
+        988,
+        730
+      ],
+      "hiconf": true,
+      "gold_method": "substring",
+      "hit1": 1,
+      "hit3": 1,
+      "rr": 1.0,
+      "ndcg3": 1.0,
+      "ctx_relevancy": 0.3002,
+      "faithfulness_full": 0.0335,
+      "rel_grades": [
+        1.0,
+        0.536,
+        0.4661
+      ]
+    },
+    {
+      "id": "H006",
+      "difficulty": "hard",
+      "question": "Derive the drain current Id as a function of the net channel opening, assuming a constant mobility model, and explain how the channel pinch-off affects the current saturation. Provide the governing equations and define the symbols used.",
+      "gold_chunk_id": 871,
+      "retrieved_ids": [
+        872,
+        880,
+        888
+      ],
+      "hiconf": false,
+      "gold_method": "embedding",
+      "hit1": 0,
+      "hit3": 0,
+      "rr": 0.0,
+      "ndcg3": 0.9649,
+      "ctx_relevancy": 0.6793,
+      "faithfulness_full": 0.5447,
+      "rel_grades": [
+        0.6061,
+        0.6522,
+        0.7057
+      ]
+    },
+    {
+      "id": "H007",
+      "difficulty": "hard",
+      "question": "Derive the lightly-doped source and drain resistance as a function of Vgs and Vbs, assuming RDSMOD=1, and explain how the pocket implant affects the threshold voltage shift. Provide the governing equations and define the symbols used.",
+      "gold_chunk_id": 573,
+      "retrieved_ids": [
+        242,
+        412,
+        207
+      ],
+      "hiconf": false,
+      "gold_method": "embedding",
+      "hit1": 0,
+      "hit3": 0,
+      "rr": 0.0,
+      "ndcg3": 0.9802,
+      "ctx_relevancy": 0.4135,
+      "faithfulness_full": 0.3052,
+      "rel_grades": [
+        0.4256,
+        0.1907,
+        0.2977
+      ]
+    },
+    {
+      "id": "H008",
+      "difficulty": "hard",
+      "question": "Derive the effective gate oxide capacitance Coxeff in terms of the electrical gate oxide thickness TOXE, the physical gate oxide thickness TOXP, and the difference DTOX = TOXE – TOXP. Explain how the finite charge-layer thickness affects the Coxeff. Provide the governing equations and define the symbols used.",
+      "gold_chunk_id": 189,
+      "retrieved_ids": [
+        632,
+        189,
+        127
+      ],
+      "hiconf": true,
+      "gold_method": "embedding",
+      "hit1": 0,
+      "hit3": 1,
+      "rr": 0.5,
+      "ndcg3": 0.9081,
+      "ctx_relevancy": 0.5393,
+      "faithfulness_full": 0.5971,
+      "rel_grades": [
+        0.6401,
+        1.0,
+        0.99
+      ]
+    },
+    {
+      "id": "H009",
+      "difficulty": "hard",
+      "question": "Derive the relationship between the barrier height qφb and the interfacial properties c2 and Dit, and explain how the surface states affect the barrier height. Provide the governing equations and define the symbols used.",
+      "gold_chunk_id": 758,
+      "retrieved_ids": [
+        759,
+        756,
+        774
+      ],
+      "hiconf": true,
+      "gold_method": "substring",
+      "hit1": 0,
+      "hit3": 0,
+      "rr": 0.0,
+      "ndcg3": 0.9768,
+      "ctx_relevancy": 0.5976,
+      "faithfulness_full": 0.4844,
+      "rel_grades": [
+        0.5727,
+        0.6545,
+        0.5691
+      ]
+    },
+    {
+      "id": "H010",
+      "difficulty": "hard",
+      "question": "Assuming the lithography and patterning techniques in the International Roadmap for Devices and Systems (IRDSTM) are used to fabricate a gate stack, derive the relationship between the electrical gate oxide thickness TOXE, the physical gate oxide thickness TOXP, and the difference DTOX = TOXE – TOXP, and explain how the finite charge-layer thickness affects the effective gate oxide capacitance Coxeff.",
+      "gold_chunk_id": 331,
+      "retrieved_ids": [
+        845,
+        856,
+        127
+      ],
+      "hiconf": true,
+      "gold_method": "embedding",
+      "hit1": 0,
+      "hit3": 0,
+      "rr": 0.0,
+      "ndcg3": 0.9881,
+      "ctx_relevancy": 0.5603,
+      "faithfulness_full": 0.0438,
+      "rel_grades": [
+        0.2494,
+        0.2655,
+        0.1506
+      ]
+    },
+    {
+      "id": "H011",
+      "difficulty": "hard",
+      "question": "Derive the relationship between the intrinsic carrier concentration ni(T) and the bandgap energy Eg, and explain how the temperature affects the carrier concentration. Provide the governing equation and define the symbols used.",
+      "gold_chunk_id": 480,
+      "retrieved_ids": [
+        694,
+        690,
+        693
+      ],
+      "hiconf": true,
+      "gold_method": "substring",
+      "hit1": 0,
+      "hit3": 0,
+      "rr": 0.0,
+      "ndcg3": 0.9422,
+      "ctx_relevancy": 0.5287,
+      "faithfulness_full": 0.5842,
+      "rel_grades": [
+        0.3846,
+        0.4409,
+        0.4964
+      ]
+    },
+    {
+      "id": "H012",
+      "difficulty": "hard",
+      "question": "Derive the relationship between the effective channel length Leff and the active drawn length L, and explain how the source/drain to gate overlap length and the difference between drawn and actual POLY CD affect Leff. Provide the governing equations and define the symbols used.",
+      "gold_chunk_id": 189,
+      "retrieved_ids": [
+        129,
+        191,
+        840
+      ],
+      "hiconf": true,
+      "gold_method": "embedding",
+      "hit1": 0,
+      "hit3": 0,
+      "rr": 0.0,
+      "ndcg3": 1.0,
+      "ctx_relevancy": 0.5406,
+      "faithfulness_full": 0.1305,
+      "rel_grades": [
+        0.6639,
+        0.6568,
+        0.4346
+      ]
+    },
+    {
+      "id": "H013",
+      "difficulty": "hard",
+      "question": "Derive the relationship between the threshold current density Jth and the operating temperature T, and explain why the threshold current increases exponentially with temperature in DH lasers. Provide the governing equation and define the symbols used.",
+      "gold_chunk_id": 1041,
+      "retrieved_ids": [
+        1041,
+        1042,
+        1040
+      ],
+      "hiconf": true,
+      "gold_method": "substring",
+      "hit1": 1,
+      "hit3": 1,
+      "rr": 1.0,
+      "ndcg3": 0.9991,
+      "ctx_relevancy": 0.5837,
+      "faithfulness_full": 0.7025,
+      "rel_grades": [
+        1.0,
+        0.6594,
+        0.6718
+      ]
+    },
+    {
+      "id": "H014",
+      "difficulty": "hard",
+      "question": "Derive the subthreshold current in a p-channel MOSFET and explain how the body effect affects the threshold voltage shift. Provide the governing equations and define the symbols used.",
+      "gold_chunk_id": 247,
+      "retrieved_ids": [
+        834,
+        836,
+        831
+      ],
+      "hiconf": false,
+      "gold_method": "embedding",
+      "hit1": 0,
+      "hit3": 0,
+      "rr": 0.0,
+      "ndcg3": 0.9967,
+      "ctx_relevancy": 0.509,
+      "faithfulness_full": 0.5609,
+      "rel_grades": [
+        0.3668,
+        0.258,
+        0.2751
+      ]
+    },
+    {
+      "id": "H015",
+      "difficulty": "hard",
+      "question": "Derive the temporal response of the electron density in a transferred-electron device, assuming a negative differential mobility, and explain the conditions required for the formation of a strong space-charge instability. Provide the governing equations and define the symbols used.",
+      "gold_chunk_id": 958,
+      "retrieved_ids": [
+        958,
+        957,
+        966
+      ],
+      "hiconf": true,
+      "gold_method": "substring",
+      "hit1": 1,
+      "hit3": 1,
+      "rr": 1.0,
+      "ndcg3": 1.0,
+      "ctx_relevancy": 0.4919,
+      "faithfulness_full": 0.4128,
+      "rel_grades": [
+        1.0,
+        0.4842,
+        0.4726
+      ]
+    },
+    {
+      "id": "H016",
+      "difficulty": "hard",
+      "question": "Derive the relationship between the emission wavelength of a Fabry-Perot laser and the temperature, and explain why the emission wavelength of DFB and DBR lasers is less temperature sensitive. Provide the governing equations and define the symbols used.",
+      "gold_chunk_id": 1039,
+      "retrieved_ids": [
+        1042,
+        1051,
+        1046
+      ],
+      "hiconf": true,
+      "gold_method": "substring",
+      "hit1": 0,
+      "hit3": 0,
+      "rr": 0.0,
+      "ndcg3": 0.9947,
+      "ctx_relevancy": 0.4625,
+      "faithfulness_full": 0.4941,
+      "rel_grades": [
+        0.604,
+        0.4153,
+        0.4602
+      ]
+    },
+    {
+      "id": "H017",
+      "difficulty": "hard",
+      "question": "Derive the relationship between the drain current ID and the drain-source voltage VDS in the saturation region, and explain how the pinch-off condition affects the transconductance gm. Provide the governing equations and define the symbols used.",
+      "gold_chunk_id": 871,
+      "retrieved_ids": [
+        823,
+        888,
+        1136
+      ],
+      "hiconf": false,
+      "gold_method": "embedding",
+      "hit1": 0,
+      "hit3": 0,
+      "rr": 0.0,
+      "ndcg3": 0.9822,
+      "ctx_relevancy": 0.5807,
+      "faithfulness_full": 0.1597,
+      "rel_grades": [
+        0.6379,
+        0.7057,
+        0.5989
+      ]
+    },
+    {
+      "id": "H018",
+      "difficulty": "hard",
+      "question": "Derive the relationship between the gate capacitance Cm and the gate oxide capacitance Cox, and explain how the gate resistance Rg and the source/drain series resistance Rs affect the total gate capacitance. Provide the governing equations and define the symbols used.",
+      "gold_chunk_id": 153,
+      "retrieved_ids": [
+        619,
+        632,
+        851
+      ],
+      "hiconf": false,
+      "gold_method": "embedding",
+      "hit1": 0,
+      "hit3": 0,
+      "rr": 0.0,
+      "ndcg3": 0.9621,
+      "ctx_relevancy": 0.5067,
+      "faithfulness_full": 0.4793,
+      "rel_grades": [
+        0.551,
+        0.6759,
+        0.5807
+      ]
+    },
+    {
+      "id": "H019",
+      "difficulty": "hard",
+      "question": "Derive the relationship between the depletion-layer width and the maximum field at breakdown for a one-sided abrupt junction, and explain how the background doping concentration affects the breakdown voltage. Provide the governing equations and define the symbols used.",
+      "gold_chunk_id": 929,
+      "retrieved_ids": [
+        929,
+        739,
+        725
+      ],
+      "hiconf": false,
+      "gold_method": "embedding",
+      "hit1": 1,
+      "hit3": 1,
+      "rr": 1.0,
+      "ndcg3": 1.0,
+      "ctx_relevancy": 0.6852,
+      "faithfulness_full": 0.1642,
+      "rel_grades": [
+        1.0,
+        0.6969,
+        0.5454
+      ]
+    },
+    {
+      "id": "H020",
+      "difficulty": "hard",
+      "question": "Derive the relationship between the current through the nitride layer Jn and the oxide field go, and explain why the current conduction is limited by Frenkel-Poole transport through the nitride layer at the beginning of the programming process, and by modified Fowler-Nordheim tunneling later on. Provide the governing equations and define the symbols used.",
+      "gold_chunk_id": 857,
+      "retrieved_ids": [
+        857,
+        909,
+        808
+      ],
+      "hiconf": true,
+      "gold_method": "substring",
+      "hit1": 1,
+      "hit3": 1,
+      "rr": 1.0,
+      "ndcg3": 1.0,
+      "ctx_relevancy": 0.5968,
+      "faithfulness_full": 0.5811,
+      "rel_grades": [
+        1.0,
+        0.6343,
+        0.5123
+      ]
+    }
+  ]
+}

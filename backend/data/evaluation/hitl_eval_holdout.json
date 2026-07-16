@@ -1,0 +1,82 @@
+[
+  {
+    "id": "H001",
+    "topic": "channel_length_modulation",
+    "question": "What is the effect of channel-length modulation on drain current in saturation, and write the corrected drain-current equation that accounts for it?",
+    "reference_answer": "Channel-length modulation causes the drain current to increase slightly with increasing Vds even in saturation. The corrected equation is Id = (1/2) * mu_n * Cox * (W/L) * (Vgs - Vth)^2 * (1 + lambda * Vds), where lambda is the channel-length modulation parameter (units V^-1). Without this term the long-channel model predicts perfectly flat Id vs Vds curves, which is unphysical.",
+    "key_equation": "Id = (1/2) * mu_n * Cox * (W/L) * (Vgs - Vth)^2 * (1 + lambda * Vds)",
+    "keywords": ["1 +", "lambda", "Vds"]
+  },
+  {
+    "id": "H002",
+    "topic": "threshold_voltage",
+    "question": "How does increasing the substrate (body) reverse bias Vsb change the threshold voltage of an NMOS transistor?",
+    "reference_answer": "Increasing Vsb (reverse body bias) increases the threshold voltage via the body effect: Vth = Vth0 + gamma * (sqrt(2*phi_f + Vsb) - sqrt(2*phi_f)), where gamma is the body-effect coefficient (sqrt(2*q*eps_Si*Na) / Cox), phi_f is the Fermi potential, and Vth0 is the zero-bias threshold. The reverse bias widens the depletion region, requiring more gate charge to reach inversion.",
+    "key_equation": "Vth = Vth0 + gamma * (sqrt(2*phi_f + Vsb) - sqrt(2*phi_f))",
+    "keywords": ["gamma", "sqrt", "Vsb"]
+  },
+  {
+    "id": "H003",
+    "topic": "subthreshold_swing",
+    "question": "What is the minimum achievable subthreshold swing at room temperature and why can it not be reduced further in a conventional MOSFET?",
+    "reference_answer": "The minimum subthreshold swing is SS_min = (kT/q) * ln(10) ≈ 60 mV/decade at T = 300 K. It cannot be reduced further because subthreshold current is governed by Boltzmann statistics — carriers must thermally surmount the barrier. The exponential tail of the Fermi-Dirac distribution sets a hard floor. Only devices that bypass thermionic emission (e.g., tunnel FETs) can break this limit.",
+    "key_equation": "SS_min = (kT/q) * ln(10) ≈ 60 mV/dec at 300 K",
+    "keywords": ["60", "kT", "q"]
+  },
+  {
+    "id": "H004",
+    "topic": "saturation_drain_current",
+    "question": "Derive the saturation drain current for a long-channel NMOS transistor using the gradual-channel approximation.",
+    "reference_answer": "At the onset of pinch-off, Vds = Vgs - Vth = Vdsat. Substituting into the linear-region current expression and simplifying: Id_sat = (mu_n * Cox / 2) * (W/L) * (Vgs - Vth)^2. Here mu_n is the electron mobility, Cox is the gate-oxide capacitance per unit area, W/L is the aspect ratio, and (Vgs - Vth) is the overdrive voltage. The current is independent of Vds in the ideal long-channel model.",
+    "key_equation": "Id_sat = (mu_n * Cox / 2) * (W/L) * (Vgs - Vth)^2",
+    "keywords": ["Vgs", "Vth", "2"]
+  },
+  {
+    "id": "H005",
+    "topic": "transconductance",
+    "question": "Define the MOSFET transconductance gm in saturation and state how it depends on drain current.",
+    "reference_answer": "Transconductance is gm = dId/dVgs|Vds=const. In saturation: gm = mu_n * Cox * (W/L) * (Vgs - Vth) = sqrt(2 * mu_n * Cox * (W/L) * Id). The second form shows that gm scales as the square root of drain current — doubling Id requires 4× the bias to double gm. High gm directly improves voltage gain in amplifier stages.",
+    "key_equation": "gm = sqrt(2 * mu_n * Cox * (W/L) * Id)",
+    "keywords": ["sqrt", "Id"]
+  },
+  {
+    "id": "H006",
+    "topic": "output_resistance",
+    "question": "What is the small-signal output resistance ro of a MOSFET in saturation, and what physical mechanism sets it?",
+    "reference_answer": "The output resistance is ro = (lambda * Id)^-1 ≈ Va / Id, where Va = 1/lambda is the Early voltage (analogous to BJT). It arises from channel-length modulation: as Vds increases, the effective channel length decreases slightly, increasing Id. In circuit terms, ro limits the voltage gain of a common-source amplifier: Av = -gm * (ro || Rd).",
+    "key_equation": "ro = 1 / (lambda * Id)",
+    "keywords": ["1 /", "lambda", "Id"]
+  },
+  {
+    "id": "H007",
+    "topic": "oxide_capacitance",
+    "question": "A MOSFET gate oxide has thickness tox = 5 nm and uses SiO2 (epsilon_r = 3.9). Calculate Cox per unit area.",
+    "reference_answer": "Cox = epsilon_ox / tox = (epsilon_r * epsilon_0) / tox = (3.9 * 8.854e-12) / (5e-9) = 6.91e-3 F/m^2 ≈ 6.91 mF/m^2. This is approximately 6.91 fF/um^2 in the units commonly used for SPICE parameters. Higher Cox (thinner oxide) increases the gate control over the channel and raises transconductance.",
+    "key_equation": "Cox = epsilon_ox / tox",
+    "keywords": ["epsilon", "tox"]
+  },
+  {
+    "id": "H008",
+    "topic": "linear_region_current",
+    "question": "Write the drain-current equation for an NMOS transistor operating in the linear (triode) region.",
+    "reference_answer": "In the linear region (Vds < Vgs - Vth): Id = mu_n * Cox * (W/L) * [(Vgs - Vth) * Vds - Vds^2 / 2]. For small Vds this simplifies to Id ≈ mu_n * Cox * (W/L) * (Vgs - Vth) * Vds, showing the device behaves as a voltage-controlled resistor with Ron = 1 / [mu_n * Cox * (W/L) * (Vgs - Vth)].",
+    "key_equation": "Id = mu_n * Cox * (W/L) * [(Vgs - Vth) * Vds - Vds^2 / 2]",
+    "keywords": ["Vds^2", "2"]
+  },
+  {
+    "id": "H009",
+    "topic": "depletion_width",
+    "question": "How does the maximum depletion width Wdm in a MOSFET relate to substrate doping Na, and what is the governing equation?",
+    "reference_answer": "At the threshold condition the depletion width reaches its maximum: Wdm = sqrt(2 * eps_Si * 2 * phi_f / (q * Na)), where eps_Si is the silicon permittivity, phi_f = (kT/q) * ln(Na/ni) is the Fermi potential, q is the electron charge, and Na is the acceptor doping. Higher Na gives a narrower Wdm and increases the threshold voltage through the depletion charge term Qd = q * Na * Wdm.",
+    "key_equation": "Wdm = sqrt(4 * eps_Si * phi_f / (q * Na))",
+    "keywords": ["sqrt", "eps", "Na"]
+  },
+  {
+    "id": "H010",
+    "topic": "velocity_saturation",
+    "question": "How does velocity saturation modify the drain current and the saturation voltage compared to the long-channel model?",
+    "reference_answer": "In short-channel devices, carrier velocity saturates at vsat before the pinch-off condition is reached. The saturation voltage becomes Vdsat = (Vgs - Vth) * E_sat * L / ((Vgs - Vth) + E_sat * L), which is lower than (Vgs - Vth). The saturation current is Id_sat = Cox * W * vsat * (Vgs - Vth - Vdsat), which scales linearly with (Vgs - Vth) rather than quadratically. This means short-channel transistors have lower gain than the long-channel model predicts.",
+    "key_equation": "Id_sat ∝ Cox * W * vsat * (Vgs - Vth)  [linear, not quadratic]",
+    "keywords": ["vsat", "Vgs", "Vth"]
+  }
+]
